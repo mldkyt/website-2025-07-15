@@ -124,7 +124,7 @@ export default function NekoSearchV2() {
                 <p className={'font-bold text-xl'}>No results found. Search for something else?</p> : null}
             {results.map((x, i) => {
                 return <div key={i} className={'m-1 bg-[#222] p-2 rounded-lg my-4 drop-shadow-md'}>
-                    <motion.h1 whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>
+                    <motion.h1 whileTap={{scale: 0.9}} whileHover={{scale: 1.1}} className={'w-min'}>
                         <Link href={x.url}
                               className={'text-pink-400 hover:text-pink-200 text-xl font-bold'}>{x.name}</Link>
                     </motion.h1>
