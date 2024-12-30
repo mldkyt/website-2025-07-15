@@ -39,6 +39,7 @@ export default function Metadata(props: {
             <meta property="og:locale:alternate" content="ja_JP"/>
             <meta name="twitter:title" content={`${props.title} | mldchan's website`}/>
             <meta name="twitter:description" content={props.description}/>
+            <meta name="theme-color" content="#ff77ff"/>
         </Head>
     )
 }
