@@ -85,7 +85,7 @@ export default function NekoSearchV2() {
             return;
         }
 
-        fetch('https://mldchan.dev/api/nekoweb/search?q=' + event.target.value).then(x => {
+        fetch('/api/nekoweb/search?q=' + event.target.value).then(x => {
             x.json().then(x => {
                 setResults(x.hits.map((y: any) => {
                     return {name: y.title, desc: y.body, url: y.url}
@@ -124,7 +124,7 @@ export default function NekoSearchV2() {
                 <p className={'font-bold text-xl'}>No results found. Search for something else?</p> : null}
             {results.map((x, i) => {
                 return <div key={i} className={'m-1 bg-[#222] p-2 rounded-lg my-4 drop-shadow-md'}>
-                    <motion.h1 whileTap={{scale: 0.9}} whileHover={{scale: 1.1}} className={'w-min'}>
+                    <motion.h1 whileTap={{scale: 0.9}} whileHover={{scale: 1.1}} className={'w-max'}>
                         <Link href={x.url}
                               className={'text-pink-400 hover:text-pink-200 text-xl font-bold'}>{x.name}</Link>
                     </motion.h1>
