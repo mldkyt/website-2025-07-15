@@ -25,8 +25,21 @@ import Link from "next/link";
 import Metadata from "@/components/Generic/Metadata";
 import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
-export default function MCFuck() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/project/mcfuck'});
+    const visits = await getVisits({route: '/project/mcfuck'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function MCFuck(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return <Main>
         <Metadata title={'MCFuck'}
                   description={'MCFuck is a program that attempts to mess with your Minecraft settings, without corrupting them.'}/>
@@ -51,7 +64,7 @@ export default function MCFuck() {
                 <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Download this abomination</motion.span>
             </Link>
             <Offset amt={3}/>
-            <Footer/>
+            <Footer visits={props.visits}/>
         </Content>
     </Main>
 }

@@ -32,8 +32,21 @@ import website from '@/images/art/website@4x.png';
 import Image from "next/image";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
-export default function Art() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/art'});
+    const visits = await getVisits({route: '/art'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function Art(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return <Main>
         <Metadata title={'Art'} description={'mldchan\'s art'}/>
         <Header/>
@@ -66,7 +79,7 @@ export default function Art() {
             <p>The logo of this website</p>
             <Image src={website} alt={'Website logo'}/>
             <Offset amt={6}/>
-            <Footer/>
+            <Footer visits={props.visits}/>
         </Content>
     </Main>
 }

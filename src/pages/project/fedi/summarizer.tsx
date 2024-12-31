@@ -28,8 +28,21 @@ import Image from "next/image";
 import Metadata from "@/components/Generic/Metadata";
 import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
-export default function FediSummarizer() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/project/fedi/summarizer'});
+    const visits = await getVisits({route: '/project/fedi/summarizer'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function FediSummarizer(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
             <Metadata title={'Fedi Summarizer'}
@@ -66,7 +79,7 @@ export default function FediSummarizer() {
                 </Link>
 
                 <Offset amt={3}/>
-                <Footer/>
+                <Footer visits={props.visits}/>
             </Content>
         </Main>
     )

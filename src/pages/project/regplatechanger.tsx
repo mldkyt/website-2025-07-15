@@ -28,8 +28,21 @@ import Image from "next/image";
 import Metadata from "@/components/Generic/Metadata";
 import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
-export default function RegPlateChanger() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/project/regplatechanger'});
+    const visits = await getVisits({route: '/project/regplatechanger'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function RegPlateChanger(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
             <Metadata title={'Reg Plate Changer'}
@@ -67,7 +80,7 @@ export default function RegPlateChanger() {
                 </Link>
 
                 <Offset amt={3}/>
-                <Footer/>
+                <Footer visits={props.visits}/>
             </Content>
         </Main>
     )

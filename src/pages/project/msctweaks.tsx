@@ -23,8 +23,21 @@ import Offset from "@/components/Generic/Offset";
 import Heading from "@/components/Generic/Heading";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
-export default function Template() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/project/msctweaks'});
+    const visits = await getVisits({route: '/project/msctweaks'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function Template(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
             <Metadata title={'MSC Tweaks'} description={'This mod adds a few tweaks to My Summer Car.'}/>
@@ -56,7 +69,7 @@ export default function Template() {
                 <p>This mod page was last updated on 2024/07/14.</p>
 
                 <Offset amt={3}/>
-                <Footer/>
+                <Footer visits={props.visits}/>
             </Content>
         </Main>
     )

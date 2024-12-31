@@ -21,7 +21,7 @@ import {motion} from 'motion/react';
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Footer() {
+export default function Footer(props: { visits?: number }) {
     return (
         <footer className={'w-full flex flex-row h-36'}>
             <div className={'w-1/2'}>
@@ -51,6 +51,9 @@ export default function Footer() {
                     <Link href={'https://youtube.com/@mldchan'}
                           className={'text-pink-400 hover:text-pink-200'}>YouTube</Link>
                 </motion.div>
+                {props.visits !== undefined && <div>
+                    {props.visits} visits
+                </div>}
             </div>
         </footer>
     )

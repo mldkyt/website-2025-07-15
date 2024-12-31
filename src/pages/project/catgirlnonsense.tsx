@@ -24,8 +24,21 @@ import Generator from "@/components/CatgirlNonsense/Generator";
 import Offset from "@/components/Generic/Offset";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
-export default function CatgirlNonsense() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/project/catgirlnonsense'});
+    const visits = await getVisits({route: '/project/catgirlnonsense'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function CatgirlNonsense(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return <Main>
         <Metadata title={'Catgirl Nonsense'} description={'Catgirl Nonsense generator'}/>
         <Header highlight={'projects'}/>
@@ -34,7 +47,7 @@ export default function CatgirlNonsense() {
             <Heading level={1}>Catgirl Nonsense Generator</Heading>
             <Generator/>
             <Offset amt={3}/>
-            <Footer/>
+            <Footer visits={props.visits}/>
         </Content>
     </Main>
 }

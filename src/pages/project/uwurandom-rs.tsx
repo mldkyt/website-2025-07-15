@@ -28,8 +28,21 @@ import Image from "next/image";
 import Metadata from "@/components/Generic/Metadata";
 import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
-export default function UwurandomRs() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/project/uwurandom-rs'});
+    const visits = await getVisits({route: '/project/uwurandom-rs'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function UwurandomRs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return <Main>
         <Metadata title={'uwurandom-rs'}
                   description={'Catgirl nonsense, but in the Rust programming language, for maximum femininity.'}/>
@@ -53,7 +66,7 @@ export default function UwurandomRs() {
                 <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Download from GitHub</motion.span>
             </Link>
             <Offset amt={6}/>
-            <Footer/>
+            <Footer visits={props.visits}/>
         </Content>
     </Main>
 }

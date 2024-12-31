@@ -26,8 +26,21 @@ import Metadata from "@/components/Generic/Metadata";
 import Button from "@/components/Generic/Button";
 import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
-export default function Donate() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/donate'});
+    const visits = await getVisits({route: '/donate'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function Donate(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
             <Metadata title={'Donate'} description={'Donate to mldchan to support her projects!'}/>
@@ -106,7 +119,7 @@ export default function Donate() {
                 </Link>
 
                 <Offset amt={6}/>
-                <Footer/>
+                <Footer visits={props.visits}/>
             </Content>
         </Main>
     )

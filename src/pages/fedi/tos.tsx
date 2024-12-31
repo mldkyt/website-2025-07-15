@@ -23,8 +23,21 @@ import Heading from "@/components/Generic/Heading";
 import Offset from "@/components/Generic/Offset";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
-export default function Privacy() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/fedi/tos'});
+    const visits = await getVisits({route: '/fed/tos'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function TermsofService(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return <Main>
         <Metadata title={'Fedi Terms of Service'} description={'mldchan Social Terms of Service'}/>
         <Header/>
@@ -123,7 +136,7 @@ export default function Privacy() {
             <p><small>Parts of this page were AI generated. The content has been checked by an actual person.</small>
             </p>
             <Offset amt={4}/>
-            <Footer/>
+            <Footer visits={props.visits}/>
         </Content>
     </Main>
 }

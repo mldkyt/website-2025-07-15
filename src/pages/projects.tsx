@@ -47,8 +47,21 @@ import cutieQuiz from '@/images/cutiequiz/1.png';
 import velkySMPMon from '@/images/velkysmpmon.png';
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
-export default function Projects() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/projects'});
+    const visits = await getVisits({route: '/projects'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function Projects(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
             <Metadata title={'Projects'} description={'A list of projects by mldchan.'}/>
@@ -130,7 +143,7 @@ export default function Projects() {
                          imageAlt={'A website showing a Minecraft image, under it some server information and list of players sorted by playtime.'}
                          link={'/project/velkysmpmon'}/>
                 <Offset amt={6}/>
-                <Footer/>
+                <Footer visits={props.visits}/>
             </Content>
         </Main>
     )

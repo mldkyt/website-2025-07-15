@@ -30,8 +30,21 @@ import Link from "next/link";
 import Metadata from "@/components/Generic/Metadata";
 import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
-export default function AstolfOS() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/project/astolfos'});
+    const visits = await getVisits({route: '/project/astolfos'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function AstolfOS(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return <Main>
         <Metadata title={'AstolfOS'} description={'AstolfOS is a script that changes your Linux into AstolfOS!'}/>
         <Header highlight={'projects'}/>
@@ -53,7 +66,7 @@ export default function AstolfOS() {
             </div>
 
             <Offset amt={3}/>
-            <Footer/>
+            <Footer visits={props.visits}/>
         </Content>
     </Main>
 }

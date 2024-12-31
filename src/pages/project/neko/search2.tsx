@@ -25,6 +25,8 @@ import Offset from "@/components/Generic/Offset";
 import Link from "next/link";
 import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
 function highlightText(text: string, query: string) {
     const words = query.toLowerCase().split(' ');
@@ -57,7 +59,18 @@ function highlightText(text: string, query: string) {
     return <>{highlightedText}</>;
 }
 
-export default function NekoSearchV2() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/project/neko/search2'});
+    const visits = await getVisits({route: '/project/neko/search2'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function NekoSearchV2(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
 
     const [query, setQuery] = useState<string>('');
     const [results, setResults] = useState<{ name: string, desc: string, url: string }[]>([]);
@@ -133,7 +146,7 @@ export default function NekoSearchV2() {
                 </div>
             })}
             <Offset amt={3}/>
-            <Footer/>
+            <Footer visits={props.visits}/>
         </Content>
     </Main>
 

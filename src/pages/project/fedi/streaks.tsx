@@ -25,8 +25,21 @@ import Offset from "@/components/Generic/Offset";
 import Metadata from "@/components/Generic/Metadata";
 import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
-export default function FediStreaks() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/project/fedi/streaks'});
+    const visits = await getVisits({route: '/project/fedi/streaks'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function FediStreaks(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
             <Metadata title={'Fedi Streaks'}
@@ -52,7 +65,7 @@ export default function FediStreaks() {
                     <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Source code</motion.span>
                 </Link>
                 <Offset amt={3}/>
-                <Footer/>
+                <Footer visits={props.visits}/>
             </Content>
         </Main>
     )

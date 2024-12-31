@@ -26,8 +26,21 @@ import Button from "@/components/Generic/Button";
 import Metadata from "@/components/Generic/Metadata";
 import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
-export default function InviteAkabot() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/project/akabot/invite'});
+    const visits = await getVisits({route: '/project/akabot/invite'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function InviteAkabot(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
             <Metadata title={'Invite Akabot'} description={'Invite the Akabot Discord bot into your server'}/>
@@ -56,7 +69,7 @@ export default function InviteAkabot() {
                     <Button>Invite Akabot</Button>
                 </Link>
                 <Offset amt={3}/>
-                <Footer/>
+                <Footer visits={props.visits}/>
             </Content>
         </Main>
     )

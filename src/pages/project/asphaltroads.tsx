@@ -28,8 +28,21 @@ import Link from "next/link";
 import Metadata from "@/components/Generic/Metadata";
 import Button from "@/components/Generic/Button";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
-export default function Template() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/project/asphaltroads'});
+    const visits = await getVisits({route: '/project/asphaltroads'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function Template(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
             <Metadata title={'Asphalt Roads'} description={'Asphalt Roads mod for My Summer Car'}/>
@@ -57,7 +70,7 @@ export default function Template() {
                 </Link>
 
                 <Offset amt={3}/>
-                <Footer/>
+                <Footer visits={props.visits}/>
             </Content>
         </Main>
     )

@@ -23,8 +23,21 @@ import Offset from "@/components/Generic/Offset";
 import Heading from "@/components/Generic/Heading";
 import Link from "next/link";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
-export default function Template() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '_TEMPLATE'});
+    const visits = await getVisits({route: '_TEMPLATE'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function Template(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
             <Header highlight={'projects'}/>
@@ -42,7 +55,7 @@ export default function Template() {
                 </Link>
 
                 <Offset amt={3}/>
-                <Footer/>
+                <Footer visits={props.visits}/>
             </Content>
         </Main>
     )

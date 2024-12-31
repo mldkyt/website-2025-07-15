@@ -28,8 +28,21 @@ import banner from '@/images/velkysmpmon.png';
 import Metadata from "@/components/Generic/Metadata";
 import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
-export default function Template() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/project/velkysmpmon'});
+    const visits = await getVisits({route: '/project/velkysmpmon'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function Template(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
             <Metadata title={'VelkySMP monitor'}
@@ -84,7 +97,7 @@ export default function Template() {
                 </Link>
 
                 <Offset amt={3}/>
-                <Footer/>
+                <Footer visits={props.visits}/>
             </Content>
         </Main>
     )

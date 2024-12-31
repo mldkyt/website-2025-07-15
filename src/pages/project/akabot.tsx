@@ -26,8 +26,21 @@ import Link from "next/link";
 import Button from "@/components/Generic/Button";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
-export default function Akabot() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/project/akabot'});
+    const visits = await getVisits({route: '/project/akabot'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function Akabot(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
 
     return (
         <Main>
@@ -125,7 +138,7 @@ export default function Akabot() {
                 <Link href={'/donate'}>
                     <Button>Donate to mldchan</Button>
                 </Link>
-                <Footer/>
+                <Footer visits={props.visits}/>
             </Content>
         </Main>
     )

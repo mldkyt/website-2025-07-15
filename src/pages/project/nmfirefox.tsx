@@ -29,8 +29,21 @@ import Link from "next/link";
 import Metadata from "@/components/Generic/Metadata";
 import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
-export default function NMFirefox() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/project/nmfirefox'});
+    const visits = await getVisits({route: '/project/nmfirefox'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function NMFirefox(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return <Main>
         <Metadata title={'NexusMods Enhancements for Firefox'}
                   description={'NexusMods Enhancements for Firefox is an extension that adds a few features to Nexus Mods, namely blocking people.'}/>
@@ -64,7 +77,7 @@ export default function NMFirefox() {
                 </motion.span>
             </Link>
             <Offset amt={3}/>
-            <Footer/>
+            <Footer visits={props.visits}/>
         </Content>
     </Main>
 }

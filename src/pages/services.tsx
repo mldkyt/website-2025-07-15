@@ -23,8 +23,21 @@ import Offset from "@/components/Generic/Offset";
 import Service from "@/components/Services/Service";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
-export default function Services() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/services'});
+    const visits = await getVisits({route: '/services'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function Services(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
             <Metadata title={'Services'} description={'mldchan\'s services'}/>
@@ -85,7 +98,7 @@ export default function Services() {
                 <Service svcName={'QueerBot'} svcDesc={'Another Discord bot for friends.'}
                          pubInfo={'This service is limited to mldchan\'s friend circle only.'}/>
                 <Offset amt={6}/>
-                <Footer/>
+                <Footer visits={props.visits}/>
             </Content>
         </Main>
     )

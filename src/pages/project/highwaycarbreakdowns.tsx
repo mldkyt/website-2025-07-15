@@ -32,8 +32,21 @@ import Link from "next/link";
 import Metadata from "@/components/Generic/Metadata";
 import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
-export default function Template() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/project/highwaycarbreakdowns'});
+    const visits = await getVisits({route: '/project/highwaycarbreakdowns'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function Template(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
             <Metadata title={'Highway Car Breakdowns'}
@@ -69,7 +82,7 @@ export default function Template() {
                 </Link>
 
                 <Offset amt={3}/>
-                <Footer/>
+                <Footer visits={props.visits}/>
             </Content>
         </Main>
     )

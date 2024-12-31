@@ -23,8 +23,21 @@ import {Header} from "@/components/Generic/Header";
 import Social from "@/components/Socials/Social";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
-export default function Socials() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/socials'});
+    const visits = await getVisits({route: '/socials'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function Socials(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
             <Metadata title={'Socials'} description={'mldchan\'s socials'}/>
@@ -46,7 +59,7 @@ export default function Socials() {
                 <Social social={'Codeberg'} socialDescription={'Code Sharing'} followAction={'follow'}
                         link={'https://codeberg.org/mldchan'}/>
                 <Offset amt={6}/>
-                <Footer/>
+                <Footer visits={props.visits}/>
             </Content>
         </Main>
     )

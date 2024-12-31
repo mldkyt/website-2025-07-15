@@ -30,8 +30,21 @@ import Metadata from "@/components/Generic/Metadata";
 
 import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
-export default function Birthday() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/project/birthday'});
+    const visits = await getVisits({route: '/project/birthday'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function Birthday(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return <Main>
         <Metadata title={'Birthday'} description={'Birthday App'}/>
         <Header highlight={'projects'}/>
@@ -55,7 +68,7 @@ export default function Birthday() {
                 <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Download latest release</motion.span>
             </Link>
             <Offset amt={3}/>
-            <Footer/>
+            <Footer visits={props.visits}/>
         </Content>
     </Main>
 }

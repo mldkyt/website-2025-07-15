@@ -24,6 +24,8 @@ import Heading from "@/components/Generic/Heading";
 import Offset from "@/components/Generic/Offset";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
 const ToSHeading = (props: { children: string }) => {
     return (
@@ -31,7 +33,18 @@ const ToSHeading = (props: { children: string }) => {
     )
 }
 
-export default function TermsOfService() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/project/akabot/tos'});
+    const visits = await getVisits({route: '/project/akabot/tos'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function TermsOfService(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
 
     return (
         <Main>
@@ -85,7 +98,7 @@ export default function TermsOfService() {
                     using the
                     bot.</p>
                 <Offset amt={3}/>
-                <Footer/>
+                <Footer visits={props.visits}/>
             </Content>
         </Main>
     )

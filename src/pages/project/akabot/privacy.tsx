@@ -24,10 +24,23 @@ import Heading from "@/components/Generic/Heading";
 import Offset from "@/components/Generic/Offset";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
 const PrivacyHeading = (props: { children: string }) => <h2 className={'text-xl font-bold my-4'}>{props.children}</h2>;
 
-export default function AkabotPrivacy() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/project/akabot/privacy'});
+    const visits = await getVisits({route: '/project/akabot/privacy'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function AkabotPrivacy(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
             <Metadata title={'Akabot Privacy Policy'} description={'Akabot Discord bot privacy policy'}/>
@@ -209,7 +222,7 @@ export default function AkabotPrivacy() {
                     again.
                 </p>
                 <Offset amt={3}/>
-                <Footer/>
+                <Footer visits={props.visits}/>
             </Content>
         </Main>
     )

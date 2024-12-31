@@ -24,8 +24,21 @@ import Page4Other from "@/components/MainPage/Page4Other";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
 import Page2About from "@/components/MainPage/Page2About";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
-export default function Home() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/'});
+    const visits = await getVisits({route: '/'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+export default function Home(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <>
             <Header highlight={'home'}/>
@@ -35,7 +48,7 @@ export default function Home() {
                 <Page2About/>
                 <Page3Projects/>
                 <Page4Other/>
-                <Footer/>
+                <Footer visits={props.visits}/>
             </Main>
         </>
     );
