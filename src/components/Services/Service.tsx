@@ -39,7 +39,7 @@ export default function Service(props: {
             <p>{props.pubInfo}</p>
             {props.links && props.links.map((link, index) => {
                 return (
-                    <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>
+                    <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} className={'w-max'}>
 
                         <Link href={link} key={index} className={'text-pink-400 hover:text-pink-200 block'}>
                             {link}
