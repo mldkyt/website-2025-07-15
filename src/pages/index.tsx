@@ -19,10 +19,11 @@
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
 import Page1 from "@/components/MainPage/Page1";
-import Page2Projects from "@/components/MainPage/Page2Projects";
-import Page3Other from "@/components/MainPage/Page3Other";
+import Page3Projects from "@/components/MainPage/Page3Projects";
+import Page4Other from "@/components/MainPage/Page4Other";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
+import Page2About from "@/components/MainPage/Page2About";
 
 export default function Home() {
     return (
@@ -31,8 +32,9 @@ export default function Home() {
             <Metadata title={'Home Page'} description={'mldchan\'s personal website'}/>
             <Main>
                 <Page1/>
-                <Page2Projects/>
-                <Page3Other/>
+                <Page2About/>
+                <Page3Projects/>
+                <Page4Other/>
                 <Footer/>
             </Main>
         </>

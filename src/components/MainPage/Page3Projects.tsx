@@ -28,7 +28,7 @@ import nekosearch from '@/images/search.png';
 import Link from "next/link";
 import {motion} from "motion/react";
 
-export default function Page2Projects() {
+export default function Page3Projects() {
     return (
         <div className={'h-screen'}>
             <Content>
