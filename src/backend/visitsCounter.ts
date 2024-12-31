@@ -29,6 +29,8 @@ export async function countVisit(opts: { route: string }) {
     await sql`insert into visits (route, count)
               values (${opts.route}, 1)
               on conflict (route) do update set count = visits.count + 1`;
+
+    await sql.end();
 }
 
 export async function getVisits(opts: { route: string }) {
@@ -37,6 +39,8 @@ export async function getVisits(opts: { route: string }) {
     const result = await sql`select count
                              from visits
                              where route = ${opts.route}`;
+
+    await sql.end();
     return result[0]?.count as number | undefined;
 }
 
@@ -45,5 +49,7 @@ export async function getTotalVisits() {
 
     const result = await sql`select sum(count) as total
                              from visits`;
+
+    await sql.end();
     return result[0]?.total as number | undefined;
 }
