@@ -23,6 +23,7 @@ import Heading from "@/components/Generic/Heading";
 import Generator from "@/components/CatgirlNonsense/Generator";
 import Offset from "@/components/Generic/Offset";
 import Metadata from "@/components/Generic/Metadata";
+import Footer from "@/components/Generic/Footer";
 
 export default function CatgirlNonsense() {
     return <Main>
@@ -32,6 +33,8 @@ export default function CatgirlNonsense() {
             <Offset amt={3}/>
             <Heading level={1}>Catgirl Nonsense Generator</Heading>
             <Generator/>
+            <Offset amt={3}/>
+            <Footer/>
         </Content>
     </Main>
 }

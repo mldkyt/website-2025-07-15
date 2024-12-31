@@ -24,6 +24,7 @@ import {ChangeEvent, JSX, useRef, useState} from "react";
 import Offset from "@/components/Generic/Offset";
 import Link from "next/link";
 import {motion} from "motion/react";
+import Footer from "@/components/Generic/Footer";
 
 function highlightText(text: string, query: string) {
     const words = query.toLowerCase().split(' ');
@@ -131,6 +132,8 @@ export default function NekoSearchV2() {
                     <p className={'text-sm'}>{highlightText(x.desc, query)}</p>
                 </div>
             })}
+            <Offset amt={3}/>
+            <Footer/>
         </Content>
     </Main>
 

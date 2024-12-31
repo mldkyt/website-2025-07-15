@@ -23,6 +23,7 @@ import Content from "@/components/Generic/Content";
 import Heading from "@/components/Generic/Heading";
 import Offset from "@/components/Generic/Offset";
 import Metadata from "@/components/Generic/Metadata";
+import Footer from "@/components/Generic/Footer";
 
 const ToSHeading = (props: { children: string }) => {
     return (
@@ -83,6 +84,8 @@ export default function TermsOfService() {
                 <p>By using Akabot, you agree to these terms and conditions. If you do not agree, please refrain from
                     using the
                     bot.</p>
+                <Offset amt={3}/>
+                <Footer/>
             </Content>
         </Main>
     )

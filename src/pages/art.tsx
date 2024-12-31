@@ -31,6 +31,7 @@ import oyasumi from '@/images/art/oyasumi@2x.png';
 import website from '@/images/art/website@4x.png';
 import Image from "next/image";
 import Metadata from "@/components/Generic/Metadata";
+import Footer from "@/components/Generic/Footer";
 
 export default function Art() {
     return <Main>
@@ -65,6 +66,7 @@ export default function Art() {
             <p>The logo of this website</p>
             <Image src={website} alt={'Website logo'}/>
             <Offset amt={6}/>
+            <Footer/>
         </Content>
     </Main>
 }

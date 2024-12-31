@@ -22,6 +22,7 @@ import Page1 from "@/components/MainPage/Page1";
 import Page2Projects from "@/components/MainPage/Page2Projects";
 import Page3Other from "@/components/MainPage/Page3Other";
 import Metadata from "@/components/Generic/Metadata";
+import Footer from "@/components/Generic/Footer";
 
 export default function Home() {
     return (
@@ -32,6 +33,7 @@ export default function Home() {
                 <Page1/>
                 <Page2Projects/>
                 <Page3Other/>
+                <Footer/>
             </Main>
         </>
     );

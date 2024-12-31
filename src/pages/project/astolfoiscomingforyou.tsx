@@ -31,6 +31,7 @@ import Offset from "@/components/Generic/Offset";
 import Link from "next/link";
 import Metadata from "@/components/Generic/Metadata";
 import {motion} from "motion/react";
+import Footer from "@/components/Generic/Footer";
 
 export default function Astolfoiscomingforyou() {
     return (
@@ -85,6 +86,7 @@ export default function Astolfoiscomingforyou() {
                     </motion.span>
                 </Link>
                 <Offset amt={3}/>
+                <Footer/>
             </Content>
         </Main>
     )

@@ -46,6 +46,7 @@ import prideMod from '@/images/pridemod_header.webp';
 import cutieQuiz from '@/images/cutiequiz/1.png';
 import velkySMPMon from '@/images/velkysmpmon.png';
 import Metadata from "@/components/Generic/Metadata";
+import Footer from "@/components/Generic/Footer";
 
 export default function Projects() {
     return (
@@ -128,7 +129,8 @@ export default function Projects() {
                          image={velkySMPMon}
                          imageAlt={'A website showing a Minecraft image, under it some server information and list of players sorted by playtime.'}
                          link={'/project/velkysmpmon'}/>
-                <br/>
+                <Offset amt={6}/>
+                <Footer/>
             </Content>
         </Main>
     )

@@ -27,6 +27,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Metadata from "@/components/Generic/Metadata";
 import Button from "@/components/Generic/Button";
+import Footer from "@/components/Generic/Footer";
 
 export default function Template() {
     return (
@@ -56,6 +57,7 @@ export default function Template() {
                 </Link>
 
                 <Offset amt={3}/>
+                <Footer/>
             </Content>
         </Main>
     )

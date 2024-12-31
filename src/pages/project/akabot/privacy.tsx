@@ -23,6 +23,7 @@ import Content from "@/components/Generic/Content";
 import Heading from "@/components/Generic/Heading";
 import Offset from "@/components/Generic/Offset";
 import Metadata from "@/components/Generic/Metadata";
+import Footer from "@/components/Generic/Footer";
 
 const PrivacyHeading = (props: { children: string }) => <h2 className={'text-xl font-bold my-4'}>{props.children}</h2>;
 
@@ -207,6 +208,8 @@ export default function AkabotPrivacy() {
                     statement
                     again.
                 </p>
+                <Offset amt={3}/>
+                <Footer/>
             </Content>
         </Main>
     )

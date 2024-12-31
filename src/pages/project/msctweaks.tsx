@@ -22,6 +22,7 @@ import Content from "@/components/Generic/Content";
 import Offset from "@/components/Generic/Offset";
 import Heading from "@/components/Generic/Heading";
 import Metadata from "@/components/Generic/Metadata";
+import Footer from "@/components/Generic/Footer";
 
 export default function Template() {
     return (
@@ -55,6 +56,7 @@ export default function Template() {
                 <p>This mod page was last updated on 2024/07/14.</p>
 
                 <Offset amt={3}/>
+                <Footer/>
             </Content>
         </Main>
     )

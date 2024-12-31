@@ -25,6 +25,7 @@ import Heading from "@/components/Generic/Heading";
 import Link from "next/link";
 import Button from "@/components/Generic/Button";
 import Metadata from "@/components/Generic/Metadata";
+import Footer from "@/components/Generic/Footer";
 
 export default function Akabot() {
 
@@ -124,6 +125,7 @@ export default function Akabot() {
                 <Link href={'/donate'}>
                     <Button>Donate to mldchan</Button>
                 </Link>
+                <Footer/>
             </Content>
         </Main>
     )

@@ -25,6 +25,7 @@ import Link from "next/link";
 import Button from "@/components/Generic/Button";
 import Metadata from "@/components/Generic/Metadata";
 import {motion} from "motion/react";
+import Footer from "@/components/Generic/Footer";
 
 export default function InviteAkabot() {
     return (
@@ -54,6 +55,8 @@ export default function InviteAkabot() {
                 <Link href={'https://discord.com/oauth2/authorize?client_id=1172922944033411243'}>
                     <Button>Invite Akabot</Button>
                 </Link>
+                <Offset amt={3}/>
+                <Footer/>
             </Content>
         </Main>
     )

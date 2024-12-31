@@ -32,6 +32,7 @@ import crowd from '@/images/astolfomod/crowd.png';
 import schoolgirl from '@/images/astolfomod/schoolgirl.png';
 import Metadata from "@/components/Generic/Metadata";
 import {motion} from "motion/react";
+import Footer from "@/components/Generic/Footer";
 
 const H3 = (props: { children: string }) => <h3 className={'text-xl font-bold'}>{props.children}</h3>;
 
@@ -190,6 +191,7 @@ export default function Template() {
                 </Link>
 
                 <Offset amt={3}/>
+                <Footer/>
             </Content>
         </Main>
     )

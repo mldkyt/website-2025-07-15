@@ -29,6 +29,7 @@ import Image from "next/image";
 import Metadata from "@/components/Generic/Metadata";
 
 import {motion} from "motion/react";
+import Footer from "@/components/Generic/Footer";
 
 export default function Birthday() {
     return <Main>
@@ -53,6 +54,8 @@ export default function Birthday() {
             <Link href="https://github.com/mldchan/Birthday/releases">
                 <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Download latest release</motion.span>
             </Link>
+            <Offset amt={3}/>
+            <Footer/>
         </Content>
     </Main>
 }

@@ -22,6 +22,7 @@ import Offset from "@/components/Generic/Offset";
 import {Header} from "@/components/Generic/Header";
 import Social from "@/components/Socials/Social";
 import Metadata from "@/components/Generic/Metadata";
+import Footer from "@/components/Generic/Footer";
 
 export default function Socials() {
     return (
@@ -45,6 +46,7 @@ export default function Socials() {
                 <Social social={'Codeberg'} socialDescription={'Code Sharing'} followAction={'follow'}
                         link={'https://codeberg.org/mldchan'}/>
                 <Offset amt={6}/>
+                <Footer/>
             </Content>
         </Main>
     )

@@ -29,6 +29,7 @@ import two from '@/images/cutiequiz/2.png';
 import three from '@/images/cutiequiz/3.png';
 import Metadata from "@/components/Generic/Metadata";
 import {motion} from "motion/react";
+import Footer from "@/components/Generic/Footer";
 
 export default function Template() {
     return (
@@ -70,6 +71,7 @@ export default function Template() {
                 </Link>
 
                 <Offset amt={3}/>
+                <Footer/>
             </Content>
         </Main>
     )

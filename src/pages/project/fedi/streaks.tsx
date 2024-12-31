@@ -24,6 +24,7 @@ import Link from "next/link";
 import Offset from "@/components/Generic/Offset";
 import Metadata from "@/components/Generic/Metadata";
 import {motion} from "motion/react";
+import Footer from "@/components/Generic/Footer";
 
 export default function FediStreaks() {
     return (
@@ -50,6 +51,8 @@ export default function FediStreaks() {
                 <Link href="https://git.mldchan.dev/mld/fedi-streaks" className={'text-pink-400 hover:text-pink-200'}>
                     <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Source code</motion.span>
                 </Link>
+                <Offset amt={3}/>
+                <Footer/>
             </Content>
         </Main>
     )

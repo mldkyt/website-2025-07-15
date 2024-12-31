@@ -29,6 +29,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Metadata from "@/components/Generic/Metadata";
 import {motion} from "motion/react";
+import Footer from "@/components/Generic/Footer";
 
 export default function AstolfOS() {
     return <Main>
@@ -52,6 +53,7 @@ export default function AstolfOS() {
             </div>
 
             <Offset amt={3}/>
+            <Footer/>
         </Content>
     </Main>
 }

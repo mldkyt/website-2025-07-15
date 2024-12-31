@@ -24,6 +24,7 @@ import Heading from "@/components/Generic/Heading";
 import Link from "next/link";
 import Metadata from "@/components/Generic/Metadata";
 import {motion} from "motion/react";
+import Footer from "@/components/Generic/Footer";
 
 const ModCategory = (props: { children: string }) => {
     return (
@@ -184,6 +185,7 @@ export default function Template() {
                 </Link>
 
                 <Offset amt={3}/>
+                <Footer/>
             </Content>
         </Main>
     )

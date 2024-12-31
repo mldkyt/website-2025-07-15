@@ -22,6 +22,7 @@ import Content from "@/components/Generic/Content";
 import Offset from "@/components/Generic/Offset";
 import Service from "@/components/Services/Service";
 import Metadata from "@/components/Generic/Metadata";
+import Footer from "@/components/Generic/Footer";
 
 export default function Services() {
     return (
@@ -83,6 +84,8 @@ export default function Services() {
                          pubInfo={'This service is limited to mldchan\'s friend circle only.'}/>
                 <Service svcName={'QueerBot'} svcDesc={'Another Discord bot for friends.'}
                          pubInfo={'This service is limited to mldchan\'s friend circle only.'}/>
+                <Offset amt={6}/>
+                <Footer/>
             </Content>
         </Main>
     )

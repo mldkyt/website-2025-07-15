@@ -27,6 +27,7 @@ import regPlateChanger from '@/images/regplatechanger.webp';
 import Image from "next/image";
 import Metadata from "@/components/Generic/Metadata";
 import {motion} from "motion/react";
+import Footer from "@/components/Generic/Footer";
 
 export default function RegPlateChanger() {
     return (
@@ -66,6 +67,7 @@ export default function RegPlateChanger() {
                 </Link>
 
                 <Offset amt={3}/>
+                <Footer/>
             </Content>
         </Main>
     )

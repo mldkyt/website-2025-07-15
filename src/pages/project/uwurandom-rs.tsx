@@ -27,6 +27,7 @@ import image from '@/images/uwurandomrs.png';
 import Image from "next/image";
 import Metadata from "@/components/Generic/Metadata";
 import {motion} from "motion/react";
+import Footer from "@/components/Generic/Footer";
 
 export default function UwurandomRs() {
     return <Main>
@@ -51,6 +52,8 @@ export default function UwurandomRs() {
             <Link href={'https://github.com/mldchan/uwurandom-rs'} className={'text-pink-400 hover:text-pink-200'}>
                 <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Download from GitHub</motion.span>
             </Link>
+            <Offset amt={6}/>
+            <Footer/>
         </Content>
     </Main>
 }

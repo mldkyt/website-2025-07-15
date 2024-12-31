@@ -25,6 +25,7 @@ import Link from "next/link";
 import Metadata from "@/components/Generic/Metadata";
 import Button from "@/components/Generic/Button";
 import {motion} from "motion/react";
+import Footer from "@/components/Generic/Footer";
 
 export default function Donate() {
     return (
@@ -105,6 +106,7 @@ export default function Donate() {
                 </Link>
 
                 <Offset amt={6}/>
+                <Footer/>
             </Content>
         </Main>
     )
