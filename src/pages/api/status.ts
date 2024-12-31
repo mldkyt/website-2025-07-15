@@ -27,5 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         from visits`;
     isOK = isOK ? a[0]?.cnt > 0 : false;
 
+    await sql.end();
+
     res.status(isOK ? 200 : 500).json({status: isOK ? "ok" : "error"});
 }
