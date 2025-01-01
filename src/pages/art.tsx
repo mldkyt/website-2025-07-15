@@ -23,12 +23,12 @@ import {Header} from "@/components/Generic/Header";
 import Heading from "@/components/Generic/Heading";
 import Offset from "@/components/Generic/Offset";
 
-import busline from '@/images/art/busline@2x.png';
-import iine from '@/images/art/iine3@2x.png';
-import mldchanSocial from '@/images/art/mldchan social 2@2x.png';
-import ohayoo from '@/images/art/ohayoo@2x.png';
-import oyasumi from '@/images/art/oyasumi@2x.png';
-import website from '@/images/art/website@4x.png';
+import busline from '@/images/art/busline.png';
+import iine from '@/images/art/iine.png';
+import mldchanSocial from '@/images/art/mldchansocial.png';
+import ohayoo from '@/images/art/ohayoo.png';
+import oyasumi from '@/images/art/oyasumi.png';
+import website from '@/images/art/website.png';
 import Image from "next/image";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
