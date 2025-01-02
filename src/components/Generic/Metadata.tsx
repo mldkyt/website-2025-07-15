@@ -29,7 +29,7 @@ export default function Metadata(props: {
             <meta name="description" content={props.description}/>
             <meta name="author" content="mldchan"/>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-            <meta http-equiv="content-language" content="en"/>
+            <meta httpEquiv="content-language" content="en"/>
             <meta property="og:title" content={`${props.title} | mldchan's website`}/>
             <meta property="og:description" content={props.description}/>
             <meta property="og:type" content="website"/>
