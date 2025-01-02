@@ -63,7 +63,7 @@ export default function Astolfoiscomingforyou(props: InferGetServerSidePropsType
                 <Heading level={2}>Safe Variant</Heading>
 
                 <p>The safe variant gives you compliments once it finishes.</p>
-                <iframe width="540" height='315'
+                <iframe width="343" height='200'
                         src="https://www.youtube-nocookie.com/embed/HkuCNFGXMNU?si=lDmf3C1Cf65gE5bL"
                         title="YouTube video player" frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -82,7 +82,7 @@ export default function Astolfoiscomingforyou(props: InferGetServerSidePropsType
                 <Heading level={2}>Evil Variant</Heading>
 
                 <p>The evil variant shuts down your computer once it finishes.</p>
-                <iframe width="540" height="315"
+                <iframe width="343" height="200"
                         src="https://www.youtube-nocookie.com/embed/ZtN1QqLx3ww?si=VaVwXDUo505gF9TS"
                         title="YouTube video player" frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

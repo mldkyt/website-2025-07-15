@@ -125,7 +125,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 <p>I've also made a video about the mod on my YouTube channel, so if you want to watch that, you can do
                     so:</p>
 
-                <iframe width="600" height="315"
+                <iframe width="343" height="200"
                         src="https://www.youtube-nocookie.com/embed/bBvrp8puvdw?si=1KTa9xR-AzxIyX_2"
                         title="YouTube video player" frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
