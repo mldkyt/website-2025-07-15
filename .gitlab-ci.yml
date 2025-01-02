@@ -7,3 +7,10 @@ build:
     - docker build -t website:latest .
   only:
     - mastah
+
+build_dev:
+  stage: build
+  script:
+    - docker build -t website:dev .
+  except:
+    - mastah
