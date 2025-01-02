@@ -20,11 +20,13 @@ import {motion} from "motion/react"
 
 export default function Button(props: {
     children: string,
-    onClick?: () => void
+    onClick?: () => void,
+    type?: 'button' | 'submit' | 'reset'
 }) {
     return (
         <motion.button
             whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}
+            type={props.type}
             onClick={props.onClick}
             className={'p-1 px-2 bg-pink-400 hover:bg-pink-300 rounded-lg drop-shadow-md'}>{props.children}</motion.button>
     )
