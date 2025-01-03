@@ -22,7 +22,7 @@ export default function Page4MisskeyEmbed() {
         <h1 className={'text-center text-2xl font-bold'}>Check out the latest posts by mldchan!</h1>
         <iframe src="https://social.mldchan.dev/embed/user-timeline/a0cj5mqxoz2e0001?maxHeight=0&border=false"
                 data-misskey-embed-id="v1_61281eff-5d43-4a77-a1f8-984d5874324d" loading="lazy"
-                referrerPolicy="strict-origin-when-cross-origin" className={'h-[80vh] w-2/3 m-auto max-w-[500px]'}></iframe>
+                referrerPolicy="strict-origin-when-cross-origin" className={'max-h-[80vh] w-2/3 m-auto max-w-[500px]'}></iframe>
         <script defer src="https://social.mldchan.dev/embed.js"></script>
     </div>
 
