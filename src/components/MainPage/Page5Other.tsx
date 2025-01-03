@@ -19,7 +19,7 @@
 import Content from "@/components/Generic/Content";
 import MainPageOtherElement from "@/components/MainPage/MainPageOtherElement";
 
-export default function Page4Other() {
+export default function Page5Other() {
     return (
         <div className={'h-screen'}>
             <Content>
