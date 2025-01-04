@@ -63,7 +63,7 @@ function NewBlogPost(props: {
                 targetURL
             })
         }).then(res => res.json()).then(data => {
-            if (data.success) {
+            if (data.status === "ok") {
                 setHandle('');
                 setTitle('');
                 setDescription('');
@@ -84,15 +84,15 @@ function NewBlogPost(props: {
                                                                placeholder={'handle'} value={handle}
                                                                onChange={x => setHandle(x.currentTarget.value)}></input></span>
         <h1 className={'text-lg font-bold'}>
-            <input type={'text'} className={'bg-[#222] p-1 px-2 rounded-lg'} placeholder={'Title'} value={title}
+            <input type={'text'} className={'bg-[#222] p-1 px-2 rounded-lg w-full'} placeholder={'Title'} value={title}
                    onChange={x => setTitle(x.currentTarget.value)}/>
         </h1>
         <p>
-            <input type={'text'} className={'bg-[#222] p-1 px-2 rounded-lg'} placeholder={'A short description'}
+            <input type={'text'} className={'bg-[#222] p-1 px-2 rounded-lg w-full'} placeholder={'A short description'}
                    value={description} onChange={x => setDescription(x.currentTarget.value)}/>
         </p>
         <p>
-            <input type={'url'} className={'bg-[#222] p-1 px-2 rounded-lg'}
+            <input type={'url'} className={'bg-[#222] p-1 px-2 rounded-lg w-full'}
                    placeholder={'https://example.blog/my-handle'} value={targetURL}
                    onChange={x => setTargetURL(x.currentTarget.value)}/>
         </p>
@@ -146,15 +146,15 @@ function BlogPost(props: BlogPost & {
                                                                placeholder={'handle'} value={handle}
                                                                onChange={x => setHandle(x.currentTarget.value)}></input></span>
             <h1 className={'text-lg font-bold'}>
-                <input type={'text'} className={'bg-[#222] p-1 px-2 rounded-lg'} placeholder={'Title'} value={title}
+                <input type={'text'} className={'bg-[#222] p-1 px-2 rounded-lg w-full'} placeholder={'Title'} value={title}
                        onChange={x => setTitle(x.currentTarget.value)}/>
             </h1>
             <p>
-                <input type={'text'} className={'bg-[#222] p-1 px-2 rounded-lg'} placeholder={'A short description'}
+                <input type={'text'} className={'bg-[#222] p-1 px-2 rounded-lg w-full'} placeholder={'A short description'}
                        value={description} onChange={x => setDescription(x.currentTarget.value)}/>
             </p>
             <p>
-                <input type={'url'} className={'bg-[#222] p-1 px-2 rounded-lg'}
+                <input type={'url'} className={'bg-[#222] p-1 px-2 rounded-lg w-full'}
                        placeholder={'https://example.blog/my-handle'} value={targetURL}
                        onChange={x => setTargetURL(x.currentTarget.value)}/>
             </p>
@@ -241,7 +241,7 @@ export default function BlogManager() {
             {showCreate || <Button onClick={() => setShowCreate(true)}>Create blog post</Button>}
             <NewBlogPost show={showCreate} hide={() => setShowCreate(false)} hideAndRefresh={newBlogCreated}/>
             {blogPosts.map(x => {
-                return <BlogPost id={x.id} handle={x.handle} title={x.title} description={x.description}
+                return <BlogPost key={x.id} id={x.id} handle={x.handle} title={x.title} description={x.description}
                                  targetURL={x.targetURL}
                                  views={x.views} created={x.created} updated={x.updated}
                                  removeBlogPost={deleteBlogPost}/>

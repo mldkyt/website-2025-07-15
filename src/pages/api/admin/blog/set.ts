@@ -48,8 +48,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                   handle      text    not null unique,
                   title       text    not null,
                   description text    not null,
-                  created     date             default current_date,
-                  updated     date             default current_date,
+                  created     timestamp        default now(),
+                  updated     timestamp        default now(),
                   targetURL   text    not null,
                   views       integer not null default 0
               );`
@@ -59,7 +59,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                   handle      = ${newHandle},
                   description = ${newDescription},
                   targetURL   = ${newTargetURL},
-                  updated     = current_date
+                  updated     = now()
               where id = ${postID}`;
 
     await sql.end();

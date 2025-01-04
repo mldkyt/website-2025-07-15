@@ -69,10 +69,8 @@ export default function Admin() {
         case "login":
             return <LoginPage passwordEntered={verifyAuth} error={loginError}/>;
         case "main":
-            // TODO:
             return <MainPage goToPage={(x) => setPage(x as Pages)}></MainPage>;
         case "blogManager":
-            // TODO:
             return <BlogManager></BlogManager>;
         default:
             throw new Error("Invalid page");

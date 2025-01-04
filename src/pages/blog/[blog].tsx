@@ -36,8 +36,8 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
                   handle      text    not null unique,
                   title       text    not null,
                   description text    not null,
-                  created     date             default current_date,
-                  updated     date             default current_date,
+                  created     timestamp             default now(),
+                  updated     timestamp             default now(),
                   targetURL   text    not null,
                   views       integer not null default 0
               );`
