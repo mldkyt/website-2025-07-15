@@ -21,11 +21,6 @@ import postgres from "postgres";
 export async function countVisit(opts: { route: string }) {
     const sql = postgres();
 
-    await sql`create table if not exists visits
-              (
-                  route text primary key,
-                  count integer not null default 0
-              )`;
     await sql`insert into visits (route, count)
               values (${opts.route}, 1)
               on conflict (route) do update set count = visits.count + 1`;

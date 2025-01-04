@@ -18,6 +18,7 @@
 
 import {NextApiRequest, NextApiResponse} from "next";
 import postgres from "postgres";
+import dbinit from "@/backend/dbinit";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const authorization = req.headers.authorization;
@@ -39,6 +40,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (!(typeof postID === "number" && typeof newHandle === "string" && typeof newTitle === "string" && typeof newDescription === "string" && typeof newTargetURL === "string")) {
         return res.status(400).json({error: "Bad Request"});
     }
+
+    await dbinit();
 
     const sql = postgres({});
 

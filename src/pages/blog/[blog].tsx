@@ -24,6 +24,9 @@ import Head from "next/head";
 import Content from "@/components/Generic/Content";
 import Link from "next/link";
 import Button from "@/components/Generic/Button";
+import {Header} from "@/components/Generic/Header";
+import Offset from "@/components/Generic/Offset";
+import Heading from "@/components/Generic/Heading";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     const {blog} = ctx.params as { blog: string };
@@ -36,8 +39,8 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
                   handle      text    not null unique,
                   title       text    not null,
                   description text    not null,
-                  created     timestamp             default now(),
-                  updated     timestamp             default now(),
+                  created     timestamp        default now(),
+                  updated     timestamp        default now(),
                   targetURL   text    not null,
                   views       integer not null default 0
               );`
@@ -77,12 +80,14 @@ export default function Blog(props: InferGetServerSidePropsType<typeof getServer
         <Head>
             <meta httpEquiv="refresh" content={`1;url=${props.targetURL}`}/>
         </Head>
+        <Header/>
         <Content>
-            <h1>Redirecting...</h1>
-            <p>You are being redirected to the blog</p>
-            <p>{`This blog has seen ${props.views} views.`}</p>
+            <Offset amt={3}/>
+            <Heading level={1}>Redirecting...</Heading>
+            <p>You are being redirected to the blog.</p>
+            <p>{`This blog was seen ${props.views} times.`}</p>
             <Link href={props.targetURL}>
-                <Button>Click this button if you weren't redirected ;3</Button>
+                <Button>Click this button if you weren't redirected :3c</Button>
             </Link>
             <p className={'text-sm text-gray-500'}>This page was displayed in order to have
                 mldchan.dev/blog/&lt;url&gt; links for my blogs. It was also displayed to count views for my blogs.</p>

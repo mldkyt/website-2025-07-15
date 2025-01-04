@@ -20,8 +20,9 @@ import {useEffect, useState} from "react";
 import LoginPage from "@/components/Admin/LoginPage";
 import MainPage from "@/components/Admin/MainPage";
 import BlogManager from "@/components/Admin/BlogManager";
+import {PollManager} from "@/components/Admin/PollManager";
 
-type Pages = 'login' | 'main' | 'blogManager';
+type Pages = 'login' | 'main' | 'blogManager' | 'pollManager';
 
 async function verifyToken(key: string): Promise<boolean> {
     return await new Promise(resolve => {
@@ -72,8 +73,10 @@ export default function Admin() {
             return <MainPage goToPage={(x) => setPage(x as Pages)}></MainPage>;
         case "blogManager":
             return <BlogManager></BlogManager>;
+        case "pollManager":
+            return <PollManager></PollManager>;
         default:
             throw new Error("Invalid page");
     }
-
+    
 }

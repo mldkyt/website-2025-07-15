@@ -32,6 +32,7 @@ export default function MainPage(props: {
             <h1 className={'mt-8 mb-4 font-bold text-2xl'}>Welcome to the admin panel, mldchan!</h1>
             <p>Here you can manage blog posts.</p>
             <Button onClick={() => props.goToPage('blogManager')}>Manage blog posts</Button>
+            <Button onClick={() => props.goToPage('pollManager')}>Manage polls</Button>
         </Content>
     </Main>
 }
