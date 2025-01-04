@@ -7,7 +7,10 @@ COPY package.json .
 RUN yarn install && yarn cache clean
 
 COPY src/. src/.
-COPY public/. src/.
+COPY public/. public/.
+COPY sentry.client.config.ts .
+COPY sentry.edge.config.ts .
+COPY sentry.server.config.ts .
 COPY next.config.ts .
 COPY tsconfig.json .
 COPY postcss.config.mjs .
@@ -24,7 +27,10 @@ COPY package.json .
 RUN yarn install && yarn cache clean
 
 COPY src/. src/.
-COPY public/. src/.
+COPY public/. public/.
+COPY sentry.client.config.ts .
+COPY sentry.edge.config.ts .
+COPY sentry.server.config.ts .
 COPY next.config.ts .
 COPY tsconfig.json .
 COPY postcss.config.mjs .
