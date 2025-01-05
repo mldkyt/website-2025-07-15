@@ -37,7 +37,7 @@ export default async function () {
                   updated     timestamp        default now(),
                   targetURL   text    not null,
                   views       integer not null default 0
-              );`
+              );`;
 
     await sql`create table if not exists polls
               (
@@ -63,6 +63,29 @@ export default async function () {
                   foreign key (pollID) references polls (id),
                   foreign key (optionID) references pollOptions (id)
               )`;
+
+    await sql`create table if not exists guestbook
+              (
+                  id       serial
+                      constraint guestbook_pk
+                          primary key,
+                  username text              not null,
+                  body     text              not null,
+                  ip       text              not null,
+                  approved integer default 0 not null,
+                  replyto  integer
+                      constraint guestbook_guestbook_id_fk
+                          references guestbook
+                          on update cascade on delete cascade
+              );`;
+
+    await sql`create table if not exists guestbookbans
+              (
+                  id serial
+                      constraint guestbookbans_pk
+                          primary key,
+                  ip text not null
+              );`;
 
     await sql.end();
 }

@@ -33,6 +33,7 @@ export default function MainPage(props: {
             <p>Here you can manage blog posts.</p>
             <Button onClick={() => props.goToPage('blogManager')}>Manage blog posts</Button>
             <Button onClick={() => props.goToPage('pollManager')}>Manage polls</Button>
+            <Button onClick={() => props.goToPage('guestbookManager')}>Manage guestbook</Button>
         </Content>
     </Main>
 }

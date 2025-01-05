@@ -48,7 +48,9 @@ export function Header(props: {
                 <motion.li className={'my-0'} whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}><h1>
                     <Link href={'/'}><Image src={logo} alt={'Logo'} height={24}/></Link>
                 </h1></motion.li>
+                {link({href: '/guestbook', highlight: 'guestbook', children: 'Guestbook', baseProps: props})}
                 {link({href: '/projects', highlight: 'projects', children: 'Projects', baseProps: props})}
+                {link({href: '/services', highlight: 'services', children: 'Services', baseProps: props})}
                 {link({href: '/socials', highlight: 'socials', children: 'Socials', baseProps: props})}
                 {link({href: '/donate', highlight: 'donate', children: 'Donate!', baseProps: props})}
                 {link({

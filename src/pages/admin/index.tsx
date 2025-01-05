@@ -21,8 +21,9 @@ import LoginPage from "@/components/Admin/LoginPage";
 import MainPage from "@/components/Admin/MainPage";
 import BlogManager from "@/components/Admin/BlogManager";
 import {PollManager} from "@/components/Admin/PollManager";
+import GuestbookManager from "@/components/Admin/GuestbookManager";
 
-type Pages = 'login' | 'main' | 'blogManager' | 'pollManager';
+type Pages = 'login' | 'main' | 'blogManager' | 'pollManager' | 'guestbookManager';
 
 async function verifyToken(key: string): Promise<boolean> {
     return await new Promise(resolve => {
@@ -75,8 +76,10 @@ export default function Admin() {
             return <BlogManager></BlogManager>;
         case "pollManager":
             return <PollManager></PollManager>;
+        case "guestbookManager":
+            return <GuestbookManager></GuestbookManager>;
         default:
             throw new Error("Invalid page");
     }
-    
+
 }
