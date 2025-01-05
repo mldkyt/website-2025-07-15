@@ -22,7 +22,7 @@ import postgres from "postgres";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     let {handle, optionId} = req.body as { handle: string, optionId: number };
-    let ip = req.headers['CF-Connecting-IP'] || req.headers["x-real-ip"] || req.socket.remoteAddress as string;
+    let ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress as string;
     if (Array.isArray(ip)) {
         ip = ip[0];
     }
