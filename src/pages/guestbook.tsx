@@ -33,13 +33,13 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     await countVisit({route: '/guestbook'});
     const visits = await getVisits({route: '/guestbook'});
 
-    const forwarded = ctx.req.headers['x-forwarded-for'];
+    const forwarded = ctx.req.headers['CF-Connecting-IP'] || ctx.req.headers['x-forwarded-for'];
     const ip = typeof forwarded === 'string' ? forwarded.split(/, /)[0] : ctx.req.socket.remoteAddress;
 
     let allowPost: true | 'noip' | 'approval' | 'banned' = true;
 
     await dbinit();
-    const sql = await postgres({});
+    const sql = postgres({});
 
     if (ip) {
 
