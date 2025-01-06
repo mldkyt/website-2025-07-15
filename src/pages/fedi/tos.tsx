@@ -42,7 +42,7 @@ export default function TermsofService(props: InferGetServerSidePropsType<typeof
         <Metadata title={'Fedi Terms of Service'} description={'mldchan Social Terms of Service'}/>
         <Header/>
         <Content>
-            <Offset amt={3}/>
+            <Offset amt={4}/>
             <Heading level={1}>Fedi Terms of Service</Heading>
             <p><em>Last Updated: December 17, 2024</em></p>
 

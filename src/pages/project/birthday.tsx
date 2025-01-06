@@ -49,7 +49,7 @@ export default function Birthday(props: InferGetServerSidePropsType<typeof getSe
         <Metadata title={'Birthday'} description={'Birthday App'}/>
         <Header highlight={'projects'}/>
         <Content>
-            <Offset amt={3}/>
+            <Offset amt={4}/>
             <Heading level={1}>Birthday App</Heading>
 
             <p>Running the app with <code>/config</code> as a parameter will show a configuration window.</p>

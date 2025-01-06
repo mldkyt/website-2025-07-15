@@ -49,7 +49,7 @@ export default function NMFirefox(props: InferGetServerSidePropsType<typeof getS
                   description={'NexusMods Enhancements for Firefox is an extension that adds a few features to Nexus Mods, namely blocking people.'}/>
         <Header highlight={'projects'}/>
         <Content>
-            <Offset amt={3}/>
+            <Offset amt={4}/>
             <Heading level={1}>Nexus Enhancements for Firefox</Heading>
 
             <p>This is an extension for Firefox which adds a few features to Nexus Mods, namely blocking people.</p>

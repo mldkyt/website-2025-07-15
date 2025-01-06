@@ -127,7 +127,7 @@ export default function Guestbook(props: InferGetServerSidePropsType<typeof getS
         <Metadata title={'mldchan\'s guestbook'} description={'Sign mldchan\'s guestbook today!'}/>
         <Header highlight={'guestbook'}/>
         <Content>
-            <Offset amt={3}/>
+            <Offset amt={4}/>
             <Heading level={1}>mldchan's Guestbook</Heading>
 
             {postForm === true && <form className={'p-2 rounded-lg drop-shadow-md bg-[#222]'}

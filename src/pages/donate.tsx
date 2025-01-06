@@ -46,7 +46,7 @@ export default function Donate(props: InferGetServerSidePropsType<typeof getServ
             <Metadata title={'Donate'} description={'Donate to mldchan to support her projects!'}/>
             <Header highlight={'donate'}/>
             <Content>
-                <Offset amt={3}/>
+                <Offset amt={4}/>
                 <h1 className={'text-center text-2xl font-bold py-4'}>Donate</h1>
                 <p>Even if I try to run as much on free stuff as possible, it's impossible to run
                     everything completely free of charge.</p>

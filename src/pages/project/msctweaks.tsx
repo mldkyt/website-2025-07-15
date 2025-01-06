@@ -43,7 +43,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
             <Metadata title={'MSC Tweaks'} description={'This mod adds a few tweaks to My Summer Car.'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={3}/>
+                <Offset amt={4}/>
                 <Heading level={1}>MSC Tweaks</Heading>
 
                 <p>

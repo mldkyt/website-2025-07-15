@@ -53,7 +53,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                       description={'Highway Car Breakdowns is a mod for My Summer Car that adds randomly breaking down cars on the highway.'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={3}/>
+                <Offset amt={4}/>
                 <Heading level={1}>Highway Car Breakdowns</Heading>
                 <p>
                     This mod adds randomly breaking down cars on the highway. The car spawn

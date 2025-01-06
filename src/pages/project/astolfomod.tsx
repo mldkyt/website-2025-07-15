@@ -56,7 +56,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                       description={'Astolfo Mod for Minecraft, a mod that adds Astolfo and other characters to the game.'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={3}/>
+                <Offset amt={4}/>
                 <Heading level={1}>Astolfo Mod</Heading>
 
                 <div className="message">

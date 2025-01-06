@@ -46,7 +46,7 @@ export default function FediStreaks(props: InferGetServerSidePropsType<typeof ge
                       description={'Fedi Streaks is a bot that checks your profile every day for new notes. If it doesn\'t find you posting for one day, you lose the streak. Every day you post, you get +1 streaks of sending notes.'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={3}/>
+                <Offset amt={4}/>
                 <Heading level={1}>Fedi Streaks</Heading>
                 <p>
                     Fedi Streaks checks your profile every day for new notes. If it doesn't find you posting for one

@@ -42,7 +42,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
         <Main>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={3}/>
+                <Offset amt={4}/>
                 <Heading level={1}>PROJECT</Heading>
 
                 <Link href="LINK 1" className={'text-pink-400 hover:text-pink-200'}>

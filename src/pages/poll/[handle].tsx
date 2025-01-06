@@ -124,7 +124,7 @@ export default function Poll(props: InferGetServerSidePropsType<typeof getServer
             <Header/>
 
             <Content>
-                <Offset amt={3}/>
+                <Offset amt={4}/>
                 <Heading level={1}>{`Poll: ${props.title}`}</Heading>
                 <p>Here's what existing people voted:</p>
                 <ul className={'text-left'}>

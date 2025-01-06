@@ -49,7 +49,7 @@ export default function AstolfOS(props: InferGetServerSidePropsType<typeof getSe
         <Metadata title={'AstolfOS'} description={'AstolfOS is a script that changes your Linux into AstolfOS!'}/>
         <Header highlight={'projects'}/>
         <Content>
-            <Offset amt={3}/>
+            <Offset amt={4}/>
             <Heading level={1}>AstolfOS</Heading>
 
             <p>AstolfOS transfers your Linux into AstolfOS!</p>

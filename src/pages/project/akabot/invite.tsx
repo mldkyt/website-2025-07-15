@@ -46,7 +46,7 @@ export default function InviteAkabot(props: InferGetServerSidePropsType<typeof g
             <Metadata title={'Invite Akabot'} description={'Invite the Akabot Discord bot into your server'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={3}/>
+                <Offset amt={4}/>
                 <Heading level={1}>Invite Akabot into your server</Heading>
                 <p>Before you continue inviting Akabot into your server, the public version of Akabot has a terms of
                     service and privacy policy, and I am required to make you read these:</p>

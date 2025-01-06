@@ -42,7 +42,7 @@ export default function Privacy(props: InferGetServerSidePropsType<typeof getSer
         <Metadata title={'Fedi Privacy Policy'} description={'Learn about the privacy policy of mldchan Social.'}/>
         <Header/>
         <Content>
-            <Offset amt={3}/>
+            <Offset amt={4}/>
             <Heading level={1}>Fedi Privacy Policy</Heading>
             <p><em>Last Updated: December 17, 2024</em></p>
 

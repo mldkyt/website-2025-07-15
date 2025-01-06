@@ -52,7 +52,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                       description={'Reverts the game into old versions. Combination of OldCarSounds, Old Hayosiko, Old Truck, Old Ferndale, Old Highway Cars and Old World.'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={3}/>
+                <Offset amt={4}/>
                 <Heading level={1}>GoodOldMSC</Heading>
 
                 <p>

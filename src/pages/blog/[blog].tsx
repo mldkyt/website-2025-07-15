@@ -82,7 +82,7 @@ export default function Blog(props: InferGetServerSidePropsType<typeof getServer
         </Head>
         <Header/>
         <Content>
-            <Offset amt={3}/>
+            <Offset amt={4}/>
             <Heading level={1}>Redirecting...</Heading>
             <p>You are being redirected to the blog.</p>
             <p>{`This blog was seen ${props.views} times.`}</p>

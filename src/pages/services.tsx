@@ -43,7 +43,7 @@ export default function Services(props: InferGetServerSidePropsType<typeof getSe
             <Metadata title={'Services'} description={'mldchan\'s services'}/>
             <Header/>
             <Content>
-                <Offset amt={3}/>
+                <Offset amt={4}/>
                 <h1 className={'text-center text-2xl font-bold py-4'}>mldchan's Services</h1>
 
                 <Service svcName={'Akabot: Discord bot'}

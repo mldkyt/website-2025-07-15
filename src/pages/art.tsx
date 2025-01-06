@@ -51,7 +51,7 @@ export default function Art(props: InferGetServerSidePropsType<typeof getServerS
         <Metadata title={'Art'} description={'mldchan\'s art'}/>
         <Header/>
         <Content>
-            <Offset amt={3}/>
+            <Offset amt={4}/>
             <Heading level={1}>Art</Heading>
             <p>mldchan sometimes does art. Here are some of her works :3</p>
 

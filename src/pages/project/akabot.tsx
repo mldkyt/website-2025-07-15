@@ -47,7 +47,7 @@ export default function Akabot(props: InferGetServerSidePropsType<typeof getServ
             <Metadata title={'Akabot'} description={'Akabot is a Discord bot with a ton of features.'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={3}/>
+                <Offset amt={4}/>
                 <Heading level={1}>Akabot: mldchan's Discord bot</Heading>
                 <p>Akabot is a Discord bot with Chat Revive, Chat Streaks, Chat Summary, Leveling, Logging, Moderation
                     Commands, Reaction Roles, Giveaways, Verification, Reaction Roles, Suggestions, Temporary Voice

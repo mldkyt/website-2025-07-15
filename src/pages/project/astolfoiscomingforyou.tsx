@@ -53,7 +53,7 @@ export default function Astolfoiscomingforyou(props: InferGetServerSidePropsType
                       description={'Astolfo is coming for you has 2 variants: Safe and Evil. The main difference between the safe variant and evil variant is that the safe gives you compliments, while the evil shuts down your machine.'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={3}/>
+                <Offset amt={4}/>
                 <Heading level={1}>Astolfo is Coming for You</Heading>
 
                 <p>Astolfo is coming for you has 2 variants: Safe and Evil.</p>

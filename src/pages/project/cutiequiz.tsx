@@ -51,7 +51,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                       description={'[DEPRECATED] Cutie Quiz was a tiny app which takes a username and then determines how cute you are by analyzing brain waves.'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={3}/>
+                <Offset amt={4}/>
                 <Heading level={1}>Cutie Quiz</Heading>
 
                 <div className={'bg-red-800 p-2 rounded-lg border-2 border-red-600 drop-shadow-md'}>

@@ -46,7 +46,7 @@ export default function AkabotPrivacy(props: InferGetServerSidePropsType<typeof 
             <Metadata title={'Akabot Privacy Policy'} description={'Akabot Discord bot privacy policy'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={3}/>
+                <Offset amt={4}/>
                 <Heading level={1}>Akabot Privacy Policy</Heading>
                 <p>Last updated: 2024/05/16</p>
                 <p>

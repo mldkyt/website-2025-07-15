@@ -4,13 +4,13 @@ stages:
 build:
   stage: build
   script:
-    - docker build -t website:latest .
+    - docker build --no-cache -t website:latest .
   only:
     - mastah
 
 build_dev:
   stage: build
   script:
-    - docker build -t website:dev .
+    - docker build --no-cache -t website:dev .
   except:
     - mastah

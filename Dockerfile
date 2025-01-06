@@ -18,7 +18,7 @@ COPY tailwind.config.ts .
 
 CMD ["yarn", "dev"]
 
-FROM node:20
+FROM node:20 AS build
 
 WORKDIR /app
 
@@ -38,5 +38,25 @@ COPY tailwind.config.ts .
 COPY LICENSE .
 
 RUN yarn build
+
+FROM node:20
+
+WORKDIR /app
+
+COPY package.json .
+
+RUN yarn install --production && yarn cache clean
+
+COPY src/. src/.
+COPY public/. public/.
+COPY sentry.client.config.ts .
+COPY sentry.edge.config.ts .
+COPY sentry.server.config.ts .
+COPY next.config.ts .
+COPY tsconfig.json .
+COPY postcss.config.mjs .
+COPY tailwind.config.ts .
+COPY LICENSE .
+COPY --from=build /app/.next/. /app/.next/.
 
 CMD ["yarn", "start"]

@@ -48,7 +48,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
             <Metadata title={'Pride Mod'} description={'A mod for celebrating pride month in My Summer Car.'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={3}/>
+                <Offset amt={4}/>
                 <Heading level={1}>Pride Mod</Heading>
                 <p>A mod for celebrating pride month in My Summer Car.</p>
                 <Image src={header} alt="Header"/>

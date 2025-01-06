@@ -67,7 +67,7 @@ export default function Projects(props: InferGetServerSidePropsType<typeof getSe
             <Metadata title={'Projects'} description={'A list of projects by mldchan.'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={3}/>
+                <Offset amt={4}/>
                 <h1 className={'text-center text-2xl font-bold py-4'}>mldchan's Projects</h1>
                 <Project image={akabot} imageAlt={'Akabot profile picture'} title={'Akabot'}
                          description={'A Discord bot with lots of features.'} link={'/project/akabot'}/>

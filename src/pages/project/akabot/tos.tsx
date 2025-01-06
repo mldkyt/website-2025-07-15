@@ -51,7 +51,7 @@ export default function TermsOfService(props: InferGetServerSidePropsType<typeof
             <Metadata title={'Akabot Terms of Service'} description={'Akabot Discord bot terms of service'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={3}/>
+                <Offset amt={4}/>
                 <Heading level={1}>Akabot Terms of Service</Heading>
                 <p>Last updated: 2024/05/16</p>
 

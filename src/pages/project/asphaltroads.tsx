@@ -48,7 +48,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
             <Metadata title={'Asphalt Roads'} description={'Asphalt Roads mod for My Summer Car'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={3}/>
+                <Offset amt={4}/>
                 <Heading level={1}>Asphalt Roads</Heading>
                 <Image src={asphaltRoads} alt={'Asphalt Roads'} className={'p-1 rounded-lg'}/>
                 <p>

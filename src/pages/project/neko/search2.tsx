@@ -119,7 +119,7 @@ export default function NekoSearchV2(props: InferGetServerSidePropsType<typeof g
     return <Main>
         <Header highlight={'projects'}/>
         <Content>
-            <Offset amt={3}/>
+            <Offset amt={4}/>
             <Heading level={1}>Neko Search</Heading>
             <p>Search all websites, including all content, instantly. <strong>The website index was last updated
                 2024/11/28</strong>. I plan to reindex this every month, so the next automated reindex will be on

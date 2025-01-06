@@ -52,6 +52,7 @@ export function Header(props: {
                 {link({href: '/projects', highlight: 'projects', children: 'Projects', baseProps: props})}
                 {link({href: '/services', highlight: 'services', children: 'Services', baseProps: props})}
                 {link({href: '/socials', highlight: 'socials', children: 'Socials', baseProps: props})}
+                {link({href: '/contact', highlight: 'contact', children: 'Contact', baseProps: props})}
                 {link({href: '/donate', highlight: 'donate', children: 'Donate!', baseProps: props})}
                 {link({
                     href: 'https://mldkyt.nekoweb.org',

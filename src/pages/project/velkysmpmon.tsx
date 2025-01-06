@@ -49,7 +49,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                       description={'VelkySMP monitor is a project that monitors the VelkySMP server and displays the data in a website and in Minecraft.'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={3}/>
+                <Offset amt={4}/>
                 <Heading level={1}>VelkySMP monitor</Heading>
 
                 <p>This project is split up to multiple projects, namely one that monitors the server, one that displays

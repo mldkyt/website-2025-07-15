@@ -49,7 +49,7 @@ export default function FediSummarizer(props: InferGetServerSidePropsType<typeof
                       description={'A fedi bot that summarizes the amount of notes you post every midnight.'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={3}/>
+                <Offset amt={4}/>
                 <Heading level={1}>Fedi Summarizer</Heading>
                 <p>
                     This bot summarizes the amount of notes you post every midnight. It does so in your private

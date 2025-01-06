@@ -48,7 +48,7 @@ export default function UwurandomRs(props: InferGetServerSidePropsType<typeof ge
                   description={'Catgirl nonsense, but in the Rust programming language, for maximum femininity.'}/>
         <Header highlight={'projects'}/>
         <Content>
-            <Offset amt={3}/>
+            <Offset amt={4}/>
             <Heading level={1}>uwurandom-rs</Heading>
             <p>Catgirl nonsense, but in the Rust programming language, for maximum femininity.</p>
             <p>

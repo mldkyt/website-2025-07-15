@@ -43,7 +43,7 @@ export default function CatgirlNonsense(props: InferGetServerSidePropsType<typeo
         <Metadata title={'Catgirl Nonsense'} description={'Catgirl Nonsense generator'}/>
         <Header highlight={'projects'}/>
         <Content>
-            <Offset amt={3}/>
+            <Offset amt={4}/>
             <Heading level={1}>Catgirl Nonsense Generator</Heading>
             <Generator/>
             <Offset amt={3}/>

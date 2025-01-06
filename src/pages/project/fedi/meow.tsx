@@ -45,7 +45,7 @@ export default function FediMeow(props: InferGetServerSidePropsType<typeof getSe
             <Metadata title={'FediMeow'} description={'FediMeow is a bot that meows every hour on fedi.'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={3}/>
+                <Offset amt={4}/>
                 <Heading level={1}>FediMeow</Heading>
                 <p>
                     This is a bot that meows every hour on fedi.

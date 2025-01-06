@@ -49,7 +49,7 @@ export default function RegPlateChanger(props: InferGetServerSidePropsType<typeo
                       description={'Reg Plate Changer is a mod for My Summer Car that allows you to customize the registration plates on every vehicle in the game.'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={3}/>
+                <Offset amt={4}/>
                 <Heading level={1}>Reg Plate Changer</Heading>
                 <p>
                     Hey everyone, I'm excited to share the Reg Plate Changer mod for My Summer Car!
