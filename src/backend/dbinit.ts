@@ -87,5 +87,17 @@ export default async function () {
                   ip text not null
               );`;
 
+    await sql`create table if not exists ytvideos
+              (
+                  video        text
+                      constraint ytvideos_pk
+                          primary key,
+                  title        text      not null,
+                  description  text      not null,
+                  views        integer   not null,
+                  published_at timestamp not null,
+                  thumb_url    text      not null
+              );`
+
     await sql.end();
 }
