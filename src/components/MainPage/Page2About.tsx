@@ -24,9 +24,7 @@ export default function Page2About() {
     return <div className={'h-screen'}>
         <Content>
             <Heading level={1}>Who is mldchan?</Heading>
-            <p className={'my-4'}>mldchan is a transfem developer on the internet. She is a cute little transgirl who
-                also happens to be a
-                catgirl.</p>
+            <p className={'my-4'}>mldchan is a developer on the internet.</p>
             <p className={'my-4'}>She knows lots of things, like programming languages, editing videos or drawing a bit
                 of art. She is
                 considered smart by her close relatives.</p>
