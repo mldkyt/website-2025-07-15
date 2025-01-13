@@ -19,7 +19,6 @@
 
 import {motion} from "motion/react";
 import Link from "next/link";
-import Image from "next/image";
 
 export default function MainPageProject(props: {
     title: string,
@@ -30,23 +29,17 @@ export default function MainPageProject(props: {
     link: string
 }) {
     return (
-        <motion.div
-            className={`flex flex-col ${props.className} bg-[#222] rounded-lg drop-shadow-lg overflow-hidden`}
-            whileHover={{scale: 1.05}}
-            whileTap={{scale: 0.95}}
-        >
-            <div className="relative w-full h-[10vh] lg:h-[18vh] xl:h-[25vh]">
-                <Image
-                    src={props.image}
-                    alt={props.imgAlt}
-                    fill
-                    style={{objectFit: "cover", objectPosition: "center"}}
-                    className="rounded-t-lg"
-                />
-            </div>
-            <Link href={props.link} className="flex flex-col p-2">
-                <h1 className="font-bold text-white">{props.title}</h1>
-                <p className="text-gray-500 text-sm mt-2">{props.body}</p>
+        <motion.div className={`flex flex-col ${props.className} bg-[#222] rounded-lg drop-shadow-lg`}
+                    whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
+            <Link href={props.link}>
+                <div className={'flex-grow rounded-t-lg shadow-inner h-[10vh] lg:h-[18vh] xl:h-[25vh]'} style={{
+                    backgroundImage: `url(${props.image})`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                }}></div>
+                <h1 className={'mx-1 lg:mx-4 mt-2 font-bold'}>{props.title}</h1>
+                <p className={'mb-1 mx-2 lg:mx-8 text-gray-500 text-sm'}>{props.body}</p>
             </Link>
         </motion.div>
     )

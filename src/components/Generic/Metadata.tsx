@@ -33,7 +33,7 @@ export default function Metadata(props: {
             <meta property="og:title" content={`${props.title} | mldchan's website`}/>
             <meta property="og:description" content={props.description}/>
             <meta property="og:type" content="website"/>
-            <meta property="og:url" content="https://mldchan.dev"/>
+            <meta property="og:url" content="https://mldkyt.nekoweb.org"/>
             <meta property="og:site_name" content="mldchan's website"/>
             <meta property="og:locale" content="en_US"/>
             <meta property="og:locale:alternate" content="ja_JP"/>
