@@ -39,7 +39,8 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
                                     title,
                                     description,
                                     thumb_url
-                             from ytvideos;`
+                             from ytvideos
+                             order by published_at desc;`
 
     await sql.end();
 
