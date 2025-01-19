@@ -17,6 +17,7 @@
  */
 
 import Content from "@/components/Generic/Content";
+import ComplimentsTypewriter from "@/components/MainPage/ComplimentsTypewriter";
 import Image from "next/image";
 import bg from "@/images/bg.png";
 import Offset from "@/components/Generic/Offset";
@@ -32,7 +33,9 @@ export default function Page1() {
                     <Content>
                         <h1 className={'text-3xl font-bold text-white xl:text-5xl'}>mldchan</h1>
                         <span
-                            className={'inline-flex flex-wrap xl:text-lg'}>Developer.</span>
+                            className={'inline-flex flex-wrap xl:text-lg'}>Full time <ComplimentsTypewriter/> girl.</span>
+                        <br/>
+                        <span className={'xl:text-lg'}>Transfem developer.</span>
                     </Content>
                 </div>
                 <div
