@@ -24,6 +24,8 @@ import Heading from "@/components/Generic/Heading";
 import Content from "@/components/Generic/Content";
 import Main from "@/components/Generic/Main";
 import Footer from "@/components/Generic/Footer";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
 function ContactWrapper(props: {
     name: string; children: any | any[];
@@ -34,7 +36,19 @@ function ContactWrapper(props: {
     </div>
 }
 
-export default function Contact() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+    await countVisit({route: '/contact'});
+    const visits = await getVisits({route: '/contact'});
+
+    return {
+        props: {
+            visits
+        }
+    }
+}
+
+
+export default function Contact(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
 
     return <Main>
         <Header highlight={'contact'}/>
@@ -84,7 +98,7 @@ export default function Contact() {
 
             <Offset amt={3}/>
         </Content>
-        <Footer/>
+        <Footer visits={props.visits}/>
     </Main>
 
 }
