@@ -39,7 +39,7 @@ export default function Social(props: {
                     {props.social}: {props.socialDescription}
                 </h1>
                 <p className={'text-center'}>
-                    mldchan is active
+                    Emily/mldchan is active
                     on {props.preSocial}{" "}{props.social}. {props.followAction !== 'view' ? `Click on this card to ${props.followAction} her there!` : `View her profile there!`}
                 </p>
             </motion.div>

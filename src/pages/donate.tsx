@@ -43,7 +43,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 export default function Donate(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
-            <Metadata title={'Donate'} description={'Donate to mldchan to support her projects!'}/>
+            <Metadata title={'Donate'} description={'Donate to Emily/mldchan to support her projects!'}/>
             <Header highlight={'donate'}/>
             <Content>
                 <Offset amt={4}/>
