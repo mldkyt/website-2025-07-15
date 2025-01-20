@@ -32,7 +32,7 @@ export default function Page3Projects() {
     return (
         <div className={'h-screen'}>
             <Content>
-                <h1 className={'py-4 text-center text-2xl font-bold'}>Explore mldchan's projects</h1>
+                <h1 className={'py-4 text-center text-2xl font-bold'}>Explore Emily/mldchan's projects</h1>
                 <div className={'grid grid-rows-2 grid-cols-3 gap-4'}>
                     <MainPageProject title={"Akabot"} body={"Akabot is a Discord bot with lots of features."}
                                      image={akabot}

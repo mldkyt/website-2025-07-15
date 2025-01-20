@@ -52,11 +52,11 @@ export default function Services(props: InferGetServerSidePropsType<typeof getSe
                          links={['https://discord.com/oauth2/authorize?client_id=1172922944033411243', '/project/akabot']}/>
                 <Service svcName={'Sharkey: Fediverse Software'}
                          svcDesc={'This is what mldchan uses to connect to the fediverse.'}
-                         pubInfo={'This service is limited to mldchan\'s friends and people who she trusts.'}
+                         pubInfo={'This service is limited to Emily/mldchan\'s friends and people who she trusts.'}
                          links={['https://social.mldchan.dev', 'https://social.mldchan.dev/@mld']}/>
                 <Service svcName={'GitLab: Code Hosting'}
                          svcDesc={'Hosts source code publicly. Accounts are limited to the usage below.'}
-                         pubInfo={'This service is limited to mldchan\'s friends and people who she trusts.'}
+                         pubInfo={'This service is limited to Emily/mldchan\'s friends and people who she trusts.'}
                          links={['https://git.mldchan.dev', 'https://git.mldchan.dev/mld']}/>
                 <Service svcName={'Uptime Kuma: Uptime Monitoring'}
                          svcDesc={'This services allows monitoring the uptime of my services.'}
