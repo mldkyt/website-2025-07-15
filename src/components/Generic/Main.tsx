@@ -18,6 +18,7 @@
 
 import {ReactNode} from "react";
 import {Inter} from 'next/font/google';
+import LoadingSpinner from "@/components/Generic/LoadingSpinner";
 
 const inter = Inter({subsets: ['latin', 'latin-ext']})
 
@@ -25,9 +26,12 @@ export default function Main(params: { children: ReactNode | ReactNode[] }) {
 
 
     return (
-        <main className={`${inter.className} w-full bg-[#111] min-h-screen`}>
-            {params.children}
-        </main>
+        <>
+            <main className={`${inter.className} w-full bg-[#111] min-h-screen`}>
+                {params.children}
+            </main>
+            <LoadingSpinner/>
+        </>
     )
 
 }

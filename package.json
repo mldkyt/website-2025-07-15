@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@sentry/nextjs": "8",
+    "ldrs": "^1.0.2",
     "meilisearch": "^0.47.0",
     "motion": "^11.15.0",
     "next": "15.1.3",
