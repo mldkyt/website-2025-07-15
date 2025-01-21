@@ -44,7 +44,7 @@ export default function Socials(props: InferGetServerSidePropsType<typeof getSer
             <Header highlight={'socials'}/>
             <Content>
                 <Offset amt={4}/>
-                <h1 className={'text-center text-2xl font-bold py-4'}>mldchan's Socials</h1>
+                <h1 className={'text-center text-2xl font-bold py-4'}>Emily's Socials</h1>
                 <Social social={'Fediverse'} socialDescription={'A decentralized social platform'}
                         preSocial={'the'}
                         followAction={'follow'} link={'https://social.mldchan.dev/@mld'}/>

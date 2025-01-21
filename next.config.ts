@@ -18,7 +18,7 @@
 
 import {withSentryConfig} from "@sentry/nextjs";
 /*
- *     mldchan's Personal Website
+ *     Emily's Personal Website
  *     Copyright (C) 2024  エムエルディー
  *
  *     This program is free software: you can redistribute it and/or modify
