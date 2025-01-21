@@ -48,6 +48,9 @@ export default function Socials(props: InferGetServerSidePropsType<typeof getSer
                 <Social social={'Fediverse'} socialDescription={'A decentralized social platform'}
                         preSocial={'the'}
                         followAction={'follow'} link={'https://social.mldchan.dev/@mld'}/>
+                <Social social={'Instagram'} socialDescription={'A social network for sharing photos and videos'}
+                        preSocial={''}
+                        followAction={'follow'} link={'https://instagram.com/_mldchan_'}/>
                 <Social social={'YouTube'} socialDescription={'Video content creation platform'}
                         followAction={'subscribe to'} link={'https://youtube.com/@mldchan'}/>
                 <Social social={'Twitch'} socialDescription={'Streaming platform'} followAction={'follow'}
