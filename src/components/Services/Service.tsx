@@ -21,7 +21,7 @@ import Link from "next/link";
 
 export type PubInfo =
     'This service is publicly available for public use.' |
-    'This service is limited to Emily/mldchan\'s friends and people who she trusts.' |
+    'This service is limited to Emily\'s friends and people who she trusts.' |
     'This service is limited to mldchan\'s friend circle only.' |
     'This service is for mldchan\'s personal use only.';
 

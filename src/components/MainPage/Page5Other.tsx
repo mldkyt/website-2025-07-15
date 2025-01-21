@@ -23,16 +23,16 @@ export default function Page5Other() {
     return (
         <div className={'h-screen'}>
             <Content>
-                <h1 className={'py-4 text-center text-2xl font-bold'}>What else does Emily/mldchan do?</h1>
+                <h1 className={'py-4 text-center text-2xl font-bold'}>What else does Emily do?</h1>
 
                 <MainPageOtherElement title={'Self-Hosting'}
-                                      description={'Emily/mldchan self hosts a few services, including her own Sharkey instance and GitLab instance. Most of these self-hosted services are for personal use only, or are shared across friends.'}
+                                      description={'Emily self hosts a few services, including her own Sharkey instance and GitLab instance. Most of these self-hosted services are for personal use only, or are shared across friends.'}
                                       link={'/services'}/>
                 <MainPageOtherElement title={'Video content creation'}
-                                      description={'Emily/mldchan creates videos on YouTube, Instagram and TikTok. Most active is YouTube. Her recent Celeste content has made her a lot of success.'}
+                                      description={'Emily creates videos on YouTube, Instagram and TikTok. Most active is YouTube. Her recent Celeste content has made her a lot of success.'}
                                       link={'https://youtube.com/@mldchan'}/>
                 <MainPageOtherElement title={'Art'}
-                                      description={'Emily/mldchan rarely does art. One of her kawaii arts can be seen by looking at the website logo. Another one when you look at the logo of her Sharkey instance.'}
+                                      description={'Emily rarely does art. One of her kawaii arts can be seen by looking at the website logo. Another one when you look at the logo of her Sharkey instance.'}
                                       link={'/art'}/>
             </Content>
         </div>

@@ -39,7 +39,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 
 export default function TermsofService(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return <Main>
-        <Metadata title={'Fedi Terms of Service'} description={'Emily/mldchan Social Terms of Service'}/>
+        <Metadata title={'Fedi Terms of Service'} description={'Emily Social Terms of Service'}/>
         <Header/>
         <Content>
             <Offset amt={4}/>
@@ -48,14 +48,14 @@ export default function TermsofService(props: InferGetServerSidePropsType<typeof
 
             <div>
                 <Heading level={2}>Instance Overview</Heading>
-                <p>This is an instance hosted by Emily/mldchan for herself and her friends. Joining is by invitation
+                <p>This is an instance hosted by Emily for herself and her friends. Joining is by invitation
                     only.</p>
             </div>
 
             <div>
                 <Heading level={2}>Membership Rules</Heading>
                 <ol className={'list-decimal ml-4'}>
-                    <li>This instance is primarily intended for friends of Emily/mldchan or those invited by friends.
+                    <li>This instance is primarily intended for friends of Emily or those invited by friends.
                     </li>
                     <li>Users must be a "cutie" to join and participate.</li>
                     <li>Absolutely no tolerance for:
@@ -68,9 +68,9 @@ export default function TermsofService(props: InferGetServerSidePropsType<typeof
                             <li>Similar discriminatory ideologies</li>
                         </ul>
                     </li>
-                    <li>Account approval is at the discretion of Emily/mldchan:
+                    <li>Account approval is at the discretion of Emily:
                         <ul className={'ml-4 list-disc'}>
-                            <li>Friends of Emily/mldchan require direct invitation</li>
+                            <li>Friends of Emily require direct invitation</li>
                             <li>If someone is searching for an instance, and I know them for an extended period of time,
                                 I can invite them
                             </li>

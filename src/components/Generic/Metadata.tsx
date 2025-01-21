@@ -25,19 +25,19 @@ export default function Metadata(props: {
     return (
         <Head>
             <meta charSet="UTF-8"/>
-            <title>{props.title} | Emily/mldchan's website</title>
+            <title>{props.title} | Emily's website</title>
             <meta name="description" content={props.description}/>
-            <meta name="author" content="Emily/mldchan"/>
+            <meta name="author" content="Emily"/>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <meta httpEquiv="content-language" content="en"/>
-            <meta property="og:title" content={`${props.title} | Emily/mldchan's website`}/>
+            <meta property="og:title" content={`${props.title} | Emily's website`}/>
             <meta property="og:description" content={props.description}/>
             <meta property="og:type" content="website"/>
             <meta property="og:url" content="https://mldchan.dev"/>
-            <meta property="og:site_name" content="Emily/mldchan's website"/>
+            <meta property="og:site_name" content="Emily's website"/>
             <meta property="og:locale" content="en_US"/>
             <meta property="og:locale:alternate" content="ja_JP"/>
-            <meta name="twitter:title" content={`${props.title} | Emily/mldchan's website`}/>
+            <meta name="twitter:title" content={`${props.title} | Emily's website`}/>
             <meta name="twitter:description" content={props.description}/>
             <meta name="theme-color" content="#ff77ff"/>
         </Head>

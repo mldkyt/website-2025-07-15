@@ -40,7 +40,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 export default function Privacy(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return <Main>
         <Metadata title={'Fedi Privacy Policy'}
-                  description={'Learn about the privacy policy of Emily/mldchan Social.'}/>
+                  description={'Learn about the privacy policy of Emily Social.'}/>
         <Header/>
         <Content>
             <Offset amt={4}/>
@@ -48,7 +48,7 @@ export default function Privacy(props: InferGetServerSidePropsType<typeof getSer
             <p><em>Last Updated: December 17, 2024</em></p>
 
             <Heading level={2}>Introduction</Heading>
-            <p>Welcome to Emily/mldchan Social, a Sharkey instance primarily intended for Emily/mldchan and her friends.
+            <p>Welcome to Emily Social, a Sharkey instance primarily intended for Emily and her friends.
                 This
                 privacy policy outlines how we handle and protect your personal information.</p>
 
@@ -62,7 +62,7 @@ export default function Privacy(props: InferGetServerSidePropsType<typeof getSer
             </ul>
 
             <Heading level={2}>Data Usage</Heading>
-            <p>All collected data is used solely for the operation of Emily/mldchan Social. We do not:</p>
+            <p>All collected data is used solely for the operation of Emily Social. We do not:</p>
             <ul className={'ml-4 list-disc'}>
                 <li>Share data with third parties</li>
                 <li>Use data for marketing purposes</li>
