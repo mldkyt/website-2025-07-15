@@ -17,8 +17,11 @@
  */
 
 import postgres from "postgres";
+import dbinit from "@/backend/dbinit";
 
 export async function countVisit(opts: { route: string }) {
+    await dbinit();
+
     const sql = postgres();
 
     await sql`insert into visits (route, count)
@@ -29,6 +32,8 @@ export async function countVisit(opts: { route: string }) {
 }
 
 export async function getVisits(opts: { route: string }) {
+    await dbinit();
+
     const sql = postgres();
 
     const result = await sql`select count
