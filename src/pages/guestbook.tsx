@@ -152,7 +152,7 @@ export default function Guestbook(props: InferGetServerSidePropsType<typeof getS
             {postForm === 'approval' &&
                 <p>Your message on this guestbook is currently awaiting approval from mldchan. This is done to prevent
                     spam and
-                    hate.</p>}
+                    bigotry.</p>}
             {postForm === 'noip' &&
                 <p>An unknown error on the server is preventing the IP address to be visible. We do not know who you
                     are.</p>}
@@ -165,7 +165,7 @@ export default function Guestbook(props: InferGetServerSidePropsType<typeof getS
                     <h1 className={'text-xl font-bold'}>{x.username}</h1>
                     <p>{x.body}</p>
                     {x.replies.map((y, j) => {
-                        return <div className={'ml-16 mt-4 border-2 border-white rounded-lg p-1 px-2'}>
+                        return <div className={'mt-4 bg-[#333] rounded-lg p-1 px-2 drop-shadow-md'}>
                             <h2 className={'font-bold text-lg'}>mldchan
                                 replied:</h2>
                             <p>{y}</p>
