@@ -53,9 +53,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(404).json({error: "ReplyTo post not found"});
     }
 
-    await sql`insert into guestbook (username, body, ip, replyto)
-              values ('mldchan', ${body}, ${ip}, ${replyTo});`
+    const a = await sql`insert into guestbook (username, body, ip, replyto)
+                        values ('mldchan', ${body}, ${ip}, ${replyTo})
+                        returning id;`
     await sql.end();
 
-    res.status(200).json({status: "OK"});
+    res.status(200).json({status: "OK", replyId: a[0].id});
 }

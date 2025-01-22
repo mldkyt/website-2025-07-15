@@ -22,9 +22,26 @@ import Content from "@/components/Generic/Content";
 import Heading from "@/components/Generic/Heading";
 import Button from "@/components/Generic/Button";
 import Metadata from "@/components/Generic/Metadata";
+import {captureException} from "@sentry/nextjs";
+
+interface GuestbookItem {
+    id: number;
+    username: string;
+    body: string;
+    ip: string;
+    approved: boolean;
+    replies: GuestbookReply[];
+    replyTextField?: string;
+}
+
+interface GuestbookReply {
+    id: number;
+    username: string;
+    body: string;
+}
 
 export default function GuestbookManager() {
-    const [guestbookPosts, setGuestbookPosts] = useState<any[]>([]);
+    const [guestbookPosts, setGuestbookPosts] = useState<GuestbookItem[]>([]);
     const [error, setError] = useState<string>('test error');
 
     const hasFetched = useRef(false);
@@ -34,17 +51,14 @@ export default function GuestbookManager() {
             hasFetched.current = true;
             setError('');
             fetch('/api/admin/guestbook/get', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: localStorage.getItem('adminToken') || '',
+                method: 'GET', headers: {
+                    'Content-Type': 'application/json', Authorization: localStorage.getItem('adminToken') || '',
                 }
             }).then(x => {
                 x.json().then(x => {
                     setGuestbookPosts(x.guestbook.map((x: any) => {
                         return {
-                            ...x,
-                            replyText: ''
+                            ...x, replyText: ''
                         }
                     }));
                 }).catch(x => {
@@ -59,25 +73,20 @@ export default function GuestbookManager() {
     const approvePost = (id: number) => {
 
         fetch('/api/admin/guestbook/approve', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: localStorage.getItem('adminToken') || ''
-            },
-            body: JSON.stringify({
+            method: 'POST', headers: {
+                'Content-Type': 'application/json', Authorization: localStorage.getItem('adminToken') || ''
+            }, body: JSON.stringify({
                 guestbookId: id
             })
         }).then(x => {
             if (x.ok) {
-                setGuestbookPosts(
-                    guestbookPosts.map(y => {
-                        if (y.id === id) {
-                            return {...y, approved: true};
-                        }
+                setGuestbookPosts(guestbookPosts.map(y => {
+                    if (y.id === id) {
+                        return {...y, approved: true};
+                    }
 
-                        return y;
-                    })
-                )
+                    return y;
+                }))
             }
         })
 
@@ -85,19 +94,14 @@ export default function GuestbookManager() {
     const denyPost = (id: number) => {
 
         fetch('/api/admin/guestbook/deny', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: localStorage.getItem('adminToken') || ''
-            },
-            body: JSON.stringify({
+            method: 'POST', headers: {
+                'Content-Type': 'application/json', Authorization: localStorage.getItem('adminToken') || ''
+            }, body: JSON.stringify({
                 guestbookId: id
             })
         }).then(x => {
             if (x.ok) {
-                setGuestbookPosts(
-                    guestbookPosts.filter(y => y.id !== id)
-                )
+                setGuestbookPosts(guestbookPosts.filter(y => y.id !== id))
             }
         })
 
@@ -106,19 +110,14 @@ export default function GuestbookManager() {
     const ban = (id: number) => {
 
         fetch('/api/admin/guestbook/ban', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: localStorage.getItem('adminToken') || ''
-            },
-            body: JSON.stringify({
+            method: 'POST', headers: {
+                'Content-Type': 'application/json', Authorization: localStorage.getItem('adminToken') || ''
+            }, body: JSON.stringify({
                 guestbookId: id
             })
         }).then(x => {
             if (x.ok) {
-                setGuestbookPosts(
-                    guestbookPosts.filter(y => y.id !== id)
-                )
+                setGuestbookPosts(guestbookPosts.filter(y => y.id !== id))
             }
         })
 
@@ -126,33 +125,26 @@ export default function GuestbookManager() {
     const deletePost = (id: number) => {
 
         fetch('/api/admin/guestbook/delete', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: localStorage.getItem('adminToken') || ''
-            },
-            body: JSON.stringify({
+            method: 'POST', headers: {
+                'Content-Type': 'application/json', Authorization: localStorage.getItem('adminToken') || ''
+            }, body: JSON.stringify({
                 guestbookId: id
             })
         }).then(x => {
             if (x.ok) {
-                setGuestbookPosts(
-                    guestbookPosts.filter(y => y.id !== id)
-                )
+                setGuestbookPosts(guestbookPosts.filter(y => y.id !== id))
             }
         })
 
     }
 
     const setReply = (id: number, reply: string) => {
-        setGuestbookPosts(
-            guestbookPosts.map(x => {
-                if (x.id === id) {
-                    return {...x, replyTextField: reply};
-                }
-                return x;
-            })
-        )
+        setGuestbookPosts(guestbookPosts.map(x => {
+            if (x.id === id) {
+                return {...x, replyTextField: reply};
+            }
+            return x;
+        }))
     }
 
     const submitReply = (id: number) => {
@@ -165,32 +157,101 @@ export default function GuestbookManager() {
         const replyText = reply[0].replyTextField;
 
         fetch('/api/admin/guestbook/reply', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: localStorage.getItem('adminToken') || ''
-            },
-            body: JSON.stringify({
-                replyTo: id,
-                body: replyText
+            method: 'POST', headers: {
+                'Content-Type': 'application/json', Authorization: localStorage.getItem('adminToken') || ''
+            }, body: JSON.stringify({
+                replyTo: id, body: replyText
             })
         }).then(x => {
             if (x.ok) {
-                setGuestbookPosts(guestbookPosts.map(x => {
-                    if (x.id === id) {
-                        return {
-                            ...x,
-                            replies: [...x.replies, {username: 'mldchan', body: replyText}],
-                            replyTextField: ''
-                        };
-                    }
-                    return x;
-                }))
+                x.json().then(x => {
+                    setGuestbookPosts(guestbookPosts.map(y => {
+                        if (y.id === id) {
+                            return {
+                                ...y, replies: [...y.replies, {
+                                    username: 'Emily', body: replyText || 'UNDEFINED', id: x.replyId
+                                }], replyTextField: ''
+                            };
+                        }
+                        return y;
+                    }))
+                }).catch(x => {
+                    setError(`Error parsing JSON: ${x}`);
+                })
             } else {
                 setError(`Reply failed: ${x.statusText}`);
             }
         }).catch(x => {
             setError(`${x}`)
+        })
+    }
+
+    const updateReply = (post: GuestbookItem, reply: GuestbookReply, text: string) => {
+        fetch('/api/admin/guestbook/updateReply', {
+            method: 'POST', headers: {
+                'Content-Type': 'application/json', Authorization: localStorage.getItem('adminToken') || ''
+            }, body: JSON.stringify({
+                body: text, postId: reply.id.toString()
+            })
+        }).then(x => {
+            if (x.ok) {
+                setGuestbookPosts(guestbookPosts.map(x1 => {
+                    if (x1.id === post.id) {
+                        return {
+                            ...x1, replies: x1.replies.map(y1 => {
+                                if (y1.id === reply.id) {
+                                    return {...y1, body: text}
+                                }
+
+                                return y1;
+                            })
+                        }
+                    }
+
+                    return x1;
+                }))
+            } else {
+                x.text().then(y => {
+                    setError(`Error updating reply: ${x.status} (${x.statusText}) ${y}`);
+                    captureException(y);
+                }).catch(y => {
+                    setError(`Error updating reply: ${x.status} (${x.statusText}) ${y}`);
+                    captureException(y);
+                })
+            }
+        }).catch(x => {
+            setError(`Error updating reply: ${x}`);
+            captureException(x);
+        })
+    }
+
+    const deleteReply = (post: GuestbookItem, reply: GuestbookReply) => {
+        fetch('/api/admin/guestbook/deleteReply', {
+            method: 'POST', headers: {
+                'Content-Type': 'application/json', Authorization: localStorage.getItem('adminToken') || ''
+            }, body: JSON.stringify({
+                replyId: reply.id
+            })
+        }).then(x => {
+            if (x.ok) {
+                setGuestbookPosts(guestbookPosts.map(x => {
+                    if (x.id === post.id) {
+                        return {...x, replies: x.replies.filter(y => y.id !== reply.id)}
+                    }
+                    return x;
+                }))
+            } else {
+                x.text().then(y => {
+                    setError(`Error updating reply: ${x.status} (${x.statusText}) ${y}`);
+                    captureException(y);
+                }).catch(y => {
+                    setError(`Error updating reply: ${x.status} (${x.statusText}) ${y}`);
+                    captureException(y);
+                })
+            }
+        }).catch(x => {
+            setError(`Error updating reply: ${x}`);
+            captureException(x);
         })
     }
 
@@ -225,9 +286,14 @@ export default function GuestbookManager() {
                     <div className={'flex-row flex gap-2'}>
                         <Button onClick={() => deletePost(x.id)}>Delete</Button>
                     </div>
-                    {x.replies.map((y: any, i: number) => {
-                        return <div className={'ml-16'} key={i}>
+                    {x.replies.map((y: GuestbookReply, i: number) => {
+                        const updateTextMessage = () => {
+                            const message = prompt("Update reply to?") ?? "null";
+                            updateReply(x, y, message);
+                        }
+                        return <div className={'ml-16'} key={i} onDoubleClick={updateTextMessage}>
                             {`Re: ${y.body}`}
+                            <div className="ml-2 inline"><Button onClick={() => deleteReply(x, y)}>Delete</Button></div>
                         </div>
                     })}
                     <input type={'text'} className={'w-full bg-[#222] mt-2 px-2 p-1 rounded-lg'}
