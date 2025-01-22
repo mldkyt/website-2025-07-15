@@ -28,6 +28,7 @@ import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
 import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
 import {countVisit, getVisits} from "@/backend/visitsCounter";
+import Heading from "@/components/Generic/Heading";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     await countVisit({route: '/donate'});
@@ -47,13 +48,24 @@ export default function Donate(props: InferGetServerSidePropsType<typeof getServ
             <Header highlight={'donate'}/>
             <Content>
                 <Offset amt={4}/>
-                <h1 className={'text-center text-2xl font-bold py-4'}>Donate</h1>
+                <Heading level={1}>Donate</Heading>
                 <p>Even if I try to run as much on free stuff as possible, it's impossible to run
                     everything completely free of charge.</p>
                 <p>For example, servers cost money -- regardless if it is running at your home or it's a VPS.</p>
 
-                <h2 className={'text-center text-xl font-bold py-2'}>How do I donate?</h2>
-                <p>If you do got some spare money which you don't need for anything else, you can donate to me on the
+                <Heading level={2}>Past Donators</Heading>
+
+                <p>Here's a list of past donators to me - Thank you all!</p>
+
+                <ul className={'list-disc ml-4'}>
+                    <li><strong>LeroMusic</strong> (Ko-fi) - $15</li>
+                    <li><strong>DriftBot</strong> (Ko-fi) - $10</li>
+                    <li><strong>Creitin Gameplays</strong> (GitHub Sponsors) - $2</li>
+                </ul>
+
+                <Heading level={2}>How do I donate?</Heading>
+                <p>If you do got some spare money which you absolutely don't need for anything else, you can donate to
+                    me on the
                     following platforms:</p>
                 <ul className={'list-disc ml-4'}>
                     <li>
@@ -89,7 +101,7 @@ export default function Donate(props: InferGetServerSidePropsType<typeof getServ
                     </li>
                 </ul>
 
-                <h2 className={'text-center text-xl font-bold py-2'}>Where will my money go if I donate?</h2>
+                <Heading level={2}>Where will my money go if I donate?</Heading>
                 <p>Your money will most definitely go into my pockets. No third-parties involved. Unless I pay for
                     something online.</p>
                 <p>Your money will be used for example:</p>
@@ -111,7 +123,7 @@ export default function Donate(props: InferGetServerSidePropsType<typeof getServ
                     </li>
                 </ul>
 
-                <h2 className={'text-center text-xl font-bold py-2'}>What do I host?</h2>
+                <Heading level={2}>What do I host?</Heading>
                 <p>For a list of what I host, I made a dedicated page for this content. You should check that
                     out, because some of these services are partially open to the public!</p>
                 <Link href={'/services'}>
