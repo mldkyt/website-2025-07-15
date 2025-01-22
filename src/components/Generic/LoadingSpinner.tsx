@@ -16,7 +16,6 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-'use client';
 
 import {motion} from "motion/react";
 import {useEffect, useState} from "react";
