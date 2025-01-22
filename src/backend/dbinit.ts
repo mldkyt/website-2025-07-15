@@ -17,16 +17,16 @@
  */
 
 import postgres from "postgres";
+
 export default async function () {
     const sql = postgres({});
 
     try {
         const tableExists = await sql`
-            SELECT EXISTS (
-                SELECT 1 FROM information_schema.tables 
-                WHERE table_schema = 'public' 
-                AND table_name = 'visits'
-            );
+            SELECT EXISTS (SELECT 1
+                           FROM information_schema.tables
+                           WHERE table_schema = 'public'
+                             AND table_name = 'visits');
         `;
 
         // If the table exists, assume all tables exist and return early
@@ -38,69 +38,78 @@ export default async function () {
         // Combine statements in a transaction but execute them separately
         await sql.begin(async (sql) => {
             await sql`
-                create table if not exists visits (
-                                                      route text primary key,
-                                                      count integer not null default 0
+                create table if not exists visits
+                (
+                    route text primary key,
+                    count integer not null default 0
                 )`;
 
             await sql`
-                create table if not exists blogPosts (
-                    id serial primary key,
+                create table if not exists blogPosts
+                (
+                    id          serial primary key,
+                    handle      text    not null unique,
+                    title       text    not null,
+                    description text    not null,
+                    created     timestamp        default now(),
+                    updated     timestamp        default now(),
+                    targetURL   text    not null,
+                    views       integer not null default 0
+                )`;
+
+            await sql`
+                create table if not exists polls
+                (
+                    id     serial primary key,
                     handle text not null unique,
-                    title text not null,
-                    description text not null,
-                    created timestamp default now(),
-                    updated timestamp default now(),
-                    targetURL text not null,
-                    views integer not null default 0
+                    title  text not null
                 )`;
 
             await sql`
-                create table if not exists polls (
-                    id serial primary key,
-                    handle text not null unique,
-                    title text not null
+                create table if not exists polloptions
+                (
+                    id     serial primary key,
+                    pollID integer not null references polls (id),
+                    option text    not null
                 )`;
 
             await sql`
-                create table if not exists polloptions (
-                    id serial primary key,
-                    pollID integer not null references polls(id),
-                    option text not null
+                create table if not exists pollvotes
+                (
+                    id       serial primary key,
+                    pollID   integer not null references polls (id),
+                    optionID integer not null references pollOptions (id),
+                    ip       text    not null
                 )`;
 
             await sql`
-                create table if not exists pollvotes (
+                create table if not exists guestbook
+                (
+                    id       serial primary key,
+                    username text                not null,
+                    body     text                not null,
+                    ip       text                not null,
+                    approved integer   default 0 not null,
+                    replyto  integer references guestbook on update cascade on delete cascade,
+                    created  timestamp default now()
+                )`;
+
+            await sql`
+                create table if not exists guestbookbans
+                (
                     id serial primary key,
-                    pollID integer not null references polls(id),
-                    optionID integer not null references pollOptions(id),
                     ip text not null
                 )`;
 
             await sql`
-                create table if not exists guestbook (
-                    id serial primary key,
-                    username text not null,
-                    body text not null,
-                    ip text not null,
-                    approved integer default 0 not null,
-                    replyto integer references guestbook on update cascade on delete cascade
-                )`;
-
-            await sql`
-                create table if not exists guestbookbans (
-                    id serial primary key,
-                    ip text not null
-                )`;
-
-            await sql`
-                create table if not exists ytvideos (
-                    video text primary key,
-                    title text not null,
-                    description text not null,
-                    views integer not null,
+                create table if not exists ytvideos
+                (
+                    video        text primary key,
+                    title        text      not null,
+                    description  text      not null,
+                    views        integer   not null,
                     published_at timestamp not null,
-                    thumb_url text not null
+                    thumb_url    text      not null
                 )`;
         });
     } finally {

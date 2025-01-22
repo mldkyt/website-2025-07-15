@@ -63,7 +63,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
         allowPost = 'noip';
     }
 
-    const existingPosts = await sql`select id, username, body
+    const existingPosts = await sql`select id, username, body, created
                                     from guestbook
                                     where approved = 1
                                       and replyto IS NULL;`
@@ -76,7 +76,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
         return {
             username: x.username, body: x.body, replies: replies.map(x => {
                 return x.body
-            })
+            }), created: x.created.toISOString()
         }
     }))
 
@@ -121,6 +121,21 @@ export default function Guestbook(props: InferGetServerSidePropsType<typeof getS
                 setPostForm('approval');
             }
         })
+    }
+
+    const formatTime = (iso: string) => {
+        const date = new Date(iso);
+
+        let month = `${date.getMonth() + 1}`;
+        if (month.length < 2) month = `0${month}`;
+        let day = `${date.getDate()}`;
+        if (day.length < 2) day = `0${day}`;
+
+        let hour = `${date.getHours()}`;
+        if (hour.length < 2) hour = `0${hour}`;
+        let minute = `${date.getMinutes()}`;
+        if (minute.length < 2) minute = `0${minute}`;
+        return `${date.getFullYear()}/${month}/${day} ${hour}:${minute} UTC`;
     }
 
     return <Main>
@@ -171,6 +186,7 @@ export default function Guestbook(props: InferGetServerSidePropsType<typeof getS
                             <p>{y}</p>
                         </div>
                     })}
+                    <p><small>Posted on {formatTime(x.created)}</small></p>
                 </div>
             })}
         </Content>
