@@ -16,10 +16,10 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-export default function DeprecatedProject(props: { message: string }) {
+export default function Disclaimer(props: { title: string, message: string }) {
     return (
         <div className={'border-2 border-red-600 rounded-xl bg-red-950 p-2'}>
-            <h1 className={'text-3xl font-bold'}>Deprecated Project</h1>
+            <h1 className={'text-3xl font-bold'}>{props.title}</h1>
             <p className={'text-lg'}>{props.message}</p>
         </div>
     );

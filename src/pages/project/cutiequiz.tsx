@@ -17,7 +17,7 @@
  */
 
 import Main from "@/components/Generic/Main";
-import {Header} from "@/components/Generic/Header";
+import { Header } from "@/components/Generic/Header";
 import Content from "@/components/Generic/Content";
 import Offset from "@/components/Generic/Offset";
 import Heading from "@/components/Generic/Heading";
@@ -28,16 +28,16 @@ import one from '@/images/cutiequiz/1.png';
 import two from '@/images/cutiequiz/2.png';
 import three from '@/images/cutiequiz/3.png';
 import Metadata from "@/components/Generic/Metadata";
-import {motion} from "motion/react";
+import { motion } from "motion/react";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
-import DeprecatedProject from "@/components/Generic/DeprecatedProject";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { countVisit, getVisits } from "@/backend/visitsCounter";
+import Disclaimer from "@/components/Generic/Disclaimer";
 import Button from "@/components/Generic/Button";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({route: '/project/cutiequiz'});
-    const visits = await getVisits({route: '/project/cutiequiz'});
+    await countVisit({ route: '/project/cutiequiz' });
+    const visits = await getVisits({ route: '/project/cutiequiz' });
 
     return {
         props: {
@@ -50,12 +50,12 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
     return (
         <Main>
             <Metadata title={'Cutie Quiz'}
-                      description={'[DEPRECATED] Cutie Quiz was a tiny app which takes a username and then determines how cute you are by analyzing brain waves.'}/>
-            <Header highlight={'projects'}/>
+                description={'[DEPRECATED] Cutie Quiz was a tiny app which takes a username and then determines how cute you are by analyzing brain waves.'} />
+            <Header highlight={'projects'} />
             <Content>
-                <Offset amt={4}/>
+                <Offset amt={4} />
                 <Heading level={1}>Cutie Quiz</Heading>
-                <DeprecatedProject message="Deprecated on 2024/10/31." />
+                <Disclaimer title="Deprecated Project" message="Deprecated on 2024/10/31." />
 
                 <p>
                     Cutie Quiz is a tiny app which takes a username and then determines how cute you are by analyzing
@@ -73,16 +73,16 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 </p>
 
                 <Heading level={2}>Images</Heading>
-                <Image src={one} alt={'Cutie Quiz 1'} className={'p-1 rounded-lg'}/>
-                <Image src={two} alt={'Cutie Quiz 2'} className={'p-1 rounded-lg'}/>
-                <Image src={three} alt={'Cutie Quiz 3'} className={'p-1 rounded-lg'}/>
+                <Image src={one} alt={'Cutie Quiz 1'} className={'p-1 rounded-lg'} />
+                <Image src={two} alt={'Cutie Quiz 2'} className={'p-1 rounded-lg'} />
+                <Image src={three} alt={'Cutie Quiz 3'} className={'p-1 rounded-lg'} />
 
                 <Link href="https://github.com/mldchan/CutieQuiz">
                     <Button>Source code</Button>
                 </Link>
 
-                <Offset amt={3}/>
-                <Footer visits={props.visits}/>
+                <Offset amt={3} />
+                <Footer visits={props.visits} />
             </Content>
         </Main>
     )

@@ -17,17 +17,17 @@
  */
 
 import Main from "@/components/Generic/Main";
-import {Header} from "@/components/Generic/Header";
+import { Header } from "@/components/Generic/Header";
 import Content from "@/components/Generic/Content";
 import Offset from "@/components/Generic/Offset";
 import Heading from "@/components/Generic/Heading";
 import Link from "next/link";
 import Metadata from "@/components/Generic/Metadata";
-import {motion} from "motion/react";
+import { motion } from "motion/react";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
-import DeprecatedProject from "@/components/Generic/DeprecatedProject";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { countVisit, getVisits } from "@/backend/visitsCounter";
+import Disclaimer from "@/components/Generic/Disclaimer";
 
 const ModCategory = (props: { children: string }) => {
     return (
@@ -36,8 +36,8 @@ const ModCategory = (props: { children: string }) => {
 }
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({route: '/project/goodoldmsc'});
-    const visits = await getVisits({route: '/project/goodoldmsc'});
+    await countVisit({ route: '/project/goodoldmsc' });
+    const visits = await getVisits({ route: '/project/goodoldmsc' });
 
     return {
         props: {
@@ -50,12 +50,12 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
     return (
         <Main>
             <Metadata title={'GoodOldMSC'}
-                      description={'Reverts the game into old versions. Combination of OldCarSounds, Old Hayosiko, Old Truck, Old Ferndale, Old Highway Cars and Old World.'}/>
-            <Header highlight={'projects'}/>
+                description={'Reverts the game into old versions. Combination of OldCarSounds, Old Hayosiko, Old Truck, Old Ferndale, Old Highway Cars and Old World.'} />
+            <Header highlight={'projects'} />
             <Content>
-                <Offset amt={4}/>
+                <Offset amt={4} />
                 <Heading level={1}>GoodOldMSC</Heading>
-                <DeprecatedProject message="Deprecated on 2024/07/01. No updates are provided under any circumstance." />
+                <Disclaimer title="Deprecated Project" message="Deprecated on 2024/07/01. No updates are provided under any circumstance." />
 
                 <p>
                     Reverts the game into old versions. Combination of OldCarSounds, Old Hayosiko, Old Truck, Old
@@ -177,30 +177,30 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
 
                 <p>
                     This project is <Link className={'text-pink-400 hover:text-pink-200'}
-                                          href="https://git.mldchan.dev/mscmods/goodoldmsc">
-                    <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>free
-                        and open source
-                    </motion.span>
-                </Link>,
+                        href="https://git.mldchan.dev/mscmods/goodoldmsc">
+                        <motion.span whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1 }}>free
+                            and open source
+                        </motion.span>
+                    </Link>,
                     under
                     the <Link className={'text-pink-400 hover:text-pink-200'}
-                              href="https://www.gnu.org/licenses/gpl-3.0.en.html">
-                    <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>GNU
-                        GPL v3 license
-                    </motion.span>
-                </Link>. Anyone can
+                        href="https://www.gnu.org/licenses/gpl-3.0.en.html">
+                        <motion.span whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1 }}>GNU
+                            GPL v3 license
+                        </motion.span>
+                    </Link>. Anyone can
                     use the code,
                     provided they release
                     their mod source code publicly under the same license.
                 </p>
 
                 <Link href="https://git.mldchan.dev/mscmods/goodoldmsc"
-                      className={'text-pink-400 hover:text-pink-200'}>
-                    <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Source code</motion.span>
+                    className={'text-pink-400 hover:text-pink-200'}>
+                    <motion.span whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1 }}>Source code</motion.span>
                 </Link>
 
-                <Offset amt={3}/>
-                <Footer visits={props.visits}/>
+                <Offset amt={3} />
+                <Footer visits={props.visits} />
             </Content>
         </Main>
     )

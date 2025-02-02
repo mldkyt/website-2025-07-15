@@ -17,7 +17,7 @@
  */
 
 import Main from "@/components/Generic/Main";
-import {Header} from "@/components/Generic/Header";
+import { Header } from "@/components/Generic/Header";
 import Content from "@/components/Generic/Content";
 import Offset from "@/components/Generic/Offset";
 import Heading from "@/components/Generic/Heading";
@@ -26,15 +26,15 @@ import header from '@/images/pridemod_header.webp';
 import Image from "next/image";
 import Link from "next/link";
 import Metadata from "@/components/Generic/Metadata";
-import {motion} from "motion/react";
+import { motion } from "motion/react";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
-import DeprecatedProject from "@/components/Generic/DeprecatedProject";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { countVisit, getVisits } from "@/backend/visitsCounter";
+import Disclaimer from "@/components/Generic/Disclaimer";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({route: '/project/pridemod'});
-    const visits = await getVisits({route: '/project/pridemod'});
+    await countVisit({ route: '/project/pridemod' });
+    const visits = await getVisits({ route: '/project/pridemod' });
 
     return {
         props: {
@@ -46,14 +46,14 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 export default function Template(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
-            <Metadata title={'Pride Mod'} description={'A mod for celebrating pride month in My Summer Car.'}/>
-            <Header highlight={'projects'}/>
+            <Metadata title={'Pride Mod'} description={'A mod for celebrating pride month in My Summer Car.'} />
+            <Header highlight={'projects'} />
             <Content>
-                <Offset amt={4}/>
+                <Offset amt={4} />
                 <Heading level={1}>Pride Mod</Heading>
-                <DeprecatedProject message="Deprecated on 2024/07/01. No updates are provided under any circumstance." />
+                <Disclaimer title="Deprecated Project" message="Deprecated on 2024/07/01. No updates are provided under any circumstance." />
                 <p>A mod for celebrating pride month in My Summer Car.</p>
-                <Image src={header} alt="Header"/>
+                <Image src={header} alt="Header" />
                 <p>After many requests to put the Pride Month Mod on NexusMods, I finally did it.</p>
                 <p>Pride Month Mod for My Summer Car! Current features:</p>
                 <ul>
@@ -72,12 +72,12 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 <p>More features coming soon! Suggest them using the guestbook and I'll implement them.</p>
 
                 <Link href="https://git.mldchan.dev/MSCMods/PrideMod"
-                      className={'text-pink-400 hover:text-pink-200'}>
-                    <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>GitLab</motion.span>
+                    className={'text-pink-400 hover:text-pink-200'}>
+                    <motion.span whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1 }}>GitLab</motion.span>
                 </Link>
 
-                <Offset amt={3}/>
-                <Footer visits={props.visits}/>
+                <Offset amt={3} />
+                <Footer visits={props.visits} />
             </Content>
         </Main>
     )
