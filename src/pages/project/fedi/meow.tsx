@@ -27,6 +27,9 @@ import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
 import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
 import {countVisit, getVisits} from "@/backend/visitsCounter";
+import Button from "@/components/Generic/Button";
+import examplepost from '@/images/fedi/meow/examplepost.png';
+import Image from "next/image";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     await countVisit({route: '/project/fedimeow'});
@@ -50,16 +53,16 @@ export default function FediMeow(props: InferGetServerSidePropsType<typeof getSe
                 <p>
                     This is a bot that meows every hour on fedi.
                 </p>
-                <p>
+                <p className="pt-2">
                     This bot is really simple. It sends a message containing meow or nya, randomly adding a tidlie or a
                     :3 to the message.
                 </p>
-                <Link href="https://social.mldchan.dev/@FediMeow" className={'text-pink-400 hover:text-pink-200'}>
-                    <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Official account</motion.span>
+                <Image src={examplepost} alt="A post from Fedi Meow (@FediMeow), containing the text mraow :3c" className="py-2 rounded-lg drop-shadow-md" />
+                <Link href="https://social.mldchan.dev/@FediMeow">
+                    <Button>Official account</Button>
                 </Link>
-                <br/>
-                <Link href="https://git.mldchan.dev/mld/fedimeow" className={'text-pink-400 hover:text-pink-200'}>
-                    <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Source code</motion.span>
+                <Link href="https://git.mldchan.dev/mld/fedimeow">
+                    <Button>Source code</Button>
                 </Link>
                 <Offset amt={3}/>
                 <Footer visits={props.visits}/>

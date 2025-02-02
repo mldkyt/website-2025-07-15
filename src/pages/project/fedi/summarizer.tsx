@@ -30,6 +30,7 @@ import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
 import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
 import {countVisit, getVisits} from "@/backend/visitsCounter";
+import Button from "@/components/Generic/Button";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     await countVisit({route: '/project/fedi/summarizer'});
@@ -69,13 +70,11 @@ export default function FediSummarizer(props: InferGetServerSidePropsType<typeof
 
                 <br/>
 
-                <Link href="https://social.mldchan.dev/@FediSummarizer" className={'text-pink-400 hover:text-pink-200'}>
-                    <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Official account</motion.span>
+                <Link href="https://social.mldchan.dev/@FediSummarizer">
+                    <Button>Official account</Button>
                 </Link>
-                <br/>
-                <Link href="https://git.mldchan.dev/mld/fedi-summarizer"
-                      className={'text-pink-400 hover:text-pink-200'}>
-                    <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Source code</motion.span>
+                <Link href="https://git.mldchan.dev/mld/fedi-summarizer">
+                    <Button>Source code</Button>
                 </Link>
 
                 <Offset amt={3}/>

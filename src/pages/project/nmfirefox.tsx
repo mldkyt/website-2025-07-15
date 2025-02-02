@@ -31,6 +31,7 @@ import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
 import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
 import {countVisit, getVisits} from "@/backend/visitsCounter";
+import Button from "@/components/Generic/Button";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     await countVisit({route: '/project/nmfirefox'});
@@ -53,7 +54,7 @@ export default function NMFirefox(props: InferGetServerSidePropsType<typeof getS
             <Heading level={1}>Nexus Enhancements for Firefox</Heading>
 
             <p>This is an extension for Firefox which adds a few features to Nexus Mods, namely blocking people.</p>
-            <p>
+            <p className="pt-2">
                 The extension was made initially for personal use only, hence it not being available on Firefox
                 Extension
                 Store, only being on GitHub. By using this extension, you are viable for all damages, even if this
@@ -62,19 +63,17 @@ export default function NMFirefox(props: InferGetServerSidePropsType<typeof getS
                 any, unless NexusMods updates.
             </p>
             <Image src={nmfirefox} alt="User Interface" className={'rounded-lg'}/>
-            <p>
+            <p className="pt-2">
                 The UI allows adding blocked people by username. Blocking a person will hide their comments and replies.
                 Unblocking a person requires reload to re-show any hidden comments.
             </p>
-            <p>
+            <p className="pt-2">
                 To download and install this extension, follow the link to the download and download
                 the <code>xpi</code> file while using Firefox. The extension should install.
             </p>
             <br/>
-            <Link href={'https://github.com/mldchan/NexusEnhancementsForFirefox/releases'}
-                  className={'text-pink-400 hover:text-pink-200'}>
-                <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Download Nexus Enhancements for Firefox
-                </motion.span>
+            <Link href={'https://github.com/mldchan/NexusEnhancementsForFirefox/releases'}>
+                <Button>Download Nexus Enhancements for Firefox</Button>
             </Link>
             <Offset amt={3}/>
             <Footer visits={props.visits}/>

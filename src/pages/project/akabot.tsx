@@ -28,6 +28,7 @@ import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
 import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
 import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {ReactNode} from "react";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     await countVisit({route: '/project/akabot'});
@@ -40,104 +41,113 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     }
 }
 
+function FeatureList(props: { children: ReactNode }) {
+    return <div className={'grid grid-cols-2'}>
+        {props.children}
+    </div>
+}
+
+function Feature(props: { title: string, body: string }) {
+    return <div className={'m-1 bg-[#222] drop-shadow-lg rounded-lg p-2 py-1'}>
+        <h3 className={'text-xl font-bold'}>{props.title}</h3>
+        <p>{props.body}</p>
+    </div>
+}
+
 export default function Akabot(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
 
     return (
         <Main>
-            <Metadata title={'Akabot'} description={'Akabot is a Discord bot with a ton of features.'}/>
+            <Metadata title={'Akabot'} description={'Akabot: A feature packed Discord bot that\'s free forever!'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={4}/>
-                <Heading level={1}>Akabot: mldchan's Discord bot</Heading>
-                <p>Akabot is a Discord bot with Chat Revive, Chat Streaks, Chat Summary, Leveling, Logging, Moderation
-                    Commands, Reaction Roles, Giveaways, Verification, Reaction Roles, Suggestions, Temporary Voice
-                    Channels, Welcome and Goodbye, all for free, across Japanese, French, Russian, English, Spanish,
-                    Czech, Chinese Simplified, Dutch, Hindi and German. <i>(this list is exhaustive)</i></p>
+                <Offset amt={8}/>
 
-                <div className={'flex flex-row flex-wrap'}>
-                    <Link href={'/project/akabot/invite'}>
-                        <Button>Invite Akabot in your server </Button>
-                    </Link>
-                    <Link href={'/donate'} className={'ml-2'}>
-                        <Button>Donate to mldchan</Button>
-                    </Link>
-                    <Link href={'https://git.mldchan.dev/mld/Akabot'} className={'ml-2'}>
-                        <Button>View the source code</Button>
-                    </Link>
+                <div>
+                    <h1 className={'text-center text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold'}>Akabot: A
+                        feature packed
+                        Discord bot that's free forever!</h1>
+                    <br/>
+                    <div className={'w-max m-auto'}>
+                        <Link href={'/project/akabot/invite'}>
+                            <Button>Invite Akabot in your server</Button>
+                        </Link>
+                    </div>
+                    <p className={'text-sm text-center text-grey-500'}>By inviting the public instance, you agree to
+                        the <Link className={'text-pink-500'}
+                                  href={'/project/akabot/tos'}>terms
+                            of
+                            service</Link> and <Link className={'text-pink-500'} href={'/project/akabot/privacy'}>privacy
+                            policy</Link>.
+                    </p>
                 </div>
 
-                <h2 className={'text-center text-xl font-bold py-2'}>Features</h2>
-                <ul className={'list-disc ml-4'}>
-                    <li>
-                        <strong>Languages:</strong> Japanese, French, Russian, English, Spanish, Czech, Chinese
-                        Simplified,
-                        Dutch, Hindi and German
-                    </li>
-                    <li>
-                        <strong>Chat Revive</strong>: Revive your dead general chat automatically with a revive role
-                        ping.
-                    </li>
-                    <li>
-                        <strong>Chat Streaks</strong>: Track users who send a message daily and build a leaderboard of
-                        users who are active.
-                    </li>
-                    <li>
-                        <strong>Chat Summary</strong>: Count messages sent every day and find out who sends the most.
-                    </li>
-                    <li>
-                        <strong>Leveling</strong>: Reward active users with levels and roles.
-                    </li>
-                    <li>
-                        <strong>Logging</strong>: Log moderation actions, message edits, message deletes, and more.
-                    </li>
-                    <li>
-                        <strong>Moderation Commands</strong>: Kick, ban, mute up to 28 days, warn
-                    </li>
-                    <li>
-                        <strong>Automod Actions</strong>: Perform moderator actions when an automod rule gets triggered.
-                    </li>
-                    <li>
-                        <strong>Reaction Roles</strong>: Allow users to get roles by reacting to a message.
-                    </li>
-                    <li>
-                        <strong>Giveaways</strong>: Start giveaways, track entries, and pick winners.
-                    </li>
-                    <li>
-                        <strong>Verification</strong>: Verify users with a captcha, reversing and English word or any
-                        other method.
-                    </li>
-                    <li>
-                        <strong>Suggestions</strong>: Allow users to suggest things for your server.
-                    </li>
-                    <li>
-                        <strong>Temporary Voice Channels</strong>: Allow users to create temporary voice channels, which
-                        get deleted when empty.
-                    </li>
-                    <li>
-                        <strong>Welcome and Goodbye</strong>: Send welcome and goodbye messages in a channel welcoming
-                        users who join your server and saying goodbye to those who leave your server.
-                    </li>
-                </ul>
+                <Offset amt={5}/>
+                <p className={'text-center'}>Akabot is a fully functional feature packed Discord bot that's free
+                    forever!</p>
 
-                <Heading level={2}>How do I get this bot?</Heading>
-                <p>You can use the public instance, which is free! Invite the bot using the button below.</p>
-                <Link href={'/project/akabot/invite'}>
-                    <Button>Invite Akabot in your server </Button>
-                </Link>
+                <Heading level={2}>Features</Heading>
+
+                <FeatureList>
+                    <Feature title={'Free Forever'} body={'The bot is open-source and free forever!'}/>
+                    <Feature title={'Multilingual'}
+                             body={'Japanese, French, Russian, English, Spanish, Czech, Chinese Simplified, Dutch, Hindi and German'}/>
+                    <Feature title={'Chat Revive'}
+                             body={'Revive your dead general chat automatically with a revive role ping.'}/>
+                    <Feature title={'Chat Streaks'}
+                             body={'Track users who send a message daily and build a leaderboard of users who are active.'}/>
+                    <Feature title={'Chat Summary'}
+                             body={'Count messages sent every day and find out who sends the most.'}/>
+                    <Feature title={'Leveling'} body={'Reward active users with levels and roles.'}/>
+                    <Feature title={'Logging'}
+                             body={'Log moderation actions, message edits, message deletes, and more.'}/>
+                    <Feature title={'Moderation'} body={'Kick, ban, mute up to 28 days, warn'}/>
+                    <Feature title={'Automod Actions'}
+                             body={'Perform moderator actions when an automod rule gets triggered.'}/>
+                    <Feature title={'Reaction Roles'} body={'Allow users to get roles by reacting to a message.'}/>
+                    <Feature title={'Giveaways'} body={'Start giveaways, track entries, and pick winners.'}/>
+                    <Feature title={'Verification'}
+                             body={'Verify users with a captcha, reversing and English word or any other method.'}/>
+                    <Feature title={'Suggestions'} body={'Allow users to suggest things for your server.'}/>
+                    <Feature title={'Temporary VCs'}
+                             body={'Allow users to create temporary voice channels, which get deleted when empty.'}/>
+                    <Feature title={'Welcome and Goodbye'}
+                             body={'Send welcome and goodbye messages in a channel welcoming users who join your server and saying goodbye to those who leave your server.'}/>
+                </FeatureList>
+
+                <Offset amt={2}/>
+
+                <Heading level={2}>How do I self-host this bot?</Heading>
+
 
                 <p>The bot is open-source, so if you want to host your own instance for the public or for personal use,
                     click the button below to view the source code:</p>
-                <Link href={'https://git.mldchan.dev/mld/Akabot'}>
-                    <Button>View the source code</Button>
+                <Link href={'https://git.mldchan.dev/mld/Akabot'} className={'m-1'}>
+                    <Button>View the source code on mldchan's self-hosted GitLab</Button>
+                </Link>
+                <Link href={'https://github.com/mldchan/Akabot'} className={'m-1'}>
+                    <Button>View the source code on GitHub</Button>
                 </Link>
 
-                <Heading level={2}>How do I donate to this project?</Heading>
-                <p>If you want to donate, that would be really grateful! This bot is free for everyone and it's not easy
-                    to maintain a 99% uptime. </p>
-                <p>You can donate on the dedicated page for donations.</p>
+                <p>Self-hosting instructions are available in the repository.</p>
+
+                <Heading level={2}>Donations are welcome!</Heading>
+
+                <p>The bot is not free, as any of my services, so donations are welcome!</p>
+
                 <Link href={'/donate'}>
                     <Button>Donate to mldchan</Button>
                 </Link>
+
+                <p>If you don't have money to donate, you can help translating the bot into other languages on
+                    Crowdin!</p>
+
+                <Link href={'https://crowdin.com/project/akabot-by-akatsuki2555'}>
+                    <Button>Help with translating!</Button>
+                </Link>
+
+                <Offset amt={4}/>
+
                 <Footer visits={props.visits}/>
             </Content>
         </Main>
