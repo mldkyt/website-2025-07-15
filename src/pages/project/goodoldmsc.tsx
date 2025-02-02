@@ -27,6 +27,7 @@ import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
 import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
 import {countVisit, getVisits} from "@/backend/visitsCounter";
+import DeprecatedProject from "@/components/Generic/DeprecatedProject";
 
 const ModCategory = (props: { children: string }) => {
     return (
@@ -54,6 +55,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
             <Content>
                 <Offset amt={4}/>
                 <Heading level={1}>GoodOldMSC</Heading>
+                <DeprecatedProject message="Deprecated on 2024/07/01. No updates are provided under any circumstance." />
 
                 <p>
                     Reverts the game into old versions. Combination of OldCarSounds, Old Hayosiko, Old Truck, Old

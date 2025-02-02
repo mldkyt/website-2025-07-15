@@ -30,6 +30,7 @@ import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
 import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
 import {countVisit, getVisits} from "@/backend/visitsCounter";
+import Button from "@/components/Generic/Button";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     await countVisit({route: '/project/uwurandom-rs'});
@@ -51,19 +52,19 @@ export default function UwurandomRs(props: InferGetServerSidePropsType<typeof ge
             <Offset amt={4}/>
             <Heading level={1}>uwurandom-rs</Heading>
             <p>Catgirl nonsense, but in the Rust programming language, for maximum femininity.</p>
-            <p>
+            <p className="pt-2">
                 This project, or library to say it right, does the same thing as <a href="/project/catgirlnonsense">Catgirl
                 nonsense</a> does, but it does it as a library in the Rust programming language. Written by a transgirl
                 btw.
             </p>
-            <p>The library is very easy to use, for the maximum femefficiency :3</p>
-            <Image src={image} alt={'UwUrandom-rs example source code'} className={'p-1 rounded-lg'}/>
-            <Link href={'https://crates.io/crates/mldkyt-uwurandom-rs'} className={'text-pink-400 hover:text-pink-200'}>
-                <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Download from crates.io</motion.span>
+            <p className="pt-2">The library is very easy to use, for the maximum femefficiency :3</p>
+            <Image src={image} alt={'UwUrandom-rs example source code'} className={'p-1 rounded-lg py-2'}/>
+            <Link href={'https://crates.io/crates/mldkyt-uwurandom-rs'}>
+                <Button>Download from crates.io</Button>
             </Link>
             <br/>
-            <Link href={'https://github.com/mldchan/uwurandom-rs'} className={'text-pink-400 hover:text-pink-200'}>
-                <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Download from GitHub</motion.span>
+            <Link href={'https://github.com/mldchan/uwurandom-rs'}>
+                <Button>Download from GitHub</Button>
             </Link>
             <Offset amt={6}/>
             <Footer visits={props.visits}/>

@@ -30,6 +30,7 @@ import Button from "@/components/Generic/Button";
 import Footer from "@/components/Generic/Footer";
 import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
 import {countVisit, getVisits} from "@/backend/visitsCounter";
+import DeprecatedProject from "@/components/Generic/DeprecatedProject";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     await countVisit({route: '/project/asphaltroads'});
@@ -50,6 +51,8 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
             <Content>
                 <Offset amt={4}/>
                 <Heading level={1}>Asphalt Roads</Heading>
+                <DeprecatedProject
+                    message={'Deprecated on 2024/07/01. No updates are provided under any circumstance.'}/>
                 <Image src={asphaltRoads} alt={'Asphalt Roads'} className={'p-1 rounded-lg'}/>
                 <p>
                     This mod for My Summer Car swaps the dirt roads for asphalt ones. It not

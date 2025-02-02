@@ -27,6 +27,7 @@ import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
 import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
 import {countVisit, getVisits} from "@/backend/visitsCounter";
+import Button from "@/components/Generic/Button";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     await countVisit({route: '/project/fedi/streaks'});
@@ -52,17 +53,17 @@ export default function FediStreaks(props: InferGetServerSidePropsType<typeof ge
                     Fedi Streaks checks your profile every day for new notes. If it doesn't find you posting for one
                     day, you lose the streak. Every day you post, you get +1 streaks of sending notes.
                 </p>
-                <p>
+                <p className="pt-2">
                     This bot mainly derives from Chat Streaks in Akabot, which is pretty much this but for Discord. The
                     bot follows back within 30 seconds which allows you to check that it actually works. (If mldchan's
                     Sharkey instance is up, there's a high chance this is up as well).
                 </p>
-                <Link href="https://social.mldchan.dev/@FediStreaks" className={'text-pink-400 hover:text-pink-200'}>
-                    <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Official account</motion.span>
+
+                <Link href="https://social.mldchan.dev/@FediStreaks">
+                    <Button>Official account</Button>
                 </Link>
-                <br/>
-                <Link href="https://git.mldchan.dev/mld/fedi-streaks" className={'text-pink-400 hover:text-pink-200'}>
-                    <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Source code</motion.span>
+                <Link href="https://git.mldchan.dev/mld/fedi-streaks">
+                    <Button>Source code</Button>
                 </Link>
                 <Offset amt={3}/>
                 <Footer visits={props.visits}/>

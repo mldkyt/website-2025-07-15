@@ -32,6 +32,8 @@ import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
 import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
 import {countVisit, getVisits} from "@/backend/visitsCounter";
+import DeprecatedProject from "@/components/Generic/DeprecatedProject";
+import Button from "@/components/Generic/Button";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     await countVisit({route: '/project/cutiequiz'});
@@ -53,22 +55,18 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
             <Content>
                 <Offset amt={4}/>
                 <Heading level={1}>Cutie Quiz</Heading>
+                <DeprecatedProject message="Deprecated on 2024/10/31." />
 
-                <div className={'bg-red-800 p-2 rounded-lg border-2 border-red-600 drop-shadow-md'}>
-                    <h2 className={'text-lg font-bold'}>No longer updated</h2>
-                    <p>This project was scheduled for shutdown on Oct 31st. You will always be able to view the source
-                        code.</p>
-                </div>
                 <p>
                     Cutie Quiz is a tiny app which takes a username and then determines how cute you are by analyzing
                     brain waves.
                 </p>
-                <p>
+                <p className="mt-2">
                     It does this using revolutionary next-generation technology, which is newer and better than AI and
                     determines values without errors. It has such good accuracy that you don't need any other source of
                     information to verify your results because our results are always accurate.
                 </p>
-                <p>
+                <p className="mt-2">
                     <i>
                         This application is a joke if you didn't figure it out yet.
                     </i>
@@ -80,7 +78,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 <Image src={three} alt={'Cutie Quiz 3'} className={'p-1 rounded-lg'}/>
 
                 <Link href="https://github.com/mldchan/CutieQuiz">
-                    <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Source code</motion.span>
+                    <Button>Source code</Button>
                 </Link>
 
                 <Offset amt={3}/>

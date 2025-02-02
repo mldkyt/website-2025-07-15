@@ -18,7 +18,7 @@
 
 
 import Main from "@/components/Generic/Main";
-import {Header} from "@/components/Generic/Header";
+import { Header } from "@/components/Generic/Header";
 import Content from "@/components/Generic/Content";
 import Heading from "@/components/Generic/Heading";
 
@@ -30,14 +30,15 @@ import Image from "next/image";
 import Offset from "@/components/Generic/Offset";
 import Link from "next/link";
 import Metadata from "@/components/Generic/Metadata";
-import {motion} from "motion/react";
+import { motion } from "motion/react";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { countVisit, getVisits } from "@/backend/visitsCounter";
+import Button from "@/components/Generic/Button";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({route: '/project/astolfoiscomingforyou'});
-    const visits = await getVisits({route: '/project/astolfoiscomingforyou'});
+    await countVisit({ route: '/project/astolfoiscomingforyou' });
+    const visits = await getVisits({ route: '/project/astolfoiscomingforyou' });
 
     return {
         props: {
@@ -50,56 +51,59 @@ export default function Astolfoiscomingforyou(props: InferGetServerSidePropsType
     return (
         <Main>
             <Metadata title={'Astolfo is Coming for You'}
-                      description={'Astolfo is coming for you has 2 variants: Safe and Evil. The main difference between the safe variant and evil variant is that the safe gives you compliments, while the evil shuts down your machine.'}/>
-            <Header highlight={'projects'}/>
+                description={'Astolfo is coming for you has 2 variants: Safe and Evil. The main difference between the safe variant and evil variant is that the safe gives you compliments, while the evil shuts down your machine.'} />
+            <Header highlight={'projects'} />
             <Content>
-                <Offset amt={4}/>
+                <Offset amt={4} />
                 <Heading level={1}>Astolfo is Coming for You</Heading>
 
                 <p>Astolfo is coming for you has 2 variants: Safe and Evil.</p>
                 <p>The main difference between the safe variant and evil variant is that the safe gives you compliments,
                     while the evil shuts down your machine.</p>
 
-                <Heading level={2}>Safe Variant</Heading>
+                <div className="grid grid-cols-1 lg:grid-cols-2">
+                    <div>
+                        <Heading level={2}>Safe Variant</Heading>
 
-                <p>The safe variant gives you compliments once it finishes.</p>
-                <iframe width="343" height='200'
-                        src="https://www.youtube-nocookie.com/embed/HkuCNFGXMNU?si=lDmf3C1Cf65gE5bL"
-                        title="YouTube video player" frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-                <Image className={'p-1 rounded-lg'} src={safe1}
-                       alt={'Window of Astolfo coming for you, with a countdown of kilometers'}/>
-                <Image className={'p-1 rounded-lg'} src={safe2} alt={'Astolfo gives you lots of compliments'}/>
+                        <p>The safe variant gives you compliments once it finishes.</p>
+                        <iframe width="343" height='200'
+                            src="https://www.youtube-nocookie.com/embed/HkuCNFGXMNU?si=lDmf3C1Cf65gE5bL"
+                            title="YouTube video player" frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                        <Image className={'p-1 rounded-lg'} src={safe1}
+                            alt={'Window of Astolfo coming for you, with a countdown of kilometers'} />
+                        <Image className={'p-1 rounded-lg'} src={safe2} alt={'Astolfo gives you lots of compliments'} />
 
-                <br/>
-                <Link href={'https://github.com/mldchan/AstolfoIsComingForYou/releases'}
-                      className={'text-pink-400 hover:text-pink-200'}>
-                    <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Download the latest release
-                    </motion.span>
-                </Link>
+                        <br />
+                        <Link href={'https://github.com/mldchan/AstolfoIsComingForYou/releases'}>
+                            <Button>Download the latest release</Button>
+                        </Link>
+                    </div>
 
-                <Heading level={2}>Evil Variant</Heading>
+                    <div>
+                        <Heading level={2}>Evil Variant</Heading>
 
-                <p>The evil variant shuts down your computer once it finishes.</p>
-                <iframe width="343" height="200"
-                        src="https://www.youtube-nocookie.com/embed/ZtN1QqLx3ww?si=VaVwXDUo505gF9TS"
-                        title="YouTube video player" frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-                <Image className={'p-1 rounded-lg'} src={evil1}
-                       alt={'Window of angry Astolfo coming for you, with a countdown of kilometers'}/>
-                <Image className={'p-1 rounded-lg'} src={evil2} alt={'Astolfo shuts down your machine in anger'}/>
-                <br/>
+                        <p>The evil variant shuts down your computer once it finishes.</p>
+                        <iframe width="343" height="200"
+                            src="https://www.youtube-nocookie.com/embed/ZtN1QqLx3ww?si=VaVwXDUo505gF9TS"
+                            title="YouTube video player" frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                        <Image className={'p-1 rounded-lg'} src={evil1}
+                            alt={'Window of angry Astolfo coming for you, with a countdown of kilometers'} />
+                        <Image className={'p-1 rounded-lg'} src={evil2} alt={'Astolfo shuts down your machine in anger'} />
+                        <br />
 
-                <Link href={'https://github.com/mldchan/AstolfoIsComingForYou/releases'}
-                      className={'text-pink-400 hover:text-pink-200'}>
-                    <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>
-                        Download the latest release
-                    </motion.span>
-                </Link>
-                <Offset amt={3}/>
-                <Footer visits={props.visits}/>
+                        <Link href={'https://github.com/mldchan/AstolfoIsComingForYou/releases'}>
+                            <Button>
+                                Download the latest release
+                            </Button>
+                        </Link>
+                    </div>
+                </div>
+                <Offset amt={3} />
+                <Footer visits={props.visits} />
             </Content>
         </Main>
     )

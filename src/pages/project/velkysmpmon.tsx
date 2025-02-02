@@ -30,6 +30,8 @@ import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
 import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
 import {countVisit, getVisits} from "@/backend/visitsCounter";
+import DeprecatedProject from "@/components/Generic/DeprecatedProject";
+import Button from "@/components/Generic/Button";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     await countVisit({route: '/project/velkysmpmon'});
@@ -51,19 +53,20 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
             <Content>
                 <Offset amt={4}/>
                 <Heading level={1}>VelkySMP monitor</Heading>
+                <DeprecatedProject message="Deprecated on 2024/08/01. No updates are provided under any circumstance." />
 
-                <p>This project is split up to multiple projects, namely one that monitors the server, one that displays
+                <p className="my-2">This project is split up to multiple projects, namely one that monitors the server, one that displays
                     the data and one that displays the data in Minecraft.</p>
 
                 <Image src={banner} alt={'Banner'} className={'p-1 rounded-xl'}/>
 
                 <Heading level={2}>The indexer (mcstatusvelky)</Heading>
 
-                <p>The indexer is a Python script that fetches the server information and writes player join and leave
+                <p className="mt-2">The indexer is a Python script that fetches the server information and writes player join and leave
                     changes into a database. This allows it to run whenever it wants to and it doesn't matter if there's
                     downtime.</p>
 
-                <p>
+                <p className="my-2">
                     It calculates player playtimes from join and leave times of the players and puts it in human
                     readable format into the online database. The online database, unlike the local one, only stores the
                     most important information, namely the name of the player, human readable player time and profile
@@ -79,21 +82,15 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                     display name, pride flags, country flag, displaying of certain information.
                 </p>
 
-                <p>The customization page also has additional things, such as viewing 10 past game sessions, viewing
+                <p className="my-2">The customization page also has additional things, such as viewing 10 past game sessions, viewing
                     last logins into the customization panel and suggesting new features into the VelkySMP website.</p>
 
-                <Link href="https://github.com/mldchan/mcstatusvelky"
-                      className={'text-pink-400 hover:text-pink-200'}>
-                    <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>View the GitHub repository of the
-                        indexer
-                    </motion.span>
+                <Link href="https://github.com/mldchan/mcstatusvelky">
+                    <Button>View the GitHub repository of the indexer</Button>
                 </Link>
                 <br/>
-                <Link href="https://github.com/mldchan/velkysmp"
-                      className={'text-pink-400 hover:text-pink-200'}>
-                    <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>View the GitHub repository of the
-                        website
-                    </motion.span>
+                <Link href="https://github.com/mldchan/velkysmp">
+                    <Button>View the GitHub repository of the website</Button>
                 </Link>
 
                 <Offset amt={3}/>

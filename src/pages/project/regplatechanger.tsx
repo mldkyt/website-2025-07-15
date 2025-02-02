@@ -30,6 +30,7 @@ import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
 import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
 import {countVisit, getVisits} from "@/backend/visitsCounter";
+import DeprecatedProject from "@/components/Generic/DeprecatedProject";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     await countVisit({route: '/project/regplatechanger'});
@@ -51,6 +52,7 @@ export default function RegPlateChanger(props: InferGetServerSidePropsType<typeo
             <Content>
                 <Offset amt={4}/>
                 <Heading level={1}>Reg Plate Changer</Heading>
+                <DeprecatedProject message="Deprecated on 2024/07/01. No updates are provided under any circumstance." />
                 <p>
                     Hey everyone, I'm excited to share the Reg Plate Changer mod for My Summer Car!
                 </p>

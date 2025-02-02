@@ -25,6 +25,7 @@ import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
 import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
 import {countVisit, getVisits} from "@/backend/visitsCounter";
+import DeprecatedProject from "@/components/Generic/DeprecatedProject";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     await countVisit({route: '/project/msctweaks'});
@@ -45,6 +46,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
             <Content>
                 <Offset amt={4}/>
                 <Heading level={1}>MSC Tweaks</Heading>
+                <DeprecatedProject message="Deprecated on 2024/07/01. No updates are provided under any circumstance." />
 
                 <p>
                     This mod adds a few tweaks to My Summer Car, some of the most notable of

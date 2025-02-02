@@ -32,6 +32,7 @@ import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
 import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
 import {countVisit, getVisits} from "@/backend/visitsCounter";
+import Button from "@/components/Generic/Button";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     await countVisit({route: '/project/birthday'});
@@ -52,20 +53,25 @@ export default function Birthday(props: InferGetServerSidePropsType<typeof getSe
             <Offset amt={4}/>
             <Heading level={1}>Birthday App</Heading>
 
-            <p>Running the app with <code>/config</code> as a parameter will show a configuration window.</p>
+            <p>The birthday app shows a popup forcing you to wish happy birthday to somebody on their birthday.</p>
 
-            <p>To add a new birthday, click on Actions &gt; Add new birthday.</p>
-            <p><strong>Don't forget to save your birthdays before exiting the application! File &gt; Save
+            <p className="pt-2">Running the app with <code>/config</code> as a parameter will show a configuration window.</p>
+
+            <p className="pt-2">To add a new birthday, click on Actions &gt; Add new birthday.</p>
+            <p className="pt-2"><strong>Don't forget to save your birthdays before exiting the application! File &gt; Save
                 changes</strong>
             </p>
-            <p>Please note that because of this app being old, there is a link pointing to mldkyt.com, which doesn't
+            <p className="pt-2">Please note that because of this app being old, there is a link pointing to mldkyt.com, which doesn't
                 work.</p>
 
-            <Image src={config} alt="Configuration Window" className={'p-1 rounded-lg'}/>
-            <Image src={add} alt="Add new birthday Window" className={'p-1 rounded-lg'}/>
+            <Image src={config} alt="Configuration Window" className={'p-1 rounded-lg pt-2'}/>
+            <Image src={add} alt="Add new birthday Window" className={'p-1 rounded-lg pt-2'}/>
 
             <Link href="https://github.com/mldchan/Birthday/releases">
-                <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Download latest release</motion.span>
+                <Button>Download latest release</Button>
+            </Link>
+            <Link href="https://github.com/mldchan/Birthday">
+                <Button>View source code</Button>
             </Link>
             <Offset amt={3}/>
             <Footer visits={props.visits}/>

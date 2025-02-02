@@ -30,6 +30,7 @@ import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
 import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
 import {countVisit, getVisits} from "@/backend/visitsCounter";
+import DeprecatedProject from "@/components/Generic/DeprecatedProject";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     await countVisit({route: '/project/pridemod'});
@@ -50,6 +51,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
             <Content>
                 <Offset amt={4}/>
                 <Heading level={1}>Pride Mod</Heading>
+                <DeprecatedProject message="Deprecated on 2024/07/01. No updates are provided under any circumstance." />
                 <p>A mod for celebrating pride month in My Summer Car.</p>
                 <Image src={header} alt="Header"/>
                 <p>After many requests to put the Pride Month Mod on NexusMods, I finally did it.</p>

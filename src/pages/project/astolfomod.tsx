@@ -17,7 +17,7 @@
  */
 
 import Main from "@/components/Generic/Main";
-import {Header} from "@/components/Generic/Header";
+import { Header } from "@/components/Generic/Header";
 import Content from "@/components/Generic/Content";
 import Offset from "@/components/Generic/Offset";
 import Heading from "@/components/Generic/Heading";
@@ -31,16 +31,17 @@ import casual from '@/images/astolfomod/casual.png';
 import crowd from '@/images/astolfomod/crowd.png';
 import schoolgirl from '@/images/astolfomod/schoolgirl.png';
 import Metadata from "@/components/Generic/Metadata";
-import {motion} from "motion/react";
+import { motion } from "motion/react";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { countVisit, getVisits } from "@/backend/visitsCounter";
+import Button from "@/components/Generic/Button";
 
 const H3 = (props: { children: string }) => <h3 className={'text-xl font-bold'}>{props.children}</h3>;
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({route: '/project/astolfomod'});
-    const visits = await getVisits({route: '/project/astolfomod'});
+    await countVisit({ route: '/project/astolfomod' });
+    const visits = await getVisits({ route: '/project/astolfomod' });
 
     return {
         props: {
@@ -53,10 +54,10 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
     return (
         <Main>
             <Metadata title={'Astolfo Mod'}
-                      description={'Astolfo Mod for Minecraft, a mod that adds Astolfo and other characters to the game.'}/>
-            <Header highlight={'projects'}/>
+                description={'Astolfo Mod for Minecraft, a mod that adds Astolfo and other characters to the game.'} />
+            <Header highlight={'projects'} />
             <Content>
-                <Offset amt={4}/>
+                <Offset amt={4} />
                 <Heading level={1}>Astolfo Mod</Heading>
 
                 <div className="message">
@@ -76,7 +77,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                     <li><b>Rimuru</b></li>
                     <li><b>Nagisa Shiota</b></li>
                     <li><b>Sieg</b> (Fate/Apocrypha)</li>
-                    <li><b>Bridget</b> _(I know she's a transgender girl but I included her because why not)_</li>
+                    <li><b>Bridget</b> <i>(I know she's a transgender girl but I included her because why not)</i></li>
                 </ul>
 
                 <Heading level={2}>Commands</Heading>
@@ -126,44 +127,43 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                     so:</p>
 
                 <iframe width="343" height="200"
-                        src="https://www.youtube-nocookie.com/embed/bBvrp8puvdw?si=1KTa9xR-AzxIyX_2"
-                        title="YouTube video player" frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                    src="https://www.youtube-nocookie.com/embed/bBvrp8puvdw?si=1KTa9xR-AzxIyX_2"
+                    title="YouTube video player" frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
                 <Heading level={2}>Supporting this mod</Heading>
 
                 <H3>1. Suggestions</H3>
 
                 <p>
-                    The simplest you can do for now is to <b>create an idea suggestion</b> for the mod using a <a
-                    href="https://github.com/mldchan/AstolfoForge/issues"
-                >GitHub issue</a
-                >.
+                    The simplest you can do for now is to <b>create an idea suggestion</b> for the mod using a <Link className="text-pink-400 hover:text-pink-300"
+                        href="https://github.com/mldchan/AstolfoForge/issues"
+                    >GitHub issue</Link>.
                 </p>
 
                 <H3>2. Reporting bugs</H3>
 
                 <p>
-                    If you find any bug in the mod, <b>you can report it</b> using <a
-                    href="https://github.com/mldchan/AstolfoForge/issues">GitHub issues</a> for it to be fixed.
+                    If you find any bug in the mod, <b>you can report it</b> using <Link className="text-pink-400 hover:text-pink-300"
+                        href="https://github.com/mldchan/AstolfoForge/issues">GitHub issues</Link> for it to be fixed.
                     It will be fixed once I get some free time.
                 </p>
 
                 <H3>3. Financial support</H3>
 
-                <p><b>You can currently support me on <a href="https://ko-fi.com/mldkyt">Ko-fi</a> right now.</b> This
-                    is
-                    currently the only way I accept donations; within a week I'll set up GitHub Sponsors as well.</p>
+                <p><Link href={'/donate'} className="text-pink-400 hover:text-pink-300">You can donate me using various methods here.</Link> I accept donations on all of them.</p>
 
                 <details>
                     <summary className={'text-pink-400 hover:text-pink-200'}>Gallery</summary>
-                    <Image src={crowd} alt="Astolfo Crowd in Minecraft" className={'rounded-lg p-1'}/>
-                    <Image src={biome} alt="Astolfo Biome in Minecraft" className={'rounded-lg p-1'}/>
-                    <Image src={casual} alt="Casual Astolfo in Minecraft" className={'rounded-lg p-1'}/>
-                    <Image src={armor} alt="Armored Astolfo in Minecraft" className={'rounded-lg p-1'}/>
-                    <Image src={schoolgirl} alt="School girl outfit Astolfo in Minecraft" className={'rounded-lg p-1'}/>
-                    <Image src={astolfoFlower} alt="Astolfo Flower in Minecraft" className={'rounded-lg p-1'}/>
+                    <div className="grid grid-cols-1 lg:grid-cols-2">
+                        <Image src={crowd} alt="Astolfo Crowd in Minecraft" className={'rounded-lg p-1'} />
+                        <Image src={biome} alt="Astolfo Biome in Minecraft" className={'rounded-lg p-1'} />
+                        <Image src={casual} alt="Casual Astolfo in Minecraft" className={'rounded-lg p-1'} />
+                        <Image src={armor} alt="Armored Astolfo in Minecraft" className={'rounded-lg p-1'} />
+                        <Image src={schoolgirl} alt="School girl outfit Astolfo in Minecraft" className={'rounded-lg p-1'} />
+                        <Image src={astolfoFlower} alt="Astolfo Flower in Minecraft" className={'rounded-lg p-1'} />
+                    </div>
                 </details>
 
                 <details>
@@ -193,18 +193,15 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                     </ul>
                 </details>
 
-                <Link href="https://modrinth.com/mod/astolfo-mod" className={'text-pink-400 hover:text-pink-200'}>
-                    <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>
-                        Open Modrinth page
-                    </motion.span>
+                <Link href="https://modrinth.com/mod/astolfo-mod">
+                    <Button>Open Modrinth page</Button>
                 </Link>
-                <br/>
-                <Link href="https://github.com/mldchan/AstolfoForge/releases/latest">
-                    <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>GitHub</motion.span>
+                <Link href="https://github.com/mldchan/AstolfoForge/releases/latest" className="ml-2">
+                    <Button>GitHub</Button>
                 </Link>
 
-                <Offset amt={3}/>
-                <Footer visits={props.visits}/>
+                <Offset amt={3} />
+                <Footer visits={props.visits} />
             </Content>
         </Main>
     )

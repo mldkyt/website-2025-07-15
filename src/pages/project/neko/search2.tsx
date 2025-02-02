@@ -63,9 +63,16 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     await countVisit({route: '/project/neko/search2'});
     const visits = await getVisits({route: '/project/neko/search2'});
 
+    const date = new Date();
+
+    let month = (date.getUTCMonth() + 1).toString();
+    if (month.length === 1) month = `0${month}`;
+
     return {
         props: {
-            visits
+            visits,
+            year: date.getUTCFullYear(),
+            month
         }
     }
 }
@@ -121,10 +128,8 @@ export default function NekoSearchV2(props: InferGetServerSidePropsType<typeof g
         <Content>
             <Offset amt={4}/>
             <Heading level={1}>Neko Search</Heading>
-            <p>Search all websites, including all content, instantly. <strong>The website index was last updated
-                2024/11/28</strong>. I plan to reindex this every month, so the next automated reindex will be on
-                2025/01/01.</p>
-            <p>This version is powered by self-hosted Meilisearch on https://mldchan.dev/. No data is collected, apart
+            <p><strong>{`The website index was last updated ${props.year}/${props.month}/01`}</strong>. This gets reindexed every month, but note the date here is static.</p>
+            <p className="pt-2">This version is powered by self-hosted Meilisearch on https://mldchan.dev/. No data is collected, apart
                 from error logs.</p>
 
             <Heading level={2}>Search</Heading>
