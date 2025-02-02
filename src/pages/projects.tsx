@@ -37,6 +37,9 @@ import fediMeow from '@/images/fedimeow.png';
 import fediSummarizer from '@/images/fedi/summarizer/main.png';
 import fediStreaks from '@/images/fedistreaks.png';
 
+import monbazoumodlist from '@/images/monbazoumodlist.png';
+import monbazouwintermod from '@/images/monbazouwintermod.webp';
+
 import regPlateChanger from '@/images/regplatechanger.webp';
 import highwayCarBreakdowns from '@/images/highwaycarbreakdowns/1.webp';
 import asphaltRoads from '@/images/asphaltroads.webp';
@@ -111,6 +114,16 @@ export default function Projects(props: InferGetServerSidePropsType<typeof getSe
                 <Project image={fediStreaks} imageAlt={'Fedi Streaks bot on a Sharkey instance'} title={'Fedi Streaks'}
                     description={'This bot counts consecutive days of you posting on fedi.'}
                     link={'/project/fedi/streaks'} />
+
+                <h1 className={'text-center text-2xl font-bold py-4'}>mldchan's Mon Bazou mods</h1>
+
+                <Project title={'Mod List'} image={monbazoumodlist} imageAlt="A screenshot from the game showing the mod list button in the main menu."
+                    description={'A mod list in the main menu of Mon Bazou. Allows changing mod settings.'}
+                    link={'/project/monbazou/modlist'} />
+                <Project title={'Winter Mod'} image={monbazouwintermod} imageAlt="A screenshot of the game Mon Bazou, in winter instead of spring. All the terrain and roads have snow."
+                    description={'A winter mod that changes the weather to winter.'}
+                    link={'/project/monbazou/winter'} />
+
                 <h1 className={'text-center text-2xl font-bold py-4'}>mldchan's My Summer Car mods (archive)</h1>
 
                 <Project image={regPlateChanger} imageAlt={'Reg Plate Changer replacing plates on a truck'}
