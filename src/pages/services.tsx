@@ -156,12 +156,12 @@ export default function Services(
         <Service
           svcName={"Cutie Hangout Services"}
           svcDesc={"Friends only services"}
-          pubInfo={"This service is limited to mldchan's friend circle only."}
+          pubInfo={"This service is limited to Luna's friend circle only."}
         />
         <Service
           svcName={"QueerBot"}
           svcDesc={"Another Discord bot for friends."}
-          pubInfo={"This service is limited to mldchan's friend circle only."}
+          pubInfo={"This service is limited to Luna's friend circle only."}
         />
         <Offset amt={6} />
         <Footer visits={props.visits} />
