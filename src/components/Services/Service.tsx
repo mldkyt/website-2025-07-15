@@ -16,37 +16,45 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {motion} from "motion/react";
+import { motion } from "motion/react";
 import Link from "next/link";
 
 export type PubInfo =
-    'This service is publicly available for public use.' |
-    'This service is limited to Emily\'s friends and people who she trusts.' |
-    'This service is limited to mldchan\'s friend circle only.' |
-    'This service is for mldchan\'s personal use only.';
+  | "This service is publicly available for public use."
+  | "This service is limited to Luna's friends and people who she trusts."
+  | "This service is limited to Luna's friend circle only."
+  | "This service is for mldchan's personal use only.";
 
 export default function Service(props: {
-    svcName: string,
-    svcDesc: string,
-    pubInfo: PubInfo,
-    links?: string[]
+  svcName: string;
+  svcDesc: string;
+  pubInfo: PubInfo;
+  links?: string[];
 }) {
-    return (
-        <div className={'bg-[#222] p-2 rounded-lg drop-shadow-md my-4'}>
-            <h1 className={'text-xl font-bold'}>{props.svcName}</h1>
-            <p>{props.svcDesc}</p>
-            <h2 className={'text-lg font-bold'}>Can I use this service?</h2>
-            <p>{props.pubInfo}</p>
-            {props.links && props.links.map((link, index) => {
-                return (
-                    <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} className={'w-max'}>
-
-                        <Link href={link} key={index} className={'text-pink-400 hover:text-pink-200 block'}>
-                            {link}
-                        </Link>
-                    </motion.div>
-                )
-            })}
-        </div>
-    )
+  return (
+    <div className={"bg-[#222] p-2 rounded-lg drop-shadow-md my-4"}>
+      <h1 className={"text-xl font-bold"}>{props.svcName}</h1>
+      <p>{props.svcDesc}</p>
+      <h2 className={"text-lg font-bold"}>Can I use this service?</h2>
+      <p>{props.pubInfo}</p>
+      {props.links &&
+        props.links.map((link, index) => {
+          return (
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className={"w-max"}
+            >
+              <Link
+                href={link}
+                key={index}
+                className={"text-pink-400 hover:text-pink-200 block"}
+              >
+                {link}
+              </Link>
+            </motion.div>
+          );
+        })}
+    </div>
+  );
 }

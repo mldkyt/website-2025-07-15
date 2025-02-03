@@ -21,27 +21,39 @@ import Heading from "@/components/Generic/Heading";
 import Link from "next/link";
 
 export default function Page2About() {
-    return <div className={'h-screen'}>
-        <Content>
-            <Heading level={1}>Who is Emily?</Heading>
-            <p className={'my-4'}>Emily is a transfem developer on the internet. She is a cute little transgirl
-                who
-                also happens to be a
-                catgirl.</p>
-            <p className={'my-4'}>She knows lots of things, like programming languages, editing videos or drawing a bit
-                of art. She is
-                considered smart by her close relatives.</p>
-            <p className={'my-4'}>She writes in a lot of programming languages, namely Python, TypeScript, Lua, C#, C++,
-                Rust, PHP, Java
-                and more. Her most popular project is Akabot, a general purpose Discord bot. She also did some My Summer
-                Car mods, most of which are private because of the{" "}
-                <Link href={'https://social.mldchan.dev/notes/a1tsf5xe9kiu00r2'}
-                      className={'text-pink-400 hover:text-pink-200'}>community's backlash</Link>.
-            </p>
-            <p className={'my-4'}>Another thing she's known for is her content creation career on YouTube. She started
-                making My Summer Car
-                content, then making more than just that, to mostly moving away from My Summer Car and posting other
-                videos.</p>
-        </Content>
+  return (
+    <div className={"h-screen"}>
+      <Content>
+        <Heading level={1}>Who is Luna?</Heading>
+        <p className={"my-4"}>
+          Luna is a transfem developer on the internet. She is a cute little
+          transgirl who also happens to be a catgirl.
+        </p>
+        <p className={"my-4"}>
+          She knows lots of things, like programming languages, editing videos
+          or drawing a bit of art. She is considered smart by her close
+          relatives.
+        </p>
+        <p className={"my-4"}>
+          She writes in a lot of programming languages, namely Python,
+          TypeScript, Lua, C#, C++, Rust, PHP, Java and more. Her most popular
+          project is Akabot, a general purpose Discord bot. She also did some My
+          Summer Car mods, most of which are private because of the{" "}
+          <Link
+            href={"https://social.mldchan.dev/notes/a1tsf5xe9kiu00r2"}
+            className={"text-pink-400 hover:text-pink-200"}
+          >
+            community's backlash
+          </Link>
+          .
+        </p>
+        <p className={"my-4"}>
+          Another thing she's known for is her content creation career on
+          YouTube. She started making My Summer Car content, then making more
+          than just that, to mostly moving away from My Summer Car and posting
+          other videos.
+        </p>
+      </Content>
     </div>
+  );
 }

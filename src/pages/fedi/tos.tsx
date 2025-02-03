@@ -17,128 +17,164 @@
  */
 
 import Main from "@/components/Generic/Main";
-import {Header} from "@/components/Generic/Header";
+import { Header } from "@/components/Generic/Header";
 import Content from "@/components/Generic/Content";
 import Heading from "@/components/Generic/Heading";
 import Offset from "@/components/Generic/Offset";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { countVisit, getVisits } from "@/backend/visitsCounter";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({route: '/fedi/tos'});
-    const visits = await getVisits({route: '/fed/tos'});
+  await countVisit({ route: "/fedi/tos" });
+  const visits = await getVisits({ route: "/fed/tos" });
 
-    return {
-        props: {
-            visits
-        }
-    }
+  return {
+    props: {
+      visits,
+    },
+  };
 }
 
-export default function TermsofService(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
-    return <Main>
-        <Metadata title={'Fedi Terms of Service'} description={'Emily Social Terms of Service'}/>
-        <Header/>
-        <Content>
-            <Offset amt={4}/>
-            <Heading level={1}>Fedi Terms of Service</Heading>
-            <p><em>Last Updated: December 17, 2024</em></p>
+export default function TermsofService(
+  props: InferGetServerSidePropsType<typeof getServerSideProps>,
+) {
+  return (
+    <Main>
+      <Metadata
+        title={"Fedi Terms of Service"}
+        description={"Luna/mldchan Social Terms of Service"}
+      />
+      <Header />
+      <Content>
+        <Offset amt={4} />
+        <Heading level={1}>Fedi Terms of Service</Heading>
+        <p>
+          <em>Last Updated: December 17, 2024</em>
+        </p>
 
-            <div>
-                <Heading level={2}>Instance Overview</Heading>
-                <p>This is an instance hosted by Emily for herself and her friends. Joining is by invitation
-                    only.</p>
-            </div>
+        <div>
+          <Heading level={2}>Instance Overview</Heading>
+          <p>
+            This is an instance hosted by Luna for herself and her friends.
+            Joining is by invitation only.
+          </p>
+        </div>
 
-            <div>
-                <Heading level={2}>Membership Rules</Heading>
-                <ol className={'list-decimal ml-4'}>
-                    <li>This instance is primarily intended for friends of Emily or those invited by friends.
-                    </li>
-                    <li>Users must be a "cutie" to join and participate.</li>
-                    <li>Absolutely no tolerance for:
-                        <ul className={'ml-4 list-disc'}>
-                            <li>Racism</li>
-                            <li>Fascism</li>
-                            <li>Nazism</li>
-                            <li>Queerphobia</li>
-                            <li>Xenophobia</li>
-                            <li>Similar discriminatory ideologies</li>
-                        </ul>
-                    </li>
-                    <li>Account approval is at the discretion of Emily:
-                        <ul className={'ml-4 list-disc'}>
-                            <li>Friends of Emily require direct invitation</li>
-                            <li>If someone is searching for an instance, and I know them for an extended period of time,
-                                I can invite them
-                            </li>
-                        </ul>
-                    </li>
-                    <li><strong>NO POLITICS</strong>
-                        <ul className={'ml-4 list-disc'}>
-                            <li>Zero tolerance for political discussions</li>
-                            <li>Political jokes or references are strictly prohibited</li>
-                        </ul>
-                    </li>
-                    <li>No harassment of members on this instance or other instances.</li>
-                    <li>Respect is mandatory:
-                        <ul className={'ml-4 list-disc'}>
-                            <li>No offensive or derogatory memes</li>
-                            <li>No offensive or derogatory content targeting:
-                                <ul className={'ml-4 list-disc'}>
-                                    <li>Fictional figures</li>
-                                    <li>Countries</li>
-                                    <li>Religions</li>
-                                    <li>Races</li>
-                                    <li>Sexual orientations</li>
-                                    <li>Gender identities</li>
-                                    <li>Any potential vulnerability</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>No spamming:
-                        <ul className={'ml-4 list-disc'}>
-                            <li>No spam notes</li>
-                            <li>No spam mentions</li>
-                            <li>No spam attachments</li>
-                        </ul>
-                    </li>
-                    <li>Content Guidelines for Mature Content:
-                        <ul className={'ml-4 list-disc'}>
-                            <li>NSFW/Lewd content must be:
-                                <ul className={'ml-4 list-disc'}>
-                                    <li>Either appropriately tagged;</li>
-                                    <li>Or hidden behind content warnings</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ol>
-            </div>
+        <div>
+          <Heading level={2}>Membership Rules</Heading>
+          <ol className={"list-decimal ml-4"}>
+            <li>
+              This instance is primarily intended for friends of Luna or those
+              invited by friends.
+            </li>
+            <li>Users must be a "cutie" to join and participate.</li>
+            <li>
+              Absolutely no tolerance for:
+              <ul className={"ml-4 list-disc"}>
+                <li>Racism</li>
+                <li>Fascism</li>
+                <li>Nazism</li>
+                <li>Queerphobia</li>
+                <li>Xenophobia</li>
+                <li>Similar discriminatory ideologies</li>
+              </ul>
+            </li>
+            <li>
+              Account approval is at the discretion of Luna:
+              <ul className={"ml-4 list-disc"}>
+                <li>Friends of Luna require direct invitation</li>
+                <li>
+                  If someone is searching for an instance, and I know them for
+                  an extended period of time, I can invite them
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>NO POLITICS</strong>
+              <ul className={"ml-4 list-disc"}>
+                <li>Zero tolerance for political discussions</li>
+                <li>Political jokes or references are strictly prohibited</li>
+              </ul>
+            </li>
+            <li>
+              No harassment of members on this instance or other instances.
+            </li>
+            <li>
+              Respect is mandatory:
+              <ul className={"ml-4 list-disc"}>
+                <li>No offensive or derogatory memes</li>
+                <li>
+                  No offensive or derogatory content targeting:
+                  <ul className={"ml-4 list-disc"}>
+                    <li>Fictional figures</li>
+                    <li>Countries</li>
+                    <li>Religions</li>
+                    <li>Races</li>
+                    <li>Sexual orientations</li>
+                    <li>Gender identities</li>
+                    <li>Any potential vulnerability</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              No spamming:
+              <ul className={"ml-4 list-disc"}>
+                <li>No spam notes</li>
+                <li>No spam mentions</li>
+                <li>No spam attachments</li>
+              </ul>
+            </li>
+            <li>
+              Content Guidelines for Mature Content:
+              <ul className={"ml-4 list-disc"}>
+                <li>
+                  NSFW/Lewd content must be:
+                  <ul className={"ml-4 list-disc"}>
+                    <li>Either appropriately tagged;</li>
+                    <li>Or hidden behind content warnings</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </div>
 
-            <div>
-                <Heading level={2}>Basic Precautions</Heading>
-                <p><strong>Data Persistence</strong> - In a decentralized system, deleted content may remain on other
-                    servers</p>
-                <p><strong>Privacy Concerns</strong> - Private posts are not guaranteed to remain private across all
-                    servers</p>
-                <p><strong>Drive Feature</strong> - NOT a secure cloud storage. Uploaded files are available publicly.
-                </p>
-            </div>
+        <div>
+          <Heading level={2}>Basic Precautions</Heading>
+          <p>
+            <strong>Data Persistence</strong> - In a decentralized system,
+            deleted content may remain on other servers
+          </p>
+          <p>
+            <strong>Privacy Concerns</strong> - Private posts are not guaranteed
+            to remain private across all servers
+          </p>
+          <p>
+            <strong>Drive Feature</strong> - NOT a secure cloud storage.
+            Uploaded files are available publicly.
+          </p>
+        </div>
 
-            <div>
-                <Heading level={2}>Contact</Heading>
-                <p>For questions or clarifications about these terms, contact <a
-                    href="mailto:mldkyt@proton.me">mldkyt@proton.me</a>.</p>
-            </div>
+        <div>
+          <Heading level={2}>Contact</Heading>
+          <p>
+            For questions or clarifications about these terms, contact{" "}
+            <a href="mailto:mldkyt@proton.me">mldkyt@proton.me</a>.
+          </p>
+        </div>
 
-            <p><small>Parts of this page were AI generated. The content has been checked by an actual person.</small>
-            </p>
-            <Offset amt={4}/>
-            <Footer visits={props.visits}/>
-        </Content>
+        <p>
+          <small>
+            Parts of this page were AI generated. The content has been checked
+            by an actual person.
+          </small>
+        </p>
+        <Offset amt={4} />
+        <Footer visits={props.visits} />
+      </Content>
     </Main>
+  );
 }

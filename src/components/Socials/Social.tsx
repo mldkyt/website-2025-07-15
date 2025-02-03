@@ -16,33 +16,37 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {motion} from "motion/react";
+import { motion } from "motion/react";
 import Link from "next/link";
 
 function capitalizeFirstLetter(string: string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 export default function Social(props: {
-    social: string,
-    socialDescription: string,
-    followAction: 'follow' | 'subscribe to' | 'view',
-    preSocial?: string,
-    link: string
+  social: string;
+  socialDescription: string;
+  followAction: "follow" | "subscribe to" | "view";
+  preSocial?: string;
+  link: string;
 }) {
-
-    return (
-        <Link href={props.link}>
-            <motion.div className={'w-full p-2 bg-[#222] rounded-lg my-4'} whileHover={{scale: 1.05}}
-                        whileTap={{scale: 0.95}}>
-                <h1 className={'text-center font-bold text-2xl py-2'}>
-                    {props.social}: {props.socialDescription}
-                </h1>
-                <p className={'text-center'}>
-                    Emily is active
-                    on {props.preSocial}{" "}{props.social}. {props.followAction !== 'view' ? `Click on this card to ${props.followAction} her there!` : `View her profile there!`}
-                </p>
-            </motion.div>
-        </Link>
-    )
+  return (
+    <Link href={props.link}>
+      <motion.div
+        className={"w-full p-2 bg-[#222] rounded-lg my-4"}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <h1 className={"text-center font-bold text-2xl py-2"}>
+          {props.social}: {props.socialDescription}
+        </h1>
+        <p className={"text-center"}>
+          Luna is active on {props.preSocial} {props.social}.{" "}
+          {props.followAction !== "view"
+            ? `Click on this card to ${props.followAction} her there!`
+            : `View her profile there!`}
+        </p>
+      </motion.div>
+    </Link>
+  );
 }
