@@ -66,7 +66,8 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     const existingPosts = await sql`select id, username, body, created
                                     from guestbook
                                     where approved = 1
-                                      and replyto IS NULL;`
+                                      and replyto IS NULL
+                                    order by created desc;`
 
     const posts = await Promise.all(existingPosts.map(async (x) => {
         const replies = await sql`select body
@@ -126,16 +127,16 @@ export default function Guestbook(props: InferGetServerSidePropsType<typeof getS
     const formatTime = (iso: string) => {
         const date = new Date(iso);
 
-        let month = `${date.getMonth() + 1}`;
+        let month = `${date.getUTCMonth() + 1}`;
         if (month.length < 2) month = `0${month}`;
-        let day = `${date.getDate()}`;
+        let day = `${date.getUTCDate()}`;
         if (day.length < 2) day = `0${day}`;
 
-        let hour = `${date.getHours()}`;
+        let hour = `${date.getUTCHours()}`;
         if (hour.length < 2) hour = `0${hour}`;
-        let minute = `${date.getMinutes()}`;
+        let minute = `${date.getUTCMinutes()}`;
         if (minute.length < 2) minute = `0${minute}`;
-        return `${date.getFullYear()}/${month}/${day} ${hour}:${minute} UTC`;
+        return `${date.getUTCFullYear()}/${month}/${day} ${hour}:${minute} UTC`;
     }
 
     return <Main>
