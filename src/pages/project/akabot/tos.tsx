@@ -34,12 +34,12 @@ const ToSHeading = (props: { children: string }) => {
 }
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({route: '/project/akabot/tos'});
     const visits = await getVisits({route: '/project/akabot/tos'});
 
     return {
         props: {
-            visits
+            visits,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 }
@@ -98,7 +98,8 @@ export default function TermsOfService(props: InferGetServerSidePropsType<typeof
                     using the
                     bot.</p>
                 <Offset amt={3}/>
-                <Footer visits={props.visits}/>
+                <Footer visits={props.visits} route={'/project/akabot/tos'}
+                        cloudflareSiteToken={props.cloudflareSiteToken}/>
             </Content>
         </Main>
     )

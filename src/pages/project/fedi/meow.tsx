@@ -32,12 +32,12 @@ import examplepost from '@/images/fedi/meow/examplepost.png';
 import Image from "next/image";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({route: '/project/fedimeow'});
     const visits = await getVisits({route: '/project/fedimeow'});
 
     return {
         props: {
-            visits
+            visits,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 }
@@ -57,7 +57,8 @@ export default function FediMeow(props: InferGetServerSidePropsType<typeof getSe
                     This bot is really simple. It sends a message containing meow or nya, randomly adding a tidlie or a
                     :3 to the message.
                 </p>
-                <Image src={examplepost} alt="A post from Fedi Meow (@FediMeow), containing the text mraow :3c" className="py-2 rounded-lg drop-shadow-md" />
+                <Image src={examplepost} alt="A post from Fedi Meow (@FediMeow), containing the text mraow :3c"
+                       className="py-2 rounded-lg drop-shadow-md"/>
                 <Link href="https://social.mldchan.dev/@FediMeow">
                     <Button>Official account</Button>
                 </Link>
@@ -65,7 +66,8 @@ export default function FediMeow(props: InferGetServerSidePropsType<typeof getSe
                     <Button>Source code</Button>
                 </Link>
                 <Offset amt={3}/>
-                <Footer visits={props.visits}/>
+                <Footer visits={props.visits} route={'/project/fedimeow'}
+                        cloudflareSiteToken={props.cloudflareSiteToken}/>
             </Content>
         </Main>
     )

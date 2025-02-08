@@ -37,12 +37,12 @@ function ContactWrapper(props: {
 }
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({route: '/contact'});
     const visits = await getVisits({route: '/contact'});
 
     return {
         props: {
-            visits
+            visits,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 }
@@ -98,7 +98,7 @@ export default function Contact(props: InferGetServerSidePropsType<typeof getSer
 
             <Offset amt={3}/>
         </Content>
-        <Footer visits={props.visits}/>
+        <Footer visits={props.visits} route={'/contact'} cloudflareSiteToken={props.cloudflareSiteToken}/>
     </Main>
 
 }

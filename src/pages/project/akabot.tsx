@@ -31,12 +31,12 @@ import {countVisit, getVisits} from "@/backend/visitsCounter";
 import {ReactNode} from "react";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({route: '/project/akabot'});
     const visits = await getVisits({route: '/project/akabot'});
 
     return {
         props: {
-            visits
+            visits,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 }
@@ -148,7 +148,8 @@ export default function Akabot(props: InferGetServerSidePropsType<typeof getServ
 
                 <Offset amt={4}/>
 
-                <Footer visits={props.visits}/>
+                <Footer visits={props.visits} route={'/project/akabot'}
+                        cloudflareSiteToken={props.cloudflareSiteToken}/>
             </Content>
         </Main>
     )

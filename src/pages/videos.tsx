@@ -28,6 +28,7 @@ import {motion} from "motion/react";
 import Offset from "@/components/Generic/Offset";
 import Footer from "@/components/Generic/Footer";
 import Metadata from "@/components/Generic/Metadata";
+import {getVisits} from "@/backend/visitsCounter";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 
@@ -44,6 +45,8 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 
     await sql.end();
 
+    const visits = await getVisits({route: '/videos'});
+
     return {
         props: {
             videos: videos.map(x => {
@@ -53,7 +56,9 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
                     description: x.description,
                     thumbnail: x.thumb_url
                 }
-            })
+            }),
+            visits,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 }
@@ -90,6 +95,6 @@ export default function Videos(props: InferGetServerSidePropsType<typeof getServ
 
             <Offset amt={3}/>
         </Content>
-        <Footer/>
+        <Footer visits={props.visits} route={'/videos'} cloudflareSiteToken={props.cloudflareSiteToken}/>
     </Main>
 }

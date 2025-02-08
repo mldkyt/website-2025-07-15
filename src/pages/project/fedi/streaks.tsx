@@ -30,12 +30,12 @@ import {countVisit, getVisits} from "@/backend/visitsCounter";
 import Button from "@/components/Generic/Button";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({route: '/project/fedi/streaks'});
     const visits = await getVisits({route: '/project/fedi/streaks'});
 
     return {
         props: {
-            visits
+            visits,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 }
@@ -66,7 +66,8 @@ export default function FediStreaks(props: InferGetServerSidePropsType<typeof ge
                     <Button>Source code</Button>
                 </Link>
                 <Offset amt={3}/>
-                <Footer visits={props.visits}/>
+                <Footer visits={props.visits} route={'/project/fedi/streaks'}
+                        cloudflareSiteToken={props.cloudflareSiteToken}/>
             </Content>
         </Main>
     )

@@ -21,7 +21,7 @@ import dbinit from "@/backend/dbinit";
 import postgres from "postgres";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    let {handle, optionId} = req.body as { handle: string, optionId: number };
+    let {handle, optionId, cfToken} = req.body as { handle: string, optionId: number, cfToken: string };
     let ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress as string;
     if (Array.isArray(ip)) {
         ip = ip[0];
@@ -34,6 +34,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (isNaN(Number(optionId))) {
         return res.status(400).json({error: "Bad Request"});
     }
+
+    let formData = new FormData();
+    formData.append("secret", process.env['CLOUDFLARE_SECRET_TOKEN']!);
+    formData.append("response", cfToken);
+    formData.append("remoteip", ip);
+
+    const url = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+    const result = await fetch(url, {
+        body: formData,
+        method: "POST",
+    });
+
+    const outcome = await result.json();
+    if (!outcome.success) res.status(403).json({error: 'Bot detected, exit'});
 
     await dbinit();
 

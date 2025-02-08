@@ -30,12 +30,12 @@ import {countVisit, getVisits} from "@/backend/visitsCounter";
 const PrivacyHeading = (props: { children: string }) => <h2 className={'text-xl font-bold my-4'}>{props.children}</h2>;
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({route: '/project/akabot/privacy'});
     const visits = await getVisits({route: '/project/akabot/privacy'});
 
     return {
         props: {
-            visits
+            visits,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 }
@@ -222,7 +222,8 @@ export default function AkabotPrivacy(props: InferGetServerSidePropsType<typeof 
                     again.
                 </p>
                 <Offset amt={3}/>
-                <Footer visits={props.visits}/>
+                <Footer visits={props.visits} route={'/project/akabot/privacy'}
+                        cloudflareSiteToken={props.cloudflareSiteToken}/>
             </Content>
         </Main>
     )

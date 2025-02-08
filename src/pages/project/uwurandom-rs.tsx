@@ -33,12 +33,12 @@ import {countVisit, getVisits} from "@/backend/visitsCounter";
 import Button from "@/components/Generic/Button";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({route: '/project/uwurandom-rs'});
     const visits = await getVisits({route: '/project/uwurandom-rs'});
 
     return {
         props: {
-            visits
+            visits,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 }
@@ -67,7 +67,8 @@ export default function UwurandomRs(props: InferGetServerSidePropsType<typeof ge
                 <Button>Download from GitHub</Button>
             </Link>
             <Offset amt={6}/>
-            <Footer visits={props.visits}/>
+            <Footer visits={props.visits} route={'/project/uwurandom-rs'}
+                    cloudflareSiteToken={props.cloudflareSiteToken}/>
         </Content>
     </Main>
 }

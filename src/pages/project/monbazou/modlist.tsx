@@ -17,24 +17,24 @@
  */
 
 import Main from "@/components/Generic/Main";
-import { Header } from "@/components/Generic/Header";
+import {Header} from "@/components/Generic/Header";
 import Content from "@/components/Generic/Content";
 import Offset from "@/components/Generic/Offset";
 import Heading from "@/components/Generic/Heading";
 import Link from "next/link";
 import Footer from "@/components/Generic/Footer";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { countVisit, getVisits } from "@/backend/visitsCounter";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 import Button from "@/components/Generic/Button";
 import Metadata from "@/components/Generic/Metadata";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({ route: '/project/monbazou/modlist' });
-    const visits = await getVisits({ route: '/project/monbazou/modlist' });
+    const visits = await getVisits({route: '/project/monbazou/modlist'});
 
     return {
         props: {
-            visits
+            visits,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 }
@@ -42,29 +42,35 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 export default function MonBazouModList(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
-            <Metadata title="Mon Bazou Mod List" description="Mon Bazou Mod List adds a mod list in the main menu of the game." />
-            <Header highlight={'projects'} />
+            <Metadata title="Mon Bazou Mod List"
+                      description="Mon Bazou Mod List adds a mod list in the main menu of the game."/>
+            <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={4} />
+                <Offset amt={4}/>
                 <Heading level={1}>Mon Bazou Mod List</Heading>
 
                 <p>Features:</p>
                 <ul>
-                    <li><strong>List of Mods</strong>: A convenient list of mods that allows you to change the settings of mods.</li>
+                    <li><strong>List of Mods</strong>: A convenient list of mods that allows you to change the settings
+                        of mods.
+                    </li>
                     <li><strong>Console</strong>: You'll be able to access the console directly within the game.</li>
-                    <li><strong>Languages</strong>: This mod features English, Japanese, Spanish, French, Russian, Chinese, Hungarian, German and Czech translations!</li>
+                    <li><strong>Languages</strong>: This mod features English, Japanese, Spanish, French, Russian,
+                        Chinese, Hungarian, German and Czech translations!
+                    </li>
                 </ul>
 
                 <Link href="https://www.nexusmods.com/monbazou/mods/288">
                     <Button>Download from NexusMods</Button>
                 </Link>
-                <br />
+                <br/>
                 <Link href="https://git.mldchan.dev/mld/monbazoumodlist">
                     <Button>Download the source code</Button>
                 </Link>
 
-                <Offset amt={3} />
-                <Footer visits={props.visits} />
+                <Offset amt={3}/>
+                <Footer visits={props.visits} route={'/project/monbazou/modlist'}
+                        cloudflareSiteToken={props.cloudflareSiteToken}/>
             </Content>
         </Main>
     )

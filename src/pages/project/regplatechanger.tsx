@@ -17,7 +17,7 @@
  */
 
 import Main from "@/components/Generic/Main";
-import { Header } from "@/components/Generic/Header";
+import {Header} from "@/components/Generic/Header";
 import Content from "@/components/Generic/Content";
 import Offset from "@/components/Generic/Offset";
 import Heading from "@/components/Generic/Heading";
@@ -26,19 +26,19 @@ import Link from "next/link";
 import regPlateChanger from '@/images/regplatechanger.webp';
 import Image from "next/image";
 import Metadata from "@/components/Generic/Metadata";
-import { motion } from "motion/react";
+import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { countVisit, getVisits } from "@/backend/visitsCounter";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 import Disclaimer from "@/components/Generic/Disclaimer";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({ route: '/project/regplatechanger' });
-    const visits = await getVisits({ route: '/project/regplatechanger' });
+    const visits = await getVisits({route: '/project/regplatechanger'});
 
     return {
         props: {
-            visits
+            visits,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 }
@@ -47,12 +47,13 @@ export default function RegPlateChanger(props: InferGetServerSidePropsType<typeo
     return (
         <Main>
             <Metadata title={'Reg Plate Changer'}
-                description={'Reg Plate Changer is a mod for My Summer Car that allows you to customize the registration plates on every vehicle in the game.'} />
-            <Header highlight={'projects'} />
+                      description={'Reg Plate Changer is a mod for My Summer Car that allows you to customize the registration plates on every vehicle in the game.'}/>
+            <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={4} />
+                <Offset amt={4}/>
                 <Heading level={1}>Reg Plate Changer</Heading>
-                <Disclaimer title="Deprecated Project" message="Deprecated on 2024/07/01. No updates are provided under any circumstance." />
+                <Disclaimer title="Deprecated Project"
+                            message="Deprecated on 2024/07/01. No updates are provided under any circumstance."/>
                 <p>
                     Hey everyone, I'm excited to share the Reg Plate Changer mod for My Summer Car!
                 </p>
@@ -64,8 +65,8 @@ export default function RegPlateChanger(props: InferGetServerSidePropsType<typeo
                 <p>
                     Getting started is easy. The{" "}
                     <Link className={'text-pink-400 hover:text-pink-200'}
-                        href="https://codeberg.org/mldchan/RegPlateChanger/src/branch/master/Example%20Image">
-                        <motion.span whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1 }}>assets
+                          href="https://codeberg.org/mldchan/RegPlateChanger/src/branch/master/Example%20Image">
+                        <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>assets
                             folder
                         </motion.span>
                     </Link> includes a helpful README.jpg file that'll guide you through installation
@@ -73,16 +74,17 @@ export default function RegPlateChanger(props: InferGetServerSidePropsType<typeo
                     personalized ride!
                 </p>
 
-                <Image src={regPlateChanger} alt={'Reg Plate Changer mod showcase'} className={'p-1 rounded-lg'} />
+                <Image src={regPlateChanger} alt={'Reg Plate Changer mod showcase'} className={'p-1 rounded-lg'}/>
 
 
                 <Link href="https://git.mldchan.dev/MSCMods/RegPlateChanger"
-                    className={'text-pink-400 hover:text-pink-200'}>
-                    <motion.span whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1 }}>GitLab</motion.span>
+                      className={'text-pink-400 hover:text-pink-200'}>
+                    <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>GitLab</motion.span>
                 </Link>
 
-                <Offset amt={3} />
-                <Footer visits={props.visits} />
+                <Offset amt={3}/>
+                <Footer visits={props.visits} route={'/project/regplatechanger'}
+                        cloudflareSiteToken={props.cloudflareSiteToken}/>
             </Content>
         </Main>
     )

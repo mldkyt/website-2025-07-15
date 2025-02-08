@@ -28,12 +28,12 @@ import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
 import {countVisit, getVisits} from "@/backend/visitsCounter";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({route: '/project/catgirlnonsense'});
     const visits = await getVisits({route: '/project/catgirlnonsense'});
 
     return {
         props: {
-            visits
+            visits,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 }
@@ -47,7 +47,8 @@ export default function CatgirlNonsense(props: InferGetServerSidePropsType<typeo
             <Heading level={1}>Catgirl Nonsense Generator</Heading>
             <Generator/>
             <Offset amt={3}/>
-            <Footer visits={props.visits}/>
+            <Footer visits={props.visits} route={'/project/catgirlnonsense'}
+                    cloudflareSiteToken={props.cloudflareSiteToken}/>
         </Content>
     </Main>
 }

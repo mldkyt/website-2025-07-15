@@ -30,12 +30,12 @@ import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
 import {countVisit, getVisits} from "@/backend/visitsCounter";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({route: '/project/akabot/invite'});
     const visits = await getVisits({route: '/project/akabot/invite'});
 
     return {
         props: {
-            visits
+            visits,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 }
@@ -69,7 +69,8 @@ export default function InviteAkabot(props: InferGetServerSidePropsType<typeof g
                     <Button>Invite Akabot</Button>
                 </Link>
                 <Offset amt={3}/>
-                <Footer visits={props.visits}/>
+                <Footer visits={props.visits} route={'/project/akabot/invite'}
+                        cloudflareSiteToken={props.cloudflareSiteToken}/>
             </Content>
         </Main>
     )

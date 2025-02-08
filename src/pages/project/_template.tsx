@@ -27,12 +27,12 @@ import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
 import {countVisit, getVisits} from "@/backend/visitsCounter";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({route: '_TEMPLATE'});
     const visits = await getVisits({route: '_TEMPLATE'});
 
     return {
         props: {
-            visits
+            visits,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 }
@@ -55,7 +55,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 </Link>
 
                 <Offset amt={3}/>
-                <Footer visits={props.visits}/>
+                <Footer visits={props.visits} route={'_TEMPLATE'} cloudflareSiteToken={props.cloudflareSiteToken}/>
             </Content>
         </Main>
     )
