@@ -35,7 +35,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     const meili = new MeiliSearch({
-        host: 'http://192.168.88.31:7700',
+        host: 'http://192.168.88.27:7700',
         apiKey: process.env.MEILI_API_KEY!
     });
 
