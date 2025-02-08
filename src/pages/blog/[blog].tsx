@@ -73,7 +73,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 
 export default function Blog(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
 
-    const [error, setError] = useState("Error!");
+    const [error, setError] = useState("");
 
     function proveInnocence(token: string) {
         fetch('/api/blog/count', {
