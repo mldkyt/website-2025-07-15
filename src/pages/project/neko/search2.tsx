@@ -60,7 +60,6 @@ function highlightText(text: string, query: string) {
 }
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({route: '/project/neko/search2'});
     const visits = await getVisits({route: '/project/neko/search2'});
 
     const date = new Date();
@@ -72,7 +71,8 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
         props: {
             visits,
             year: date.getUTCFullYear(),
-            month
+            month,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 }
@@ -128,8 +128,10 @@ export default function NekoSearchV2(props: InferGetServerSidePropsType<typeof g
         <Content>
             <Offset amt={4}/>
             <Heading level={1}>Neko Search</Heading>
-            <p><strong>{`The website index was last updated ${props.year}/${props.month}/01`}</strong>. This gets reindexed every month, but note the date here is static.</p>
-            <p className="pt-2">This version is powered by self-hosted Meilisearch on https://mldchan.dev/. No data is collected, apart
+            <p><strong>{`The website index was last updated ${props.year}/${props.month}/01`}</strong>. This gets
+                reindexed every month, but note the date here is static.</p>
+            <p className="pt-2">This version is powered by self-hosted Meilisearch on https://mldchan.dev/. No data is
+                collected, apart
                 from error logs.</p>
 
             <Heading level={2}>Search</Heading>
@@ -151,7 +153,8 @@ export default function NekoSearchV2(props: InferGetServerSidePropsType<typeof g
                 </div>
             })}
             <Offset amt={3}/>
-            <Footer visits={props.visits}/>
+            <Footer visits={props.visits} route={'/project/neko/search2'}
+                    cloudflareSiteToken={props.cloudflareSiteToken}/>
         </Content>
     </Main>
 

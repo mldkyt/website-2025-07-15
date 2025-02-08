@@ -34,12 +34,12 @@ import {countVisit, getVisits} from "@/backend/visitsCounter";
 import Button from "@/components/Generic/Button";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({route: '/project/nmfirefox'});
     const visits = await getVisits({route: '/project/nmfirefox'});
 
     return {
         props: {
-            visits
+            visits,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 }
@@ -76,7 +76,7 @@ export default function NMFirefox(props: InferGetServerSidePropsType<typeof getS
                 <Button>Download Nexus Enhancements for Firefox</Button>
             </Link>
             <Offset amt={3}/>
-            <Footer visits={props.visits}/>
+            <Footer visits={props.visits} route={'/project/nmfirefox'} cloudflareSiteToken={props.cloudflareSiteToken}/>
         </Content>
     </Main>
 }

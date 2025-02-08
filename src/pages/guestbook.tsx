@@ -28,9 +28,9 @@ import postgres from "postgres";
 import dbinit from "@/backend/dbinit";
 import Button from "@/components/Generic/Button";
 import {FormEvent, useState} from "react";
+import Footer from "@/components/Generic/Footer";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({route: '/guestbook'});
     const visits = await getVisits({route: '/guestbook'});
 
     const forwarded = ctx.req.headers['x-forwarded-for'];
@@ -87,7 +87,8 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
         props: {
             visits,
             post: allowPost,
-            posts
+            posts,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 }
@@ -190,6 +191,9 @@ export default function Guestbook(props: InferGetServerSidePropsType<typeof getS
                     <p><small>Posted on {formatTime(x.created)}</small></p>
                 </div>
             })}
+
+            <Offset amt={4}/>
+            <Footer visits={props.visits} route={'/guestbook'} cloudflareSiteToken={props.cloudflareSiteToken}/>
         </Content>
     </Main>
 }

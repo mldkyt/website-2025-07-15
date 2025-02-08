@@ -22,9 +22,10 @@ import Content from "@/components/Generic/Content";
 import {Header} from "@/components/Generic/Header";
 import Offset from "@/components/Generic/Offset";
 import Heading from "@/components/Generic/Heading";
-import {useState} from "react";
+import {useRef, useState} from "react";
 import Button from "@/components/Generic/Button";
 import Metadata from "@/components/Generic/Metadata";
+import Turnstile from "react-turnstile";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     const {handle} = ctx.params as { handle: string };
@@ -61,7 +62,8 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
                     option: option.option as string,
                     votes: Number(option.votes) as number
                 }
-            })
+            }),
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 }
@@ -82,6 +84,8 @@ export default function Poll(props: InferGetServerSidePropsType<typeof getServer
 
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
+
+    const cfTurnstileToken = useRef<string>("");
 
     const vote = (e: React.FormEvent) => {
         e.preventDefault();
@@ -104,7 +108,8 @@ export default function Poll(props: InferGetServerSidePropsType<typeof getServer
             },
             body: JSON.stringify({
                 handle: props.handle,
-                optionId: checkedOption
+                optionId: checkedOption,
+                cfToken: cfTurnstileToken.current
             })
         }).then(res => res.json()).then(data => {
             if (data.status === "ok") {
@@ -161,6 +166,8 @@ export default function Poll(props: InferGetServerSidePropsType<typeof getServer
                     })}
 
                     <br/>
+
+                    <Turnstile sitekey={props.cloudflareSiteToken} onVerify={x => cfTurnstileToken.current = x}/>
 
                     <Button type={'submit'}>Submit</Button>
                 </form>

@@ -33,12 +33,12 @@ import {countVisit, getVisits} from "@/backend/visitsCounter";
 import Disclaimer from "@/components/Generic/Disclaimer";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({route: '/project/asphaltroads'});
     const visits = await getVisits({route: '/project/asphaltroads'});
 
     return {
         props: {
-            visits
+            visits,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 }
@@ -52,7 +52,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 <Offset amt={4}/>
                 <Heading level={1}>Asphalt Roads</Heading>
                 <Disclaimer title="Deprecated Project"
-                    message={'Deprecated on 2024/07/01. No updates are provided under any circumstance.'}/>
+                            message={'Deprecated on 2024/07/01. No updates are provided under any circumstance.'}/>
                 <Image src={asphaltRoads} alt={'Asphalt Roads'} className={'p-1 rounded-lg'}/>
                 <p>
                     This mod for My Summer Car swaps the dirt roads for asphalt ones. It not
@@ -73,7 +73,8 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 </Link>
 
                 <Offset amt={3}/>
-                <Footer visits={props.visits}/>
+                <Footer visits={props.visits} route={'/project/asphaltroads'}
+                        cloudflareSiteToken={props.cloudflareSiteToken}/>
             </Content>
         </Main>
     )

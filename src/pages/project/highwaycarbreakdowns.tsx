@@ -17,7 +17,7 @@
  */
 
 import Main from "@/components/Generic/Main";
-import { Header } from "@/components/Generic/Header";
+import {Header} from "@/components/Generic/Header";
 import Content from "@/components/Generic/Content";
 import Offset from "@/components/Generic/Offset";
 import Heading from "@/components/Generic/Heading";
@@ -30,19 +30,19 @@ import five from '@/images/highwaycarbreakdowns/5.webp';
 import Image from "next/image";
 import Link from "next/link";
 import Metadata from "@/components/Generic/Metadata";
-import { motion } from "motion/react";
+import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { countVisit, getVisits } from "@/backend/visitsCounter";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 import Disclaimer from "@/components/Generic/Disclaimer";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({ route: '/project/highwaycarbreakdowns' });
-    const visits = await getVisits({ route: '/project/highwaycarbreakdowns' });
+    const visits = await getVisits({route: '/project/highwaycarbreakdowns'});
 
     return {
         props: {
-            visits
+            visits,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 }
@@ -51,11 +51,12 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
     return (
         <Main>
             <Metadata title={'Highway Car Breakdowns'}
-                description={'Highway Car Breakdowns is a mod for My Summer Car that adds randomly breaking down cars on the highway.'} />
-            <Header highlight={'projects'} />
+                      description={'Highway Car Breakdowns is a mod for My Summer Car that adds randomly breaking down cars on the highway.'}/>
+            <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={4} />
-                <Disclaimer title="Deprecated Project" message="Deprecated on 2024/07/01. No updates are provided under any circumstance." />
+                <Offset amt={4}/>
+                <Disclaimer title="Deprecated Project"
+                            message="Deprecated on 2024/07/01. No updates are provided under any circumstance."/>
                 <Heading level={1}>Highway Car Breakdowns</Heading>
                 <p>
                     This mod adds randomly breaking down cars on the highway. The car spawn
@@ -72,19 +73,20 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 </ol>
 
                 <Heading level={2}>Images</Heading>
-                <Image src={one} alt={'Highway Car Breakdowns'} className={'p-1 rounded-lg'} />
-                <Image src={two} alt={'Highway Car Breakdowns'} className={'p-1 rounded-lg'} />
-                <Image src={three} alt={'Highway Car Breakdowns'} className={'p-1 rounded-lg'} />
-                <Image src={four} alt={'Highway Car Breakdowns'} className={'p-1 rounded-lg'} />
-                <Image src={five} alt={'Highway Car Breakdowns'} className={'p-1 rounded-lg'} />
+                <Image src={one} alt={'Highway Car Breakdowns'} className={'p-1 rounded-lg'}/>
+                <Image src={two} alt={'Highway Car Breakdowns'} className={'p-1 rounded-lg'}/>
+                <Image src={three} alt={'Highway Car Breakdowns'} className={'p-1 rounded-lg'}/>
+                <Image src={four} alt={'Highway Car Breakdowns'} className={'p-1 rounded-lg'}/>
+                <Image src={five} alt={'Highway Car Breakdowns'} className={'p-1 rounded-lg'}/>
 
 
                 <Link href="https://git.mldchan.dev/MSCMods/HighwayCarBreakdowns">
-                    <motion.span whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1 }}>GitLab</motion.span>
+                    <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>GitLab</motion.span>
                 </Link>
 
-                <Offset amt={3} />
-                <Footer visits={props.visits} />
+                <Offset amt={3}/>
+                <Footer visits={props.visits} route={'/project/highwaycarbreakdowns'}
+                        cloudflareSiteToken={props.cloudflareSiteToken}/>
             </Content>
         </Main>
     )

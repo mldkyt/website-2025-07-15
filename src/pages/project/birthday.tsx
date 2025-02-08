@@ -35,12 +35,12 @@ import {countVisit, getVisits} from "@/backend/visitsCounter";
 import Button from "@/components/Generic/Button";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({route: '/project/birthday'});
     const visits = await getVisits({route: '/project/birthday'});
 
     return {
         props: {
-            visits
+            visits,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 }
@@ -55,13 +55,16 @@ export default function Birthday(props: InferGetServerSidePropsType<typeof getSe
 
             <p>The birthday app shows a popup forcing you to wish happy birthday to somebody on their birthday.</p>
 
-            <p className="pt-2">Running the app with <code>/config</code> as a parameter will show a configuration window.</p>
+            <p className="pt-2">Running the app with <code>/config</code> as a parameter will show a configuration
+                window.</p>
 
             <p className="pt-2">To add a new birthday, click on Actions &gt; Add new birthday.</p>
-            <p className="pt-2"><strong>Don't forget to save your birthdays before exiting the application! File &gt; Save
+            <p className="pt-2"><strong>Don't forget to save your birthdays before exiting the application!
+                File &gt; Save
                 changes</strong>
             </p>
-            <p className="pt-2">Please note that because of this app being old, there is a link pointing to mldkyt.com, which doesn't
+            <p className="pt-2">Please note that because of this app being old, there is a link pointing to mldkyt.com,
+                which doesn't
                 work.</p>
 
             <Image src={config} alt="Configuration Window" className={'p-1 rounded-lg pt-2'}/>
@@ -74,7 +77,7 @@ export default function Birthday(props: InferGetServerSidePropsType<typeof getSe
                 <Button>View source code</Button>
             </Link>
             <Offset amt={3}/>
-            <Footer visits={props.visits}/>
+            <Footer visits={props.visits} route={'/project/birthday'} cloudflareSiteToken={props.cloudflareSiteToken}/>
         </Content>
     </Main>
 }

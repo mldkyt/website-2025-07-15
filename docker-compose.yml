@@ -1,25 +1,8 @@
 services:
-  web:
-    build:
-      context: .
-      target: dev
-    ports:
-      - "8001:3000"
-    env_file: .env
-    develop:
-      watch:
-        - path: src
-          action: sync
-          target: /app/src
-        - path: public
-          action: sync
-          target: /app/public
-        - path: package.json
-          action: rebuild
   postgres:
     image: postgres:latest
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
     environment:
       POSTGRES_USER: mldchan
       POSTGRES_PASSWORD: mldchan

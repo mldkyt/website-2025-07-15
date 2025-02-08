@@ -36,12 +36,12 @@ import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
 import {countVisit, getVisits} from "@/backend/visitsCounter";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({route: '/art'});
     const visits = await getVisits({route: '/art'});
 
     return {
         props: {
-            visits
+            visits,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 }
@@ -79,7 +79,7 @@ export default function Art(props: InferGetServerSidePropsType<typeof getServerS
             <p>The logo of this website</p>
             <Image src={website} alt={'Website logo'}/>
             <Offset amt={6}/>
-            <Footer visits={props.visits}/>
+            <Footer visits={props.visits} route={'/art'} cloudflareSiteToken={props.cloudflareSiteToken}/>
         </Content>
     </Main>
 }

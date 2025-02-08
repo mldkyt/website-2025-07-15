@@ -25,16 +25,16 @@ import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
 import Page2About from "@/components/MainPage/Page2About";
 import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {getVisits} from "@/backend/visitsCounter";
 import Page4MisskeyEmbed from "@/components/MainPage/Page4MisskeyEmbed";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({route: '/'});
     const visits = await getVisits({route: '/'});
 
     return {
         props: {
-            visits
+            visits,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 }
@@ -48,9 +48,9 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
                 <Page1/>
                 <Page2About/>
                 <Page3Projects/>
-                <Page4MisskeyEmbed />
+                <Page4MisskeyEmbed/>
                 <Page5Other/>
-                <Footer visits={props.visits}/>
+                <Footer visits={props.visits} route={'/'} cloudflareSiteToken={props.cloudflareSiteToken}/>
             </Main>
         </>
     );

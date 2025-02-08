@@ -17,7 +17,7 @@
  */
 
 import Main from "@/components/Generic/Main";
-import { Header } from "@/components/Generic/Header";
+import {Header} from "@/components/Generic/Header";
 import Content from "@/components/Generic/Content";
 import Offset from "@/components/Generic/Offset";
 import Heading from "@/components/Generic/Heading";
@@ -31,21 +31,21 @@ import casual from '@/images/astolfomod/casual.png';
 import crowd from '@/images/astolfomod/crowd.png';
 import schoolgirl from '@/images/astolfomod/schoolgirl.png';
 import Metadata from "@/components/Generic/Metadata";
-import { motion } from "motion/react";
+import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { countVisit, getVisits } from "@/backend/visitsCounter";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 import Button from "@/components/Generic/Button";
 
 const H3 = (props: { children: string }) => <h3 className={'text-xl font-bold'}>{props.children}</h3>;
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({ route: '/project/astolfomod' });
-    const visits = await getVisits({ route: '/project/astolfomod' });
+    const visits = await getVisits({route: '/project/astolfomod'});
 
     return {
         props: {
-            visits
+            visits,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 }
@@ -54,10 +54,10 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
     return (
         <Main>
             <Metadata title={'Astolfo Mod'}
-                description={'Astolfo Mod for Minecraft, a mod that adds Astolfo and other characters to the game.'} />
-            <Header highlight={'projects'} />
+                      description={'Astolfo Mod for Minecraft, a mod that adds Astolfo and other characters to the game.'}/>
+            <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={4} />
+                <Offset amt={4}/>
                 <Heading level={1}>Astolfo Mod</Heading>
 
                 <div className="message">
@@ -127,42 +127,46 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                     so:</p>
 
                 <iframe width="343" height="200"
-                    src="https://www.youtube-nocookie.com/embed/bBvrp8puvdw?si=1KTa9xR-AzxIyX_2"
-                    title="YouTube video player" frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                        src="https://www.youtube-nocookie.com/embed/bBvrp8puvdw?si=1KTa9xR-AzxIyX_2"
+                        title="YouTube video player" frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
                 <Heading level={2}>Supporting this mod</Heading>
 
                 <H3>1. Suggestions</H3>
 
                 <p>
-                    The simplest you can do for now is to <b>create an idea suggestion</b> for the mod using a <Link className="text-pink-400 hover:text-pink-300"
-                        href="https://github.com/mldchan/AstolfoForge/issues"
-                    >GitHub issue</Link>.
+                    The simplest you can do for now is to <b>create an idea suggestion</b> for the mod using a <Link
+                    className="text-pink-400 hover:text-pink-300"
+                    href="https://github.com/mldchan/AstolfoForge/issues"
+                >GitHub issue</Link>.
                 </p>
 
                 <H3>2. Reporting bugs</H3>
 
                 <p>
-                    If you find any bug in the mod, <b>you can report it</b> using <Link className="text-pink-400 hover:text-pink-300"
-                        href="https://github.com/mldchan/AstolfoForge/issues">GitHub issues</Link> for it to be fixed.
+                    If you find any bug in the mod, <b>you can report it</b> using <Link
+                    className="text-pink-400 hover:text-pink-300"
+                    href="https://github.com/mldchan/AstolfoForge/issues">GitHub issues</Link> for it to be fixed.
                     It will be fixed once I get some free time.
                 </p>
 
                 <H3>3. Financial support</H3>
 
-                <p><Link href={'/donate'} className="text-pink-400 hover:text-pink-300">You can donate me using various methods here.</Link> I accept donations on all of them.</p>
+                <p><Link href={'/donate'} className="text-pink-400 hover:text-pink-300">You can donate me using various
+                    methods here.</Link> I accept donations on all of them.</p>
 
                 <details>
                     <summary className={'text-pink-400 hover:text-pink-200'}>Gallery</summary>
                     <div className="grid grid-cols-1 lg:grid-cols-2">
-                        <Image src={crowd} alt="Astolfo Crowd in Minecraft" className={'rounded-lg p-1'} />
-                        <Image src={biome} alt="Astolfo Biome in Minecraft" className={'rounded-lg p-1'} />
-                        <Image src={casual} alt="Casual Astolfo in Minecraft" className={'rounded-lg p-1'} />
-                        <Image src={armor} alt="Armored Astolfo in Minecraft" className={'rounded-lg p-1'} />
-                        <Image src={schoolgirl} alt="School girl outfit Astolfo in Minecraft" className={'rounded-lg p-1'} />
-                        <Image src={astolfoFlower} alt="Astolfo Flower in Minecraft" className={'rounded-lg p-1'} />
+                        <Image src={crowd} alt="Astolfo Crowd in Minecraft" className={'rounded-lg p-1'}/>
+                        <Image src={biome} alt="Astolfo Biome in Minecraft" className={'rounded-lg p-1'}/>
+                        <Image src={casual} alt="Casual Astolfo in Minecraft" className={'rounded-lg p-1'}/>
+                        <Image src={armor} alt="Armored Astolfo in Minecraft" className={'rounded-lg p-1'}/>
+                        <Image src={schoolgirl} alt="School girl outfit Astolfo in Minecraft"
+                               className={'rounded-lg p-1'}/>
+                        <Image src={astolfoFlower} alt="Astolfo Flower in Minecraft" className={'rounded-lg p-1'}/>
                     </div>
                 </details>
 
@@ -200,8 +204,9 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                     <Button>GitHub</Button>
                 </Link>
 
-                <Offset amt={3} />
-                <Footer visits={props.visits} />
+                <Offset amt={3}/>
+                <Footer visits={props.visits} route={'/project/astolfomod'}
+                        cloudflareSiteToken={props.cloudflareSiteToken}/>
             </Content>
         </Main>
     )

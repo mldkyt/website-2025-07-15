@@ -17,23 +17,23 @@
  */
 
 import Main from "@/components/Generic/Main";
-import { Header } from "@/components/Generic/Header";
+import {Header} from "@/components/Generic/Header";
 import Content from "@/components/Generic/Content";
 import Offset from "@/components/Generic/Offset";
 import Heading from "@/components/Generic/Heading";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { countVisit, getVisits } from "@/backend/visitsCounter";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 import Disclaimer from "@/components/Generic/Disclaimer";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({ route: '/project/msctweaks' });
-    const visits = await getVisits({ route: '/project/msctweaks' });
+    const visits = await getVisits({route: '/project/msctweaks'});
 
     return {
         props: {
-            visits
+            visits,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 }
@@ -41,12 +41,13 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 export default function Template(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
-            <Metadata title={'MSC Tweaks'} description={'This mod adds a few tweaks to My Summer Car.'} />
-            <Header highlight={'projects'} />
+            <Metadata title={'MSC Tweaks'} description={'This mod adds a few tweaks to My Summer Car.'}/>
+            <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={4} />
+                <Offset amt={4}/>
                 <Heading level={1}>MSC Tweaks</Heading>
-                <Disclaimer title="Deprecated Project" message="Deprecated on 2024/07/01. No updates are provided under any circumstance." />
+                <Disclaimer title="Deprecated Project"
+                            message="Deprecated on 2024/07/01. No updates are provided under any circumstance."/>
 
                 <p>
                     This mod adds a few tweaks to My Summer Car, some of the most notable of
@@ -70,8 +71,9 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 </ul>
                 <p>This mod page was last updated on 2024/07/14.</p>
 
-                <Offset amt={3} />
-                <Footer visits={props.visits} />
+                <Offset amt={3}/>
+                <Footer visits={props.visits} route={'/project/msctweaks'}
+                        cloudflareSiteToken={props.cloudflareSiteToken}/>
             </Content>
         </Main>
     )

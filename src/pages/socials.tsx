@@ -19,83 +19,84 @@
 import Main from "@/components/Generic/Main";
 import Content from "@/components/Generic/Content";
 import Offset from "@/components/Generic/Offset";
-import { Header } from "@/components/Generic/Header";
+import {Header} from "@/components/Generic/Header";
 import Social from "@/components/Socials/Social";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { countVisit, getVisits } from "@/backend/visitsCounter";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {countVisit, getVisits} from "@/backend/visitsCounter";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-  await countVisit({ route: "/socials" });
-  const visits = await getVisits({ route: "/socials" });
 
-  return {
-    props: {
-      visits,
-    },
-  };
+    const visits = await getVisits({route: "/socials"});
+
+    return {
+        props: {
+            visits,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+        },
+    };
 }
 
 export default function Socials(
-  props: InferGetServerSidePropsType<typeof getServerSideProps>,
+    props: InferGetServerSidePropsType<typeof getServerSideProps>,
 ) {
-  return (
-    <Main>
-      <Metadata title={"Socials"} description={"mldchan's socials"} />
-      <Header highlight={"socials"} />
-      <Content>
-        <Offset amt={4} />
-        <h1 className={"text-center text-2xl font-bold py-4"}>
-          Luna's Socials :3
-        </h1>
-        <Social
-          social={"Fediverse"}
-          socialDescription={"A decentralized social platform"}
-          preSocial={"the"}
-          followAction={"follow"}
-          link={"https://social.mldchan.dev/@mld"}
-        />
-        <Social
-          social={"Instagram"}
-          socialDescription={"A social network for sharing photos and videos"}
-          preSocial={""}
-          followAction={"follow"}
-          link={"https://instagram.com/_mldchan_"}
-        />
-        <Social
-          social={"YouTube"}
-          socialDescription={"Video content creation platform"}
-          followAction={"subscribe to"}
-          link={"https://youtube.com/@mldchan"}
-        />
-        <Social
-          social={"Twitch"}
-          socialDescription={"Streaming platform"}
-          followAction={"follow"}
-          link={"https:///twitch.tv/mldchan"}
-        />
-        <Social
-          social={"Personal GitLab"}
-          socialDescription={"Code Sharing"}
-          followAction={"view"}
-          link={"https://git.mldchan.dev/mld"}
-        />
-        <Social
-          social={"GitHub"}
-          socialDescription={"Code Sharing"}
-          followAction={"follow"}
-          link={"https://github.com/mldchan"}
-        />
-        <Social
-          social={"Codeberg"}
-          socialDescription={"Code Sharing"}
-          followAction={"follow"}
-          link={"https://codeberg.org/mldchan"}
-        />
-        <Offset amt={6} />
-        <Footer visits={props.visits} />
-      </Content>
-    </Main>
-  );
+    return (
+        <Main>
+            <Metadata title={"Socials"} description={"mldchan's socials"}/>
+            <Header highlight={"socials"}/>
+            <Content>
+                <Offset amt={4}/>
+                <h1 className={"text-center text-2xl font-bold py-4"}>
+                    Luna's Socials :3
+                </h1>
+                <Social
+                    social={"Fediverse"}
+                    socialDescription={"A decentralized social platform"}
+                    preSocial={"the"}
+                    followAction={"follow"}
+                    link={"https://social.mldchan.dev/@mld"}
+                />
+                <Social
+                    social={"Instagram"}
+                    socialDescription={"A social network for sharing photos and videos"}
+                    preSocial={""}
+                    followAction={"follow"}
+                    link={"https://instagram.com/_mldchan_"}
+                />
+                <Social
+                    social={"YouTube"}
+                    socialDescription={"Video content creation platform"}
+                    followAction={"subscribe to"}
+                    link={"https://youtube.com/@mldchan"}
+                />
+                <Social
+                    social={"Twitch"}
+                    socialDescription={"Streaming platform"}
+                    followAction={"follow"}
+                    link={"https:///twitch.tv/mldchan"}
+                />
+                <Social
+                    social={"Personal GitLab"}
+                    socialDescription={"Code Sharing"}
+                    followAction={"view"}
+                    link={"https://git.mldchan.dev/mld"}
+                />
+                <Social
+                    social={"GitHub"}
+                    socialDescription={"Code Sharing"}
+                    followAction={"follow"}
+                    link={"https://github.com/mldchan"}
+                />
+                <Social
+                    social={"Codeberg"}
+                    socialDescription={"Code Sharing"}
+                    followAction={"follow"}
+                    link={"https://codeberg.org/mldchan"}
+                />
+                <Offset amt={6}/>
+                <Footer visits={props.visits} route={'/socials'} cloudflareSiteToken={props.cloudflareSiteToken}/>
+            </Content>
+        </Main>
+    );
 }

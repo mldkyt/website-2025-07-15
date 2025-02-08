@@ -30,12 +30,12 @@ import Button from "@/components/Generic/Button";
 import Metadata from "@/components/Generic/Metadata";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    await countVisit({route: '/project/monbazou/wintermod'});
     const visits = await getVisits({route: '/project/monbazou/wintermod'});
 
     return {
         props: {
-            visits
+            visits,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 }
@@ -43,21 +43,30 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 export default function WinterMod(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
-            <Metadata title="Mon Bazou Winter Mod" description="The Mon Bazou Winter Mod changes the Mon Bazou game to take place in winter." />
+            <Metadata title="Mon Bazou Winter Mod"
+                      description="The Mon Bazou Winter Mod changes the Mon Bazou game to take place in winter."/>
             <Header highlight={'projects'}/>
             <Content>
                 <Offset amt={4}/>
                 <Heading level={1}>Winter Mod for Mon Bazou</Heading>
 
-                <Disclaimer title="Work in Progress" message="This mod is very early in development. Beta versions are available for download, but note they aren't finished and the final project might change." />
+                <Disclaimer title="Work in Progress"
+                            message="This mod is very early in development. Beta versions are available for download, but note they aren't finished and the final project might change."/>
 
                 <p className="my-2">The Mon Bazou Winter Mod changes the game's textures to be in a winter style.</p>
 
                 <ul className="list-disc ml-6">
                     <li><strong>Winter Textures</strong>: Replaces all textures with winter ones.</li>
-                    <li><strong>Winter Roads</strong>: Roads are winter textured. (they'll behave like that in the next updates)</li>
-                    <li><strong>Temperature Stat</strong>: A new stat for the player that increases as the player works outside. They can now freeze to death. (Not finished)</li>
-                    <li><strong>More!</strong>: Suggestions are welcome. Suggest the changes inside the Mon Bazou Modding server, by either pinging me or finding the respective forum post for it in the mod-ideas formums.</li>
+                    <li><strong>Winter Roads</strong>: Roads are winter textured. (they'll behave like that in the next
+                        updates)
+                    </li>
+                    <li><strong>Temperature Stat</strong>: A new stat for the player that increases as the player works
+                        outside. They can now freeze to death. (Not finished)
+                    </li>
+                    <li><strong>More!</strong>: Suggestions are welcome. Suggest the changes inside the Mon Bazou
+                        Modding server, by either pinging me or finding the respective forum post for it in the
+                        mod-ideas formums.
+                    </li>
                 </ul>
 
                 <Link href="https://github.com/mldchan/MonBazouWinterMod/releases">
@@ -69,7 +78,8 @@ export default function WinterMod(props: InferGetServerSidePropsType<typeof getS
                 </Link>
 
                 <Offset amt={3}/>
-                <Footer visits={props.visits}/>
+                <Footer visits={props.visits} route={'/project/monbazou/wintermod'}
+                        cloudflareSiteToken={props.cloudflareSiteToken}/>
             </Content>
         </Main>
     )

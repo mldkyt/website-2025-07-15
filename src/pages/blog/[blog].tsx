@@ -20,13 +20,13 @@ import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
 import postgres from "postgres";
 import Main from "@/components/Generic/Main";
 import Metadata from "@/components/Generic/Metadata";
-import Head from "next/head";
 import Content from "@/components/Generic/Content";
-import Link from "next/link";
-import Button from "@/components/Generic/Button";
 import {Header} from "@/components/Generic/Header";
 import Offset from "@/components/Generic/Offset";
 import Heading from "@/components/Generic/Heading";
+import Turnstile from "react-turnstile";
+import {useState} from "react";
+import {captureException} from "@sentry/nextjs";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     const {blog} = ctx.params as { blog: string };
@@ -56,18 +56,15 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
         }
     }
 
-    await sql`update blogPosts
-              set views = views + 1
-              where handle = ${blog}`;
-
     await sql.end();
 
     return {
         props: {
+            handle: blogPost[0].handle,
             title: blogPost[0].title,
             description: blogPost[0].description,
-            targetURL: blogPost[0].targeturl,
-            views: blogPost[0].views
+            views: blogPost[0].views,
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
 
@@ -75,20 +72,56 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 
 
 export default function Blog(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
+
+    const [error, setError] = useState("Error!");
+
+    function proveInnocence(token: string) {
+        fetch('/api/blog/count', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                'blogPost': props.handle,
+                'cfToken': token
+            })
+        }).then(x => {
+            if (x.ok) {
+                x.json().then(y => {
+                    location.href = y.url
+                }).catch(y => {
+                    setError(`Error parsing JSON: ${y}`)
+                    captureException(y);
+                })
+            } else {
+                x.json().then(y => {
+                    setError(`Error: ${x.statusText}: ${y.error}`)
+                }).catch(y => {
+                    setError(`Error parsing JSON: ${y}`)
+                    captureException(y);
+                })
+            }
+        }).catch(y => {
+            setError(`Error making request: ${y}`);
+            captureException(y);
+        });
+    }
+
     return <Main>
         <Metadata title={props.title} description={`${props.description} | ${props.views} views`}/>
-        <Head>
-            <meta httpEquiv="refresh" content={`1;url=${props.targetURL}`}/>
-        </Head>
         <Header/>
         <Content>
             <Offset amt={4}/>
-            <Heading level={1}>Redirecting...</Heading>
-            <p>You are being redirected to the blog.</p>
-            <p>{`This blog was seen ${props.views} times.`}</p>
-            <Link href={props.targetURL}>
-                <Button>Click this button if you weren't redirected :3c</Button>
-            </Link>
+            <Heading level={1}>Please confirm yourself</Heading>
+            <p>Due to too many bots visiting my site, I require people to verify they're not a bot. Everything that
+                modifies the database has a bot check to prevent abuse.</p>
+
+            <p>Once the bot check finishes, you'll automatically get redirected to the blog.</p>
+
+            <Turnstile sitekey={props.cloudflareSiteToken} onVerify={x => proveInnocence(x)}/>
+
+            {error && <p className={'text-red-600'}>{error}</p>}
+
             <p className={'text-sm text-gray-500'}>This page was displayed in order to have
                 mldchan.dev/blog/&lt;url&gt; links for my blogs. It was also displayed to count views for my blogs.</p>
         </Content>
