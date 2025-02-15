@@ -15,6 +15,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import React from "react";
 
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
@@ -23,13 +24,13 @@ import Offset from "@/components/Generic/Offset";
 import Heading from "@/components/Generic/Heading";
 import Link from "next/link";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {InferGetServerSidePropsType} from "next";
+import {getVisits} from "@/backend/visitsCounter";
 import Disclaimer from "@/components/Generic/Disclaimer";
 import Button from "@/components/Generic/Button";
 import Metadata from "@/components/Generic/Metadata";
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     const visits = await getVisits({route: '/project/monbazou/wintermod'});
 
     return {
@@ -53,11 +54,11 @@ export default function WinterMod(props: InferGetServerSidePropsType<typeof getS
                 <Disclaimer title="Work in Progress"
                             message="This mod is very early in development. Beta versions are available for download, but note they aren't finished and the final project might change."/>
 
-                <p className="my-2">The Mon Bazou Winter Mod changes the game's textures to be in a winter style.</p>
+                <p className="my-2">The Mon Bazou Winter Mod changes the game&apos;s textures to be in a winter style.</p>
 
                 <ul className="list-disc ml-6">
                     <li><strong>Winter Textures</strong>: Replaces all textures with winter ones.</li>
-                    <li><strong>Winter Roads</strong>: Roads are winter textured. (they'll behave like that in the next
+                    <li><strong>Winter Roads</strong>: Roads are winter textured. (they&apos;ll behave like that in the next
                         updates)
                     </li>
                     <li><strong>Temperature Stat</strong>: A new stat for the player that increases as the player works

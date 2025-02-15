@@ -16,6 +16,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from "react";
+
 export default function Page4MisskeyEmbed() {
 
     return <div className={'min-h-screen'}>

@@ -15,6 +15,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import React from "react";
 
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
@@ -31,15 +32,14 @@ import casual from '@/images/astolfomod/casual.png';
 import crowd from '@/images/astolfomod/crowd.png';
 import schoolgirl from '@/images/astolfomod/schoolgirl.png';
 import Metadata from "@/components/Generic/Metadata";
-import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {InferGetServerSidePropsType} from "next";
+import {getVisits} from "@/backend/visitsCounter";
 import Button from "@/components/Generic/Button";
 
 const H3 = (props: { children: string }) => <h3 className={'text-xl font-bold'}>{props.children}</h3>;
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     const visits = await getVisits({route: '/project/astolfomod'});
 
     return {
@@ -77,7 +77,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                     <li><b>Rimuru</b></li>
                     <li><b>Nagisa Shiota</b></li>
                     <li><b>Sieg</b> (Fate/Apocrypha)</li>
-                    <li><b>Bridget</b> <i>(I know she's a transgender girl but I included her because why not)</i></li>
+                    <li><b>Bridget</b> <i>(I know she&apos;s a transgender girl but I included her because why not)</i></li>
                 </ul>
 
                 <Heading level={2}>Commands</Heading>
@@ -86,13 +86,13 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                     <li>
                         <code>/duplicatecuties &lt;amount&gt; &lt;range&gt;</code> - Duplicate all of the added mobs
                         within the
-                        range amount times. The mod doesn't have any limits in the 2 parameters, so entering big numbers
+                        range amount times. The mod doesn&apos;t have any limits in the 2 parameters, so entering big numbers
                         might
                         cause your
                         game to crash!
                     </li>
                     <li>
-                        <code>/despawn &lt;selector&gt;</code> - This command is simple and allows you to "kill"
+                        <code>/despawn &lt;selector&gt;</code> - This command is simple and allows you to &quot;kill&quot;
                         monsters
                         without the animation. This prevents the particles from death spawning and lagging your game if
                         you have
@@ -112,7 +112,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 <Heading level={2}>Creative items and mobs</Heading>
 
                 <ul className={'ml-4 list-disc'}>
-                    <li><b>Astolfo Attractor</b> - The text "gay" in the menu, attracts only variants of Astolfo.</li>
+                    <li><b>Astolfo Attractor</b> - The text &quot;gay&quot; in the menu, attracts only variants of Astolfo.</li> 
                     <li><b>Astolfo Repellent</b> - A Felix Argyle entity which repels all Astolfos from its location.
                     </li>
                     <li><b>Monster White</b> - No crafting recipe yet, gives you speed and jump boost and gives you
@@ -123,7 +123,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
 
                 <Heading level={2}>Video about the mod</Heading>
 
-                <p>I've also made a video about the mod on my YouTube channel, so if you want to watch that, you can do
+                <p>I&apos;ve also made a video about the mod on my YouTube channel, so if you want to watch that, you can do
                     so:</p>
 
                 <iframe width="343" height="200"

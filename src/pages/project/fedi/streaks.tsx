@@ -15,6 +15,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import React from "react";
 
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
@@ -23,13 +24,12 @@ import Heading from "@/components/Generic/Heading";
 import Link from "next/link";
 import Offset from "@/components/Generic/Offset";
 import Metadata from "@/components/Generic/Metadata";
-import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {InferGetServerSidePropsType} from "next";
+import {getVisits} from "@/backend/visitsCounter";
 import Button from "@/components/Generic/Button";
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     const visits = await getVisits({route: '/project/fedi/streaks'});
 
     return {
@@ -50,13 +50,13 @@ export default function FediStreaks(props: InferGetServerSidePropsType<typeof ge
                 <Offset amt={4}/>
                 <Heading level={1}>Fedi Streaks</Heading>
                 <p>
-                    Fedi Streaks checks your profile every day for new notes. If it doesn't find you posting for one
+                    Fedi Streaks checks your profile every day for new notes. If it doesn&apos;t find you posting for one
                     day, you lose the streak. Every day you post, you get +1 streaks of sending notes.
                 </p>
                 <p className="pt-2">
                     This bot mainly derives from Chat Streaks in Akabot, which is pretty much this but for Discord. The
-                    bot follows back within 30 seconds which allows you to check that it actually works. (If mldchan's
-                    Sharkey instance is up, there's a high chance this is up as well).
+                    bot follows back within 30 seconds which allows you to check that it actually works. (If mldchan&apos;s
+                    Sharkey instance is up, there&apos;s a high chance this is up as well).
                 </p>
 
                 <Link href="https://social.mldchan.dev/@FediStreaks">

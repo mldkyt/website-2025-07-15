@@ -16,6 +16,7 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React, { ReactElement } from "react";
 
 import {Header} from "@/components/Generic/Header";
 import Metadata from "@/components/Generic/Metadata";
@@ -24,11 +25,11 @@ import Heading from "@/components/Generic/Heading";
 import Content from "@/components/Generic/Content";
 import Main from "@/components/Generic/Main";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {InferGetServerSidePropsType} from "next";
+import {getVisits} from "@/backend/visitsCounter";
 
 function ContactWrapper(props: {
-    name: string; children: any | any[];
+    name: string; children: ReactElement | ReactElement[];
 }) {
     return <div className={'rounded-lg px-2 p-1 bg-[#222] mt-4'}>
         <h2 className={'text-xl font-bold'}>{props.name}</h2>
@@ -36,7 +37,7 @@ function ContactWrapper(props: {
     </div>
 }
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     const visits = await getVisits({route: '/contact'});
 
     return {
@@ -60,12 +61,12 @@ export default function Contact(props: InferGetServerSidePropsType<typeof getSer
             <p>Welcome to the contact page for mldchan! This page contains information on how to contact me.</p>
 
             <ContactWrapper name={'Matrix'}>
-                <p>DM's open! DM me here and I'll respond.</p>
-                <p>This is one of my preferred methods of getting DM's, alongside e-mail with PGP encryption.</p>
+                <p>DM&apos;s open! DM me here and I&apos;ll respond.</p> 
+                <p>This is one of my preferred methods of getting DM&apos;s, alongside e-mail with PGP encryption.</p>
             </ContactWrapper>
 
             <ContactWrapper name={'E-mail'}>
-                <p>Shoot an e-mail to mldkyt@proton.me and I'll respond pretty quickly (if I'm awake, notifications for
+                <p>Shoot an e-mail to mldkyt@proton.me and I&apos;ll respond pretty quickly (if I&apos;m awake, notifications for
                     mail are the only notifications that work for me).</p>
                 <p>If you can, please use my PGP encryption key.</p>
                 <details className={'flex flex-col'}>
@@ -87,13 +88,13 @@ export default function Contact(props: InferGetServerSidePropsType<typeof getSer
             </ContactWrapper>
 
             <ContactWrapper name={'Discord'}>
-                <p>My DM's on Discord are disabled due to too many spam bots. I wish I could have them on in peace, but
-                    it's not possible.</p>
+                <p>My DM&apos;s on Discord are disabled due to too many spam bots. I wish I could have them on in peace, but
+                    it&apos;s not possible.</p>
             </ContactWrapper>
 
             <Offset amt={2}/>
             <p>This page is kind of dead as of now... I tried to add as many contact methods but I kind of realized I
-                don't have that many. But I feel like that everyone has an e-mail account which they can use to e-mail
+                don&apos;t have that many. But I feel like that everyone has an e-mail account which they can use to e-mail
                 me.</p>
 
             <Offset amt={3}/>

@@ -15,6 +15,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import React from "react";
 
 
 import Main from "@/components/Generic/Main";
@@ -24,12 +25,12 @@ import Heading from "@/components/Generic/Heading";
 import Offset from "@/components/Generic/Offset";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {InferGetServerSidePropsType} from "next";
+import {getVisits} from "@/backend/visitsCounter";
 
 const PrivacyHeading = (props: { children: string }) => <h2 className={'text-xl font-bold my-4'}>{props.children}</h2>;
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     const visits = await getVisits({route: '/project/akabot/privacy'});
 
     return {

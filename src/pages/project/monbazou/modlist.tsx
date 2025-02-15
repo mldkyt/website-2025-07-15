@@ -15,6 +15,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import React from "react";
 
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
@@ -23,12 +24,12 @@ import Offset from "@/components/Generic/Offset";
 import Heading from "@/components/Generic/Heading";
 import Link from "next/link";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {InferGetServerSidePropsType} from "next";
+import {getVisits} from "@/backend/visitsCounter";
 import Button from "@/components/Generic/Button";
 import Metadata from "@/components/Generic/Metadata";
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     const visits = await getVisits({route: '/project/monbazou/modlist'});
 
     return {
@@ -54,7 +55,7 @@ export default function MonBazouModList(props: InferGetServerSidePropsType<typeo
                     <li><strong>List of Mods</strong>: A convenient list of mods that allows you to change the settings
                         of mods.
                     </li>
-                    <li><strong>Console</strong>: You'll be able to access the console directly within the game.</li>
+                    <li><strong>Console</strong>: You&apos;ll be able to access the console directly within the game.</li>
                     <li><strong>Languages</strong>: This mod features English, Japanese, Spanish, French, Russian,
                         Chinese, Hungarian, German and Czech translations!
                     </li>

@@ -15,6 +15,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import React from "react";
 
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
@@ -28,13 +29,12 @@ import add from '@/images/birthday/add.png';
 import Image from "next/image";
 import Metadata from "@/components/Generic/Metadata";
 
-import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {InferGetServerSidePropsType} from "next";
+import {getVisits} from "@/backend/visitsCounter";
 import Button from "@/components/Generic/Button";
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     const visits = await getVisits({route: '/project/birthday'});
 
     return {
@@ -59,12 +59,12 @@ export default function Birthday(props: InferGetServerSidePropsType<typeof getSe
                 window.</p>
 
             <p className="pt-2">To add a new birthday, click on Actions &gt; Add new birthday.</p>
-            <p className="pt-2"><strong>Don't forget to save your birthdays before exiting the application!
+            <p className="pt-2"><strong>Don&apos;t forget to save your birthdays before exiting the application!
                 File &gt; Save
                 changes</strong>
             </p>
             <p className="pt-2">Please note that because of this app being old, there is a link pointing to mldkyt.com,
-                which doesn't
+                which doesn&apos;t
                 work.</p>
 
             <Image src={config} alt="Configuration Window" className={'p-1 rounded-lg pt-2'}/>

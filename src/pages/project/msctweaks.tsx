@@ -15,6 +15,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import React from "react";
 
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
@@ -23,11 +24,11 @@ import Offset from "@/components/Generic/Offset";
 import Heading from "@/components/Generic/Heading";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {InferGetServerSidePropsType} from "next";
+import {getVisits} from "@/backend/visitsCounter";
 import Disclaimer from "@/components/Generic/Disclaimer";
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     const visits = await getVisits({route: '/project/msctweaks'});
 
     return {
@@ -57,8 +58,8 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                     <li>Disable Pena (the green car)</li>
                     <li>Disable Kyläjäni (the yellow car)</li>
                     <li>Disable Amis2 (the Skoda)</li>
-                    <li>Saving of Satsuma's temperature</li>
-                    <li>Player can't die from Urine (realism)</li>
+                    <li>Saving of Satsuma&apos;s temperature</li>
+                    <li>Player can&apos;t die from Urine (realism)</li>
                     <li>Enable console in all scenarios</li>
                     <li>Add fall damage into the game</li>
                     <li>Better Window Handles (Speed up Window rolling up and down)</li>

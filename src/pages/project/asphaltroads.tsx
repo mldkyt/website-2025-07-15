@@ -15,6 +15,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import React from "react";
 
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
@@ -28,11 +29,11 @@ import Link from "next/link";
 import Metadata from "@/components/Generic/Metadata";
 import Button from "@/components/Generic/Button";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {InferGetServerSidePropsType} from "next";
+import {getVisits} from "@/backend/visitsCounter";
 import Disclaimer from "@/components/Generic/Disclaimer";
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     const visits = await getVisits({route: '/project/asphaltroads'});
 
     return {
@@ -61,7 +62,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 </p>
                 <p>
                     The mod offers several settings. For example, it allows you to keep the
-                    dirt race track between the grandma's and the landfill untouched. This
+                    dirt race track between the grandma&apos;s and the landfill untouched. This
                     setting is enabled by default, along with maintaining the normal dirt
                     roads. It also enables you to replace the pathways leading to the houses
                     with asphalt.

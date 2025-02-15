@@ -16,6 +16,7 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from "react";
 
 import Main from "@/components/Generic/Main";
 import Heading from "@/components/Generic/Heading";
@@ -27,13 +28,12 @@ import nmfirefox from '@/images/nexusmodsfirefox.png';
 import Image from "next/image";
 import Link from "next/link";
 import Metadata from "@/components/Generic/Metadata";
-import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {InferGetServerSidePropsType} from "next";
+import {getVisits} from "@/backend/visitsCounter";
 import Button from "@/components/Generic/Button";
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     const visits = await getVisits({route: '/project/nmfirefox'});
 
     return {
@@ -58,7 +58,7 @@ export default function NMFirefox(props: InferGetServerSidePropsType<typeof getS
                 The extension was made initially for personal use only, hence it not being available on Firefox
                 Extension
                 Store, only being on GitHub. By using this extension, you are viable for all damages, even if this
-                shouldn't
+                shouldn&apos;t
                 cause
                 any, unless NexusMods updates.
             </p>

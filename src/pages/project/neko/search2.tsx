@@ -15,6 +15,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import React from "react";
 
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
@@ -25,8 +26,8 @@ import Offset from "@/components/Generic/Offset";
 import Link from "next/link";
 import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {InferGetServerSidePropsType} from "next";
+import {getVisits} from "@/backend/visitsCounter";
 
 function highlightText(text: string, query: string) {
     const words = query.toLowerCase().split(' ');
@@ -59,7 +60,7 @@ function highlightText(text: string, query: string) {
     return <>{highlightedText}</>;
 }
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     const visits = await getVisits({route: '/project/neko/search2'});
 
     const date = new Date();
@@ -86,6 +87,7 @@ export default function NekoSearchV2(props: InferGetServerSidePropsType<typeof g
     const [hasSearched, setHasSearched] = useState<boolean>(false);
     const [searching, setSearching] = useState<boolean>(false);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const currSearch = useRef<any | null>(null);
 
     const change = (event: ChangeEvent<HTMLInputElement>) => {
@@ -108,6 +110,7 @@ export default function NekoSearchV2(props: InferGetServerSidePropsType<typeof g
 
         fetch('/api/nekoweb/search?q=' + event.target.value).then(x => {
             x.json().then(x => {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 setResults(x.hits.map((y: any) => {
                     return {name: y.title, desc: y.body, url: y.url}
                 }))

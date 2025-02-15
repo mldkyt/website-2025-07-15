@@ -16,6 +16,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+
+import React from "react";
 import {motion} from "motion/react"
 
 export default function Button(props: {

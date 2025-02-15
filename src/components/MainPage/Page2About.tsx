@@ -16,6 +16,9 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+
+import React from "react";
+
 import Content from "@/components/Generic/Content";
 import Heading from "@/components/Generic/Heading";
 import Link from "next/link";
@@ -43,12 +46,12 @@ export default function Page2About() {
             href={"https://social.mldchan.dev/notes/a1tsf5xe9kiu00r2"}
             className={"text-pink-400 hover:text-pink-200"}
           >
-            community's backlash
+            community&apos;s backlash
           </Link>
           .
         </p>
         <p className={"my-4"}>
-          Another thing she's known for is her content creation career on
+          Another thing she&apos;s known for is her content creation career on
           YouTube. She started making My Summer Car content, then making more
           than just that, to mostly moving away from My Summer Car and posting
           other videos.

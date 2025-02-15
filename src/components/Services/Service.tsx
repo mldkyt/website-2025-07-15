@@ -16,6 +16,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from "react";
+
 import { motion } from "motion/react";
 import Link from "next/link";
 
@@ -41,13 +43,13 @@ export default function Service(props: {
         props.links.map((link, index) => {
           return (
             <motion.div
+              key={index}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               className={"w-max"}
             >
               <Link
                 href={link}
-                key={index}
                 className={"text-pink-400 hover:text-pink-200 block"}
               >
                 {link}

@@ -15,6 +15,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import React from "react";
 
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
@@ -23,16 +24,15 @@ import Heading from "@/components/Generic/Heading";
 import Offset from "@/components/Generic/Offset";
 import Link from "next/link";
 import Metadata from "@/components/Generic/Metadata";
-import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {InferGetServerSidePropsType} from "next";
+import {getVisits} from "@/backend/visitsCounter";
 import Image from "next/image";
 
 import mcfuck from '@/images/mcfuck.png';
 import Button from "@/components/Generic/Button";
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     const visits = await getVisits({route: '/project/mcfuck'});
 
     return {
@@ -54,7 +54,7 @@ export default function MCFuck(props: InferGetServerSidePropsType<typeof getServ
 
             <p>MCFuck is a program that attempts to fuck with your Minecraft settings, as the name implies, without
                 corrupting them.</p>
-            <p className="pt-2">When this program finishes messing up your settings file, you'll be able to witness
+            <p className="pt-2">When this program finishes messing up your settings file, you&apos;ll be able to witness
                 those changes, if
                 your
                 game starts up, in game.</p>

@@ -16,6 +16,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from "react";
+
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
 import Content from "@/components/Generic/Content";
@@ -23,10 +25,10 @@ import Heading from "@/components/Generic/Heading";
 import Offset from "@/components/Generic/Offset";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {InferGetServerSidePropsType} from "next";
+import {getVisits} from "@/backend/visitsCounter";
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     const visits = await getVisits({route: "/fedi/privacy"});
 
     return {
@@ -98,7 +100,7 @@ export default function Privacy(
                     <li>
                         Private posts are not guaranteed to remain completely private.
                     </li>
-                    <li>The platform's "Drive" feature is not secure cloud storage.</li>
+                    <li>The platform&apos;s &quot;Drive&quot; feature is not secure cloud storage.</li>
                 </ul>
 
                 <div>

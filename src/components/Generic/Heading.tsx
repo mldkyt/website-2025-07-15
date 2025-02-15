@@ -16,6 +16,9 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+
+import React from "react";
+
 export default function Heading(props: {
     level: 1 | 2,
     children: string

@@ -17,6 +17,7 @@
  */
 
 
+import React from "react";
 import {ReactNode} from "react";
 
 export default function Content(props: { children: ReactNode | ReactNode[] }) {

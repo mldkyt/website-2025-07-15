@@ -16,6 +16,9 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+
+import React from "react";
+
 import Main from "@/components/Generic/Main";
 import Content from "@/components/Generic/Content";
 import Metadata from "@/components/Generic/Metadata";
@@ -115,7 +118,7 @@ function Poll(props: {
         <p>{`/poll/${props.handle}`}</p>
         <h1 className={'text-2xl font-bold'}>{props.title}</h1>
         <ul className={'ml-8'}>
-            {props.options.map(x => <li><strong>{x.option}</strong>{` - ${x.votes} votes`}</li>)}
+            {props.options.map((x,i) => <li key={i}><strong>{x.option}</strong>{` - ${x.votes} votes`}</li>)}
         </ul>
         <Button onClick={del}>Delete poll</Button>
         {delError === '' || <p className={'text-red-600'}>{`Error: ${delError}`}</p>}

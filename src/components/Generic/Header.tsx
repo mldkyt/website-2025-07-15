@@ -16,6 +16,9 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+
+import React from "react";
+
 import {Inter} from "next/font/google";
 import {ReactNode} from "react";
 import Link from "next/link";

@@ -16,6 +16,7 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from "react";
 
 import Main from "@/components/Generic/Main";
 import Content from "@/components/Generic/Content";
@@ -32,10 +33,10 @@ import website from '@/images/art/website.png';
 import Image from "next/image";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {InferGetServerSidePropsType} from "next";
+import {getVisits} from "@/backend/visitsCounter";
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     const visits = await getVisits({route: '/art'});
 
     return {
@@ -60,7 +61,7 @@ export default function Art(props: InferGetServerSidePropsType<typeof getServerS
             <Image src={busline} alt={'BusLine kawaii logo'}/>
 
             <Heading level={2}>IINE</Heading>
-            <p>A Japanese way to react to a post with a "Like" or "Thumbs Up"</p>
+            <p>A Japanese way to react to a post with a &quot;Like&quot; or &quot;Thumbs Up&quot;</p> 
             <Image src={iine} alt={'IINE'}/>
 
             <Heading level={2}>mldchan social</Heading>
@@ -68,11 +69,11 @@ export default function Art(props: InferGetServerSidePropsType<typeof getServerS
             <Image src={mldchanSocial} alt={'mldchan social logo'}/>
 
             <Heading level={2}>Ohayoo</Heading>
-            <p>Japanese for "Good Morning"</p>
+            <p>Japanese for &quot;Good Morning&quot;</p>
             <Image src={ohayoo} alt={'Ohayoo'}/>
 
             <Heading level={2}>Oyasumi</Heading>
-            <p>Japanese for "Good Night"</p>
+            <p>Japanese for &quot;Good Night&quot;</p>
             <Image src={oyasumi} alt={'Oyasumi'}/>
 
             <Heading level={2}>Website</Heading>

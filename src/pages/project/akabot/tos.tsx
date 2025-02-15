@@ -16,6 +16,7 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from "react";
 
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
@@ -24,8 +25,8 @@ import Heading from "@/components/Generic/Heading";
 import Offset from "@/components/Generic/Offset";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {InferGetServerSidePropsType} from "next";
+import {getVisits} from "@/backend/visitsCounter";
 
 const ToSHeading = (props: { children: string }) => {
     return (
@@ -33,7 +34,7 @@ const ToSHeading = (props: { children: string }) => {
     )
 }
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     const visits = await getVisits({route: '/project/akabot/tos'});
 
     return {
@@ -66,10 +67,10 @@ export default function TermsOfService(props: InferGetServerSidePropsType<typeof
                 <ToSHeading>Compliance with Discord Terms</ToSHeading>
                 <p>
                     Your use of Akabot must comply with the Discord Terms of Service and Community Guidelines. You are
-                    responsible for ensuring that your server and user activities adhere to Discord's policies. Akabot
+                    responsible for ensuring that your server and user activities adhere to Discord&apos;s policies. Akabot
                     will not
                     be used to
-                    violate Discord's rules or enable others to do so.
+                    violate Discord&apos;s rules or enable others to do so.
                 </p>
                 <ToSHeading>No User Data Collection</ToSHeading>
                 <p>Akabot does not collect, store, or share any personal user data. Your interactions with the bot are
@@ -86,11 +87,11 @@ export default function TermsOfService(props: InferGetServerSidePropsType<typeof
                 <ToSHeading>Termination of Access</ToSHeading>
                 <p>We reserve the right to suspend or terminate your access to Akabot at any time for any reason,
                     including if
-                    we reasonably believe you have violated these terms or Discord's policies.</p>
+                    we reasonably believe you have violated these terms or Discord&apos;s policies.</p>
                 <ToSHeading>Limitation of Liability</ToSHeading>
-                <p>Akabot is provided "as is" without warranties. We are not liable for any issues, damages, or
+                <p>Akabot is provided &quot;as is&quot; without warranties. We are not liable for any issues, damages, or
                     disruptions
-                    caused by the bot's use or malfunction. Your use of Akabot is at your own risk.</p>
+                    caused by the bot&apos;s use or malfunction. Your use of Akabot is at your own risk.</p>
                 <ToSHeading>Contact Us</ToSHeading>
                 <p>If you have any questions or concerns about these Terms of Service, please contact us at <a
                     href="mailto:mldkyt@proton.me">mldkyt@proton.me</a>.</p>

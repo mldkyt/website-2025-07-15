@@ -16,6 +16,7 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from "react";
 
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
@@ -26,11 +27,11 @@ import Link from "next/link";
 import Button from "@/components/Generic/Button";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {InferGetServerSidePropsType} from "next";
+import {getVisits} from "@/backend/visitsCounter";
 import {ReactNode} from "react";
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     const visits = await getVisits({route: '/project/akabot'});
 
     return {
@@ -66,7 +67,7 @@ export default function Akabot(props: InferGetServerSidePropsType<typeof getServ
                 <div>
                     <h1 className={'text-center text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold'}>Akabot: A
                         feature packed
-                        Discord bot that's free forever!</h1>
+                        Discord bot that&apos;s free forever!</h1>
                     <br/>
                     <div className={'w-max m-auto'}>
                         <Link href={'/project/akabot/invite'}>
@@ -83,7 +84,7 @@ export default function Akabot(props: InferGetServerSidePropsType<typeof getServ
                 </div>
 
                 <Offset amt={5}/>
-                <p className={'text-center'}>Akabot is a fully functional feature packed Discord bot that's free
+                <p className={'text-center'}>Akabot is a fully functional feature packed Discord bot that&apos;s free
                     forever!</p>
 
                 <Heading level={2}>Features</Heading>
@@ -123,7 +124,7 @@ export default function Akabot(props: InferGetServerSidePropsType<typeof getServ
                 <p>The bot is open-source, so if you want to host your own instance for the public or for personal use,
                     click the button below to view the source code:</p>
                 <Link href={'https://git.mldchan.dev/mld/Akabot'} className={'m-1'}>
-                    <Button>View the source code on mldchan's self-hosted GitLab</Button>
+                    <Button>View the source code on mldchan&apos;s self-hosted GitLab</Button>
                 </Link>
                 <Link href={'https://github.com/mldchan/Akabot'} className={'m-1'}>
                     <Button>View the source code on GitHub</Button>
@@ -139,7 +140,7 @@ export default function Akabot(props: InferGetServerSidePropsType<typeof getServ
                     <Button>Donate to mldchan</Button>
                 </Link>
 
-                <p>If you don't have money to donate, you can help translating the bot into other languages on
+                <p>If you don&apos;t have money to donate, you can help translating the bot into other languages on
                     Crowdin!</p>
 
                 <Link href={'https://crowdin.com/project/akabot-by-akatsuki2555'}>

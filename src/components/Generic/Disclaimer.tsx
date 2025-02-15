@@ -16,6 +16,9 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+
+import React from "react";
+
 export default function Disclaimer(props: { title: string, message: string }) {
     return (
         <div className={'border-2 border-red-600 rounded-xl bg-red-950 p-2'}>

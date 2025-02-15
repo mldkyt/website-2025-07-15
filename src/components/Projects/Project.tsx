@@ -16,10 +16,13 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from "react";
+
 import {motion} from "motion/react";
 import Link from "next/link";
 
 export default function Project(props: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     image?: any,
     imageAlt?: string,
     title: string,

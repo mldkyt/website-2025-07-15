@@ -16,6 +16,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from "react";
+
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
 import Content from "@/components/Generic/Content";
@@ -26,10 +28,10 @@ import Button from "@/components/Generic/Button";
 import Metadata from "@/components/Generic/Metadata";
 import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {InferGetServerSidePropsType} from "next";
+import {getVisits} from "@/backend/visitsCounter";
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     const visits = await getVisits({route: '/project/akabot/invite'});
 
     return {

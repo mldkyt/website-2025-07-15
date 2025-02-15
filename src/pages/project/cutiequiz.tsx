@@ -15,6 +15,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import React from "react";
 
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
@@ -28,14 +29,13 @@ import one from '@/images/cutiequiz/1.png';
 import two from '@/images/cutiequiz/2.png';
 import three from '@/images/cutiequiz/3.png';
 import Metadata from "@/components/Generic/Metadata";
-import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {InferGetServerSidePropsType} from "next";
+import {getVisits} from "@/backend/visitsCounter";
 import Disclaimer from "@/components/Generic/Disclaimer";
 import Button from "@/components/Generic/Button";
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     const visits = await getVisits({route: '/project/cutiequiz'});
 
     return {
@@ -63,12 +63,12 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 </p>
                 <p className="mt-2">
                     It does this using revolutionary next-generation technology, which is newer and better than AI and
-                    determines values without errors. It has such good accuracy that you don't need any other source of
+                    determines values without errors. It has such good accuracy that you don&apos;t need any other source of
                     information to verify your results because our results are always accurate.
                 </p>
                 <p className="mt-2">
                     <i>
-                        This application is a joke if you didn't figure it out yet.
+                        This application is a joke if you didn&apos;t figure it out yet.
                     </i>
                 </p>
 

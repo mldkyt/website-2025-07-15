@@ -16,6 +16,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from "react";
+
 import Content from "@/components/Generic/Content";
 import MainPageProject from "@/components/MainPage/MainPageProject";
 
@@ -33,7 +35,7 @@ export default function Page3Projects() {
     <div className={"h-screen"}>
       <Content>
         <h1 className={"py-4 text-center text-2xl font-bold"}>
-          Explore Luna's projects :3
+          Explore Luna&apos;s projects :3
         </h1>
         <div className={"grid grid-rows-2 grid-cols-3 gap-4"}>
           <MainPageProject

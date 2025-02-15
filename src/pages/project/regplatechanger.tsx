@@ -15,6 +15,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import React from "react";
 
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
@@ -28,11 +29,11 @@ import Image from "next/image";
 import Metadata from "@/components/Generic/Metadata";
 import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import { InferGetServerSidePropsType} from "next";
+import { getVisits} from "@/backend/visitsCounter";
 import Disclaimer from "@/components/Generic/Disclaimer";
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     const visits = await getVisits({route: '/project/regplatechanger'});
 
     return {
@@ -55,7 +56,7 @@ export default function RegPlateChanger(props: InferGetServerSidePropsType<typeo
                 <Disclaimer title="Deprecated Project"
                             message="Deprecated on 2024/07/01. No updates are provided under any circumstance."/>
                 <p>
-                    Hey everyone, I'm excited to share the Reg Plate Changer mod for My Summer Car!
+                    Hey everyone, I&apos;m excited to share the Reg Plate Changer mod for My Summer Car!
                 </p>
                 <p>
                     With Reg Plate Changer, you can replace the standard
@@ -69,8 +70,8 @@ export default function RegPlateChanger(props: InferGetServerSidePropsType<typeo
                         <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>assets
                             folder
                         </motion.span>
-                    </Link> includes a helpful README.jpg file that'll guide you through installation
-                    and customization. In no time, you'll be hitting the road in your
+                    </Link> includes a helpful README.jpg file that&apos;ll guide you through installation
+                    and customization. In no time, you&apos;ll be hitting the road in your
                     personalized ride!
                 </p>
 

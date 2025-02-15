@@ -16,6 +16,7 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from "react";
 
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
@@ -26,12 +27,12 @@ import Link from "next/link";
 import Button from "@/components/Generic/Button";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {InferGetServerSidePropsType} from "next";
+import {getVisits} from "@/backend/visitsCounter";
 import {ReactNode} from "react";
 import Disclaimer from "@/components/Generic/Disclaimer";
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     const visits = await getVisits({route: '/project/girlsocial'});
 
     return {
@@ -103,7 +104,7 @@ export default function GirlSocial(props: InferGetServerSidePropsType<typeof get
                 <p>The service is fully open-source! You can self host your very own instance by building the Docker
                     image in here:</p>
                 <Link href={'https://git.mldchan.dev/girlsocial/server'} className={'m-1'}>
-                    <Button>View the source code on mldchan's self-hosted GitLab</Button>
+                    <Button>View the source code on mldchan&apos;s self-hosted GitLab</Button>
                 </Link>
 
                 <Heading level={2}>Donations are welcome!</Heading>

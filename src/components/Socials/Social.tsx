@@ -16,12 +16,10 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from "react";
+
 import { motion } from "motion/react";
 import Link from "next/link";
-
-function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
 
 export default function Social(props: {
   social: string;

@@ -16,6 +16,9 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+
+import React from "react";
+
 import Main from "@/components/Generic/Main";
 import Metadata from "@/components/Generic/Metadata";
 import Content from "@/components/Generic/Content";

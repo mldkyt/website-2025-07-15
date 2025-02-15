@@ -16,6 +16,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from "react";
+
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
 import Page1 from "@/components/MainPage/Page1";
@@ -24,11 +26,11 @@ import Page5Other from "@/components/MainPage/Page5Other";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
 import Page2About from "@/components/MainPage/Page2About";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {InferGetServerSidePropsType} from "next";
 import {getVisits} from "@/backend/visitsCounter";
 import Page4MisskeyEmbed from "@/components/MainPage/Page4MisskeyEmbed";
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     const visits = await getVisits({route: '/'});
 
     return {

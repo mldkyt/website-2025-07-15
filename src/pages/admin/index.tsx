@@ -16,6 +16,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from "react";
+
 import {useEffect, useState} from "react";
 import LoginPage from "@/components/Admin/LoginPage";
 import MainPage from "@/components/Admin/MainPage";

@@ -15,6 +15,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import React from "react";
 
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
@@ -23,10 +24,10 @@ import Heading from "@/components/Generic/Heading";
 import Offset from "@/components/Generic/Offset";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {InferGetServerSidePropsType} from "next";
+import {getVisits} from "@/backend/visitsCounter";
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     const visits = await getVisits({route: "/fedi/tos"});
 
     return {
@@ -69,7 +70,7 @@ export default function TermsofService(
                             This instance is primarily intended for friends of Luna or those
                             invited by friends.
                         </li>
-                        <li>Users must be a "cutie" to join and participate.</li>
+                        <li>Users must be a &quot;cutie&quot; to join and participate.</li>
                         <li>
                             Absolutely no tolerance for:
                             <ul className={"ml-4 list-disc"}>

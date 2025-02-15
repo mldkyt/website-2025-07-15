@@ -16,10 +16,13 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from "react";
+
 import * as Sentry from "@sentry/nextjs";
 import Error from "next/error";
 
 const CustomErrorComponent = (props) => {
+    // eslint-disable-next-line react/prop-types
     return <Error statusCode={props.statusCode}/>;
 };
 

@@ -16,6 +16,9 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+
+import React from "react";
+
 import logo from '@/images/logo.png';
 import {motion} from 'motion/react';
 import Image from "next/image";
@@ -81,7 +84,7 @@ export default function Footer(props: { visits?: number, route?: string, cloudfl
 
             {props.cloudflareSiteToken !== undefined && <>
                 {hasFinishedChallenge || <>
-                    <span>This site uses a captcha to verify counting of page visits. This captcha dissapears if it's successfull and your page visit is counted.</span>
+                    <span>This site uses a captcha to verify counting of page visits. This captcha dissapears if it&apos;s successfull and your page visit is counted.</span>
                     <Turnstile sitekey={props.cloudflareSiteToken}
                                onVerify={(token) => verifyCloudflare(token)}></Turnstile>
                 </>}

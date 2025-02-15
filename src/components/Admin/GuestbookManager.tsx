@@ -16,6 +16,9 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+
+import React from "react";
+
 import { useEffect, useRef, useState } from "react";
 import Main from "@/components/Generic/Main";
 import Content from "@/components/Generic/Content";
@@ -61,6 +64,7 @@ export default function GuestbookManager() {
           x.json()
             .then((x) => {
               setGuestbookPosts(
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 x.guestbook.map((x: any) => {
                   return {
                     ...x,
@@ -345,9 +349,9 @@ export default function GuestbookManager() {
         <Heading level={2}>Unapproved posts</Heading>
         {guestbookPosts
           .filter((x) => !x.approved)
-          .map((x) => {
+          .map((x, i) => {
             return (
-              <div className={"border-white border-2 my-2 rounded-lg p-2"}>
+              <div key={i} className={"border-white border-2 my-2 rounded-lg p-2"}>
                 <h1 className={"text-xl font-bold"}>{x.username}</h1>
                 <p>{x.body}</p>
                 <p className={"text-sm text-gray-500"}>{x.ip}</p>
@@ -363,9 +367,9 @@ export default function GuestbookManager() {
         <Heading level={2}>Approved posts</Heading>
         {guestbookPosts
           .filter((x) => x.approved)
-          .map((x) => {
+          .map((x, i) => {
             return (
-              <div className={"border-white border-2 my-2 rounded-lg p-2"}>
+              <div key={i} className={"border-white border-2 my-2 rounded-lg p-2"}>
                 <h1 className={"text-xl font-bold"}>{x.username}</h1>
                 <p>{x.body}</p>
                 <p className={"text-sm text-gray-500"}>{x.ip}</p>

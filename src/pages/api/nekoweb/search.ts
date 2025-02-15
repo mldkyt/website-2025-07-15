@@ -59,7 +59,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         };
 
         res.json(data);
-    } catch (err) {
+    } catch {
         res.status(400).json({"error": "Error occured"});
     }
 }

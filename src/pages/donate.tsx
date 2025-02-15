@@ -16,6 +16,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from "react";
+
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
 import Content from "@/components/Generic/Content";
@@ -25,11 +27,11 @@ import Metadata from "@/components/Generic/Metadata";
 import Button from "@/components/Generic/Button";
 import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import {InferGetServerSidePropsType} from "next";
 import {getVisits} from "@/backend/visitsCounter";
 import Heading from "@/components/Generic/Heading";
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     const visits = await getVisits({route: "/donate"});
 
     return {
@@ -54,17 +56,17 @@ export default function Donate(
                 <Offset amt={4}/>
                 <Heading level={1}>Donate</Heading>
                 <p>
-                    Even if I try to run as much on free stuff as possible, it's
+                    Even if I try to run as much on free stuff as possible, it&apos;s
                     impossible to run everything completely free of charge.
                 </p>
                 <p>
                     For example, servers cost money -- regardless if it is running at your
-                    home or it's a VPS.
+                    home or it&apos;s a VPS.
                 </p>
 
                 <Heading level={2}>Past Donators</Heading>
 
-                <p>Here's a list of past donators to me - Thank you all!</p>
+                <p>Here&apos;s a list of past donators to me - Thank you all!</p>
 
                 <ul className={"list-disc ml-4"}>
                     <li>
@@ -80,7 +82,7 @@ export default function Donate(
 
                 <Heading level={2}>How do I donate?</Heading>
                 <p>
-                    If you do got some spare money which you absolutely don't need for
+                    If you do got some spare money which you absolutely don&apos;t need for
                     anything else, you can donate to me on the following platforms:
                 </p>
                 <ul className={"list-disc ml-4"}>
@@ -120,7 +122,7 @@ export default function Donate(
                             </Link>
                         </motion.span>
                         {" "}
-                        - I set this one up recently. I don't know how much GitHub cuts, but
+                        - I set this one up recently. I don&apos;t know how much GitHub cuts, but
                         you can use this to donate to me as well.
                     </li>
                 </ul>
@@ -133,7 +135,7 @@ export default function Donate(
                 <p>Your money will be used for example:</p>
                 <ul className={"list-disc ml-4"}>
                     <li>
-                        <strong>To support servers</strong> - My servers aren't free to run
+                        <strong>To support servers</strong> - My servers aren&apos;t free to run
                         -- just like any other server -- and your donation will help me in
                         running my servers for not just only me and you, but for everyone!
                     </li>
@@ -146,8 +148,8 @@ export default function Donate(
                     <li>
                         <strong>For other things</strong> - I am not only a programmer -- so
                         if I will see an interesting game on Steam for sale, for example, I
-                        will buy it and maybe make a video on it! And I don't know... Maybe
-                        I'll spend it on HRT or something.
+                        will buy it and maybe make a video on it! And I don&apos;t know... Maybe
+                        I&apos;ll spend it on HRT or something.
                     </li>
                 </ul>
 

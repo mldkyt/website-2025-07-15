@@ -17,6 +17,8 @@
  */
 
 
+import React from "react";
+
 import {motion} from "motion/react";
 import Link from "next/link";
 import Image from "next/image";
@@ -24,6 +26,7 @@ import Image from "next/image";
 export default function MainPageProject(props: {
     title: string,
     body: string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     image: any,
     imgAlt: string,
     className: string,
