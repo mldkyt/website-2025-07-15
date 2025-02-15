@@ -114,7 +114,7 @@ export function generateCatgirl(amount: number, options: {
     let output = "";
     let looplimit = 0;
     let last = -1;
-    let blockLength = 50; // Adjust this value as needed
+    const blockLength = 50; // Adjust this value as needed
 
     while (true) {
         const random = Math.floor(Math.random() * 12);

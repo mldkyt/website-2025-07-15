@@ -16,34 +16,32 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
+import React from "react";
+import {InferGetServerSidePropsType} from "next";
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
 import Content from "@/components/Generic/Content";
 import Heading from "@/components/Generic/Heading";
-import dbinit from "@/backend/dbinit";
-import postgres from "postgres";
 import Link from "next/link";
 import {motion} from "motion/react";
 import Offset from "@/components/Generic/Offset";
 import Footer from "@/components/Generic/Footer";
 import Metadata from "@/components/Generic/Metadata";
 import {getVisits} from "@/backend/visitsCounter";
+import { PrismaClient } from "@prisma/client";
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
 
-    await dbinit();
+    const prisma = new PrismaClient();
+    await prisma.$connect();
 
-    const sql = postgres({});
+    const videos = await prisma.youTubeVideos.findMany({
+        orderBy: {
+            PublishedAt: 'desc'
+        }
+    });
 
-    const videos = await sql`select concat('https://www.youtube.com/watch?v=', video) as url,
-                                    title,
-                                    description,
-                                    thumb_url
-                             from ytvideos
-                             order by published_at desc;`
-
-    await sql.end();
+    await prisma.$disconnect();
 
     const visits = await getVisits({route: '/videos'});
 
@@ -51,10 +49,10 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
         props: {
             videos: videos.map(x => {
                 return {
-                    url: x.url,
-                    title: x.title,
-                    description: x.description,
-                    thumbnail: x.thumb_url
+                    url: `https://www.youtube.com/watch?v=${x.VideoID}`,
+                    title: x.Title,
+                    description: x.Description,
+                    thumbnail: x.ThumbURL
                 }
             }),
             visits,
@@ -84,8 +82,8 @@ export default function Videos(props: InferGetServerSidePropsType<typeof getServ
         <Header highlight={'videos'}/>
         <Content>
             <Offset amt={4}/>
-            <Heading level={1}>mldchan's Videos</Heading>
-            <p>All of mldchan's videos on YouTube.</p>
+            <Heading level={1}>mldchan&apos;s Videos</Heading>
+            <p>All of mldchan&apos;s videos on YouTube.</p>
 
             <div className={'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'}>
                 {props.videos.map((x, i) => {

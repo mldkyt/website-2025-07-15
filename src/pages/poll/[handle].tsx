@@ -15,8 +15,9 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import React from "react";
+
 import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import postgres from "postgres";
 import Main from "@/components/Generic/Main";
 import Content from "@/components/Generic/Content";
 import {Header} from "@/components/Generic/Header";
@@ -26,6 +27,7 @@ import {useRef, useState} from "react";
 import Button from "@/components/Generic/Button";
 import Metadata from "@/components/Generic/Metadata";
 import Turnstile from "react-turnstile";
+import { PrismaClient } from "@prisma/client";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     const {handle} = ctx.params as { handle: string };
@@ -35,32 +37,42 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
         }
     }
 
-    const sql = postgres({});
-    const dbPolls = await sql`select *
-                              from polls
-                              where handle = ${handle}`;
-    if (dbPolls.length === 0) {
-        await sql.end();
+    const prisma = new PrismaClient();
+    await prisma.$connect();
+
+    const dbPolls = await prisma.polls.findFirst({
+        where: {
+            Handle: handle
+        },
+        include: {
+            PollOptions: true,
+            PollVotes: true
+        }
+    });
+
+    if (!dbPolls) {
+        await prisma.$disconnect();
         return {
             notFound: true
         }
     }
 
-    const dbOptions = await sql`select id,
-                                       option,
-                                       (select count(*) from pollvotes where optionid = pollOptions.id) as votes
-                                from pollOptions
-                                where pollId = (select id from polls where handle = ${handle})`;
-
     return {
         props: {
             handle,
-            title: dbPolls[0].title,
-            options: dbOptions.map((option: any) => {
+            title: dbPolls.Title,
+            options: dbPolls.PollOptions.map((option) => {
+                let votes = 0;
+                for (const z of dbPolls.PollVotes) {
+                    if (z.OptionID === option.ID) {
+                        votes += 1;
+                    }
+                }
+
                 return {
-                    id: option.id as number,
-                    option: option.option as string,
-                    votes: Number(option.votes) as number
+                    id: option.ID as number,
+                    option: option.Option as string,
+                    votes: votes
                 }
             }),
             cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
@@ -131,7 +143,7 @@ export default function Poll(props: InferGetServerSidePropsType<typeof getServer
             <Content>
                 <Offset amt={4}/>
                 <Heading level={1}>{`Poll: ${props.title}`}</Heading>
-                <p>Here's what existing people voted:</p>
+                <p>Here&apos;s what existing people voted:</p>
                 <ul className={'text-left'}>
                     {props.options.map((option: { id: number, option: string, votes: number }, index: number) => {
                         const percentage = (

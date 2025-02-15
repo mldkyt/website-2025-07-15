@@ -16,9 +16,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
-import dbinit from "@/backend/dbinit";
-import postgres from "postgres";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.headers["content-type"] !== "application/json") {
@@ -58,19 +57,31 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(403).json({error: "Views must be a number"});
     }
 
-    await dbinit();
-    const sql = postgres({});
+    const prisma = new PrismaClient();
+    await prisma.$connect();
 
-    await sql`insert into ytvideos (video, title, description, views, published_at, thumb_url)
-              values (${id}, ${title}, ${description}, ${views}, ${publishedAt}, ${thumbnailURL})
-              on conflict (video) do update
-                  set title        = ${title},
-                      description  = ${description},
-                      views        = ${views},
-                      published_at = ${publishedAt},
-                      thumb_url    = ${thumbnailURL};`
-
-    await sql.end();
+    await prisma.youTubeVideos.upsert({
+        where: {
+            VideoID: id
+        },
+        update: {
+            Title: title,
+            Description: description,
+            Views: views,
+            PublishedAt: publishedAt,
+            ThumbURL: thumbnailURL
+        },
+        create: {
+            VideoID: id,
+            Title: title,
+            Description: description,
+            Views: views,
+            PublishedAt: publishedAt,
+            ThumbURL: thumbnailURL
+        }
+    });
+    
+    await prisma.$disconnect();
 
     res.status(200).json({status: "OK"});
 }

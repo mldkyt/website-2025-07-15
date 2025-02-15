@@ -17,9 +17,8 @@
  */
 
 
+import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
-import dbinit from "@/backend/dbinit";
-import postgres from "postgres";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const {authorization} = req.headers;
@@ -30,37 +29,37 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(403).json({error: "Forbidden"});
     }
 
-    await dbinit()
+    const prisma = new PrismaClient();
+    await prisma.$connect();
 
-    const sql = postgres({})
-
-    const guestbookEntries = await sql`select id, username, body, ip, approved
-                                       from guestbook
-                                       where replyto is null;`
+    const guestbookEntries = await prisma.guestbook.findMany();
 
     res.status(200).json({
         success: true,
         guestbook: await Promise.all(guestbookEntries.map(async (x) => {
-            const reply = await sql`select *
-                                    from guestbook
-                                    where replyto = ${x.id};`
+            const reply = await prisma.guestbook.findMany({
+                where: {
+                    ReplyTo: x.ID
+                }
+            });
 
             return {
-                id: x.id,
-                username: x.username,
-                body: x.body,
-                ip: x.ip,
-                approved: x.approved === 1,
+                id: x.ID,
+                username: x.Username,
+                body: x.Body,
+                ip: x.IP,
+                approved: x.Approved === 1,
                 replies: reply.map((x) => {
                     return {
-                        id: x.id,
-                        username: x.username,
-                        body: x.body
+                        id: x.ID,
+                        username: x.Username,
+                        body: x.Body
                     }
                 })
             }
         }))
     });
-    await sql.end();
+    
+    await prisma.$disconnect();
 
 }

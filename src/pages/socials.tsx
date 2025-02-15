@@ -16,6 +16,7 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from "react";
 import Main from "@/components/Generic/Main";
 import Content from "@/components/Generic/Content";
 import Offset from "@/components/Generic/Offset";
@@ -23,10 +24,10 @@ import {Header} from "@/components/Generic/Header";
 import Social from "@/components/Socials/Social";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {InferGetServerSidePropsType} from "next";
+import {getVisits} from "@/backend/visitsCounter";
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
 
     const visits = await getVisits({route: "/socials"});
 
@@ -48,7 +49,7 @@ export default function Socials(
             <Content>
                 <Offset amt={4}/>
                 <h1 className={"text-center text-2xl font-bold py-4"}>
-                    Luna's Socials :3
+                    Luna&apos;s Socials :3
                 </h1>
                 <Social
                     social={"Fediverse"}

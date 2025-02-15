@@ -16,9 +16,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
-import dbinit from "@/backend/dbinit";
-import postgres from "postgres";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const {authorization} = req.headers;
@@ -28,8 +27,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (authorization !== process.env.ADMIN_PASSWORD) {
         return res.status(403).json({error: "Forbidden"});
     }
-
-    let ip = '0.0.0.0';
 
     const {body, postId} = req.body as { body: string, postId: string };
     if (!body) {
@@ -42,19 +39,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(400).json({error: "Invalid replyTo"});
     }
 
-    await dbinit();
+    const prisma = new PrismaClient();
+    await prisma.$connect();
 
-    const sql = postgres({});
-
-    const existingReplyToPost = await sql`select *
-                                          from guestbook
-                                          where id = ${postId};`
-    if (existingReplyToPost.length === 0) {
-        return res.status(404).json({error: "Post not found"});
+    if (await prisma.guestbook.count({where: {ID: Number(postId)}}) === 0) {
+        return res.status(400).json({error: "Existing post not found"});
     }
 
-    await sql`update guestbook set body = ${body} where id = ${Number(postId)}`
-    await sql.end();
+    await prisma.guestbook.update({
+        where: {
+            ID: Number(postId)
+        },
+        data:{ 
+            Body: body
+        }
+    })
+    
+    await prisma.$disconnect();
 
     res.status(200).json({status: "OK"});
 }

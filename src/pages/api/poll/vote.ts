@@ -16,12 +16,11 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
-import dbinit from "@/backend/dbinit";
-import postgres from "postgres";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    let {handle, optionId, cfToken} = req.body as { handle: string, optionId: number, cfToken: string };
+    const {handle, optionId, cfToken} = req.body as { handle: string, optionId: number, cfToken: string };
     let ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress as string;
     if (Array.isArray(ip)) {
         ip = ip[0];
@@ -35,7 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(400).json({error: "Bad Request"});
     }
 
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append("secret", process.env['CLOUDFLARE_SECRET_TOKEN']!);
     formData.append("response", cfToken);
     formData.append("remoteip", ip);
@@ -49,34 +48,32 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const outcome = await result.json();
     if (!outcome.success) res.status(403).json({error: 'Bot detected, exit'});
 
-    await dbinit();
+    const prisma = new PrismaClient();
+    await prisma.$connect();
 
-    const sql = postgres({});
-
-    const dbExistingResult = await sql`select id
-                                       from polls
-                                       where handle = ${handle}`;
-
-    if (dbExistingResult.length === 0) {
-        await sql.end();
+    if (await prisma.polls.count({where: {Handle: handle}}) === 0) {
+        await prisma.$disconnect();
         return res.status(404).json({error: "Poll not found"});
     }
 
-    const dbExistingIP = await sql`select *
-                                   from pollvotes
-                                   where pollid = ${dbExistingResult[0].id}
-                                     and ip = ${ip}`;
-
-    if (dbExistingIP.length > 0) {
-        await sql.end();
+    if (await prisma.polls.count({where: {Handle: handle, PollVotes: {some: {IP: ip}}}}) > 0) {
+        await prisma.$disconnect();
         return res.status(400).json({error: "Already voted"});
     }
 
-    await sql`insert into pollvotes (pollid, optionid, ip)
-              values ((select id
-                       from polls
-                       where handle = ${handle}),
-                      ${optionId}, ${ip})`;
+    await prisma.polls.update({
+        data: {
+            PollVotes: {
+                create: {
+                    OptionID: optionId,
+                    IP: ip
+                }
+            }
+        },
+        where: {
+            Handle: handle
+        }
+    });
 
     res.status(200).json({status: "ok"});
 }

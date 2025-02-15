@@ -30,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const {cfToken, route} = req.body;
 
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append("secret", process.env['CLOUDFLARE_SECRET_TOKEN']!);
     formData.append("response", cfToken);
     formData.append("remoteip", ip);

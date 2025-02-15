@@ -16,18 +16,13 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
-import postgres from "postgres";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    let isOK = true;
-    const sql = postgres();
+    const prisma = new PrismaClient();
+    await prisma.$connect();
+    await prisma.$disconnect();
 
-    const a = await sql`select count(*) as cnt
-                        from visits`;
-    isOK = isOK ? a[0]?.cnt > 0 : false;
-
-    await sql.end();
-
-    res.status(isOK ? 200 : 500).json({status: isOK ? "ok" : "error"});
+    res.status(200).json({status: "ok"});
 }

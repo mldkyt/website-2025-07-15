@@ -16,9 +16,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
-import dbinit from "@/backend/dbinit";
-import postgres from "postgres";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     let ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress as string;
@@ -37,30 +36,37 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(400).json({error: "Invalid body"});
     }
 
-    await dbinit();
+    const prisma = new PrismaClient();
+    await prisma.$connect();
 
-    const sql = postgres({});
+    // const existingTest = await sql`select id
+    //                                from guestbook
+    //                                where ip = ${ip}
+    //                                  and approved = 0;`;
+    // if (existingTest.length > 0) {
+    //     await sql.end();
+    //     return res.status(400).json({error: "A post from this network is already awaiting approval."});
+    // }
 
-    const existingTest = await sql`select id
-                                   from guestbook
-                                   where ip = ${ip}
-                                     and approved = 0;`;
-    if (existingTest.length > 0) {
-        await sql.end();
+    if (await prisma.guestbook.count({where: {IP: ip, Approved: 0}}) > 0) {
+        await prisma.$disconnect();
         return res.status(400).json({error: "A post from this network is already awaiting approval."});
     }
 
-    const banCheck = await sql`select id
-                               from guestbookbans
-                               where ip = ${ip};`;
-    if (banCheck.length > 0) {
-        await sql.end();
+    if (await prisma.guestbookBans.count({where: {IP: ip}}) > 0) {
+        await prisma.$disconnect();
         return res.status(400).json({error: "Banned"});
     }
 
-    await sql`insert into guestbook (username, body, ip)
-              values (${username}, ${body}, ${ip});`
-    await sql.end();
+    await prisma.guestbook.create({
+        data: {
+            Username: username,
+            Body: body,
+            IP: ip
+        }
+    });
+    
+    await prisma.$disconnect();
 
     res.status(200).json({status: "OK"});
 }

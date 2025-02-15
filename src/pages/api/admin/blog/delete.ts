@@ -16,9 +16,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
-import postgres from "postgres";
-import dbinit from "@/backend/dbinit";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const authorization = req.headers.authorization;
@@ -41,27 +40,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(400).json({error: "Bad Request"});
     }
 
-    await dbinit();
 
-    const sql = postgres({});
+    const prisma = new PrismaClient();
+    await prisma.$connect();
 
-    await sql`create table if not exists blogPosts
-              (
-                  id          serial primary key,
-                  handle      text    not null unique,
-                  title       text    not null,
-                  description text    not null,
-                  created     timestamp        default now(),
-                  updated     timestamp        default now(),
-                  targetURL   text    not null,
-                  views       integer not null default 0
-              );`
+    await prisma.blogposts.delete({
+        where: {
+            id: postID
+        }
+    });
 
-    await sql`delete
-              from blogposts
-              where id = ${postID}`;
-
-    await sql.end();
-
+    await prisma.$disconnect();
+    
     res.status(200).json({status: "ok"});
 }

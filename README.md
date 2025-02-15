@@ -5,11 +5,7 @@ Luna's new website, since 2025.
 ## Environment Setup
 
 ```text
-PGHOST=
-PGPORT=
-PGDATABASE=
-PGUSER=
-PGPASSWORD=
+DATABASE_URL=postgres://USERNAME:PASSWORD@HOST:PORT/DATABASE
 ```
 
 ## License

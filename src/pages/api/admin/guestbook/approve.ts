@@ -16,9 +16,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
-import dbinit from "@/backend/dbinit";
-import postgres from "postgres";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const {authorization} = req.headers;
@@ -37,15 +36,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(400).json({error: "Guestbook ID is invalid"});
     }
 
-    await dbinit()
+    const prisma = new PrismaClient();
 
-    const sql = postgres({})
+    await prisma.$connect();
 
-    await sql`update guestbook
-              set approved = 1
-              where id = ${Number(guestbookId)};`
+    await prisma.guestbook.update({
+        where: {
+            ID: Number(guestbookId)
+        },
+        data: {
+            Approved: 1
+        }
+    });
 
-    await sql.end();
+    await prisma.$disconnect();
 
     res.status(200).json({success: true});
 }

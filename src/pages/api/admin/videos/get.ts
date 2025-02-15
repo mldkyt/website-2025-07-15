@@ -16,9 +16,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
-import dbinit from "@/backend/dbinit";
-import postgres from "postgres";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const {authorization} = req.headers;
@@ -29,25 +28,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(403).json({error: "Forbidden"});
     }
 
-    await dbinit();
+    const prisma = new PrismaClient();
+    await prisma.$connect();
 
-    const sql = postgres({});
+    const videos = await prisma.youTubeVideos.findMany({
+        orderBy: {
+            PublishedAt: 'desc'
+        }
+    });
 
-    const videos = await sql`select concat('https://www.youtube.com/watch?v=', video) as url,
-                                    title,
-                                    description,
-                                    thumb_url
-                             from ytvideos;`
-
-    await sql.end();
+    await prisma.$disconnect();
 
     res.status(200).send({
         videos: videos.map(x => {
             return {
-                url: x.url,
-                title: x.title,
-                description: x.description,
-                thumbnail: x.thumb_url
+                url: `https://www.youtube.com/watch?v=${x.VideoID}`,
+                title: x.Title,
+                description: x.Description,
+                thumbnail: x.ThumbURL
             }
         })
     })

@@ -16,8 +16,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
-import postgres from "postgres";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.headers['content-type'] !== "application/json") res.status(400).json({error: 'Invalid content-type'});
@@ -30,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const {cfToken, blogPost} = req.body;
 
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append("secret", process.env['CLOUDFLARE_SECRET_TOKEN']!);
     formData.append("response", cfToken);
     formData.append("remoteip", ip);
@@ -44,19 +44,32 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const outcome = await result.json();
     if (!outcome.success) res.status(403).json({error: 'Bot detected, exit'});
 
-    const sql = postgres();
+    const prisma = new PrismaClient();
+    await prisma.$connect();
 
-    const result2 = await sql`update blogPosts
-                              set views = views + 1
-                              where handle = ${blogPost}
-                              returning id, targeturl as url`;
+    const blogPost2 = await prisma.blogposts.findFirst({
+        where: {
+            handle: blogPost
+        }
+    });
 
-    if (result2.count === 0) {
-        res.status(404).json({error: 'Blog post not found'});
+    if (!blogPost2) {
+        res.status(404).json({error: 'No such blog post'});
         return;
     }
 
-    await sql.end();
+    await prisma.blogposts.update({
+        where: {
+            handle: blogPost
+        },
+        data: {
+            views: {
+                increment: 1
+            }
+        }
+    });
 
-    res.status(200).json({success: true, url: result2[0].url});
+    await prisma.$disconnect();
+
+    res.status(200).json({success: true, url: blogPost2.targeturl});
 }

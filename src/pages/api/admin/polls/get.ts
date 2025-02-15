@@ -16,9 +16,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
-import postgres from "postgres";
-import dbinit from "@/backend/dbinit";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const {authorization} = req.headers;
@@ -29,39 +28,36 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(403).json({error: "Forbidden"});
     }
 
-    await dbinit();
+    const prisma = new PrismaClient();
+    await prisma.$connect();
 
-    const sql = postgres({});
+    const pollsRows = await prisma.polls.findMany({
+        orderBy: {
+            ID: "desc"
+        },
+        include: {
+            PollOptions: true,
+            PollVotes: true
+        }
+    })
 
-    const pollsRows = await sql`select *
-                                from polls
-                                order by id desc`;
+    res.status(200).json({polls: pollsRows.map(x => ({
+        id: x.ID,
+        title: x.Title,
+        handle: x.Handle,
+        options: x.PollOptions.map(y => {
+            let votes = 0;
+            for (const z of x.PollVotes) {
+                if (z.OptionID === y.ID) {
+                    votes += 1;
+                }
+            }
 
-    const polls = [];
-
-    for (const poll of pollsRows) {
-        const optionsRows = await sql`select option,
-                                             (select count(*)
-                                              from pollVotes
-                                              where pollId = ${poll.id}
-                                                and optionId = pollOptions.id) as votes
-                                      from pollOptions
-                                      where pollId = ${poll.id}`;
-        const options = optionsRows.map((option) => {
             return {
-                id: option.id,
-                option: option.option,
-                votes: option.votes
-            };
-        });
-
-        polls.push({
-            id: poll.id,
-            handle: poll.handle,
-            title: poll.title,
-            options: options
-        });
-    }
-
-    res.status(200).json({polls: polls});
+                id: y.ID,
+                option: y.Option,
+                votes
+            }
+        })
+    }))});
 }

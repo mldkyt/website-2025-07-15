@@ -1,0 +1,99 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model blogposts {
+  id          Int       @id @default(autoincrement())
+  handle      String    @unique
+  title       String
+  description String
+  created     DateTime? @default(dbgenerated("CURRENT_DATE")) @db.Timestamp(6)
+  updated     DateTime? @default(dbgenerated("CURRENT_DATE")) @db.Timestamp(6)
+  targeturl   String
+  views       Int       @default(0)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model Guestbook {
+  ID              Int         @id(map: "guestbook_pk") @default(autoincrement()) @map("id")
+  Username        String      @map("username")
+  Body            String      @map("body")
+  IP              String      @map("ip")
+  Approved        Int         @default(0) @map("approved")
+  ReplyTo         Int?        @map("replyto")
+  Created         DateTime?   @default(now()) @map("created") @db.Timestamp(6)
+  Guestbook       Guestbook?  @relation("guestbookToguestbook", fields: [ReplyTo], references: [ID], onDelete: Cascade, map: "guestbook_guestbook_id_fk")
+  other_guestbook Guestbook[] @relation("guestbookToguestbook")
+
+  @@map("guestbook")
+}
+
+model GuestbookBans {
+  ID     Int     @id(map: "guestbookbans_pk") @default(autoincrement()) @map("id")
+  IP     String  @map("ip")
+  Reason String? @map("reason")
+
+  @@map("guestbookbans")
+}
+
+model KeywordBlocklist {
+  ID      Int     @id(map: "keyword_blocklist_pk") @default(autoincrement()) @map("id")
+  Keyword String? @unique(map: "keyword_blocklist_keyword_unique") @map("keyword")
+  Reason  String? @map("reason")
+
+  @@map("keyword_blocklist")
+}
+
+model PollOptions {
+  ID        Int         @id @default(autoincrement()) @map("id")
+  PollID    Int         @map("pollid")
+  Option    String      @map("option")
+  Polls     Polls       @relation(fields: [PollID], references: [ID], onDelete: NoAction, onUpdate: NoAction)
+  PollVotes PollVotes[]
+
+  @@map("polloptions")
+}
+
+model Polls {
+  ID          Int           @id @default(autoincrement()) @map("id")
+  Handle      String        @unique @map("handle")
+  Title       String        @map("title")
+  PollOptions PollOptions[]
+  PollVotes   PollVotes[]
+
+  @@map("polls")
+}
+
+model PollVotes {
+  ID          Int         @id @default(autoincrement()) @map("id")
+  PollID      Int         @map("pollid")
+  OptionID    Int         @map("optionid")
+  IP          String      @map("ip")
+  PollOptions PollOptions @relation(fields: [OptionID], references: [ID], onDelete: NoAction, onUpdate: NoAction)
+  Polls       Polls       @relation(fields: [PollID], references: [ID], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("pollvotes")
+}
+
+model Visits {
+  Route String @id @map("route")
+  Count Int    @default(0) @map("count")
+
+  @@map("visits")
+}
+
+model YouTubeVideos {
+  VideoID     String   @id(map: "ytvideos_pk") @map("video")
+  Title       String   @map("title")
+  Description String   @map("description")
+  Views       Int      @map("views")
+  PublishedAt DateTime @map("published_at") @db.Timestamp(6)
+  ThumbURL    String   @map("thumb_url")
+
+  @@map("ytvideos")
+}

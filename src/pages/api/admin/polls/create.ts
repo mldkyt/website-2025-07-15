@@ -16,9 +16,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
-import postgres from "postgres";
-import dbInit from '@/backend/dbinit';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const {title, handle, options} = req.body as { title: string, handle: string, options: string[] };
@@ -45,21 +44,25 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(403).json({error: "Forbidden"});
     }
 
-    await dbInit();
+    const prisma = new PrismaClient();
+    await prisma.$connect();
 
-    const sql = postgres({});
+    const poll = await prisma.polls.create({
+        data: {
+            Title: title,
+            Handle: handle,
+            PollOptions: {
+                createMany: {
+                    data: options.map((x) => ({
+                        Option: x
+                    }))
+                }
+            }
+        }
+    })
 
-    const poll = await sql`insert into polls (title, handle)
-                           values (${title}, ${handle})
-                           returning id`;
+    await prisma.$disconnect();
 
-    for (const option of options) {
-        await sql`insert into pollOptions (pollID, option)
-                  values (${poll[0].id}, ${option})`;
-    }
-
-    await sql.end();
-
-    res.status(200).json({status: "ok", pollID: poll[0].id});
+    res.status(200).json({status: "ok", pollID: poll.ID});
 
 }

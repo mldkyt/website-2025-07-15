@@ -16,6 +16,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from "react";
+
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
 import Content from "@/components/Generic/Content";
@@ -26,14 +28,13 @@ import Image from "next/image";
 
 import banner from '@/images/velkysmpmon.png';
 import Metadata from "@/components/Generic/Metadata";
-import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {InferGetServerSidePropsType} from "next";
+import {getVisits} from "@/backend/visitsCounter";
 import Disclaimer from "@/components/Generic/Disclaimer";
 import Button from "@/components/Generic/Button";
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     const visits = await getVisits({route: '/project/velkysmpmon'});
 
     return {
@@ -66,7 +67,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
 
                 <p className="mt-2">The indexer is a Python script that fetches the server information and writes player
                     join and leave
-                    changes into a database. This allows it to run whenever it wants to and it doesn't matter if there's
+                    changes into a database. This allows it to run whenever it wants to and it doesn&apos;t matter if there&apos;s
                     downtime.</p>
 
                 <p className="my-2">

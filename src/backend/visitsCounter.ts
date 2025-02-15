@@ -16,40 +16,56 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import postgres from "postgres";
-import dbinit from "@/backend/dbinit";
+import { PrismaClient } from "@prisma/client";
 
 export async function countVisit(opts: { route: string }) {
-    await dbinit();
 
-    const sql = postgres();
+    const prisma = new PrismaClient();
+    await prisma.$connect();
 
-    await sql`insert into visits (route, count)
-              values (${opts.route}, 1)
-              on conflict (route) do update set count = visits.count + 1`;
+    await prisma.visits.upsert({
+        create: {
+            Route: opts.route,
+            Count: 1
+        },
+        update: {
+            Count: {
+                increment: 1
+            }
+        },
+        where: {
+            Route: opts.route
+        }
+    });
 
-    await sql.end();
+    await prisma.$disconnect();
 }
 
 export async function getVisits(opts: { route: string }) {
-    await dbinit();
+    const prisma = new PrismaClient();
+    await prisma.$connect();
 
-    const sql = postgres();
+    const result = await prisma.visits.findFirst({
+        where: {
+            Route: opts.route
+        }
+    });
 
-    const result = await sql`select count
-                             from visits
-                             where route = ${opts.route}`;
-
-    await sql.end();
-    return result[0]?.count as number | undefined;
+    await prisma.$disconnect();
+    return result?.Count as number | undefined;
 }
 
 export async function getTotalVisits() {
-    const sql = postgres();
+    const prisma = new PrismaClient();
+    await prisma.$connect();
 
-    const result = await sql`select sum(count) as total
-                             from visits`;
+    const data = await prisma.visits.aggregate({
+        _sum: {
+            Count: true
+        }
+    });
 
-    await sql.end();
-    return result[0]?.total as number | undefined;
+    await prisma.$disconnect();
+
+    return data._sum.Count as number | undefined;
 }

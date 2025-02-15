@@ -16,9 +16,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
-import postgres from "postgres";
-import dbinit from "@/backend/dbinit";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const authorization = req.headers.authorization;
@@ -31,30 +30,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(403).json({error: "Forbidden"});
     }
 
-    await dbinit();
+    const prisma = new PrismaClient();
+    await prisma.$connect();
 
-    const sql = postgres({});
+    // const posts = await sql`select *
+    //                         from blogPosts
+    //                         order by created desc`;
 
-    await sql`create table if not exists blogPosts
-              (
-                  id          serial primary key,
-                  handle      text    not null unique,
-                  title       text    not null,
-                  description text    not null,
-                  created     timestamp        default now(),
-                  updated     timestamp        default now(),
-                  targetURL   text    not null,
-                  views       integer not null default 0
-              );`
+    const blogPosts = await prisma.blogposts.findMany({
+        orderBy: {
+            created: "desc"
+        }
+    });
 
-    const posts = await sql`select *
-                            from blogPosts
-                            order by created desc`;
-
-    await sql.end();
+    await prisma.$disconnect();
 
     res.status(200).json({
-        blogPosts: posts.map((post) => {
+        blogPosts: blogPosts.map((post) => {
             return {
                 id: post.id,
                 title: post.title,

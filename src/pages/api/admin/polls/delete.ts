@@ -16,9 +16,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
-import dbinit from "@/backend/dbinit";
-import postgres from "postgres";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
@@ -36,35 +35,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(403).json({error: "Forbidden"});
     }
 
-    await dbinit();
+    const prisma = new PrismaClient();
+    await prisma.$connect();
 
-    const sql = postgres({});
+    const result = await prisma.polls.delete({
+        where: {
+            Handle: handle
+        },
+        include: {
+            PollOptions: true,
+            PollVotes: true
+        }
+    })
 
-    const dbRow = await sql`select id
-                            from polls
-                            where handle = ${handle}`;
+    await prisma.$disconnect();
 
-    if (dbRow.length === 0) {
-        await sql.end();
-        return res.status(404).json({error: "Poll not found"});
-    }
-
-    const pollID = dbRow[0].id as number;
-
-    await sql`delete
-              from pollvotes
-              where pollid = ${pollID}`;
-
-    await sql`delete
-              from polloptions
-              where pollid = ${pollID}`;
-
-    await sql`delete
-              from polls
-              where id = ${pollID}`;
-
-    await sql.end();
-
-    res.status(200).json({status: "ok"});
+    if (result) res.status(200).json({status: "ok"});
+    else res.status(404).json({error: "No record found."});
 
 }

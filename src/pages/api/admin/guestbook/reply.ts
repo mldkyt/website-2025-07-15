@@ -16,9 +16,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
-import dbinit from "@/backend/dbinit";
-import postgres from "postgres";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const {authorization} = req.headers;
@@ -29,7 +28,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(403).json({error: "Forbidden"});
     }
 
-    let ip = '0.0.0.0';
+    const ip = '0.0.0.0';
 
     const {body, replyTo} = req.body as { body: string, replyTo: string };
     if (!body) {
@@ -42,21 +41,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(400).json({error: "Invalid replyTo"});
     }
 
-    await dbinit();
+    const prisma = new PrismaClient();
+    await prisma.$connect();
 
-    const sql = postgres({});
-
-    const existingReplyToPost = await sql`select *
-                                          from guestbook
-                                          where id = ${replyTo};`
-    if (existingReplyToPost.length === 0) {
-        return res.status(404).json({error: "ReplyTo post not found"});
+    if (await prisma.guestbook.count({where: {ReplyTo: Number(replyTo)}}) === 0) {
+        return res.status(400).json({error: "ReplyTo post not found"});
     }
 
-    const a = await sql`insert into guestbook (username, body, ip, replyto)
-                        values ('mldchan', ${body}, ${ip}, ${replyTo})
-                        returning id;`
-    await sql.end();
+    const res1 = await prisma.guestbook.create({
+        data: {
+            Username: "mldchan",
+            Body: body,
+            IP: ip,
+            ReplyTo: Number(replyTo)
+        }
+    });
 
-    res.status(200).json({status: "OK", replyId: a[0].id});
+    await prisma.$disconnect();
+
+    res.status(200).json({status: "OK", replyId: res1.ID});
 }

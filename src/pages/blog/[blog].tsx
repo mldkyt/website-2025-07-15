@@ -16,8 +16,9 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from "react";
+
 import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import postgres from "postgres";
 import Main from "@/components/Generic/Main";
 import Metadata from "@/components/Generic/Metadata";
 import Content from "@/components/Generic/Content";
@@ -27,43 +28,35 @@ import Heading from "@/components/Generic/Heading";
 import Turnstile from "react-turnstile";
 import {useState} from "react";
 import {captureException} from "@sentry/nextjs";
+import { PrismaClient } from "@prisma/client";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     const {blog} = ctx.params as { blog: string };
 
-    const sql = postgres();
+    const prisma = new PrismaClient();
+    await prisma.$connect();
 
-    await sql`create table if not exists blogPosts
-              (
-                  id          serial primary key,
-                  handle      text    not null unique,
-                  title       text    not null,
-                  description text    not null,
-                  created     timestamp        default now(),
-                  updated     timestamp        default now(),
-                  targetURL   text    not null,
-                  views       integer not null default 0
-              );`
+    const blogPost = await prisma.blogposts.findFirst({
+        where: {
+            handle: blog
+        }
+    });
 
-    const blogPost = await sql`select *
-                               from blogPosts
-                               where handle = ${blog}`;
-
-    if (blogPost.length === 0) {
-        await sql.end();
+    if (!blogPost) {
+        await prisma.$disconnect();
         return {
             notFound: true
         }
     }
 
-    await sql.end();
+    await prisma.$disconnect();
 
     return {
         props: {
-            handle: blogPost[0].handle,
-            title: blogPost[0].title,
-            description: blogPost[0].description,
-            views: blogPost[0].views,
+            handle: blogPost.handle,
+            title: blogPost.title,
+            description: blogPost.description,
+            views: blogPost.views,
             cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
@@ -113,10 +106,10 @@ export default function Blog(props: InferGetServerSidePropsType<typeof getServer
         <Content>
             <Offset amt={4}/>
             <Heading level={1}>Please confirm yourself</Heading>
-            <p>Due to too many bots visiting my site, I require people to verify they're not a bot. Everything that
+            <p>Due to too many bots visiting my site, I require people to verify they&apos;re not a bot. Everything that
                 modifies the database has a bot check to prevent abuse.</p>
 
-            <p>Once the bot check finishes, you'll automatically get redirected to the blog.</p>
+            <p>Once the bot check finishes, you&apos;ll automatically get redirected to the blog.</p>
 
             <Turnstile sitekey={props.cloudflareSiteToken} onVerify={x => proveInnocence(x)}/>
 

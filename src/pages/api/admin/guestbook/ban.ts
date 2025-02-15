@@ -16,9 +16,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
-import dbinit from "@/backend/dbinit";
-import postgres from "postgres";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const {authorization} = req.headers;
@@ -37,27 +36,28 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(400).json({error: "Guestbook ID is invalid"});
     }
 
-    await dbinit()
+    const prisma = new PrismaClient();
 
-    const sql = postgres({})
+    await prisma.$connect();
 
-    const sqlRow = await sql`select ip
-                             from guestbook
-                             where id = ${guestbookId};`;
+    const item = await prisma.guestbook.delete({
+        where: {
+            ID: Number(guestbookId)
+        }
+    });
 
-    if (sqlRow.length === 0) {
+    if (!item) {
         res.status(404).json({error: "No record found."});
         return;
     }
 
-    await sql`delete
-              from guestbook
-              where id = ${Number(guestbookId)};`;
+    await prisma.guestbookBans.create({
+        data: {
+            IP: item.IP
+        }
+    })
 
-    await sql`insert into guestbookbans (ip)
-              values (${sqlRow[0].ip});`;
-
-    await sql.end();
+    await prisma.$disconnect();
 
     res.status(200).json({success: true});
 }

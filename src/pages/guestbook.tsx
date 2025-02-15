@@ -16,19 +16,20 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from "react";
+
 import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {getVisits} from "@/backend/visitsCounter";
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
 import Content from "@/components/Generic/Content";
 import Heading from "@/components/Generic/Heading";
 import Offset from "@/components/Generic/Offset";
 import Metadata from "@/components/Generic/Metadata";
-import postgres from "postgres";
-import dbinit from "@/backend/dbinit";
 import Button from "@/components/Generic/Button";
 import {FormEvent, useState} from "react";
 import Footer from "@/components/Generic/Footer";
+import { PrismaClient } from "@prisma/client";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     const visits = await getVisits({route: '/guestbook'});
@@ -38,24 +39,16 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 
     let allowPost: true | 'noip' | 'approval' | 'banned' = true;
 
-    await dbinit();
-    const sql = postgres({});
+    const prisma = new PrismaClient();
+    await prisma.$connect();
 
     if (ip) {
 
-        const ipRows = await sql`select *
-                                 from guestbook
-                                 where ip = ${ip}
-                                   and approved = 0;`
-
-        if (ipRows.length > 0) {
+        if (await prisma.guestbook.count({where: {IP: ip, Approved: 0}})) {
             allowPost = 'approval';
         }
 
-        const ban = await sql`select id
-                              from guestbookbans
-                              where ip = ${ip}`;
-        if (ban.length > 0) {
+        if (await prisma.guestbookBans.count({where: {IP: ip}})) {
             allowPost = 'banned';
         }
 
@@ -63,31 +56,31 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
         allowPost = 'noip';
     }
 
-    const existingPosts = await sql`select id, username, body, created
-                                    from guestbook
-                                    where approved = 1
-                                      and replyto IS NULL
-                                    order by created desc;`
-
-    const posts = await Promise.all(existingPosts.map(async (x) => {
-        const replies = await sql`select body
-                                  from guestbook
-                                  where replyto = ${x.id};`
-
-        return {
-            username: x.username, body: x.body, replies: replies.map(x => {
-                return x.body
-            }), created: x.created.toISOString()
+    const existingPosts = await prisma.guestbook.findMany({
+        where: {
+            Approved: 1,
+            ReplyTo: null
+        },
+        orderBy: {
+            Created: 'desc'
+        },
+        include: {
+            other_guestbook: true
         }
-    }))
+    });
 
-    await sql.end();
+    await prisma.$disconnect();
 
     return {
         props: {
             visits,
             post: allowPost,
-            posts,
+            posts: existingPosts.map(x => ({
+                username: x.Username,
+                body: x.Body,
+                replies: x.other_guestbook.map(y => y.Body),
+                created: x.Created!.toISOString()
+            })),
             cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
         }
     }
@@ -145,7 +138,7 @@ export default function Guestbook(props: InferGetServerSidePropsType<typeof getS
         <Header highlight={'guestbook'}/>
         <Content>
             <Offset amt={4}/>
-            <Heading level={1}>mldchan's Guestbook</Heading>
+            <Heading level={1}>mldchan&apos;s Guestbook</Heading>
 
             {postForm === true && <form className={'p-2 rounded-lg drop-shadow-md bg-[#222]'}
                                         onSubmit={guestbookSubmit}>
@@ -182,7 +175,7 @@ export default function Guestbook(props: InferGetServerSidePropsType<typeof getS
                     <h1 className={'text-xl font-bold'}>{x.username}</h1>
                     <p>{x.body}</p>
                     {x.replies.map((y, j) => {
-                        return <div className={'mt-4 bg-[#333] rounded-lg p-1 px-2 drop-shadow-md'}>
+                        return <div key={j} className={'mt-4 bg-[#333] rounded-lg p-1 px-2 drop-shadow-md'}>
                             <h2 className={'font-bold text-lg'}>mldchan
                                 replied:</h2>
                             <p>{y}</p>

@@ -16,6 +16,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from "react";
+
 import Content from "@/components/Generic/Content";
 import {Header} from "@/components/Generic/Header";
 import Main from "@/components/Generic/Main";
@@ -50,10 +52,10 @@ import cutieQuiz from "@/images/cutiequiz/1.png";
 import velkySMPMon from "@/images/velkysmpmon.png";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {countVisit, getVisits} from "@/backend/visitsCounter";
+import {InferGetServerSidePropsType} from "next";
+import {getVisits} from "@/backend/visitsCounter";
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     const visits = await getVisits({route: "/projects"});
 
     return {
@@ -77,7 +79,7 @@ export default function Projects(
             <Content>
                 <Offset amt={4}/>
                 <h1 className={"text-center text-2xl font-bold py-4"}>
-                    Luna's Projects :3
+                    Luna&apos;s Projects :3
                 </h1>
                 <Project
                     image={akabot}
@@ -199,7 +201,7 @@ export default function Projects(
                 />
 
                 <h1 className={"text-center text-2xl font-bold py-4"}>
-                    mldchan's Mon Bazou mods
+                    Luna&apos;s Mon Bazou mods
                 </h1>
 
                 <Project
@@ -220,7 +222,7 @@ export default function Projects(
                 />
 
                 <h1 className={"text-center text-2xl font-bold py-4"}>
-                    mldchan's My Summer Car mods (archive)
+                    Luna&apos;s My Summer Car mods (archive)
                 </h1>
 
                 <Project
@@ -268,7 +270,7 @@ export default function Projects(
                     link={"/project/goodoldmsc"}
                 />
                 <h1 className={"text-center text-2xl font-bold py-4"}>
-                    mldchan's archived projects
+                    Luna&apos;s archived projects
                 </h1>
                 <p>
                     A list of projects that are deprecated, archived or deleted. Downloads
