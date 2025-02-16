@@ -32,7 +32,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const prisma = new PrismaClient();
     await prisma.$connect();
 
-    const guestbookEntries = await prisma.guestbook.findMany();
+    const guestbookEntries = await prisma.guestbook.findMany({
+        where: {
+            ReplyTo: null
+        }
+    });
 
     res.status(200).json({
         success: true,

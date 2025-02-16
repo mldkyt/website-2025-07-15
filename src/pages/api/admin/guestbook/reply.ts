@@ -50,7 +50,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const res1 = await prisma.guestbook.create({
         data: {
-            Username: "mldchan",
+            Username: "Lunya",
             Body: body,
             IP: ip,
             ReplyTo: Number(replyTo)
