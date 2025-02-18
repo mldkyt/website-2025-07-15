@@ -44,7 +44,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const prisma = new PrismaClient();
     await prisma.$connect();
 
-    if (await prisma.guestbook.count({where: {ReplyTo: Number(replyTo)}}) === 0) {
+    if (await prisma.guestbook.count({where: {ID: Number(replyTo)}}) === 0) {
         return res.status(400).json({error: "ReplyTo post not found"});
     }
 
