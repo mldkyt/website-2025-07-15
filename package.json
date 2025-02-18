@@ -10,7 +10,7 @@
     "lint": "next lint",
     "db:push": "npx prisma db push",
     "db:generate": "npx prisma generate",
-    "actual:dev": "npm run db:generate && npm run db:push && next dev"
+    "actual:dev": "npm run db:generate && npm run db:push && next dev -p 8000"
   },
   "dependencies": {
     "@prisma/client": "^6.3.1",
