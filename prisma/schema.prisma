@@ -105,3 +105,21 @@ model YouTubeVideos {
 
   @@map("ytvideos")
 }
+
+model AnonymousMessages {
+  ID      Int       @id @default(autoincrement()) @map("id")
+  Message String    @map("message")
+  IP      String    @map("ip")
+  CW      String?   @map("cw")
+  Created DateTime? @default(now()) @map("created") @db.Timestamp(6)
+
+  @@map("anonymous_messages")
+}
+
+model AnonymousMessagesBans {
+  ID     Int    @id @default(autoincrement()) @map("id")
+  IP     String @map("ip")
+  Reason String @map("reason")
+
+  @@map("anonymous_messages_bans")
+}

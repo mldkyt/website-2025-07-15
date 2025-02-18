@@ -27,8 +27,10 @@ import GuestbookManager from "@/components/Admin/GuestbookManager";
 import CountryBlocklist from "@/components/Admin/CountryBlocklist";
 import Button from "@/components/Generic/Button";
 import KeywordBlocklist from "@/components/Admin/KeywordBlocklist";
+import AnonMessageManager from "@/components/Admin/AnonPostManager";
 
-export type Pages = 'login' | 'main' | 'blogManager' | 'pollManager' | 'guestbookManager' | 'countryBlocks' | 'keywordBlocks';
+export type Pages = 'login' | 'main' | 'blogManager' | 'pollManager' | 'guestbookManager' | 'countryBlocks' | 'keywordBlocks' |
+'anonPostManager';
 
 async function verifyToken(key: string): Promise<boolean> {
     return await new Promise(resolve => {
@@ -88,6 +90,7 @@ export default function Admin() {
         {page == 'guestbookManager' && <GuestbookManager/>}
         {page == 'countryBlocks' && <CountryBlocklist/>}
         {page == 'keywordBlocks' && <KeywordBlocklist/>}
+        {page == 'anonPostManager' && <AnonMessageManager />}
     </>
 
 }

@@ -40,6 +40,7 @@ export default function MainPage(props: {
             <Button onClick={() => props.goToPage('guestbookManager')}>Manage guestbook</Button>
             <Button onClick={() => props.goToPage('countryBlocks')}>Manage Country Blocks</Button>
             <Button onClick={() => props.goToPage('keywordBlocks')}>Manage Keyword Blocks</Button>
+            <Button onClick={() => props.goToPage('anonPostManager')}>Manage Anonymous Posts</Button>
         </Content>
     </Main>
 }

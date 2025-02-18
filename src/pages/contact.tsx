@@ -27,6 +27,7 @@ import Main from "@/components/Generic/Main";
 import Footer from "@/components/Generic/Footer";
 import {InferGetServerSidePropsType} from "next";
 import {getVisits} from "@/backend/visitsCounter";
+import Button from "@/components/Generic/Button";
 
 function ContactWrapper(props: {
     name: string; children: ReactElement | ReactElement[];
@@ -50,6 +51,36 @@ export async function getServerSideProps() {
 
 
 export default function Contact(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
+    const [cw, setCw] = React.useState('');
+    const [message, setMessage] = React.useState('');
+
+    const [success, setSuccess] = React.useState(false);
+    const [error, setError] = React.useState('');
+
+    const send = () => {
+        fetch('/api/anonmessages', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: message,
+                cw: cw
+            })
+        }).then(x => {
+            if (x.ok) {
+                setSuccess(true);
+            } else {
+                x.json().then(y => {
+                    setError(y.error);
+                }).catch(e => {
+                    setError(`Error: ${x.statusText}: ${e}`);
+                })
+            }
+        }).catch(e=>{
+            setError(`Error: ${e}`);
+        })
+    }
 
     return <Main>
         <Header highlight={'contact'}/>
@@ -57,6 +88,20 @@ export default function Contact(props: InferGetServerSidePropsType<typeof getSer
         <Content>
             <Offset amt={4}/>
             <Heading level={1}>Contact mldchan</Heading>
+
+            <p>NEW! Send an anonymous message to mldchan!</p>
+
+            <label htmlFor="cw">Optional CW</label>
+            <br/>
+            <input value={cw} onChange={(e) => setCw(e.target.value)} className={'bg-[#333] rounded-lg p-1 px-2 w-full'} type="text" name="cw" id="cw"></input>
+            <br/>
+            <label htmlFor="message">Message</label>
+            <br/>
+            <textarea value={message} onChange={(e) => setMessage(e.target.value)} className={'bg-[#333] rounded-lg p-1 px-2 w-full'} name="message"></textarea>
+            <Button onClick={send}>Submit!</Button>
+
+            {success && <p className="text-green-500">Message was sent successfully!</p>}
+            {error && <p className="text-red-500">Error: {error}</p>}
 
             <p>Welcome to the contact page for mldchan! This page contains information on how to contact me.</p>
 

@@ -52,7 +52,7 @@ export async function getVisits(opts: { route: string }) {
     });
 
     await prisma.$disconnect();
-    return result?.Count as number | undefined;
+    return result?.Count || 0;
 }
 
 export async function getTotalVisits() {
