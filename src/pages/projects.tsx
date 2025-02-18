@@ -28,6 +28,7 @@ import akabot from "@/images/akabot.png";
 import astolfoIsComingForYou from "@/images/astolfoiscomingforyou/safe_1.png";
 import astolfOS from "@/images/astolfos/desktop.png";
 import astolfoMod from "@/images/astolfomod/biome.png";
+import astolforp from '@/images/astolforp/menu.png';
 import catgirlNonsense from "@/images/catgirlnonsense.png";
 import mcFuck from "@/images/mcfuck.png";
 import nexusmodsFirefox from "@/images/nexusmodsfirefox.png";
@@ -119,6 +120,13 @@ export default function Projects(
                         "A Minecraft mod that adds many non-binary, transgender and femboy characters to the game."
                     }
                     link={"/project/astolfomod"}
+                />
+                <Project 
+                    image={astolforp} 
+                    imageAlt="Minecraft main menu, but it says Astolfocraft: Femboy edition on the top and the panorama is replaced with Astolfo." 
+                    title="Astolfo Resource Pack" 
+                    description="A resource pack for Minecraft with Astolfo." 
+                    link="/project/astolforesourcepack"
                 />
                 <Project
                     image={catgirlNonsense}
