@@ -41,4 +41,4 @@ COPY LICENSE .
 RUN yarn prisma generate
 RUN yarn build
 
-CMD ["yarn", "db:push"]
+CMD ["yarn", "start"]
