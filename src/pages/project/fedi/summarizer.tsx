@@ -73,7 +73,7 @@ export default function FediSummarizer(props: InferGetServerSidePropsType<typeof
                 <Link href="https://social.mldchan.dev/@FediSummarizer">
                     <Button>Official account</Button>
                 </Link>
-                <Link href="https://git.mldchan.dev/mld/fedi-summarizer">
+                <Link href="https://code.mldchan.dev/mld/fedi-summarizer">
                     <Button>Source code</Button>
                 </Link>
 

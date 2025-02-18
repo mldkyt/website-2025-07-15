@@ -81,8 +81,8 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 <Image src={five} alt={'Highway Car Breakdowns'} className={'p-1 rounded-lg'}/>
 
 
-                <Link href="https://git.mldchan.dev/MSCMods/HighwayCarBreakdowns">
-                    <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>GitLab</motion.span>
+                <Link href="https://code.mldchan.dev/MSCMods/HighwayCarBreakdowns">
+                    <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Forgejo</motion.span>
                 </Link>
 
                 <Offset amt={3}/>

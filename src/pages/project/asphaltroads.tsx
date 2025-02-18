@@ -69,8 +69,8 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 </p>
 
 
-                <Link href="https://git.mldchan.dev/MSCMods/AsphaltRoads">
-                    <Button>GitLab</Button>
+                <Link href="https://code.mldchan.dev/MSCMods/AsphaltRoads">
+                    <Button>Forgejo</Button>
                 </Link>
 
                 <Offset amt={3}/>

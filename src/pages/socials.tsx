@@ -78,10 +78,10 @@ export default function Socials(
                     link={"https:///twitch.tv/mldchan"}
                 />
                 <Social
-                    social={"Personal GitLab"}
+                    social={"Personal Forgejo instance"}
                     socialDescription={"Code Sharing"}
                     followAction={"view"}
-                    link={"https://git.mldchan.dev/mld"}
+                    link={"https://code.mldchan.dev/mld"}
                 />
                 <Social
                     social={"GitHub"}

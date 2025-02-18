@@ -179,7 +179,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
 
                 <p>
                     This project is <Link className={'text-pink-400 hover:text-pink-200'}
-                                          href="https://git.mldchan.dev/mscmods/goodoldmsc">
+                                          href="https://code.mldchan.dev/mscmods/goodoldmsc">
                     <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>free
                         and open source
                     </motion.span>
@@ -196,7 +196,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                     their mod source code publicly under the same license.
                 </p>
 
-                <Link href="https://git.mldchan.dev/mscmods/goodoldmsc"
+                <Link href="https://code.mldchan.dev/mscmods/goodoldmsc"
                       className={'text-pink-400 hover:text-pink-200'}>
                     <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Source code</motion.span>
                 </Link>

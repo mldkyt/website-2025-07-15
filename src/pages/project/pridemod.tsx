@@ -73,9 +73,9 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 </ul>
                 <p>More features coming soon! Suggest them using the guestbook and I&apos;ll implement them.</p>
 
-                <Link href="https://git.mldchan.dev/MSCMods/PrideMod"
+                <Link href="https://code.mldchan.dev/MSCMods/PrideMod"
                       className={'text-pink-400 hover:text-pink-200'}>
-                    <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>GitLab</motion.span>
+                    <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Forgejo</motion.span>
                 </Link>
 
                 <Offset amt={3}/>

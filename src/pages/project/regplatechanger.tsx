@@ -78,9 +78,9 @@ export default function RegPlateChanger(props: InferGetServerSidePropsType<typeo
                 <Image src={regPlateChanger} alt={'Reg Plate Changer mod showcase'} className={'p-1 rounded-lg'}/>
 
 
-                <Link href="https://git.mldchan.dev/MSCMods/RegPlateChanger"
+                <Link href="https://code.mldchan.dev/MSCMods/RegPlateChanger"
                       className={'text-pink-400 hover:text-pink-200'}>
-                    <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>GitLab</motion.span>
+                    <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Forgejo</motion.span>
                 </Link>
 
                 <Offset amt={3}/>

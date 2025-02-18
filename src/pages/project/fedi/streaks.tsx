@@ -62,7 +62,7 @@ export default function FediStreaks(props: InferGetServerSidePropsType<typeof ge
                 <Link href="https://social.mldchan.dev/@FediStreaks">
                     <Button>Official account</Button>
                 </Link>
-                <Link href="https://git.mldchan.dev/mld/fedi-streaks">
+                <Link href="https://code.mldchan.dev/mld/fedi-streaks">
                     <Button>Source code</Button>
                 </Link>
                 <Offset amt={3}/>

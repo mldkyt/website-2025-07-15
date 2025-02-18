@@ -20,5 +20,5 @@ You are free to use this website, but please change the project name and content
 
 ## Contributing
 
-If you want to waste time with my own personal website, go ahead, fork it and contribute. Even if I use my own GitLab
+If you want to waste time with my own personal website, go ahead, fork it and contribute. Even if I use my own Forgejo
 instance, I'll be happy to accept any pull requests on GitHub or Codeberg.

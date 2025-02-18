@@ -123,8 +123,8 @@ export default function Akabot(props: InferGetServerSidePropsType<typeof getServ
 
                 <p>The bot is open-source, so if you want to host your own instance for the public or for personal use,
                     click the button below to view the source code:</p>
-                <Link href={'https://git.mldchan.dev/mld/Akabot'} className={'m-1'}>
-                    <Button>View the source code on mldchan&apos;s self-hosted GitLab</Button>
+                <Link href={'https://code.mldchan.dev/mld/Akabot'} className={'m-1'}>
+                    <Button>View the source code on mldchan&apos;s self-hosted Forgejo</Button>
                 </Link>
                 <Link href={'https://github.com/mldchan/Akabot'} className={'m-1'}>
                     <Button>View the source code on GitHub</Button>

@@ -32,7 +32,7 @@ export default function Page5Other() {
         <MainPageOtherElement
           title={"Self-Hosting"}
           description={
-            "Luna self hosts a few services, including her own Sharkey instance and GitLab instance. Most of these self-hosted services are for personal use only, or are shared across friends."
+            "Luna self hosts a few services, including her own Sharkey instance and Forgejo instance. Most of these self-hosted services are for personal use only, or are shared across friends."
           }
           link={"/services"}
         />

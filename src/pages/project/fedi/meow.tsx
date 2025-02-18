@@ -62,7 +62,7 @@ export default function FediMeow(props: InferGetServerSidePropsType<typeof getSe
                 <Link href="https://social.mldchan.dev/@FediMeow">
                     <Button>Official account</Button>
                 </Link>
-                <Link href="https://git.mldchan.dev/mld/fedimeow">
+                <Link href="https://code.mldchan.dev/mld/fedimeow">
                     <Button>Source code</Button>
                 </Link>
                 <Offset amt={3}/>

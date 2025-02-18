@@ -63,8 +63,8 @@ export default function Services(
                     ]}
                 />
                 <Service
-                    svcName={"Sharkey: Fediverse Software"}
-                    svcDesc={"This is what mldchan uses to connect to the fediverse."}
+                    svcName={"Lunyakey: Fediverse Software"}
+                    svcDesc={"This is what mldchan uses to connect to the fediverse. Lunyakey is the cutest fork of Sharkey. "}
                     pubInfo={
                         "This service is limited to Luna's friends and people who she trusts."
                     }
@@ -74,14 +74,14 @@ export default function Services(
                     ]}
                 />
                 <Service
-                    svcName={"GitLab: Code Hosting"}
+                    svcName={"Forgejo: Code Hosting"}
                     svcDesc={
-                        "Hosts source code publicly. Accounts are limited to the usage below."
+                        "Hosts source code publicly. Accounts are public for forking and development reasons until federation gets added."
                     }
                     pubInfo={
-                        "This service is limited to Luna's friends and people who she trusts."
+                        "This service is publicly available for public use."
                     }
-                    links={["https://git.mldchan.dev", "https://git.mldchan.dev/mld"]}
+                    links={["https://code.mldchan.dev", "https://code.mldchan.dev/mld"]}
                 />
                 <Service
                     svcName={"Uptime Kuma: Uptime Monitoring"}
@@ -140,12 +140,6 @@ export default function Services(
                     svcName={"Dockge: Server Management"}
                     svcDesc={"Allows remote managing of mldchan's server."}
                     pubInfo={"This service is for mldchan's personal use only."}
-                />
-                <Service
-                    svcName={"Zipline"}
-                    svcDesc={"ShareX server"}
-                    pubInfo={"This service is for mldchan's personal use only."}
-                    links={["https://i.mldchan.dev/"]}
                 />
                 <Service
                     svcName={"Nekoweb View Tracker"}

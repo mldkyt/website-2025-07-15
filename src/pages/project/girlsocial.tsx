@@ -103,8 +103,8 @@ export default function GirlSocial(props: InferGetServerSidePropsType<typeof get
 
                 <p>The service is fully open-source! You can self host your very own instance by building the Docker
                     image in here:</p>
-                <Link href={'https://git.mldchan.dev/girlsocial/server'} className={'m-1'}>
-                    <Button>View the source code on mldchan&apos;s self-hosted GitLab</Button>
+                <Link href={'https://code.mldchan.dev/girlsocial/server'} className={'m-1'}>
+                    <Button>View the source code on mldchan&apos;s self-hosted Forgejo</Button>
                 </Link>
 
                 <Heading level={2}>Donations are welcome!</Heading>

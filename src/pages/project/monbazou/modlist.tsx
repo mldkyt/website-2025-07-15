@@ -65,7 +65,7 @@ export default function MonBazouModList(props: InferGetServerSidePropsType<typeo
                     <Button>Download from NexusMods</Button>
                 </Link>
                 <br/>
-                <Link href="https://git.mldchan.dev/mld/monbazoumodlist">
+                <Link href="https://code.mldchan.dev/mld/monbazoumodlist">
                     <Button>Download the source code</Button>
                 </Link>
 
