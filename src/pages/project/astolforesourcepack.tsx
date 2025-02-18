@@ -44,7 +44,7 @@ export async function getServerSideProps() {
     }
 }
 
-export default function Template(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function AstolfoResourcePack(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
             <Header highlight={'projects'}/>
@@ -59,12 +59,11 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 <Image src={menu} alt={'Minecraft main menu, but it says Astolfocraft: Femboy edition on the top and the panorama is replaced with Astolfo.'} className={'p-1 rounded-lg'}/>
                 <Image src={ending} alt={'Minecraft ending screen, except all the subtitles are replaced with :3'} className={'p-1 rounded-lg'}/>
 
-                <Link href="https://code.mldchan.dev/mld/AstolfoResourcePackInstaller/releases" className={'text-pink-400 hover:text-pink-200'}>
+                <Link href="https://code.mldchan.dev/mld/AstolfoResourcePackInstaller/releases">
                     <Button>Download builder</Button>
                 </Link>
                 <br/>
-                <Link href="https://code.mldchan.dev/mld/AstolfoResourcePackInstaller"
-                      className={'text-pink-400 hover:text-pink-200'}>
+                <Link href="https://code.mldchan.dev/mld/AstolfoResourcePackInstaller">
                     <Button>Source code</Button>
                 </Link>
 

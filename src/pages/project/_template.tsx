@@ -26,6 +26,7 @@ import Link from "next/link";
 import Footer from "@/components/Generic/Footer";
 import { InferGetServerSidePropsType} from "next";
 import {getVisits} from "@/backend/visitsCounter";
+import Button from "@/components/Generic/Button";
 
 export async function getServerSideProps() {
     const visits = await getVisits({route: '_TEMPLATE'});
@@ -46,13 +47,12 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 <Offset amt={4}/>
                 <Heading level={1}>PROJECT</Heading>
 
-                <Link href="LINK 1" className={'text-pink-400 hover:text-pink-200'}>
-                    <button>LINK 1</button>
+                <Link href="LINK 1">
+                    <Button>LINK 1</Button>
                 </Link>
                 <br/>
-                <Link href="SOURCE LINK"
-                      className={'text-pink-400 hover:text-pink-200'}>
-                    <button>SOURCE</button>
+                <Link href="SOURCE LINK">
+                    <Button>SOURCE</Button>
                 </Link>
 
                 <Offset amt={3}/>
