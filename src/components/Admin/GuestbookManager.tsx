@@ -200,7 +200,7 @@ export default function GuestbookManager() {
                       replies: [
                         ...y.replies,
                         {
-                          username: "Luna :3",
+                          username: "Lunya :3",
                           body: replyText || "UNDEFINED",
                           id: x.replyId,
                         },
