@@ -18,6 +18,7 @@
 
 import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
+import {isCountryBlocked} from "@/backend/countryBlocklist";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.headers['content-type'] !== "application/json") res.status(400).json({error: 'Invalid content-type'});
@@ -46,6 +47,29 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const prisma = new PrismaClient();
     await prisma.$connect();
+
+    const ipRes = await fetch(`https://freeipapi.com/api/json/${ip}`);
+    const ipJson = await ipRes.json();
+    const banned = await isCountryBlocked(ipJson.countryCode);
+    if (banned) {
+        // TODO: Prisma
+        // const result3 = await sql`select id, targeturl as url from blogPosts`;
+        // await sql.end();
+
+        const result3 = await prisma.blogposts.findFirst({
+            where: {
+                handle: blogPost
+            }
+        });
+
+        if (!result3) {
+            res.status(404).json({error: 'No such blog post'});
+            return;
+        }
+
+        res.status(200).json({success: true, url: result3.targeturl});
+        return;
+    }
 
     const blogPost2 = await prisma.blogposts.findFirst({
         where: {

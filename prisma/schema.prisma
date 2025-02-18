@@ -42,11 +42,19 @@ model GuestbookBans {
 }
 
 model KeywordBlocklist {
-  ID      Int     @id(map: "keyword_blocklist_pk") @default(autoincrement()) @map("id")
-  Keyword String? @unique(map: "keyword_blocklist_keyword_unique") @map("keyword")
-  Reason  String? @map("reason")
+  ID      Int    @id(map: "keyword_blocklist_pk") @default(autoincrement()) @map("id")
+  Keyword String @unique(map: "keyword_blocklist_keyword_unique") @map("keyword")
+  Reason  String @map("reason")
 
   @@map("keyword_blocklist")
+}
+
+model CountryBlocklist {
+  ID          Int    @id(map: "country_blocklist_pk") @default(autoincrement()) @map("id")
+  CountryCode String @unique(map: "country_blocklist_country_code_unique") @map("country_code")
+  Reason      String @map("reason")
+
+  @@map("country_blocklist")
 }
 
 model PollOptions {

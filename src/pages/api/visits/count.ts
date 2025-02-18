@@ -18,6 +18,7 @@
 
 import {NextApiRequest, NextApiResponse} from "next";
 import {countVisit} from "@/backend/visitsCounter";
+import {isCountryBlocked} from "@/backend/countryBlocklist";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.headers['content-type'] !== "application/json") res.status(400).json({error: 'Invalid content-type'});
@@ -43,6 +44,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const outcome = await result.json();
     if (!outcome.success) res.status(403).json({error: 'Bot detected, exit'});
+
+    const ipRes = await fetch(`https://freeipapi.com/api/json/${ip}`);
+    const json = await ipRes.json();
+    if (await isCountryBlocked(json.countryCode)) {
+        res.status(200).json({success: true});
+        return;
+    }
 
     await countVisit({route});
 

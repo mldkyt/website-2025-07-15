@@ -24,8 +24,11 @@ import MainPage from "@/components/Admin/MainPage";
 import BlogManager from "@/components/Admin/BlogManager";
 import {PollManager} from "@/components/Admin/PollManager";
 import GuestbookManager from "@/components/Admin/GuestbookManager";
+import CountryBlocklist from "@/components/Admin/CountryBlocklist";
+import Button from "@/components/Generic/Button";
+import KeywordBlocklist from "@/components/Admin/KeywordBlocklist";
 
-type Pages = 'login' | 'main' | 'blogManager' | 'pollManager' | 'guestbookManager';
+export type Pages = 'login' | 'main' | 'blogManager' | 'pollManager' | 'guestbookManager' | 'countryBlocks' | 'keywordBlocks';
 
 async function verifyToken(key: string): Promise<boolean> {
     return await new Promise(resolve => {
@@ -69,19 +72,22 @@ export default function Admin() {
         }
     }, [setPage]);
 
-    switch (page) {
-        case "login":
-            return <LoginPage passwordEntered={verifyAuth} error={loginError}/>;
-        case "main":
-            return <MainPage goToPage={(x) => setPage(x as Pages)}></MainPage>;
-        case "blogManager":
-            return <BlogManager></BlogManager>;
-        case "pollManager":
-            return <PollManager></PollManager>;
-        case "guestbookManager":
-            return <GuestbookManager></GuestbookManager>;
-        default:
-            throw new Error("Invalid page");
+    if (page == 'login') {
+        return <LoginPage error={loginError} passwordEntered={verifyAuth}/>;
     }
+
+    if (page == "main") {
+        return <MainPage goToPage={(x) => setPage(x as Pages)}/>;
+    }
+
+    return <>
+        <Button onClick={() => setPage('main')}>&lt; Back</Button>
+
+        {page == 'blogManager' && <BlogManager/>}
+        {page == 'pollManager' && <PollManager/>}
+        {page == 'guestbookManager' && <GuestbookManager/>}
+        {page == 'countryBlocks' && <CountryBlocklist/>}
+        {page == 'keywordBlocks' && <KeywordBlocklist/>}
+    </>
 
 }

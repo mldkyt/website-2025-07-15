@@ -23,9 +23,10 @@ import Main from "@/components/Generic/Main";
 import Metadata from "@/components/Generic/Metadata";
 import Content from "@/components/Generic/Content";
 import Button from "@/components/Generic/Button";
+import {Pages} from "@/pages/admin";
 
 export default function MainPage(props: {
-    goToPage: (page: string) => void
+    goToPage: (page: Pages) => void
 }) {
     return <Main>
         <Metadata title={'Main Page'} description={'This is the main page of the admin panel'}/>
@@ -37,6 +38,8 @@ export default function MainPage(props: {
             <Button onClick={() => props.goToPage('blogManager')}>Manage blog posts</Button>
             <Button onClick={() => props.goToPage('pollManager')}>Manage polls</Button>
             <Button onClick={() => props.goToPage('guestbookManager')}>Manage guestbook</Button>
+            <Button onClick={() => props.goToPage('countryBlocks')}>Manage Country Blocks</Button>
+            <Button onClick={() => props.goToPage('keywordBlocks')}>Manage Keyword Blocks</Button>
         </Content>
     </Main>
 }

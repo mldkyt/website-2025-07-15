@@ -18,6 +18,8 @@
 
 import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
+import {isCountryBlocked} from "@/backend/countryBlocklist";
+import {checkKeywordBan} from "@/backend/keywordBlocklist";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     let ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress as string;
@@ -36,17 +38,25 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(400).json({error: "Invalid body"});
     }
 
+    const ipRes = await fetch(`https://freeipapi.com/api/json/${ip}`);
+    const ipJson = await ipRes.json();
+    const banned = await isCountryBlocked(ipJson.countryCode);
+    if (banned) {
+        return res.status(403).json({error: `Country banned: ${banned}`});
+    }
+
+    const nameCheck = await checkKeywordBan(username);
+    if (nameCheck && nameCheck.keyword && nameCheck.violation) {
+        return res.status(400).json({error: `Username keyword violation: ${nameCheck.keyword.keyword} is disallowed: ${nameCheck.keyword.reason}`});
+    }
+
+    const messageCheck = await checkKeywordBan(body);
+    if (messageCheck && messageCheck.keyword && messageCheck.violation) {
+        return res.status(400).json({error: `Body keyword violation: ${messageCheck.keyword.keyword} is disallowed: ${messageCheck.keyword.reason}`});
+    }
+
     const prisma = new PrismaClient();
     await prisma.$connect();
-
-    // const existingTest = await sql`select id
-    //                                from guestbook
-    //                                where ip = ${ip}
-    //                                  and approved = 0;`;
-    // if (existingTest.length > 0) {
-    //     await sql.end();
-    //     return res.status(400).json({error: "A post from this network is already awaiting approval."});
-    // }
 
     if (await prisma.guestbook.count({where: {IP: ip, Approved: 0}}) > 0) {
         await prisma.$disconnect();
@@ -55,7 +65,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if (await prisma.guestbookBans.count({where: {IP: ip}}) > 0) {
         await prisma.$disconnect();
-        return res.status(400).json({error: "Banned"});
+        return res.status(403).json({error: "Banned"});
     }
 
     await prisma.guestbook.create({

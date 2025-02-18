@@ -115,7 +115,18 @@ export default function Guestbook(props: InferGetServerSidePropsType<typeof getS
             if (x.ok) {
                 setPostForm('approval');
             }
-        })
+            else {
+                x.json().then(y => {
+                    if (y.error) {
+                        setSubmitError(y.error);
+                    }
+                }).catch(y => {
+                    setSubmitError(`Error: ${x.statusText}: ${y}`);
+                })
+            }
+        }).catch(x => {
+            setSubmitError(`Error: ${x}`);
+        });
     }
 
     const formatTime = (iso: string) => {

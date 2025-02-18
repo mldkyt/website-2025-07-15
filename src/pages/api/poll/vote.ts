@@ -18,6 +18,7 @@
 
 import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
+import {isCountryBlocked} from "@/backend/countryBlocklist";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const {handle, optionId, cfToken} = req.body as { handle: string, optionId: number, cfToken: string };
@@ -46,7 +47,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
 
     const outcome = await result.json();
-    if (!outcome.success) res.status(403).json({error: 'Bot detected, exit'});
+    if (!outcome.success) return res.status(403).json({error: 'Bot detected, exit'});
+
+    const ipRes = await fetch(`https://freeipapi.com/api/json/${ip}`);
+    const ipJson = await ipRes.json();
+    const banned = await isCountryBlocked(ipJson.countryCode);
+    if (banned) {
+        return res.status(403).json({error: `Country banned: ${banned}`});
+    }
 
     const prisma = new PrismaClient();
     await prisma.$connect();
