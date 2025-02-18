@@ -28,7 +28,7 @@ export default function Metadata(props: {
   return (
     <Head>
       <meta charSet="UTF-8" />
-      <title>{props.title} | Luna&apos;s website :3</title>
+      <title>{`${props.title} | Luna's website :3`}</title>
       <meta name="description" content={props.description} />
       <meta name="author" content="Luna :3" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
