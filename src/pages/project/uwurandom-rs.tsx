@@ -64,7 +64,7 @@ export default function UwurandomRs(props: InferGetServerSidePropsType<typeof ge
                 <Button>Download from crates.io</Button>
             </Link>
             <br/>
-            <Link href={'https://github.com/mldchan/uwurandom-rs'}>
+            <Link href={'https://github.com/uwugrl/uwurandom-rs'}>
                 <Button>Download from GitHub</Button>
             </Link>
             <Offset amt={6}/>

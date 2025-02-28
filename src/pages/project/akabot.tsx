@@ -126,7 +126,7 @@ export default function Akabot(props: InferGetServerSidePropsType<typeof getServ
                 <Link href={'https://code.mldchan.dev/mld/Akabot'} className={'m-1'}>
                     <Button>View the source code on mldchan&apos;s self-hosted Forgejo</Button>
                 </Link>
-                <Link href={'https://github.com/mldchan/Akabot'} className={'m-1'}>
+                <Link href={'https://github.com/uwugrl/Akabot'} className={'m-1'}>
                     <Button>View the source code on GitHub</Button>
                 </Link>
 

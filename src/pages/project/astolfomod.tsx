@@ -139,7 +139,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 <p>
                     The simplest you can do for now is to <b>create an idea suggestion</b> for the mod using a <Link
                     className="text-pink-400 hover:text-pink-300"
-                    href="https://github.com/mldchan/AstolfoForge/issues"
+                    href="https://github.com/uwugrl/AstolfoForge/issues"
                 >GitHub issue</Link>.
                 </p>
 
@@ -148,7 +148,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 <p>
                     If you find any bug in the mod, <b>you can report it</b> using <Link
                     className="text-pink-400 hover:text-pink-300"
-                    href="https://github.com/mldchan/AstolfoForge/issues">GitHub issues</Link> for it to be fixed.
+                    href="https://github.com/uwugrl/AstolfoForge/issues">GitHub issues</Link> for it to be fixed.
                     It will be fixed once I get some free time.
                 </p>
 
@@ -200,7 +200,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 <Link href="https://modrinth.com/mod/astolfo-mod">
                     <Button>Open Modrinth page</Button>
                 </Link>
-                <Link href="https://github.com/mldchan/AstolfoForge/releases/latest" className="ml-2">
+                <Link href="https://github.com/uwugrl/AstolfoForge/releases/latest" className="ml-2">
                     <Button>GitHub</Button>
                 </Link>
 

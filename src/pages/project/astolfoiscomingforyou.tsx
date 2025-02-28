@@ -75,7 +75,7 @@ export default function Astolfoiscomingforyou(props: InferGetServerSidePropsType
                         <Image className={'p-1 rounded-lg'} src={safe2} alt={'Astolfo gives you lots of compliments'}/>
 
                         <br/>
-                        <Link href={'https://github.com/mldchan/AstolfoIsComingForYou/releases'}>
+                        <Link href={'https://github.com/uwugrl/AstolfoIsComingForYou/releases'}>
                             <Button>Download the latest release</Button>
                         </Link>
                     </div>
@@ -95,7 +95,7 @@ export default function Astolfoiscomingforyou(props: InferGetServerSidePropsType
                                alt={'Astolfo shuts down your machine in anger'}/>
                         <br/>
 
-                        <Link href={'https://github.com/mldchan/AstolfoIsComingForYou/releases'}>
+                        <Link href={'https://github.com/uwugrl/AstolfoIsComingForYou/releases'}>
                             <Button>
                                 Download the latest release
                             </Button>

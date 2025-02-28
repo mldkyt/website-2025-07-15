@@ -70,7 +70,7 @@ export default function WinterMod(props: InferGetServerSidePropsType<typeof getS
                     </li>
                 </ul>
 
-                <Link href="https://github.com/mldchan/MonBazouWinterMod/releases">
+                <Link href="https://github.com/uwugrl/MonBazouWinterMod/releases">
                     <Button>Download latest release from GitHub</Button>
                 </Link>
                 <br/>

@@ -64,7 +64,7 @@ export default function AstolfOS(props: InferGetServerSidePropsType<typeof getSe
             </div>
 
             <div>
-                <Link href={'https://github.com/mldchan/AstolfOS/wiki/Manual-Installation'}>
+                <Link href={'https://github.com/uwugrl/AstolfOS/wiki/Manual-Installation'}>
                     <Button>Installation Guide</Button>
                 </Link>
             </div>

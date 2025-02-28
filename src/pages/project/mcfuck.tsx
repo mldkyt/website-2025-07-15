@@ -67,7 +67,7 @@ export default function MCFuck(props: InferGetServerSidePropsType<typeof getServ
 
             <br/>
 
-            <Link href={'https://github.com/mldchan/MCFuck/releases'}>
+            <Link href={'https://github.com/uwugrl/MCFuck/releases'}>
                 <Button>Download this abomination</Button>
             </Link>
             <Offset amt={3}/>

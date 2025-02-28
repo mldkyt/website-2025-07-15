@@ -90,11 +90,11 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                     sessions, viewing
                     last logins into the customization panel and suggesting new features into the VelkySMP website.</p>
 
-                <Link href="https://github.com/mldchan/mcstatusvelky">
+                <Link href="https://github.com/uwugrl/mcstatusvelky">
                     <Button>View the GitHub repository of the indexer</Button>
                 </Link>
                 <br/>
-                <Link href="https://github.com/mldchan/velkysmp">
+                <Link href="https://github.com/uwugrl/velkysmp">
                     <Button>View the GitHub repository of the website</Button>
                 </Link>
 

@@ -77,7 +77,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 <Image src={two} alt={'Cutie Quiz 2'} className={'p-1 rounded-lg'}/>
                 <Image src={three} alt={'Cutie Quiz 3'} className={'p-1 rounded-lg'}/>
 
-                <Link href="https://github.com/mldchan/CutieQuiz">
+                <Link href="https://github.com/uwugrl/CutieQuiz">
                     <Button>Source code</Button>
                 </Link>
 

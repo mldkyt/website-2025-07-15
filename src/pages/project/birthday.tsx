@@ -70,10 +70,10 @@ export default function Birthday(props: InferGetServerSidePropsType<typeof getSe
             <Image src={config} alt="Configuration Window" className={'p-1 rounded-lg pt-2'}/>
             <Image src={add} alt="Add new birthday Window" className={'p-1 rounded-lg pt-2'}/>
 
-            <Link href="https://github.com/mldchan/Birthday/releases">
+            <Link href="https://github.com/uwugrl/Birthday/releases">
                 <Button>Download latest release</Button>
             </Link>
-            <Link href="https://github.com/mldchan/Birthday">
+            <Link href="https://github.com/uwugrl/Birthday">
                 <Button>View source code</Button>
             </Link>
             <Offset amt={3}/>

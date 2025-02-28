@@ -87,7 +87,7 @@ export default function Socials(
                     social={"GitHub"}
                     socialDescription={"Code Sharing"}
                     followAction={"follow"}
-                    link={"https://github.com/mldchan"}
+                    link={"https://github.com/uwugrl"}
                 />
                 <Social
                     social={"Codeberg"}

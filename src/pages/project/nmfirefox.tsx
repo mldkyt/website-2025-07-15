@@ -72,7 +72,7 @@ export default function NMFirefox(props: InferGetServerSidePropsType<typeof getS
                 the <code>xpi</code> file while using Firefox. The extension should install.
             </p>
             <br/>
-            <Link href={'https://github.com/mldchan/NexusEnhancementsForFirefox/releases'}>
+            <Link href={'https://github.com/uwugrl/NexusEnhancementsForFirefox/releases'}>
                 <Button>Download Nexus Enhancements for Firefox</Button>
             </Link>
             <Offset amt={3}/>
