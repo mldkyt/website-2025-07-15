@@ -74,12 +74,15 @@ export default function Akabot(props: InferGetServerSidePropsType<typeof getServ
                             <Button>Invite Akabot in your server</Button>
                         </Link>
                     </div>
-                    <p className={'text-sm text-center text-grey-500'}>By inviting the public instance, you agree to
+                    <p className={'text-sm text-center text-gray-500'}>By inviting the public instance, you agree to
                         the <Link className={'text-pink-500'}
                                   href={'/project/akabot/tos'}>terms
                             of
                             service</Link> and <Link className={'text-pink-500'} href={'/project/akabot/privacy'}>privacy
                             policy</Link>.
+                    </p>
+                    <p className="text-sm text-center text-gray-500">
+                        You can join the <Link href="https://discord.gg/YFksXpXnn6" className="text-pink-500">Support Discord server</Link>.
                     </p>
                 </div>
 
