@@ -19,6 +19,10 @@
 import {NextApiRequest, NextApiResponse} from "next";
 import {countVisit} from "@/backend/visitsCounter";
 import {isCountryBlocked} from "@/backend/countryBlocklist";
+import { PrismaClient } from "@prisma/client";
+import { DateTime } from 'luxon';
+
+const prisma = new PrismaClient();
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.headers['content-type'] !== "application/json") res.status(400).json({error: 'Invalid content-type'});
@@ -29,7 +33,37 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         ip = ip[0];
     }
 
-    const {route} = req.body;
+    const {route} = req.body as { route: string | undefined };
+
+    if (!route || route.length < 1 || !route.startsWith("/")) {
+        return res.status(400).send({error: 'Parameters not defined'});
+    }
+
+    await prisma.pageVisitCooldown.deleteMany({
+        where: {
+            expires: {
+                lt: DateTime.now().toJSDate()
+            }
+        }
+    });
+
+    if (await prisma.pageVisitCooldown.count({
+        where: {
+            ip,
+            route
+        }
+    })) {
+        return res.status(429).send({error: 'Too many requests, try again later.'});
+    }
+
+    await prisma.pageVisitCooldown.create({
+        data: {
+            ip,
+            expires: DateTime.now().plus({seconds: 10}).toJSDate(),
+            route
+        }
+    });
+
 
     const ipRes = await fetch(`https://freeipapi.com/api/json/${ip}`);
     const json = await ipRes.json();

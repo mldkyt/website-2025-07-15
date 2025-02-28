@@ -123,3 +123,10 @@ model AnonymousMessagesBans {
 
   @@map("anonymous_messages_bans")
 }
+
+model PageVisitCooldown {
+  id      Int      @id @default(autoincrement())
+  ip      String
+  expires DateTime
+  route   String   @default("/")
+}
