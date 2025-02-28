@@ -23,32 +23,31 @@ import logo from '@/images/logo.png';
 import {motion} from 'motion/react';
 import Image from "next/image";
 import Link from "next/link";
-import Turnstile from "react-turnstile";
-import {useState} from "react";
 import {captureException} from "@sentry/nextjs";
 
 export default function Footer(props: { visits?: number, route?: string, cloudflareSiteToken?: string }) {
-
-    const [hasFinishedChallenge, setHasFinishedChallenge] = useState(false);
-
-    function verifyCloudflare(token: string) {
+    function countVisit() {
         if (props.route === undefined) return;
 
         fetch('/api/visits/count', {
             method: 'POST', headers: {
                 'Content-Type': 'application/json'
             }, body: JSON.stringify({
-                'cfToken': token, 'route': props.route
+                'route': props.route
             })
-        }).then(x => {
-            if (x.ok) {
-                setHasFinishedChallenge(true);
-                return;
-            }
-        }).catch(x => {
+        }).then(() => {}).catch(x => {
             captureException(x);
-        })
+        });
     }
+
+    const hasRan = React.useRef(false);
+
+    React.useEffect(() => {
+      if (!hasRan.current) {
+        hasRan.current = true;
+        countVisit();
+      }
+    });
 
     return (<footer className={'w-full flex flex-row h-36'}>
         <div className={'w-1/2'}>
@@ -81,14 +80,6 @@ export default function Footer(props: { visits?: number, route?: string, cloudfl
             {props.visits !== undefined && <div>
                 {props.visits} visits
             </div>}
-
-            {props.cloudflareSiteToken !== undefined && <>
-                {hasFinishedChallenge || <>
-                    <span>This site uses a captcha to verify counting of page visits. This captcha dissapears if it&apos;s successfull and your page visit is counted.</span>
-                    <Turnstile sitekey={props.cloudflareSiteToken}
-                               onVerify={(token) => verifyCloudflare(token)}></Turnstile>
-                </>}
-            </>}
         </div>
     </footer>)
 }

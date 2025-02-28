@@ -29,21 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         ip = ip[0];
     }
 
-    const {cfToken, route} = req.body;
-
-    const formData = new FormData();
-    formData.append("secret", process.env['CLOUDFLARE_SECRET_TOKEN']!);
-    formData.append("response", cfToken);
-    formData.append("remoteip", ip);
-
-    const url = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
-    const result = await fetch(url, {
-        body: formData,
-        method: "POST",
-    });
-
-    const outcome = await result.json();
-    if (!outcome.success) res.status(403).json({error: 'Bot detected, exit'});
+    const {route} = req.body;
 
     const ipRes = await fetch(`https://freeipapi.com/api/json/${ip}`);
     const json = await ipRes.json();
