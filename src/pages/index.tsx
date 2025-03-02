@@ -22,13 +22,12 @@ import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
 import Page1 from "@/components/MainPage/Page1";
 import Page3Projects from "@/components/MainPage/Page3Projects";
-import Page5Other from "@/components/MainPage/Page5Other";
+import Page4Other from "@/components/MainPage/Page4Other";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
 import Page2About from "@/components/MainPage/Page2About";
 import {InferGetServerSidePropsType} from "next";
 import {getVisits} from "@/backend/visitsCounter";
-import Page4MisskeyEmbed from "@/components/MainPage/Page4MisskeyEmbed";
 
 export async function getServerSideProps() {
     const visits = await getVisits({route: '/'});
@@ -50,8 +49,7 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
                 <Page1/>
                 <Page2About/>
                 <Page3Projects/>
-                <Page4MisskeyEmbed/>
-                <Page5Other/>
+                <Page4Other/>
                 <Footer visits={props.visits} route={'/'} cloudflareSiteToken={props.cloudflareSiteToken}/>
             </Main>
         </>

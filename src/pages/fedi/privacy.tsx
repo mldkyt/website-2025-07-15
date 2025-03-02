@@ -46,7 +46,7 @@ export default function Privacy(
         <Main>
             <Metadata
                 title={"Fedi Privacy Policy"}
-                description={"Learn about the privacy policy of Luna Social."}
+                description={"Learn about the privacy policy of mldchan Social."}
             />
             <Header/>
             <Content>
@@ -58,8 +58,8 @@ export default function Privacy(
 
                 <Heading level={2}>Introduction</Heading>
                 <p>
-                    Welcome to Luna/mldchan Social, a Sharkey instance primarily intended
-                    for Luna and her friends. This privacy policy outlines how we handle
+                    Welcome to mldchan Social, a Sharkey instance primarily intended
+                    for mldchan and their friends. This privacy policy outlines how we handle
                     and protect your personal information.
                 </p>
 
@@ -79,7 +79,7 @@ export default function Privacy(
 
                 <Heading level={2}>Data Usage</Heading>
                 <p>
-                    All collected data is used solely for the operation of Luna/mldchan
+                    All collected data is used solely for the operation of mldchan
                     Social. We do not:
                 </p>
                 <ul className={"ml-4 list-disc"}>

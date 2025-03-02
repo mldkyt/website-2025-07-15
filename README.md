@@ -1,6 +1,6 @@
-# Luna's new website :3
+# mldchan's new website
 
-Luna's new website, since 2025.
+mldchan's new website, since 2025.
 
 ## Environment Setup
 
@@ -12,7 +12,7 @@ DATABASE_URL=postgres://USERNAME:PASSWORD@HOST:PORT/DATABASE
 
 Please follow the GNU GPL v3 attached to this project.
 
-Content written about Luna :3 is copyrighted by her, the rest of code is free to take as long as it complies with
+Content written about mldchan is copyrighted by them, the rest of code is free to take as long as it complies with
 the
 license.
 

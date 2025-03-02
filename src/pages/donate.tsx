@@ -49,7 +49,7 @@ export default function Donate(
         <Main>
             <Metadata
                 title={"Donate"}
-                description={"Donate to Luna to support her projects!"}
+                description={"Donate to mldchan to support their projects!"}
             />
             <Header highlight={"donate"}/>
             <Content>

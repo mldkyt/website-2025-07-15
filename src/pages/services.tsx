@@ -66,7 +66,7 @@ export default function Services(
                     svcName={"Lunyakey: Fediverse Software"}
                     svcDesc={"This is what mldchan uses to connect to the fediverse. Lunyakey is the cutest fork of Sharkey. "}
                     pubInfo={
-                        "This service is limited to Luna's friends and people who she trusts."
+                        "This service is limited to mldchan's friends and people who they trust."
                     }
                     links={[
                         "https://social.mldchan.dev",
@@ -151,12 +151,12 @@ export default function Services(
                 <Service
                     svcName={"Cutie Hangout Services"}
                     svcDesc={"Friends only services"}
-                    pubInfo={"This service is limited to Luna's friend circle only."}
+                    pubInfo={"This service is limited to mldchan's friend circle only."}
                 />
                 <Service
                     svcName={"QueerBot"}
                     svcDesc={"Another Discord bot for friends."}
-                    pubInfo={"This service is limited to Luna's friend circle only."}
+                    pubInfo={"This service is limited to mldchan's friend circle only."}
                 />
                 <Offset amt={6}/>
                 <Footer visits={props.visits} route={'/services'} cloudflareSiteToken={props.cloudflareSiteToken}/>

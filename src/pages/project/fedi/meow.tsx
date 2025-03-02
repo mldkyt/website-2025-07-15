@@ -55,7 +55,7 @@ export default function FediMeow(props: InferGetServerSidePropsType<typeof getSe
                 </p>
                 <p className="pt-2">
                     This bot is really simple. It sends a message containing meow or nya, randomly adding a tidlie or a
-                    :3 to the message.
+                    to the message.
                 </p>
                 <Image src={examplepost} alt="A post from Fedi Meow (@FediMeow), containing the text mraow :3c"
                        className="py-2 rounded-lg drop-shadow-md"/>

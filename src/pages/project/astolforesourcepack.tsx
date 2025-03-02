@@ -52,12 +52,12 @@ export default function AstolfoResourcePack(props: InferGetServerSidePropsType<t
                 <Offset amt={4}/>
                 <Heading level={1}>Astolfo Resource Pack</Heading>
 
-                <Heading level={2}>Minecraft :3 edition let&apos;s gooo</Heading>
+                <Heading level={2}>Minecraft edition let&apos;s gooo</Heading>
                 <p>This resource pack changes the Minecraft loading screen, logo, totem of undying and ending screen to be more Astolfo themed.</p>
 
                 <Image src={loading} alt={'Minecraft 1.13+ loading screen, the icon is replaced with Astolfo'} className={'p-1 rounded-lg'}/>
                 <Image src={menu} alt={'Minecraft main menu, but it says Astolfocraft: Femboy edition on the top and the panorama is replaced with Astolfo.'} className={'p-1 rounded-lg'}/>
-                <Image src={ending} alt={'Minecraft ending screen, except all the subtitles are replaced with :3'} className={'p-1 rounded-lg'}/>
+                <Image src={ending} alt={'Minecraft ending screen, except all the subtitles are replaced with'} className={'p-1 rounded-lg'}/>
 
                 <Link href="https://code.mldchan.dev/mld/AstolfoResourcePackInstaller/releases">
                     <Button>Download builder</Button>
