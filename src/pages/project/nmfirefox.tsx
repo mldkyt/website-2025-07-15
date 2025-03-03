@@ -38,8 +38,7 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            visits,
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+            visits
         }
     }
 }
@@ -76,7 +75,7 @@ export default function NMFirefox(props: InferGetServerSidePropsType<typeof getS
                 <Button>Download Nexus Enhancements for Firefox</Button>
             </Link>
             <Offset amt={3}/>
-            <Footer visits={props.visits} route={'/project/nmfirefox'} cloudflareSiteToken={props.cloudflareSiteToken}/>
+            <Footer visits={props.visits} route={'/project/nmfirefox'} />
         </Content>
     </Main>
 }

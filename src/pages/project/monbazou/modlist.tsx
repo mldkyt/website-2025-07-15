@@ -34,8 +34,7 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            visits,
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+            visits
         }
     }
 }
@@ -71,7 +70,7 @@ export default function MonBazouModList(props: InferGetServerSidePropsType<typeo
 
                 <Offset amt={3}/>
                 <Footer visits={props.visits} route={'/project/monbazou/modlist'}
-                        cloudflareSiteToken={props.cloudflareSiteToken}/>
+                        />
             </Content>
         </Main>
     )

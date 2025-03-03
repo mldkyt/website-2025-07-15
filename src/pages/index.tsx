@@ -34,8 +34,7 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            visits,
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+            visits
         }
     }
 }
@@ -50,7 +49,7 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
                 <Page2About/>
                 <Page3Projects/>
                 <Page4Other/>
-                <Footer visits={props.visits} route={'/'} cloudflareSiteToken={props.cloudflareSiteToken}/>
+                <Footer visits={props.visits} route={'/'} />
             </Main>
         </>
     );

@@ -33,8 +33,7 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            visits,
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+            visits
         }
     }
 }
@@ -49,7 +48,7 @@ export default function CatgirlNonsense(props: InferGetServerSidePropsType<typeo
             <Generator/>
             <Offset amt={3}/>
             <Footer visits={props.visits} route={'/project/catgirlnonsense'}
-                    cloudflareSiteToken={props.cloudflareSiteToken}/>
+                    />
         </Content>
     </Main>
 }

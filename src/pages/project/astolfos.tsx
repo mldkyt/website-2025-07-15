@@ -39,8 +39,7 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            visits,
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+            visits
         }
     }
 }
@@ -70,7 +69,7 @@ export default function AstolfOS(props: InferGetServerSidePropsType<typeof getSe
             </div>
 
             <Offset amt={3}/>
-            <Footer visits={props.visits} route={'/project/astolfos'} cloudflareSiteToken={props.cloudflareSiteToken}/>
+            <Footer visits={props.visits} route={'/project/astolfos'} />
         </Content>
     </Main>
 }

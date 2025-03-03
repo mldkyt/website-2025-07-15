@@ -80,8 +80,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
                 body: x.Body,
                 replies: x.other_guestbook.map(y => y.Body),
                 created: x.Created!.toISOString()
-            })),
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+            }))
         }
     }
 }
@@ -197,7 +196,7 @@ export default function Guestbook(props: InferGetServerSidePropsType<typeof getS
             })}
 
             <Offset amt={4}/>
-            <Footer visits={props.visits} route={'/guestbook'} cloudflareSiteToken={props.cloudflareSiteToken}/>
+            <Footer visits={props.visits} route={'/guestbook'} />
         </Content>
     </Main>
 }

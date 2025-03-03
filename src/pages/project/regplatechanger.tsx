@@ -38,8 +38,7 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            visits,
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+            visits
         }
     }
 }
@@ -85,7 +84,7 @@ export default function RegPlateChanger(props: InferGetServerSidePropsType<typeo
 
                 <Offset amt={3}/>
                 <Footer visits={props.visits} route={'/project/regplatechanger'}
-                        cloudflareSiteToken={props.cloudflareSiteToken}/>
+                        />
             </Content>
         </Main>
     )

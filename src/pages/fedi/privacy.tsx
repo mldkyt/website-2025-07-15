@@ -33,8 +33,7 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            visits,
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+            visits
         },
     };
 }
@@ -118,7 +117,7 @@ export default function Privacy(
                     </small>
                 </p>
                 <Offset amt={4}/>
-                <Footer visits={props.visits} route={'/fedi/privacy'} cloudflareSiteToken={props.cloudflareSiteToken}/>
+                <Footer visits={props.visits} route={'/fedi/privacy'} />
             </Content>
         </Main>
     );

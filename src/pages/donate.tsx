@@ -36,8 +36,7 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            visits,
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+            visits
         },
     };
 }
@@ -164,7 +163,7 @@ export default function Donate(
                 </Link>
 
                 <Offset amt={6}/>
-                <Footer visits={props.visits} route={'/donate'} cloudflareSiteToken={props.cloudflareSiteToken}/>
+                <Footer visits={props.visits} route={'/donate'} />
             </Content>
         </Main>
     );

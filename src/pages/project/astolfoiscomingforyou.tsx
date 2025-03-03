@@ -40,8 +40,7 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            visits,
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+            visits
         }
     }
 }
@@ -104,7 +103,7 @@ export default function Astolfoiscomingforyou(props: InferGetServerSidePropsType
                 </div>
                 <Offset amt={3}/>
                 <Footer visits={props.visits} route={'/project/astolfoiscomingforyou'}
-                        cloudflareSiteToken={props.cloudflareSiteToken}/>
+                        />
             </Content>
         </Main>
     )

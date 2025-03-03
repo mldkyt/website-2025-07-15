@@ -72,8 +72,7 @@ export async function getServerSideProps() {
         props: {
             visits,
             year: date.getUTCFullYear(),
-            month,
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+            month
         }
     }
 }
@@ -157,7 +156,7 @@ export default function NekoSearchV2(props: InferGetServerSidePropsType<typeof g
             })}
             <Offset amt={3}/>
             <Footer visits={props.visits} route={'/project/neko/search2'}
-                    cloudflareSiteToken={props.cloudflareSiteToken}/>
+                    />
         </Content>
     </Main>
 

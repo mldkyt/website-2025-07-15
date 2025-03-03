@@ -37,8 +37,7 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            visits,
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+            visits
         }
     }
 }
@@ -71,7 +70,7 @@ export default function MCFuck(props: InferGetServerSidePropsType<typeof getServ
                 <Button>Download this abomination</Button>
             </Link>
             <Offset amt={3}/>
-            <Footer visits={props.visits} route={'/project/mcfuck'} cloudflareSiteToken={props.cloudflareSiteToken}/>
+            <Footer visits={props.visits} route={'/project/mcfuck'} />
         </Content>
     </Main>
 }

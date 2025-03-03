@@ -37,8 +37,7 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            visits,
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+            visits
         }
     }
 }
@@ -119,7 +118,7 @@ export default function GirlSocial(props: InferGetServerSidePropsType<typeof get
                 <Offset amt={4}/>
 
                 <Footer visits={props.visits} route={'/project/girlsocial'}
-                        cloudflareSiteToken={props.cloudflareSiteToken}/>
+                        />
             </Content>
         </Main>
     )

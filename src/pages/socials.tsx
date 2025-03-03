@@ -33,8 +33,7 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            visits,
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+            visits
         },
     };
 }
@@ -96,7 +95,7 @@ export default function Socials(
                     link={"https://codeberg.org/mldchan"}
                 />
                 <Offset amt={6}/>
-                <Footer visits={props.visits} route={'/socials'} cloudflareSiteToken={props.cloudflareSiteToken}/>
+                <Footer visits={props.visits} route={'/socials'} />
             </Content>
         </Main>
     );

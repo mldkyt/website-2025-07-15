@@ -36,8 +36,7 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            visits,
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+            visits
         }
     }
 }
@@ -67,7 +66,7 @@ export default function FediMeow(props: InferGetServerSidePropsType<typeof getSe
                 </Link>
                 <Offset amt={3}/>
                 <Footer visits={props.visits} route={'/project/fedimeow'}
-                        cloudflareSiteToken={props.cloudflareSiteToken}/>
+                        />
             </Content>
         </Main>
     )

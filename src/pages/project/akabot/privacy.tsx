@@ -35,8 +35,7 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            visits,
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+            visits
         }
     }
 }
@@ -224,7 +223,7 @@ export default function AkabotPrivacy(props: InferGetServerSidePropsType<typeof 
                 </p>
                 <Offset amt={3}/>
                 <Footer visits={props.visits} route={'/project/akabot/privacy'}
-                        cloudflareSiteToken={props.cloudflareSiteToken}/>
+                        />
             </Content>
         </Main>
     )

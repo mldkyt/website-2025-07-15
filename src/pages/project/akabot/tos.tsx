@@ -39,8 +39,7 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            visits,
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+            visits
         }
     }
 }
@@ -100,7 +99,7 @@ export default function TermsOfService(props: InferGetServerSidePropsType<typeof
                     bot.</p>
                 <Offset amt={3}/>
                 <Footer visits={props.visits} route={'/project/akabot/tos'}
-                        cloudflareSiteToken={props.cloudflareSiteToken}/>
+                        />
             </Content>
         </Main>
     )

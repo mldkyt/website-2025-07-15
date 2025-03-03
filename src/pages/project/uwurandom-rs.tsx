@@ -38,8 +38,7 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            visits,
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+            visits
         }
     }
 }
@@ -69,7 +68,7 @@ export default function UwurandomRs(props: InferGetServerSidePropsType<typeof ge
             </Link>
             <Offset amt={6}/>
             <Footer visits={props.visits} route={'/project/uwurandom-rs'}
-                    cloudflareSiteToken={props.cloudflareSiteToken}/>
+                    />
         </Content>
     </Main>
 }

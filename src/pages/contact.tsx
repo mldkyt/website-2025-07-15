@@ -43,8 +43,7 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            visits,
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+            visits
         }
     }
 }
@@ -144,7 +143,7 @@ export default function Contact(props: InferGetServerSidePropsType<typeof getSer
 
             <Offset amt={3}/>
         </Content>
-        <Footer visits={props.visits} route={'/contact'} cloudflareSiteToken={props.cloudflareSiteToken}/>
+        <Footer visits={props.visits} route={'/contact'} />
     </Main>
 
 }

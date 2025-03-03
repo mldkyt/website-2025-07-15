@@ -25,7 +25,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {captureException} from "@sentry/nextjs";
 
-export default function Footer(props: { visits?: number, route?: string, cloudflareSiteToken?: string }) {
+export default function Footer(props: { visits?: number, route?: string }) {
     function countVisit() {
         if (props.route === undefined) return;
 

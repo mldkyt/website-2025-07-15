@@ -55,8 +55,7 @@ export async function getServerSideProps() {
                     thumbnail: x.ThumbURL
                 }
             }),
-            visits,
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+            visits
         }
     }
 }
@@ -93,6 +92,6 @@ export default function Videos(props: InferGetServerSidePropsType<typeof getServ
 
             <Offset amt={3}/>
         </Content>
-        <Footer visits={props.visits} route={'/videos'} cloudflareSiteToken={props.cloudflareSiteToken}/>
+        <Footer visits={props.visits} route={'/videos'} />
     </Main>
 }

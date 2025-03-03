@@ -32,8 +32,7 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            visits,
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+            visits
         },
     };
 }
@@ -159,7 +158,7 @@ export default function Services(
                     pubInfo={"This service is limited to mldchan's friend circle only."}
                 />
                 <Offset amt={6}/>
-                <Footer visits={props.visits} route={'/services'} cloudflareSiteToken={props.cloudflareSiteToken}/>
+                <Footer visits={props.visits} route={'/services'} />
             </Content>
         </Main>
     );

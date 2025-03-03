@@ -37,8 +37,7 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            visits,
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+            visits
         }
     }
 }
@@ -79,7 +78,7 @@ export default function FediSummarizer(props: InferGetServerSidePropsType<typeof
 
                 <Offset amt={3}/>
                 <Footer visits={props.visits} route={'/project/fedi/summarizer'}
-                        cloudflareSiteToken={props.cloudflareSiteToken}/>
+                        />
             </Content>
         </Main>
     )

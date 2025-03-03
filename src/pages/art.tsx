@@ -41,8 +41,7 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            visits,
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+            visits
         }
     }
 }
@@ -80,7 +79,7 @@ export default function Art(props: InferGetServerSidePropsType<typeof getServerS
             <p>The logo of this website</p>
             <Image src={website} alt={'Website logo'}/>
             <Offset amt={6}/>
-            <Footer visits={props.visits} route={'/art'} cloudflareSiteToken={props.cloudflareSiteToken}/>
+            <Footer visits={props.visits} route={'/art'} />
         </Content>
     </Main>
 }
