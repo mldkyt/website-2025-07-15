@@ -163,7 +163,7 @@ export default function Poll(props: InferGetServerSidePropsType<typeof getServer
                     <Heading level={2}>Vote on this poll</Heading>
 
                     <input type={'radio'} name={'option'} value={0} defaultChecked onClick={() => setCheckedOption(0)}
-                           className={'accent-pink-400 hover:accent-pink-200'}/>
+                           className={'accent-green-500 hover:accent-green-500'}/>
                     <label className={'ml-2'}>Please select an option</label>
                     {props.options.map((option: { id: number, option: string }, index: number) => {
                         const setOption = () => {
@@ -172,7 +172,7 @@ export default function Poll(props: InferGetServerSidePropsType<typeof getServer
 
                         return <div key={index}>
                             <input type={'radio'} name={'option'} value={option.id} onClick={setOption}
-                                   className={'accent-pink-400 hover:accent-pink-200'}/>
+                                   className={'accent-green-500 hover:accent-green-500'}/>
                             <label className={'ml-2'}>{option.option}</label>
                         </div>
                     })}

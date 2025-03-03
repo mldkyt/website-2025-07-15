@@ -57,25 +57,25 @@ export default function Footer(props: { visits?: number, route?: string }) {
         </div>
         <div className={'flex flex-col w-1/4'}>
             <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} className={'w-max'}>
-                <Link href={'/projects'} className={'text-pink-400 hover:text-pink-200'}>Projects</Link>
+                <Link href={'/projects'} className={'text-green-300 hover:text-green-800'}>Projects</Link>
             </motion.div>
             <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} className={'w-max'}>
-                <Link href={'/socials'} className={'text-pink-400 hover:text-pink-200'}>Socials</Link>
+                <Link href={'/socials'} className={'text-green-300 hover:text-green-800'}>Socials</Link>
             </motion.div>
             <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} className={'w-max'}>
-                <Link href={'/services'} className={'text-pink-400 hover:text-pink-200'}>Services</Link>
+                <Link href={'/services'} className={'text-green-300 hover:text-green-800'}>Services</Link>
             </motion.div>
             <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} className={'w-max'}>
-                <Link href={'/donate'} className={'text-pink-400 hover:text-pink-200'}>Donate!</Link>
+                <Link href={'/donate'} className={'text-green-300 hover:text-green-800'}>Donate!</Link>
             </motion.div>
         </div>
         <div className={'flex flex-col w-1/4'}>
             <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} className={'w-max'}>
-                <Link href={'/project/akabot'} className={'text-pink-400 hover:text-pink-200'}>Akabot</Link>
+                <Link href={'/project/akabot'} className={'text-green-300 hover:text-green-800'}>Akabot</Link>
             </motion.div>
             <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} className={'w-max'}>
                 <Link href={'https://youtube.com/@mldchan'}
-                      className={'text-pink-400 hover:text-pink-200'}>YouTube</Link>
+                      className={'text-green-300 hover:text-green-800'}>YouTube</Link>
             </motion.div>
             {props.visits !== undefined && <div>
                 {props.visits} visits

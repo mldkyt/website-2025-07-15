@@ -66,57 +66,57 @@ export default function Generator() {
                        className={'bg-[#333] p-1 rounded-lg ml-2'}/>
 
                 <br/>
-                <input type={'checkbox'} className={'accent-pink-400 hover:accent-pink-200'} checked={uwu}
+                <input type={'checkbox'} className={'accent-green-500 hover:accent-green-500'} checked={uwu}
                        onChange={() => setUwu(!uwu)}/>
                 <label className={'ml-2'}>UwU</label>
 
                 <br/>
-                <input type={'checkbox'} className={'accent-pink-400 hover:accent-pink-200'} checked={owo}
+                <input type={'checkbox'} className={'accent-green-500 hover:accent-green-500'} checked={owo}
                        onChange={() => setOwo(!owo)}/>
                 <label className={'ml-2'}>OwO</label>
 
                 <br/>
-                <input type={'checkbox'} className={'accent-pink-400 hover:accent-pink-200'} checked={nya}
+                <input type={'checkbox'} className={'accent-green-500 hover:accent-green-500'} checked={nya}
                        onChange={() => setNya(!nya)}/>
                 <label className={'ml-2'}>Nya</label>
 
                 <br/>
-                <input type={'checkbox'} className={'accent-pink-400 hover:accent-pink-200'} checked={blush}
+                <input type={'checkbox'} className={'accent-green-500 hover:accent-green-500'} checked={blush}
                        onChange={() => setBlush(!blush)}/>
                 <label className={'ml-2'}>Blush</label>
 
                 <br/>
-                <input type={'checkbox'} className={'accent-pink-400 hover:accent-pink-200'} checked={colon3}
+                <input type={'checkbox'} className={'accent-green-500 hover:accent-green-500'} checked={colon3}
                        onChange={() => setColon3(!colon3)}/>
                 <label className={'ml-2'}>:3</label>
 
                 <br/>
-                <input type={'checkbox'} className={'accent-pink-400 hover:accent-pink-200'} checked={actions}
+                <input type={'checkbox'} className={'accent-green-500 hover:accent-green-500'} checked={actions}
                        onChange={() => setActions(!actions)}/>
                 <label className={'ml-2'}>Actions</label>
 
                 <br/>
-                <input type={'checkbox'} className={'accent-pink-400 hover:accent-pink-200'} checked={keysmash}
+                <input type={'checkbox'} className={'accent-green-500 hover:accent-green-500'} checked={keysmash}
                        onChange={() => setKeysmash(!keysmash)}/>
                 <label className={'ml-2'}>Keysmash</label>
 
                 <br/>
-                <input type={'checkbox'} className={'accent-pink-400 hover:accent-pink-200'} checked={screaming}
+                <input type={'checkbox'} className={'accent-green-500 hover:accent-green-500'} checked={screaming}
                        onChange={() => setScreaming(!screaming)}/>
                 <label className={'ml-2'}>Screaming</label>
 
                 <br/>
-                <input type={'checkbox'} className={'accent-pink-400 hover:accent-pink-200'} checked={scrunkly}
+                <input type={'checkbox'} className={'accent-green-500 hover:accent-green-500'} checked={scrunkly}
                        onChange={() => setScrunkly(!scrunkly)}/>
                 <label className={'ml-2'}>Scrunkly</label>
 
                 <br/>
-                <input type={'checkbox'} className={'accent-pink-400 hover:accent-pink-200'} checked={nonsense}
+                <input type={'checkbox'} className={'accent-green-500 hover:accent-green-500'} checked={nonsense}
                        onChange={() => setNonsense(!nonsense)}/>
                 <label className={'ml-2'}>Nonsense</label>
 
                 <br/>
-                <input type={'checkbox'} className={'accent-pink-400 hover:accent-pink-200'} checked={araAra}
+                <input type={'checkbox'} className={'accent-green-500 hover:accent-green-500'} checked={araAra}
                        onChange={() => setAraAra(!araAra)}/>
                 <label className={'ml-2'}>Ara Ara</label>
 

@@ -64,7 +64,7 @@ export default function RegPlateChanger(props: InferGetServerSidePropsType<typeo
                 </p>
                 <p>
                     Getting started is easy. The{" "}
-                    <Link className={'text-pink-400 hover:text-pink-200'}
+                    <Link className={'text-green-300 hover:text-green-800'}
                           href="https://codeberg.org/mldchan/RegPlateChanger/src/branch/master/Example%20Image">
                         <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>assets
                             folder
@@ -78,7 +78,7 @@ export default function RegPlateChanger(props: InferGetServerSidePropsType<typeo
 
 
                 <Link href="https://code.mldchan.dev/MSCMods/RegPlateChanger"
-                      className={'text-pink-400 hover:text-pink-200'}>
+                      className={'text-green-300 hover:text-green-800'}>
                     <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Forgejo</motion.span>
                 </Link>
 

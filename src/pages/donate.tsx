@@ -89,7 +89,7 @@ export default function Donate(
                         <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>
                             <Link
                                 href={"https://liberapay.com/mldchan/donate"}
-                                className={"text-pink-400 hover:text-pink-200"}
+                                className={"text-green-300 hover:text-green-800"}
                             >
                                 Liberapay
                             </Link>
@@ -102,7 +102,7 @@ export default function Donate(
                         <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>
                             <Link
                                 href={"https://ko-fi.com/mldchan"}
-                                className={"text-pink-400 hover:text-pink-200"}
+                                className={"text-green-300 hover:text-green-800"}
                             >
                                 Ko-fi
                             </Link>
@@ -115,7 +115,7 @@ export default function Donate(
                         <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>
                             <Link
                                 href={"https://github.com/sponsors/mldchan"}
-                                className={"text-pink-400 hover:text-pink-200"}
+                                className={"text-green-300 hover:text-green-800"}
                             >
                                 GitHub Sponsors
                             </Link>

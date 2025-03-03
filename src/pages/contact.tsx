@@ -105,7 +105,7 @@ export default function Contact(props: InferGetServerSidePropsType<typeof getSer
             <p>Welcome to the contact page for mldchan! This page contains information on how to contact me.</p>
 
             <ContactWrapper name={'Matrix'}>
-                <p><code className="text-pink-400">@mld:mldchan.dev</code></p>
+                <p><code className="text-green-500">@mld:mldchan.dev</code></p>
                 <p>DM&apos;s open! DM me here and I&apos;ll respond.</p> 
                 <p>This is one of my preferred methods of getting DM&apos;s, alongside e-mail with PGP encryption.</p>
             </ContactWrapper>
@@ -115,7 +115,7 @@ export default function Contact(props: InferGetServerSidePropsType<typeof getSer
                     mail are the only notifications that work for me).</p>
                 <p>If you can, please use my PGP encryption key.</p>
                 <details className={'flex flex-col'}>
-                    <summary className="text-pink-400">PGP key</summary>
+                    <summary className="text-green-500">PGP key</summary>
                     <span>-----BEGIN PGP PUBLIC KEY BLOCK-----</span>
                     <span>xjMEYlkSUxYJKwYBBAHaRw8BAQdAu4mI1rh++Hs5sje8tAMphgKlI2kKV970</span>
                     <span>iasMTaN7X13NI21sZGt5dEBwcm90b24ubWUgPG1sZGt5dEBwcm90b24ubWU+</span>
@@ -133,7 +133,7 @@ export default function Contact(props: InferGetServerSidePropsType<typeof getSer
             </ContactWrapper>
 
             <ContactWrapper name={'Discord'}>
-                <p>Add me on Discord! <code className="text-pink-400">uwu.grl</code>! Please note I might remove you for various reasons, so please do not misuse this 🥺.</p>
+                <p>Add me on Discord! <code className="text-green-300">uwu.grl</code>! Please note I might remove you for various reasons, so please do not misuse this 🥺.</p>
             </ContactWrapper>
 
             <Offset amt={2}/>

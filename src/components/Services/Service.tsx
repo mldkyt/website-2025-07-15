@@ -50,7 +50,7 @@ export default function Service(props: {
             >
               <Link
                 href={link}
-                className={"text-pink-400 hover:text-pink-200 block"}
+                className={"text-green-300 hover:text-green-800 block"}
               >
                 {link}
               </Link>

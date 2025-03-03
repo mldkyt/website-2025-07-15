@@ -53,13 +53,13 @@ export default function InviteAkabot(props: InferGetServerSidePropsType<typeof g
                     service and privacy policy, and I am required to make you read these:</p>
                 <ul className={'list-disc ml-4'}>
                     <li>
-                        <Link href={'/project/akabot/tos'} className={'text-pink-400 hover:text-pink-200'}>
+                        <Link href={'/project/akabot/tos'} className={'text-green-300 hover:text-green-800'}>
                             <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Terms of Service
                             </motion.span>
                         </Link>
                     </li>
                     <li>
-                        <Link href={'/project/akabot/privacy'} className={'text-pink-400 hover:text-pink-200'}>
+                        <Link href={'/project/akabot/privacy'} className={'text-green-300 hover:text-green-800'}>
                             <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Privacy Policy</motion.span>
                         </Link>
                     </li>
