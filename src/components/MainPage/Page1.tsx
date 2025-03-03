@@ -37,7 +37,7 @@ export default function Page1() {
           <span className={"text-lg xl:text-xl"}>YouTuber.</span>
           <br />
           <br />
-          <span className={"text-lg xl:text-xl"}>Mod Creator.</span>
+          <span className={"text-lg xl:text-xl"}>Mon Bazou Mod Creator.</span>
         </Content>
       </div>
     </>
