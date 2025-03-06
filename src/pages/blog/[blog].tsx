@@ -51,13 +51,28 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 
     await prisma.$disconnect();
 
+    let privacyWarning = false;
+
+    const gpcHeader = ctx.req.headers['sec-gpc'];
+
+    if (gpcHeader === "1") {
+        privacyWarning = true;
+    }
+
+    const dntHeader = ctx.req.headers['dnt'];
+
+    if (dntHeader === "1") {
+        privacyWarning = true;
+    }
+
     return {
         props: {
             handle: blogPost.handle,
             title: blogPost.title,
             description: blogPost.description,
             views: blogPost.views,
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!,
+            privacyWarning
         }
     }
 
@@ -110,6 +125,11 @@ export default function Blog(props: InferGetServerSidePropsType<typeof getServer
                 modifies the database has a bot check to prevent abuse.</p>
 
             <p>Once the bot check finishes, you&apos;ll automatically get redirected to the blog.</p>
+
+            
+            {props.privacyWarning && <div className="bg-yellow-800 p-2 m-1 rounded-lg drop-shadow-lg">
+                <h2><strong>Warning: </strong> The website has detected that you don&apos;t want to be tracked. Your blog visit won&apos;t be counted.</h2>
+            </div>}
 
             <Turnstile sitekey={props.cloudflareSiteToken} onVerify={x => proveInnocence(x)}/>
 

@@ -28,6 +28,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.headers['content-type'] !== "application/json") res.status(400).json({error: 'Invalid content-type'});
     if (req.method !== 'POST') res.status(400).json({error: 'Invalid method'});
 
+    let privacyWarning = false;
+
+    const gpcHeader = req.headers['sec-gpc'];
+
+    if (gpcHeader === "1") {
+        privacyWarning = true;
+    }
+
+    const dntHeader = req.headers['dnt'];
+
+    if (dntHeader === "1") {
+        privacyWarning = true;
+    }
+
+    if (privacyWarning) {
+        return res.status(200).send({success: true, message: 'Privacy mode active, not counting page view.'});
+    }
+
     let ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress as string;
     if (Array.isArray(ip)) {
         ip = ip[0];

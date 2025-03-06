@@ -25,7 +25,7 @@ import Heading from "@/components/Generic/Heading";
 import Content from "@/components/Generic/Content";
 import Main from "@/components/Generic/Main";
 import Footer from "@/components/Generic/Footer";
-import {InferGetServerSidePropsType} from "next";
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
 import {getVisits} from "@/backend/visitsCounter";
 import Button from "@/components/Generic/Button";
 
@@ -38,12 +38,27 @@ function ContactWrapper(props: {
     </div>
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     const visits = await getVisits({route: '/contact'});
+
+    let privacyWarning = false;
+
+    const gpcHeader = ctx.req.headers['sec-gpc'];
+
+    if (gpcHeader === "1") {
+        privacyWarning = true;
+    }
+
+    const dntHeader = ctx.req.headers['dnt'];
+
+    if (dntHeader === "1") {
+        privacyWarning = true;
+    }
 
     return {
         props: {
-            visits
+            visits,
+            privacyWarning
         }
     }
 }
@@ -89,6 +104,11 @@ export default function Contact(props: InferGetServerSidePropsType<typeof getSer
             <Heading level={1}>Contact mldchan</Heading>
 
             <p>NEW! Send an anonymous message to mldchan!</p>
+
+
+            {props.privacyWarning && <div className="bg-yellow-800 p-2 m-1 rounded-lg drop-shadow-lg">
+                <h2><strong>Warning: </strong> The website has detected that you don&apos;t want to be tracked. Please note when you send anonymous messages the server stores your IP address due to avoiding spam. mldchan will never see your IP address. The source code is open.</h2>
+            </div>}
 
             <label htmlFor="cw">Optional CW</label>
             <br/>

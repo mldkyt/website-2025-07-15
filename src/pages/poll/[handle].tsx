@@ -57,6 +57,20 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
         }
     }
 
+    let privacyWarning = false;
+
+    const gpcHeader = ctx.req.headers['sec-gpc'];
+
+    if (gpcHeader === "1") {
+        privacyWarning = true;
+    }
+
+    const dntHeader = ctx.req.headers['dnt'];
+
+    if (dntHeader === "1") {
+        privacyWarning = true;
+    }
+
     return {
         props: {
             handle,
@@ -75,7 +89,8 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
                     votes: votes
                 }
             }),
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!,
+            privacyWarning
         }
     }
 }
@@ -143,6 +158,11 @@ export default function Poll(props: InferGetServerSidePropsType<typeof getServer
             <Content>
                 <Offset amt={4}/>
                 <Heading level={1}>{`Poll: ${props.title}`}</Heading>
+
+                {props.privacyWarning && <div className="bg-yellow-800 p-2 m-1 rounded-lg drop-shadow-lg">
+                    <h2><strong>Warning: </strong> The website has detected that you don&apos;t want to be tracked. Please note the voting on polls will store the IP address on the server in order for you to be only able to vote once and to avoid spam. Note that no one, not even mldchan, can see your IP.</h2>
+                </div>}
+
                 <p>Here&apos;s what existing people voted:</p>
                 <ul className={'text-left'}>
                     {props.options.map((option: { id: number, option: string, votes: number }, index: number) => {

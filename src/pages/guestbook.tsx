@@ -38,6 +38,19 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
     const ip = typeof forwarded === 'string' ? forwarded.split(/, /)[0] : ctx.req.socket.remoteAddress;
 
     let allowPost: true | 'noip' | 'approval' | 'banned' = true;
+    let privacyWarning = false;
+
+    const gpcHeader = ctx.req.headers['sec-gpc'];
+
+    if (gpcHeader === "1") {
+        privacyWarning = true;
+    }
+
+    const dntHeader = ctx.req.headers['dnt'];
+
+    if (dntHeader === "1") {
+        privacyWarning = true;
+    }
 
     const prisma = new PrismaClient();
     await prisma.$connect();
@@ -80,7 +93,8 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
                 body: x.Body,
                 replies: x.other_guestbook.map(y => y.Body),
                 created: x.Created!.toISOString()
-            }))
+            })),
+            privacyWarning
         }
     }
 }
@@ -153,6 +167,10 @@ export default function Guestbook(props: InferGetServerSidePropsType<typeof getS
             {postForm === true && <form className={'p-2 rounded-lg drop-shadow-md bg-[#222]'}
                                         onSubmit={guestbookSubmit}>
                 <h1 className={'text-2xl font-bold'}>Sign the guestbook</h1>
+
+                {props.privacyWarning && <div className="bg-yellow-800 p-2 m-1 rounded-lg drop-shadow-lg">
+                    <h2><strong>Warning: </strong> The website has detected that you don&apos;t want to be tracked. Please note the guestbook stores your IP address due to avoiding spam.</h2>
+                </div>}
 
                 <label htmlFor={'username'}>Username:</label>
                 <br/>

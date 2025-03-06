@@ -24,6 +24,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.headers['content-type'] !== "application/json") res.status(400).json({error: 'Invalid content-type'});
     if (req.method !== 'POST') res.status(400).json({error: 'Invalid method'});
 
+    let privacyWarning = false;
+
+    const gpcHeader = req.headers['sec-gpc'];
+
+    if (gpcHeader === "1") {
+        privacyWarning = true;
+    }
+
+    const dntHeader = req.headers['dnt'];
+
+    if (dntHeader === "1") {
+        privacyWarning = true;
+    }
+
     let ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress as string;
     if (Array.isArray(ip)) {
         ip = ip[0];
@@ -50,12 +64,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const ipRes = await fetch(`https://freeipapi.com/api/json/${ip}`);
     const ipJson = await ipRes.json();
-    const banned = await isCountryBlocked(ipJson.countryCode);
+    const banned = await isCountryBlocked(ipJson.countryCode) || privacyWarning;
     if (banned) {
-        // TODO: Prisma
-        // const result3 = await sql`select id, targeturl as url from blogPosts`;
-        // await sql.end();
-
         const result3 = await prisma.blogposts.findFirst({
             where: {
                 handle: blogPost
