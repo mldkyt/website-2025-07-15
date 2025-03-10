@@ -16,50 +16,50 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {NextApiRequest, NextApiResponse} from "next";
-import {MeiliSearch} from "meilisearch";
+import { NextApiRequest, NextApiResponse } from "next";
+import { MeiliSearch } from "meilisearch";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-    if (req.method === 'OPTIONS') {
+    if (req.method === "OPTIONS") {
         res.status(200).end();
         return;
     }
 
-    const {q} = req.query;
-    if (!q || q === '' || Array.isArray(q)) {
-        res.status(400).json({"error": "Bad parameters"});
+    const { q } = req.query;
+    if (!q || q === "" || Array.isArray(q)) {
+        res.status(400).json({ error: "Bad parameters" });
     }
 
     const meili = new MeiliSearch({
-        host: 'http://192.168.88.27:7700',
-        apiKey: process.env.MEILI_API_KEY!
+        host: "http://172.17.0.1:7700",
+        apiKey: process.env.MEILI_API_KEY!,
     });
 
     try {
-        const x = await meili.index('nekoweb').search(q as string, {
+        const x = await meili.index("nekoweb").search(q as string, {
             limit: 20,
             cropLength: 20,
-            attributesToCrop: ['body']
+            attributesToCrop: ["body"],
         });
 
         const data = {
             time: x.processingTimeMs,
             est: x.estimatedTotalHits,
-            hits: x.hits.map(y => {
+            hits: x.hits.map((y) => {
                 return {
                     title: y.title,
                     body: y._formatted?.body ?? y.body,
-                    url: y.url
-                }
-            })
+                    url: y.url,
+                };
+            }),
         };
 
         res.json(data);
     } catch {
-        res.status(400).json({"error": "Error occured"});
+        res.status(400).json({ error: "Error occured" });
     }
 }

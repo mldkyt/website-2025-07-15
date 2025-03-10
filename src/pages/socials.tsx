@@ -20,82 +20,40 @@ import React from "react";
 import Main from "@/components/Generic/Main";
 import Content from "@/components/Generic/Content";
 import Offset from "@/components/Generic/Offset";
-import {Header} from "@/components/Generic/Header";
+import { Header } from "@/components/Generic/Header";
 import Social from "@/components/Socials/Social";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
-import {InferGetServerSidePropsType} from "next";
-import {getVisits} from "@/backend/visitsCounter";
+import { InferGetServerSidePropsType } from "next";
+import { getVisits } from "@/backend/visitsCounter";
 
 export async function getServerSideProps() {
-
-    const visits = await getVisits({route: "/socials"});
+    const visits = await getVisits({ route: "/socials" });
 
     return {
         props: {
-            visits
+            visits,
         },
     };
 }
 
-export default function Socials(
-    props: InferGetServerSidePropsType<typeof getServerSideProps>,
-) {
+export default function Socials(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
-            <Metadata title={"Socials"} description={"mldchan's socials"}/>
-            <Header highlight={"socials"}/>
+            <Metadata title={"Socials"} description={"mldchan's socials"} />
+            <Header highlight={"socials"} />
             <Content>
-                <Offset amt={4}/>
-                <h1 className={"text-center text-2xl font-bold py-4"}>
-                    Luna&apos;s Socials :3
-                </h1>
-                <Social
-                    social={"Fediverse"}
-                    socialDescription={"A decentralized social platform"}
-                    preSocial={"the"}
-                    followAction={"follow"}
-                    link={"https://social.mldchan.dev/@mld"}
-                />
-                <Social
-                    social={"Instagram"}
-                    socialDescription={"A social network for sharing photos and videos"}
-                    preSocial={""}
-                    followAction={"follow"}
-                    link={"https://instagram.com/_mldchan_"}
-                />
-                <Social
-                    social={"YouTube"}
-                    socialDescription={"Video content creation platform"}
-                    followAction={"subscribe to"}
-                    link={"https://youtube.com/@mldchan"}
-                />
-                <Social
-                    social={"Twitch"}
-                    socialDescription={"Streaming platform"}
-                    followAction={"follow"}
-                    link={"https:///twitch.tv/mldchan"}
-                />
-                <Social
-                    social={"Personal Forgejo instance"}
-                    socialDescription={"Code Sharing"}
-                    followAction={"view"}
-                    link={"https://code.mldchan.dev/mld"}
-                />
-                <Social
-                    social={"GitHub"}
-                    socialDescription={"Code Sharing"}
-                    followAction={"follow"}
-                    link={"https://github.com/uwugrl"}
-                />
-                <Social
-                    social={"Codeberg"}
-                    socialDescription={"Code Sharing"}
-                    followAction={"follow"}
-                    link={"https://codeberg.org/mldchan"}
-                />
-                <Offset amt={6}/>
-                <Footer visits={props.visits} route={'/socials'} />
+                <Offset amt={4} />
+                <h1 className={"text-center text-2xl font-bold py-4"}>Luna&apos;s Socials :3</h1>
+                <Social social={"Fediverse"} socialDescription={"A decentralized social platform"} preSocial={"the"} followAction={"follow"} link={"https://social.mldchan.dev/@mld"} />
+                <Social social={"PeerTube"} socialDescription={"Federated P2P Video Sharing"} followAction={"subscribe to"} link={"https://peertube.mldchan.dev/c/mldchan"} />
+                <Social social={"YouTube"} socialDescription={"Video content creation platform"} followAction={"subscribe to"} link={"https://youtube.com/@mldchan"} />
+                <Social social={"Twitch"} socialDescription={"Streaming platform"} followAction={"follow"} link={"https:///twitch.tv/mldchan"} />
+                <Social social={"Personal Forgejo instance"} socialDescription={"Code Sharing"} followAction={"view"} link={"https://code.mldchan.dev/mld"} />
+                <Social social={"GitHub"} socialDescription={"Code Sharing"} followAction={"follow"} link={"https://github.com/uwugrl"} />
+                <Social social={"Codeberg"} socialDescription={"Code Sharing"} followAction={"follow"} link={"https://codeberg.org/mldchan"} />
+                <Offset amt={6} />
+                <Footer visits={props.visits} route={"/socials"} />
             </Content>
         </Main>
     );
