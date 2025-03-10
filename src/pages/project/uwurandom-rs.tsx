@@ -57,7 +57,7 @@ export default function UwurandomRs(props: InferGetServerSidePropsType<typeof ge
                 nonsense</a> does, but it does it as a library in the Rust programming language. Written by a transgirl
                 btw.
             </p>
-            <p className="pt-2">The library is very easy to use, for the maximum femefficiency</p>
+            <p className="pt-2">The library is very easy to use, for the maximum femefficiency :3</p>
             <Image src={image} alt={'UwUrandom-rs example source code'} className={'p-1 rounded-lg py-2'}/>
             <Link href={'https://crates.io/crates/mldkyt-uwurandom-rs'}>
                 <Button>Download from crates.io</Button>

@@ -53,7 +53,7 @@ export default function Art(props: InferGetServerSidePropsType<typeof getServerS
         <Content>
             <Offset amt={4}/>
             <Heading level={1}>Art</Heading>
-            <p>mldchan sometimes does art. Here are some of their works</p>
+            <p>mldchan sometimes does art. Here are some of her works :3</p>
 
             <Heading level={2}>BusLine</Heading>
             <p>A kawaii logo of the local bus transport company.</p>

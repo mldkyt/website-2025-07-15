@@ -27,20 +27,20 @@ export default function Page2About() {
   return (
     <div className={"h-screen"}>
       <Content>
-        <Heading level={1}>Who is mldchan?</Heading>
+        <Heading level={1}>Who is Luna?</Heading>
         <p className={"my-4"}>
-          mldchan is a programmer. They is a cute little
+          Luna is a transfem developer on the internet. She is a cute little
           transgirl who also happens to be a catgirl.
         </p>
         <p className={"my-4"}>
-          They know lots of things, like programming languages, editing videos
-          or drawing a bit of art. They are considered smart by themself and their close
+          She knows lots of things, like programming languages, editing videos
+          or drawing a bit of art. She is considered smart by her close
           relatives.
         </p>
         <p className={"my-4"}>
-          They write in a lot of programming languages, namely Python,
-          TypeScript, Lua, C#, C++, Rust, PHP, Java and more. Their most popular
-          project is Akabot, a general purpose Discord bot. They also did some My
+          She writes in a lot of programming languages, namely Python,
+          TypeScript, Lua, C#, C++, Rust, PHP, Java and more. Her most popular
+          project is Akabot, a general purpose Discord bot. She also did some My
           Summer Car mods, most of which are private because of the{" "}
           <Link
             href={"https://social.mldchan.dev/notes/a1tsf5xe9kiu00r2"}
@@ -51,8 +51,8 @@ export default function Page2About() {
           .
         </p>
         <p className={"my-4"}>
-          Another thing They&apos;s known for is their content creation career on
-          YouTube. They started making My Summer Car content, then making more
+          Another thing she&apos;s known for is her content creation career on
+          YouTube. She started making My Summer Car content, then making more
           than just that, to mostly moving away from My Summer Car and posting
           other videos.
         </p>

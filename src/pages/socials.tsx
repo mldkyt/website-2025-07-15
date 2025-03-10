@@ -48,7 +48,7 @@ export default function Socials(
             <Content>
                 <Offset amt={4}/>
                 <h1 className={"text-center text-2xl font-bold py-4"}>
-                    mldchan&apos;s Socials
+                    Luna&apos;s Socials :3
                 </h1>
                 <Social
                     social={"Fediverse"}

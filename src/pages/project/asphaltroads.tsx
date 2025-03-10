@@ -56,8 +56,8 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 <Image src={asphaltRoads} alt={'Asphalt Roads'} className={'p-1 rounded-lg'}/>
                 <p>
                     This mod for My Summer Car swaps the dirt roads for asphalt ones. It not
-                    only alters the texture of the roads but also their feel. The asphalt
-                    roads provide more grip, but they remain relatively bumpy for balance.
+                    only alters the texture of the roads but also her feel. The asphalt
+                    roads provide more grip, but she remain relatively bumpy for balance.
                 </p>
                 <p>
                     The mod offers several settings. For example, it allows you to keep the

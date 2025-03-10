@@ -44,7 +44,7 @@ export default function TermsofService(
         <Main>
             <Metadata
                 title={"Fedi Terms of Service"}
-                description={"mldchan Social Terms of Service"}
+                description={"Luna/mldchan Social Terms of Service"}
             />
             <Header/>
             <Content>
@@ -57,7 +57,7 @@ export default function TermsofService(
                 <div>
                     <Heading level={2}>Instance Overview</Heading>
                     <p>
-                        This is an instance hosted by mldchan for themself and their friends.
+                        This is an instance hosted by Luna for herself and her friends.
                         Joining is by invitation only.
                     </p>
                 </div>
@@ -66,7 +66,7 @@ export default function TermsofService(
                     <Heading level={2}>Membership Rules</Heading>
                     <ol className={"list-decimal ml-4"}>
                         <li>
-                            This instance is primarily intended for friends of mldchan or those
+                            This instance is primarily intended for friends of Luna or those
                             invited by friends.
                         </li>
                         <li>Users must be a &quot;cutie&quot; to join and participate.</li>
@@ -82,9 +82,9 @@ export default function TermsofService(
                             </ul>
                         </li>
                         <li>
-                            Account approval is at the discretion of mldchan:
+                            Account approval is at the discretion of Luna:
                             <ul className={"ml-4 list-disc"}>
-                                <li>Friends of mldchan require direct invitation</li>
+                                <li>Friends of Luna require direct invitation</li>
                                 <li>
                                     If someone is searching for an instance, and I know them for
                                     an extended period of time, I can invite them

@@ -19,6 +19,7 @@
 import React from "react";
 
 import Content from "@/components/Generic/Content";
+import ComplimentsTypewriter from "@/components/MainPage/ComplimentsTypewriter";
 import Image from "next/image";
 import bg from "@/images/bg.png";
 import Offset from "@/components/Generic/Offset";
@@ -26,14 +27,18 @@ import Offset from "@/components/Generic/Offset";
 export default function Page1() {
   return (
     <>
-      <div className={"h-screen"}>
+      <div className={"h-screen bg-gradient-to-b from-[#351036] to-[#111]"}>
         <div className={"absolute left-1/2 w-1/3 z-10"}>
           <Offset amt={5} />
           <Content>
             <h1 className={"text-3xl font-bold text-white xl:text-5xl"}>
-              mldchan
+              Luna :3
             </h1>
-            <span className={"xl:text-lg"}>Developer.</span>
+            <span className={"inline-flex flex-wrap xl:text-lg"}>
+              Full time <ComplimentsTypewriter /> girl.
+            </span>
+            <br />
+            <span className={"xl:text-lg"}>Transfem developer.</span>
             <br />
             <span className={"xl:text-lg"}>YouTuber.</span>
             <br />
@@ -47,7 +52,7 @@ export default function Page1() {
         ></div>
         <Image
           src={bg}
-          alt={"mldchan anime girl peace sign"}
+          alt={"Luna anime girl peace sign"}
           className={"absolute object-contain h-screen"}
         />
       </div>

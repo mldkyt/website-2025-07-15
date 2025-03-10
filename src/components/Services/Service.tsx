@@ -23,8 +23,8 @@ import Link from "next/link";
 
 export type PubInfo =
   | "This service is publicly available for public use."
-  | "This service is limited to mldchan's friends and people who they trust."
-  | "This service is limited to mldchan's friend circle only."
+  | "This service is limited to Luna's friends and people who she trusts."
+  | "This service is limited to Luna's friend circle only."
   | "This service is for mldchan's personal use only.";
 
 export default function Service(props: {

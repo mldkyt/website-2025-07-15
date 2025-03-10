@@ -21,32 +21,32 @@ import React from "react";
 import Content from "@/components/Generic/Content";
 import MainPageOtherElement from "@/components/MainPage/MainPageOtherElement";
 
-export default function Page4Other() {
+export default function Page5Other() {
   return (
     <div className={"h-screen"}>
       <Content>
         <h1 className={"py-4 text-center text-2xl font-bold"}>
-          What else does mldchan do?
+          What else does Luna do?
         </h1>
 
         <MainPageOtherElement
           title={"Self-Hosting"}
           description={
-            "mldchan self hosts a few services, including their own Sharkey instance and Forgejo instance. Most of these self-hosted services are for personal use only, or are shared across friends."
+            "Luna self hosts a few services, including her own Sharkey instance and Forgejo instance. Most of these self-hosted services are for personal use only, or are shared across friends."
           }
           link={"/services"}
         />
         <MainPageOtherElement
           title={"Video content creation"}
           description={
-            "mldchan creates videos on YouTube, Instagram and TikTok. Most active is YouTube. Their recent Celeste content has made them a lot of success."
+            "Luna creates videos on YouTube, Instagram and TikTok. Most active is YouTube. Her recent Celeste content has made her a lot of success."
           }
           link={"https://youtube.com/@mldchan"}
         />
         <MainPageOtherElement
           title={"Art"}
           description={
-            "mldchan rarely does art. One of their kawaii arts can be seen by looking at the website logo. Another one when you look at the logo of their Sharkey instance."
+            "Luna rarely does art. One of her kawaii arts can be seen by looking at the website logo. Another one when you look at the logo of her Sharkey instance."
           }
           link={"/art"}
         />

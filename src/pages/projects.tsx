@@ -79,7 +79,7 @@ export default function Projects(
             <Content>
                 <Offset amt={4}/>
                 <h1 className={"text-center text-2xl font-bold py-4"}>
-                    mldchan&apos;s Projects
+                    Luna&apos;s Projects :3
                 </h1>
                 <Project
                     image={akabot}
@@ -208,7 +208,7 @@ export default function Projects(
                 />
 
                 <h1 className={"text-center text-2xl font-bold py-4"}>
-                    mldchan&apos;s Mon Bazou mods
+                    Luna&apos;s Mon Bazou mods
                 </h1>
 
                 <Project
@@ -229,7 +229,7 @@ export default function Projects(
                 />
 
                 <h1 className={"text-center text-2xl font-bold py-4"}>
-                    mldchan&apos;s My Summer Car mods (archive)
+                    Luna&apos;s My Summer Car mods (archive)
                 </h1>
 
                 <Project
@@ -277,7 +277,7 @@ export default function Projects(
                     link={"/project/goodoldmsc"}
                 />
                 <h1 className={"text-center text-2xl font-bold py-4"}>
-                    mldchan&apos;s archived projects
+                    Luna&apos;s archived projects
                 </h1>
                 <p>
                     A list of projects that are deprecated, archived or deleted. Downloads

@@ -46,7 +46,7 @@ export default function Donate(props: InferGetServerSidePropsType<typeof getServ
 
     return (
         <Main>
-            <Metadata title={"Donate"} description={"Donate to mldchan to support their projects!"} />
+            <Metadata title={"Donate"} description={"Donate to Luna to support her projects!"} />
             <Header highlight={"donate"} />
             <Content>
                 <Offset amt={4} />

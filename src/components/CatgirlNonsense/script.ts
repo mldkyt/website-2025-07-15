@@ -140,7 +140,7 @@ export function generateCatgirl(amount: number, options: {
             const str = uwu_blush(Math.floor(Math.random() * (5 - 3 + 1)) + 3);
             output += str;
         } else if (random === 4 && options.three) {
-            //
+            // :3
             const str = ":3";
             output += str;
         } else if (random === 5 && options.actions) {

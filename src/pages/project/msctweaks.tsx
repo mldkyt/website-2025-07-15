@@ -50,7 +50,8 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                             message="Deprecated on 2024/07/01. No updates are provided under any circumstance."/>
 
                 <p>
-                    This mod adds a few tweaks to My Summer Car, some of the most notable are:
+                    This mod adds a few tweaks to My Summer Car, some of the most notable of
+                    her are:
                 </p>
                 <ul className={'list-disc ml-4'}>
                     <li>Disable Pena (the green car)</li>
