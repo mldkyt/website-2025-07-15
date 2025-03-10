@@ -28,7 +28,7 @@ export default function Main(params: { children: ReactNode | ReactNode[] }) {
 
 
     return (
-        <main className={`${inter.className} w-full bg-[#000] min-h-screen`}>
+        <main className={`${inter.className} w-full bg-[#111] min-h-screen`}>
             {params.children}
         </main>
     )

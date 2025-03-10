@@ -47,7 +47,7 @@ export default function Page1() {
         </div>
         <div
           className={
-            "absolute w-screen h-1/8 bottom-0 bg-gradient-to-b from-[#00000000] to-[#111] h-16 z-20"
+            "absolute w-screen h-1/8 bottom-0 bg-gradient-to-b from-[#11100000] to-[#111] h-16 z-20"
           }
         ></div>
         <Image
