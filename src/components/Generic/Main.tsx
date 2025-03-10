@@ -20,15 +20,15 @@
 import React from "react";
 
 import {ReactNode} from "react";
-import {Roboto_Mono} from 'next/font/google';
+import {Inter} from 'next/font/google';
 
-const robotoMono = Roboto_Mono({subsets: ['latin', 'latin-ext']})
+const inter = Inter({subsets: ['latin', 'latin-ext']})
 
 export default function Main(params: { children: ReactNode | ReactNode[] }) {
 
 
     return (
-        <main className={`${robotoMono.className} w-full bg-[#000] text-green-500 min-h-screen`}>
+        <main className={`${inter.className} w-full bg-[#000] min-h-screen`}>
             {params.children}
         </main>
     )

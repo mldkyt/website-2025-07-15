@@ -44,7 +44,7 @@ function highlightText(text: string, query: string) {
                 parts.forEach((subPart, index) => {
                     if (index > 0) {
                         result.push(<span
-                            className={'text-green-300'}>{text.slice(lastIndex, lastIndex + word.length)}</span>);
+                            className={'text-pink-400'}>{text.slice(lastIndex, lastIndex + word.length)}</span>);
                         lastIndex += word.length;
                     }
                     result.push(<span
@@ -149,7 +149,7 @@ export default function NekoSearchV2(props: InferGetServerSidePropsType<typeof g
                 return <div key={i} className={'m-1 bg-[#222] p-2 rounded-lg my-4 drop-shadow-md'}>
                     <motion.h1 whileTap={{scale: 0.9}} whileHover={{scale: 1.1}} className={'w-max'}>
                         <Link href={x.url}
-                              className={'text-green-300 hover:text-green-800 text-xl font-bold'}>{x.name}</Link>
+                              className={'text-pink-400 hover:text-pink-200 text-xl font-bold'}>{x.name}</Link>
                     </motion.h1>
                     <p className={'text-sm'}>{highlightText(x.desc, query)}</p>
                 </div>

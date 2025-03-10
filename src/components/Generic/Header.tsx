@@ -19,21 +19,21 @@
 
 import React from "react";
 
-import { Roboto_Mono } from "next/font/google";
+import {Inter} from "next/font/google";
 import {ReactNode} from "react";
 import Link from "next/link";
 import logo from '@/images/logo.png';
 import Image from "next/image";
 import {motion} from "motion/react";
 
-const robotoMono = Roboto_Mono({subsets: ['latin']});
+const inter = Inter({subsets: ['latin', 'latin-ext']})
 
 function link(props: { baseProps: { highlight?: string }, href: string, highlight: string, children: ReactNode }) {
     return (
         <motion.li className={'my-0'} whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>
             <Link
                 href={props.href}
-                className={`${props.baseProps.highlight === props.highlight ? 'text-green-300' : ''} hover:text-green-600`}>
+                className={`${props.baseProps.highlight === props.highlight ? 'text-pink-400' : ''} hover:text-pink-200`}>
                 {props.children}
             </Link>
         </motion.li>
@@ -46,7 +46,7 @@ export function Header(props: {
 
     return (
         <header
-            className={`${robotoMono.className} fixed top-8 left-1/2 -translate-x-1/2 w-[90vw] m-auto bg-[#222b] hover:bg-[#222] transition-all shadow-sm rounded-lg p-2 z-50 text-green-500`}>
+            className={`${inter.className} fixed top-8 left-1/2 -translate-x-1/2 w-[90vw] m-auto bg-[#222b] hover:bg-[#222] transition-all shadow-sm rounded-lg p-2 z-50`}>
             <ul className={'list-none flex flex-row flex-wrap space-x-6'}>
                 <motion.li className={'my-0'} whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}><h1>
                     <Link href={'/'}><Image src={logo} alt={'Logo'} height={24}/></Link>

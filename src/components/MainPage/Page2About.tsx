@@ -25,35 +25,38 @@ import Link from "next/link";
 
 export default function Page2About() {
   return (
-    <Content>
-      <Heading level={1}>Who is mldchan?</Heading>
-      <p className={"my-4"}>
-        mldchan is a programmer.
-      </p>
-      <p className={"my-4"}>
-        They know lots of things, like programming languages, editing videos
-        or drawing a bit of art. They are considered smart by themself, friends and their close
-        relatives.
-      </p>
-      <p className={"my-4"}>
-        They write in a lot of programming languages, namely Python,
-        TypeScript, Lua, C#, C++, Rust, PHP, Java and more. Their most popular
-        project is Akabot, a general purpose Discord bot. They also did some My
-        Summer Car mods, most of which are private because of the{" "}
-        <Link
-          href={"https://social.mldchan.dev/notes/a1tsf5xe9kiu00r2"}
-          className={"text-green-500 hover:text-green-500"}
-        >
-          community&apos;s backlash
-        </Link>
-        .
-      </p>
-      <p className={"my-4"}>
-        Another thing They&apos;s known for is their content creation career on
-        YouTube. They started making My Summer Car content, then making more
-        than just that, to mostly moving away from My Summer Car and posting
-        other videos.
-      </p>
-    </Content>
+    <div className={"h-screen"}>
+      <Content>
+        <Heading level={1}>Who is mldchan?</Heading>
+        <p className={"my-4"}>
+          mldchan is a programmer. They is a cute little
+          transgirl who also happens to be a catgirl.
+        </p>
+        <p className={"my-4"}>
+          They know lots of things, like programming languages, editing videos
+          or drawing a bit of art. They are considered smart by themself and their close
+          relatives.
+        </p>
+        <p className={"my-4"}>
+          They write in a lot of programming languages, namely Python,
+          TypeScript, Lua, C#, C++, Rust, PHP, Java and more. Their most popular
+          project is Akabot, a general purpose Discord bot. They also did some My
+          Summer Car mods, most of which are private because of the{" "}
+          <Link
+            href={"https://social.mldchan.dev/notes/a1tsf5xe9kiu00r2"}
+            className={"text-pink-400 hover:text-pink-200"}
+          >
+            community&apos;s backlash
+          </Link>
+          .
+        </p>
+        <p className={"my-4"}>
+          Another thing They&apos;s known for is their content creation career on
+          YouTube. They started making My Summer Car content, then making more
+          than just that, to mostly moving away from My Summer Car and posting
+          other videos.
+        </p>
+      </Content>
+    </div>
   );
 }

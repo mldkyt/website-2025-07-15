@@ -137,7 +137,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
 
                 <p>
                     The simplest you can do for now is to <b>create an idea suggestion</b> for the mod using a <Link
-                    className="text-green-300 hover:text-green-800"
+                    className="text-pink-400 hover:text-pink-300"
                     href="https://github.com/uwugrl/AstolfoForge/issues"
                 >GitHub issue</Link>.
                 </p>
@@ -146,18 +146,18 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
 
                 <p>
                     If you find any bug in the mod, <b>you can report it</b> using <Link
-                    className="text-green-300 hover:text-green-800"
+                    className="text-pink-400 hover:text-pink-300"
                     href="https://github.com/uwugrl/AstolfoForge/issues">GitHub issues</Link> for it to be fixed.
                     It will be fixed once I get some free time.
                 </p>
 
                 <H3>3. Financial support</H3>
 
-                <p><Link href={'/donate'} className="text-green-300 hover:text-green-800">You can donate me using various
+                <p><Link href={'/donate'} className="text-pink-400 hover:text-pink-300">You can donate me using various
                     methods here.</Link> I accept donations on all of them.</p>
 
                 <details>
-                    <summary className={'text-green-300 hover:text-green-800'}>Gallery</summary>
+                    <summary className={'text-pink-400 hover:text-pink-200'}>Gallery</summary>
                     <div className="grid grid-cols-1 lg:grid-cols-2">
                         <Image src={crowd} alt="Astolfo Crowd in Minecraft" className={'rounded-lg p-1'}/>
                         <Image src={biome} alt="Astolfo Biome in Minecraft" className={'rounded-lg p-1'}/>
@@ -170,7 +170,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 </details>
 
                 <details>
-                    <summary className={'text-green-300 hover:text-green-800'}>Changelog</summary>
+                    <summary className={'text-pink-400 hover:text-pink-200'}>Changelog</summary>
                     <H3>v1.2</H3>
                     <ul className={'ml-6 list-disc'}>
                         <li>Added Hideri</li>

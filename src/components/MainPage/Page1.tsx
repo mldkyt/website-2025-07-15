@@ -19,26 +19,37 @@
 import React from "react";
 
 import Content from "@/components/Generic/Content";
+import Image from "next/image";
+import bg from "@/images/bg.png";
 import Offset from "@/components/Generic/Offset";
 
 export default function Page1() {
   return (
     <>
-      <div className={"m-auto text-center z-10"}>
-        <Offset amt={5} />
-        <Content>
-          <h1 className={"text-5xl font-bold text-green-500 xl:text-5xl"}>
-            mldchan
-          </h1>
-          <br />
-          <span className={"text-lg xl:text-xl"}>Developer.</span>
-          <br />
-          <br />
-          <span className={"text-lg xl:text-xl"}>YouTuber.</span>
-          <br />
-          <br />
-          <span className={"text-lg xl:text-xl"}>Mon Bazou Mod Creator.</span>
-        </Content>
+      <div className={"h-screen"}>
+        <div className={"absolute left-1/2 w-1/3 z-10"}>
+          <Offset amt={5} />
+          <Content>
+            <h1 className={"text-3xl font-bold text-white xl:text-5xl"}>
+              mldchan
+            </h1>
+            <span className={"xl:text-lg"}>Developer.</span>
+            <br />
+            <span className={"xl:text-lg"}>YouTuber.</span>
+            <br />
+            <span className={"xl:text-lg"}>Mon Bazou Mod Creator.</span>
+          </Content>
+        </div>
+        <div
+          className={
+            "absolute w-screen h-1/8 bottom-0 bg-gradient-to-b from-[#00000000] to-[#111] h-16 z-20"
+          }
+        ></div>
+        <Image
+          src={bg}
+          alt={"mldchan anime girl peace sign"}
+          className={"absolute object-contain h-screen"}
+        />
       </div>
     </>
   );

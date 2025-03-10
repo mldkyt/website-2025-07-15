@@ -177,14 +177,14 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 </ul>
 
                 <p>
-                    This project is <Link className={'text-green-300 hover:text-green-800'}
+                    This project is <Link className={'text-pink-400 hover:text-pink-200'}
                                           href="https://code.mldchan.dev/mscmods/goodoldmsc">
                     <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>free
                         and open source
                     </motion.span>
                 </Link>,
                     under
-                    the <Link className={'text-green-300 hover:text-green-800'}
+                    the <Link className={'text-pink-400 hover:text-pink-200'}
                               href="https://www.gnu.org/licenses/gpl-3.0.en.html">
                     <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>GNU
                         GPL v3 license
@@ -196,7 +196,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 </p>
 
                 <Link href="https://code.mldchan.dev/mscmods/goodoldmsc"
-                      className={'text-green-300 hover:text-green-800'}>
+                      className={'text-pink-400 hover:text-pink-200'}>
                     <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Source code</motion.span>
                 </Link>
 

@@ -82,7 +82,7 @@ export default function Donate(props: InferGetServerSidePropsType<typeof getServ
                 <ul className={"list-disc ml-4"}>
                     <li>
                         <motion.span whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1 }}>
-                            <Link href={"https://liberapay.com/mldchan/donate"} className={"text-green-300 hover:text-green-800"}>
+                            <Link href={"https://liberapay.com/mldchan/donate"} className={"text-pink-400 hover:text-pink-200"}>
                                 Liberapay
                             </Link>
                         </motion.span>{" "}
@@ -90,7 +90,7 @@ export default function Donate(props: InferGetServerSidePropsType<typeof getServ
                     </li>
                     <li>
                         <motion.span whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1 }}>
-                            <Link href={"https://ko-fi.com/mldchan"} className={"text-green-300 hover:text-green-800"}>
+                            <Link href={"https://ko-fi.com/mldchan"} className={"text-pink-400 hover:text-pink-200"}>
                                 Ko-fi
                             </Link>
                         </motion.span>{" "}
@@ -98,7 +98,7 @@ export default function Donate(props: InferGetServerSidePropsType<typeof getServ
                     </li>
                     <li>
                         <motion.span whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1 }}>
-                            <Link href={"https://github.com/sponsors/mldchan"} className={"text-green-300 hover:text-green-800"}>
+                            <Link href={"https://github.com/sponsors/mldchan"} className={"text-pink-400 hover:text-pink-200"}>
                                 GitHub Sponsors
                             </Link>
                         </motion.span>{" "}
