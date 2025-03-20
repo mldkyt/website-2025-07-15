@@ -35,6 +35,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const guestbookEntries = await prisma.guestbook.findMany({
         where: {
             ReplyTo: null
+        },
+        orderBy: {
+            Created: "desc"
         }
     });
 
