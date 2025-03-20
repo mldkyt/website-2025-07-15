@@ -36,6 +36,11 @@ export default function Introduction(props: InferGetServerSidePropsType<typeof g
                         <Image src={misskeyprofile} alt="Misskey Profile" width={409.5} height={512} />
                     </div>
 
+                    <div className="bg-red-800 p-2 mt-2 rounded-md drop-shadow-lg">
+                        <p className="font-bold">WARNING</p>
+                        <p>This page is under active editing. Please suggest improvements <Link href={'/socials'} className="text-pink-400 hover:text-pink-200">here</Link> and <Link href={'/contact'} className="text-pink-400 hover:text-pink-200">here</Link>.</p>
+                    </div>
+
                     <Heading level={2}>About mldchan</Heading>
                     <p className="py-2">mldchan is a transfem developer and a content creator from the Czech Republic. I use she/her pronouns exclusively and prefer not to be called by anything else. When in a voice call with me, you can call me "mld" or Lunya. I am transgender, pansexual and aromantic. Thus I am transitioning from a boy to a girl, I find anyone and anything attractive, but I do not like dating, it's not my cup of tea.</p>
                     <Heading level={2}>How to talk with me</Heading>
