@@ -56,6 +56,10 @@ export default function Page2About() {
           than just that, to mostly moving away from My Summer Car and posting
           other videos.
         </p>
+        <p>
+          You can read more about me, including a full introduction and
+          how to communicate with me over <Link href="/introduction" className="text-pink-400 hover:text-pink-200">here</Link>.
+        </p>
       </Content>
     </div>
   );
