@@ -47,9 +47,9 @@ function FeatureList(props: { children: ReactNode }) {
     </div>
 }
 
-function Feature(props: { title: string, body: string }) {
+function Feature(props: { title: string, body: string, newFeat?: boolean }) {
     return <div className={'m-1 bg-[#222] drop-shadow-lg rounded-lg p-2 py-1'}>
-        <h3 className={'text-xl font-bold'}>{props.title}</h3>
+        <h3 className={'text-xl font-bold'}>{props.title} {props.newFeat === true && <span className="text-pink-500">NEW!</span>}</h3>
         <p>{props.body}</p>
     </div>
 }
@@ -101,9 +101,11 @@ export default function Akabot(props: InferGetServerSidePropsType<typeof getServ
                              body={'Track users who send a message daily and build a leaderboard of users who are active.'}/>
                     <Feature title={'Chat Summary'}
                              body={'Count messages sent every day and find out who sends the most.'}/>
+                    <Feature title="Economy" body="This module introduces an economy system to Akabot, allowing users to earn, spend, and manage virtual currency within their Discord server." newFeat />
                     <Feature title={'Leveling'} body={'Reward active users with levels and roles.'}/>
                     <Feature title={'Logging'}
                              body={'Log moderation actions, message edits, message deletes, and more.'}/>
+                    <Feature title="Message Time Capsule" body="This module allows users to schedule messages, reminders, and collection messages in Discord servers and DMs." newFeat />
                     <Feature title={'Moderation'} body={'Kick, ban, mute up to 28 days, warn'}/>
                     <Feature title={'Automod Actions'}
                              body={'Perform moderator actions when an automod rule gets triggered.'}/>

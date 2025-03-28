@@ -65,6 +65,14 @@ export function Header(props: {
                     baseProps: props
                 })}
             </ul>
+
+            <Link href="/project/akabot">
+                <ul className="w-full bg-blue-700 p-1 rounded-lg drop-shadow-lg text-center">
+                    <span>
+                        <strong>NEW!</strong> Akabot 1.2 is out! Add Akabot into your Discord server today!
+                    </span>
+                </ul>
+            </Link>
         </header>
     )
 }
