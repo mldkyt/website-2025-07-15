@@ -21,8 +21,7 @@ import {NextApiRequest, NextApiResponse} from "next";
 import {isCountryBlocked} from "@/backend/countryBlocklist";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    if (req.headers['content-type'] !== "application/json") res.status(400).json({error: 'Invalid content-type'});
-    if (req.method !== 'POST') res.status(400).json({error: 'Invalid method'});
+    if (req.method !== 'POST') return res.status(400).json({error: 'Invalid method'});
 
     let privacyWarning = false;
 

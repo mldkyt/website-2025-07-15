@@ -20,10 +20,6 @@ import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    if (req.headers["content-type"] !== "application/json") {
-        res.status(400).json({error: "Invalid Content-Type"});
-    }
-
     const {authorization} = req.headers;
     if (!authorization) {
         return res.status(401).json({error: "Unauthorized"});
