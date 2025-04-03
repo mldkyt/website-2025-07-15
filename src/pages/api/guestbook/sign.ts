@@ -31,7 +31,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (!username || !body) {
         return res.status(400).json({error: "Missing username or body"});
     }
-    if (username.length < 4 || username.length > 32) {
+    if (username.length < 2 || username.length > 32) {
         return res.status(400).json({error: "Invalid username"});
     }
     if (body.length < 4 || body.length > 200) {
