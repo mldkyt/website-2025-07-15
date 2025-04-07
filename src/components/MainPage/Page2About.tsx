@@ -52,9 +52,8 @@ export default function Page2About() {
         </p>
         <p className={"my-4"}>
           Another thing she&apos;s known for is her content creation career on
-          YouTube. She started making My Summer Car content, then making more
-          than just that, to mostly moving away from My Summer Car and posting
-          other videos.
+          YouTube. She posts various tech related content, such as tutorials.
+          She also posts gaming videos of various games.
         </p>
         <p>
           You can read more about me, including a full introduction and

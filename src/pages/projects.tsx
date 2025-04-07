@@ -154,32 +154,6 @@ export default function Projects(props: InferGetServerSidePropsType<typeof getSe
                     link={"/project/monbazou/winter"}
                 />
 
-                <h1 className={"text-center text-2xl font-bold py-4"}>Luna&apos;s My Summer Car mods (archive)</h1>
-
-                <Project
-                    image={regPlateChanger}
-                    imageAlt={"Reg Plate Changer replacing plates on a truck"}
-                    title={"Reg Plate Changer"}
-                    description={"Changes reg plates on your cars."}
-                    link={"/project/regplatechanger"}
-                />
-                <Project
-                    image={highwayCarBreakdowns}
-                    imageAlt={"Broken down car on a highway"}
-                    title={"Highway Car Breakdowns"}
-                    description={"Adds highway car breakdowns and a new way to earn money."}
-                    link={"/project/highwaycarbreakdowns"}
-                />
-                <Project
-                    image={asphaltRoads}
-                    imageAlt={"The dirt roads in My Summer Car are replaced with asphalt."}
-                    title={"Asphalt Roads"}
-                    description={"Replaces dirt roads with Asphalt roads."}
-                    link={"/project/asphaltroads"}
-                />
-                <Project image={mscTweaks} imageAlt={"MSC Tweaks"} title={"MSC Tweaks"} description={"Tweaks for My Summer Car."} link={"/project/msctweaks"} />
-                <Project image={prideMod} imageAlt={"UI in the style of pride flags in My Summer Car"} title={"Pride Mod"} description={"Adds pride into My Summer Car."} link={"/project/pridemod"} />
-                <Project title={"GoodOldMSC"} description={"Revert My Summer Car into its old days."} link={"/project/goodoldmsc"} />
                 <h1 className={"text-center text-2xl font-bold py-4"}>Luna&apos;s archived projects</h1>
                 <p>A list of projects that are deprecated, archived or deleted. Downloads are available for certain projects.</p>
                 <Project
