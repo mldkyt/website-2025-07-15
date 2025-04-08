@@ -52,6 +52,7 @@ export default function Socials(props: InferGetServerSidePropsType<typeof getSer
                 <Social social={"Personal Forgejo instance"} socialDescription={"Code Sharing"} followAction={"view"} link={"https://code.mldchan.dev/mld"} />
                 <Social social={"GitHub"} socialDescription={"Code Sharing"} followAction={"follow"} link={"https://github.com/uwugrl"} />
                 <Social social={"Codeberg"} socialDescription={"Code Sharing"} followAction={"follow"} link={"https://codeberg.org/mldchan"} />
+                <Social social={"Steam"} socialDescription={"Gaming platform"} followAction={"view"} link={"https://steamcommunity.com/id/mldchan/"} /> 
                 <Offset amt={6} />
                 <Footer visits={props.visits} route={"/socials"} />
             </Content>
