@@ -48,6 +48,7 @@ export default function Socials(props: InferGetServerSidePropsType<typeof getSer
                 <Social social={"Fediverse"} socialDescription={"A decentralized social platform"} preSocial={"the"} followAction={"follow"} link={"https://social.mldchan.dev/@mld"} />
                 <Social social={"PeerTube"} socialDescription={"Federated P2P Video Sharing"} followAction={"subscribe to"} link={"https://peertube.mldchan.dev/c/mldchan"} />
                 <Social social={"YouTube"} socialDescription={"Video content creation platform"} followAction={"subscribe to"} link={"https://youtube.com/@mldchan"} />
+                <Social social={"Instagram"} socialDescription={"Photo and video sharing platform"} followAction={"follow"} link={"https://instagram.com/_mldchan_"} />
                 <Social social={"Twitch"} socialDescription={"Streaming platform"} followAction={"follow"} link={"https:///twitch.tv/mldchan"} />
                 <Social social={"Personal Forgejo instance"} socialDescription={"Code Sharing"} followAction={"view"} link={"https://code.mldchan.dev/mld"} />
                 <Social social={"GitHub"} socialDescription={"Code Sharing"} followAction={"follow"} link={"https://github.com/uwugrl"} />
