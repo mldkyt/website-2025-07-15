@@ -202,6 +202,10 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 <Link href="https://github.com/uwugrl/AstolfoForge/releases/latest" className="ml-2">
                     <Button>GitHub</Button>
                 </Link>
+                <br />
+                <Link href={'/discord'}>
+                    <Button>Get support in the Discord server!</Button>
+                </Link>
 
                 <Offset amt={3}/>
                 <Footer visits={props.visits} route={'/project/astolfomod'}

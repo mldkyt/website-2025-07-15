@@ -28,6 +28,7 @@ import Footer from "@/components/Generic/Footer";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { getVisits } from "@/backend/visitsCounter";
 import Button from "@/components/Generic/Button";
+import Link from "next/link";
 
 function ContactWrapper(props: { name: string; children: ReactElement | ReactElement[] }) {
     return (
@@ -133,6 +134,13 @@ export default function Contact(props: InferGetServerSidePropsType<typeof getSer
                 {error && <p className="text-red-500">Error: {error}</p>}
 
                 <p>Welcome to the contact page for mldchan! This page contains information on how to contact me.</p>
+
+                <ContactWrapper name={"Discord"}>
+                    <p>You can join the Discord server and chat with me in there!</p>
+                    <Link href={"/discord"}>
+                        <Button>Join Discord</Button>
+                    </Link>
+                </ContactWrapper>
 
                 <ContactWrapper name={"Matrix"}>
                     <p>

@@ -65,6 +65,10 @@ export default function AstolfoResourcePack(props: InferGetServerSidePropsType<t
                 <Link href="https://code.mldchan.dev/mld/AstolfoResourcePackInstaller">
                     <Button>Source code</Button>
                 </Link>
+                <br />
+                <Link href={'/discord'}>
+                    <Button>Get support in the Discord server!</Button>
+                </Link>
 
                 <Offset amt={3}/>
                 <Footer visits={props.visits} route={'/project/astolforesourcepack'} />

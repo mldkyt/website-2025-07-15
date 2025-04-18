@@ -67,6 +67,11 @@ export default function AstolfOS(props: InferGetServerSidePropsType<typeof getSe
                     <Button>Installation Guide</Button>
                 </Link>
             </div>
+            
+            <br />
+            <Link href={'/discord'}>
+                <Button>Get support in the Discord server!</Button>
+            </Link>
 
             <Offset amt={3}/>
             <Footer visits={props.visits} route={'/project/astolfos'} />

@@ -66,6 +66,10 @@ export default function UwurandomRs(props: InferGetServerSidePropsType<typeof ge
             <Link href={'https://github.com/uwugrl/uwurandom-rs'}>
                 <Button>Download from GitHub</Button>
             </Link>
+            <br />
+            <Link href={'/discord'}>
+                <Button>Get support in the Discord server!</Button>
+            </Link>
             <Offset amt={6}/>
             <Footer visits={props.visits} route={'/project/uwurandom-rs'}
                     />

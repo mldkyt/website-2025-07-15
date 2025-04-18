@@ -101,7 +101,11 @@ export default function Astolfoiscomingforyou(props: InferGetServerSidePropsType
                         </Link>
                     </div>
                 </div>
-                <Offset amt={3}/>
+                <br />
+                <Link href={'/discord'}>
+                    <Button>Get support in the Discord server!</Button>
+                </Link> 
+                <Offset amt={2}/>
                 <Footer visits={props.visits} route={'/project/astolfoiscomingforyou'}
                         />
             </Content>

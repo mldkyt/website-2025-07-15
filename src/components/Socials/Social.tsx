@@ -24,7 +24,7 @@ import Link from "next/link";
 export default function Social(props: {
   social: string;
   socialDescription: string;
-  followAction: "follow" | "subscribe to" | "view";
+  followAction: "follow" | "subscribe to" | "view" | "join";
   preSocial?: string;
   link: string;
 }) {

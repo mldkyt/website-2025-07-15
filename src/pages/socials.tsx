@@ -45,6 +45,7 @@ export default function Socials(props: InferGetServerSidePropsType<typeof getSer
             <Content>
                 <Offset amt={4} />
                 <h1 className={"text-center text-2xl font-bold py-4"}>Luna&apos;s Socials :3</h1>
+                <Social social={"Discord"} socialDescription={"My own Discord server"} followAction={"join"} link={"/discord"} />
                 <Social social={"Fediverse"} socialDescription={"A decentralized social platform"} preSocial={"the"} followAction={"follow"} link={"https://social.mldchan.dev/@mld"} />
                 <Social social={"PeerTube"} socialDescription={"Federated P2P Video Sharing"} followAction={"subscribe to"} link={"https://peertube.mldchan.dev/c/mldchan"} />
                 <Social social={"YouTube"} socialDescription={"Video content creation platform"} followAction={"subscribe to"} link={"https://youtube.com/@mldchan"} />

@@ -27,6 +27,8 @@ import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
 import {InferGetServerSidePropsType} from "next";
 import {getVisits} from "@/backend/visitsCounter";
+import Link from "next/link";
+import Button from "@/components/Generic/Button";
 
 export async function getServerSideProps() {
     const visits = await getVisits({route: '/project/catgirlnonsense'});
@@ -47,6 +49,11 @@ export default function CatgirlNonsense(props: InferGetServerSidePropsType<typeo
             <Heading level={1}>Catgirl Nonsense Generator</Heading>
             <Generator/>
             <Offset amt={3}/>
+            <br />
+            <Link href={'/discord'}>
+                <Button>Get support in the Discord server!</Button>
+            </Link>
+            <Offset amt={2}/>
             <Footer visits={props.visits} route={'/project/catgirlnonsense'}
                     />
         </Content>
