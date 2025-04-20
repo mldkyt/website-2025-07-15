@@ -23,7 +23,6 @@ import ComplimentsTypewriter from "@/components/MainPage/ComplimentsTypewriter";
 import Image from "next/image";
 import bg from "@/images/bg.png";
 import Offset from "@/components/Generic/Offset";
-import Link from "next/link";
 
 export default function Page1() {
   return (

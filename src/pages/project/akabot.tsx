@@ -154,7 +154,7 @@ export default function Akabot(props: InferGetServerSidePropsType<typeof getServ
                 <br />
                 <br />
 
-                <a href="https://www.producthunt.com/posts/akabot-discord-bot?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-akabot&#0045;discord&#0045;bot" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=952281&theme=dark&t=1744381366274" alt="Akabot&#0032;Discord&#0032;Bot - Akabot | Product Hunt" style={{
+                <a href="https://www.producthunt.com/posts/akabot-discord-bot?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-akabot&#0045;discord&#0045;bot" target="_blank" rel="noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=952281&theme=dark&t=1744381366274" alt="Akabot&#0032;Discord&#0032;Bot - Akabot | Product Hunt" style={{
                     height: '54px',
                     width: '250px'
                 }} width="250" height="54" /></a>

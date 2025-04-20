@@ -20,18 +20,12 @@ import React from "react";
 
 import Main from "@/components/Generic/Main";
 import { Header } from "@/components/Generic/Header";
-import Page1 from "@/components/MainPage/Page1";
-import Page3Projects from "@/components/MainPage/Page3Projects";
-import Page5Other from "@/components/MainPage/Page5Other";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
-import Page2About from "@/components/MainPage/Page2About";
 import { InferGetServerSidePropsType } from "next";
 import { getVisits } from "@/backend/visitsCounter";
-import Page4MisskeyEmbed from "@/components/MainPage/Page4MisskeyEmbed";
 import Heading from "@/components/Generic/Heading";
 import Offset from "@/components/Generic/Offset";
-import Button from "@/components/Generic/Button";
 import { motion } from "motion/react";
 import Content from "@/components/Generic/Content";
 import Link from "next/link";
@@ -79,8 +73,8 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
             <Main>
                 <Offset amt={8} />
                 <Content>
-                    <Heading level={1}>mldchan's Discord server</Heading>
-                    <p className="text-center">mldchan's official Discord server is a place for talking about her projects, YouTube videos and other stuff.</p>
+                    <Heading level={1}>mldchan&apos;s Discord server</Heading>
+                    <p className="text-center">mldchan&apos;s official Discord server is a place for talking about her projects, YouTube videos and other stuff.</p>
                     
                     <Offset amt={2} />
                     
@@ -94,7 +88,7 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
                             className={'p-10 px-20 bg-pink-400 hover:bg-pink-300 rounded-lg drop-shadow-md w-full'}>Join now!</motion.button>
                     </Link>
 
-                    <p>Searching for the Akabot support server? You can join <Link href={'/project/akabot'} className="text-pink-400 hover:text-pink-300">the Akabot's support server here</Link>.</p>
+                    <p>Searching for the Akabot support server? You can join <Link href={'/project/akabot'} className="text-pink-400 hover:text-pink-300">the Akabot&apos;s support server here</Link>.</p>
 
                     <Offset amt={4} />
 

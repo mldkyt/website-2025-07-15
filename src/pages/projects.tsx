@@ -43,12 +43,6 @@ import fediStreaks from "@/images/fedistreaks.png";
 import monbazoumodlist from "@/images/monbazoumodlist.png";
 import monbazouwintermod from "@/images/monbazouwintermod.webp";
 
-import regPlateChanger from "@/images/regplatechanger.webp";
-import highwayCarBreakdowns from "@/images/highwaycarbreakdowns/1.webp";
-import asphaltRoads from "@/images/asphaltroads.webp";
-import mscTweaks from "@/images/msctweaks.webp";
-import prideMod from "@/images/pridemod_header.webp";
-
 import cutieQuiz from "@/images/cutiequiz/1.png";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
