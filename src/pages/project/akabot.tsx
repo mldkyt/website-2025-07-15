@@ -42,17 +42,41 @@ export async function getServerSideProps() {
 }
 
 function FeatureList(props: { children: ReactNode }) {
-    return <div className={'grid grid-cols-2'}>
+    return <div>
         {props.children}
     </div>
 }
 
 function Feature(props: { title: string, body: string, newFeat?: boolean }) {
-    return <div className={'m-1 bg-[#222] drop-shadow-lg rounded-lg p-2 py-1'}>
-        <h3 className={'text-xl font-bold'}>{props.title} {props.newFeat === true && <span className="text-pink-500">NEW!</span>}</h3>
+    return <div className={'m-3 bg-[#181818] drop-shadow-lg rounded-lg p-3'}>
+        <h3 className={'text-2xl font-bold'}>{props.title} {props.newFeat === true &&
+            <span className="text-pink-500">NEW!</span>}</h3>
         <p>{props.body}</p>
     </div>
 }
+
+const features = [
+    {title: 'Free Forever', description: 'Akabot is open-source and completely free forever.'},
+    {
+        title: 'Multilingual',
+        description: 'Supports 10+ languages including Japanese, French, Russian, English, Spanish, Czech, Chinese, Dutch, Hindi, and German.'
+    },
+    {title: 'Chat Revive', description: 'Automatically ping inactive channels to keep conversations alive.'},
+    {title: 'Chat Streaks', description: 'Build a leaderboard of users who stay active daily.'},
+    {title: 'Chat Summary', description: 'Track daily message activity and top message senders.'},
+    {title: 'Economy (New!)', description: 'Manage virtual currencies within your server.'},
+    {title: 'Leveling', description: 'Reward active users with levels and roles.'},
+    {title: 'Logging', description: 'Log moderation actions, message edits, and deletes.'},
+    {title: 'Message Time Capsule (New!)', description: 'Schedule messages, reminders, and collection messages.'},
+    {title: 'Moderation', description: 'Kick, ban, mute, and warn members with ease.'},
+    {title: 'Automod Actions', description: 'Automatically take action on rule violations.'},
+    {title: 'Reaction Roles', description: 'Let users assign roles by reacting to messages.'},
+    {title: 'Giveaways', description: 'Run giveaways, track entries, and pick winners.'},
+    {title: 'Verification', description: 'Verify new users with customizable methods.'},
+    {title: 'Suggestions', description: 'Collect user feedback easily.'},
+    {title: 'Temporary VCs', description: 'Create and remove voice channels on demand.'},
+    {title: 'Welcome and Goodbye', description: 'Welcome new users and say goodbye to those who leave.'},
+];
 
 export default function Akabot(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
 
@@ -64,13 +88,16 @@ export default function Akabot(props: InferGetServerSidePropsType<typeof getServ
                 <Offset amt={8}/>
 
                 <div>
-                    <h1 className={'text-center text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold'}>Akabot: A
-                        feature packed
-                        Discord bot that&apos;s free forever!</h1>
+                    <h1 className={'text-center text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold'}>Supercharge
+                        Your Discord Server with Akabot!</h1>
+                    <p className={'text-center text-lg'}>Akabot is a free, open-source bot packed with powerful features to enhance your community.</p>
                     <br/>
-                    <div className={'w-max m-auto'}>
+                    <div className={'w-max m-auto space-x-2'}>
                         <Link href={'/project/akabot/invite'}>
-                            <Button>Invite Akabot in your server</Button>
+                            <Button>Invite Akabot</Button>
+                        </Link>
+                        <Link href={'https://discord.gg/YFksXpXnn6'}>
+                            <Button>Join Support Server</Button>
                         </Link>
                     </div>
                     <p className={'text-sm text-center text-gray-500'}>By inviting the public instance, you agree to
@@ -80,44 +107,14 @@ export default function Akabot(props: InferGetServerSidePropsType<typeof getServ
                             service</Link> and <Link className={'text-pink-500'} href={'/project/akabot/privacy'}>privacy
                             policy</Link>.
                     </p>
-                    <p className="text-sm text-center text-gray-500">
-                        You can join the <Link href="https://discord.gg/YFksXpXnn6" className="text-pink-500">Support Discord server</Link>.
-                    </p>
                 </div>
 
-                <Offset amt={5}/>
-                <p className={'text-center'}>Akabot is a fully functional feature packed Discord bot that&apos;s free
-                    forever!</p>
+                <br />
 
                 <Heading level={2}>Features</Heading>
 
                 <FeatureList>
-                    <Feature title={'Free Forever'} body={'The bot is open-source and free forever!'}/>
-                    <Feature title={'Multilingual'}
-                             body={'Japanese, French, Russian, English, Spanish, Czech, Chinese Simplified, Dutch, Hindi and German'}/>
-                    <Feature title={'Chat Revive'}
-                             body={'Revive your dead general chat automatically with a revive role ping.'}/>
-                    <Feature title={'Chat Streaks'}
-                             body={'Track users who send a message daily and build a leaderboard of users who are active.'}/>
-                    <Feature title={'Chat Summary'}
-                             body={'Count messages sent every day and find out who sends the most.'}/>
-                    <Feature title="Economy" body="This module introduces an economy system to Akabot, allowing users to earn, spend, and manage virtual currency within their Discord server." newFeat />
-                    <Feature title={'Leveling'} body={'Reward active users with levels and roles.'}/>
-                    <Feature title={'Logging'}
-                             body={'Log moderation actions, message edits, message deletes, and more.'}/>
-                    <Feature title="Message Time Capsule" body="This module allows users to schedule messages, reminders, and collection messages in Discord servers and DMs." newFeat />
-                    <Feature title={'Moderation'} body={'Kick, ban, mute up to 28 days, warn'}/>
-                    <Feature title={'Automod Actions'}
-                             body={'Perform moderator actions when an automod rule gets triggered.'}/>
-                    <Feature title={'Reaction Roles'} body={'Allow users to get roles by reacting to a message.'}/>
-                    <Feature title={'Giveaways'} body={'Start giveaways, track entries, and pick winners.'}/>
-                    <Feature title={'Verification'}
-                             body={'Verify users with a captcha, reversing and English word or any other method.'}/>
-                    <Feature title={'Suggestions'} body={'Allow users to suggest things for your server.'}/>
-                    <Feature title={'Temporary VCs'}
-                             body={'Allow users to create temporary voice channels, which get deleted when empty.'}/>
-                    <Feature title={'Welcome and Goodbye'}
-                             body={'Send welcome and goodbye messages in a channel welcoming users who join your server and saying goodbye to those who leave your server.'}/>
+                    {features.map(x => (<Feature title={x.title} body={x.description}/>))}
                 </FeatureList>
 
                 <Offset amt={2}/>
@@ -128,10 +125,10 @@ export default function Akabot(props: InferGetServerSidePropsType<typeof getServ
                 <p>The bot is open-source, so if you want to host your own instance for the public or for personal use,
                     click the button below to view the source code:</p>
                 <Link href={'https://code.mldchan.dev/mld/Akabot'} className={'m-1'}>
-                    <Button>View the source code on mldchan&apos;s self-hosted Forgejo</Button>
+                    <Button>View on Forgejo</Button>
                 </Link>
                 <Link href={'https://github.com/uwugrl/Akabot'} className={'m-1'}>
-                    <Button>View the source code on GitHub</Button>
+                    <Button>View on GitHub</Button>
                 </Link>
 
                 <p>Self-hosting instructions are available in the repository.</p>
@@ -141,7 +138,7 @@ export default function Akabot(props: InferGetServerSidePropsType<typeof getServ
                 <p>The bot is not free to run, as any of my services, so donations are welcome!</p>
 
                 <Link href={'/donate'}>
-                    <Button>Donate to mldchan</Button>
+                    <Button>Donate</Button>
                 </Link>
 
                 <p>If you don&apos;t have money to donate, you can help translating the bot into other languages on
@@ -151,18 +148,19 @@ export default function Akabot(props: InferGetServerSidePropsType<typeof getServ
                     <Button>Help with translating!</Button>
                 </Link>
 
-                <br />
-                <br />
+                <Offset amt={2} />
 
-                <a href="https://www.producthunt.com/posts/akabot-discord-bot?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-akabot&#0045;discord&#0045;bot" target="_blank" rel="noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=952281&theme=dark&t=1744381366274" alt="Akabot&#0032;Discord&#0032;Bot - Akabot | Product Hunt" style={{
+                <a href="https://www.producthunt.com/posts/akabot-discord-bot?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-akabot&#0045;discord&#0045;bot"
+                   target="_blank" rel="noreferrer"><img
+                    src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=952281&theme=dark&t=1744381366274"
+                    alt="Akabot&#0032;Discord&#0032;Bot - Akabot | Product Hunt" style={{
                     height: '54px',
                     width: '250px'
-                }} width="250" height="54" /></a>
+                }} width="250" height="54"/></a>
 
                 <Offset amt={4}/>
 
-                <Footer visits={props.visits} route={'/project/akabot'}
-                        />
+                <Footer visits={props.visits} route={'/project/akabot'} />
             </Content>
         </Main>
     )
