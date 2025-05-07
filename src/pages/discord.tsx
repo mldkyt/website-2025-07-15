@@ -105,7 +105,7 @@ export default function Discord(props: InferGetServerSidePropsType<typeof getSer
                         </Link>
                     </div>
 
-                    <p className={'text-gray-500 text-sm'}>Searching for the Akabot support server? You can join <Link
+                    <p className={'text-gray-500 text-sm text-center'}>Searching for the Akabot support server? You can join <Link
                         href={'/project/akabot'} className="text-pink-400 hover:text-pink-300">the Akabot&apos;s support
                         server here</Link>.</p>
 
