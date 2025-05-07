@@ -19,19 +19,20 @@
 import React from "react";
 
 import Main from "@/components/Generic/Main";
-import { Header } from "@/components/Generic/Header";
+import {Header} from "@/components/Generic/Header";
 import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
-import { InferGetServerSidePropsType } from "next";
-import { getVisits } from "@/backend/visitsCounter";
+import {InferGetServerSidePropsType} from "next";
+import {getVisits} from "@/backend/visitsCounter";
 import Heading from "@/components/Generic/Heading";
 import Offset from "@/components/Generic/Offset";
-import { motion } from "motion/react";
+import {motion} from "motion/react";
 import Content from "@/components/Generic/Content";
 import Link from "next/link";
+import Button from "@/components/Generic/Button";
 
 export async function getServerSideProps() {
-    const visits = await getVisits({ route: '/' });
+    const visits = await getVisits({route: '/'});
 
     return {
         props: {
@@ -42,72 +43,89 @@ export async function getServerSideProps() {
 
 function DiscordFeature(props: {
     title: string,
-    body: string,
-    flipped?: boolean
+    body: string
 }) {
 
-    return props.flipped ? (
-        <div className="h-20 m-auto w-full gap-4 grid grid-cols-2">
-            <div />
-            <div>
-                <h3 className="text-xl font-bold">{props.title}</h3>
-                <p>{props.body}</p>
-            </div>
-        </div>
-    ) : (
-        <div className="h-20 m-auto w-full gap-4 grid grid-cols-2">
-            <div>
-                <h3 className="text-xl font-bold">{props.title}</h3>
-                <p>{props.body}</p>
-            </div>
-            <div />
-        </div>
-    )
+    return <div className={'m-3 bg-[#181818] drop-shadow-lg rounded-lg p-3 transition-all hover:bg-[#222]'}>
+        <h3 className="text-2xl font-bold">{props.title}</h3>
+        <p className={'text-lg'}>{props.body}</p>
+    </div>
 }
 
-export default function Home(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
+const highlights = [
+    {
+        title: 'Custom Bot with Interactive Verification',
+        description: 'Enjoy a unique verification process with custom questions, role selection, and guided server tours.'
+    },
+    {
+        title: 'Engaging Channels',
+        description: 'From memes to tech discussions, share and discover interesting content in a wide variety of channels.'
+    },
+    {
+        title: 'Gaming Community',
+        description: 'Connect with other gamers and discuss your favorite titles like VRChat, Celeste, Mon Bazou, and more.'
+    },
+    {
+        title: 'Creative Spaces',
+        description: 'Show off your art, memes, and self-promotion or chat about your favorite media.'
+    },
+    {
+        title: 'Development Hub',
+        description: 'Join project discussions for Akabot, Astolfo Mod, uwurandom-rs, Nekosearch, and more.'
+    },
+    {
+        title: 'Interactive Bots',
+        description: 'Chat with silly autoresponses, make suggestions, and automate your server with Akabot.'
+    },
+    {title: 'Fedi Integration', description: 'Stay up to date with new posts from your Fediverse account.'},
+    {
+        title: 'LGBTQ+ Friendly',
+        description: 'Join a welcoming community that celebrates diversity, with dedicated yuri and yaoi channels.'
+    },
+    {title: 'Fun and Randomness', description: 'Meow, catface, and other nonsense for those who love chaotic fun.'},
+    {title: 'Exclusive Project Channels', description: 'Dive deep into projects like AstolfOS, Nekosearch, and more.'}
+];
+
+export default function Discord(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <>
-            <Header highlight={'home'} />
-            <Metadata title={'Home Page'} description={'mldchan\'s personal website'} />
+            <Header highlight={'home'}/>
+            <Metadata title={'Home Page'} description={'mldchan\'s personal website'}/>
             <Main>
-                <Offset amt={8} />
+                <Offset amt={8}/>
                 <Content>
-                    <Heading level={1}>mldchan&apos;s Discord server</Heading>
-                    <p className="text-center">mldchan&apos;s official Discord server is a place for talking about her projects, YouTube videos and other stuff.</p>
-                    
-                    <Offset amt={2} />
-                    
-                    <Heading level={2}>Join link</Heading>
+                    <h1 className={'text-center text-3xl font-bold'}>Join My Personal Discord Server</h1>
+                    <p className="text-center text-lg">A chill space for tech enthusiasts, gamers, and fun!</p>
 
-                    <p className="text-center">If you want to join this server, click this very <span className="text-2xl font-bold">big</span> button!</p>
+                    <br />
 
-                    <Link href="https://discord.gg/uTWjgy2E4v">
-                        <motion.button
-                            whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
-                            className={'p-10 px-20 bg-pink-400 hover:bg-pink-300 rounded-lg drop-shadow-md w-full'}>Join now!</motion.button>
-                    </Link>
+                    <div className={'flex justify-center'}>
+                        <Link href={'https://discord.gg/uTWjgy2E4v'}>
+                            <Button>Join!</Button>
+                        </Link>
+                    </div>
 
-                    <p>Searching for the Akabot support server? You can join <Link href={'/project/akabot'} className="text-pink-400 hover:text-pink-300">the Akabot&apos;s support server here</Link>.</p>
+                    <p className={'text-gray-500 text-sm'}>Searching for the Akabot support server? You can join <Link
+                        href={'/project/akabot'} className="text-pink-400 hover:text-pink-300">the Akabot&apos;s support
+                        server here</Link>.</p>
 
-                    <Offset amt={4} />
+                    <br />
 
-                    <Heading level={2}>Features</Heading>
+                    <Heading level={2}>Highlights of our Discord server</Heading>
 
-                    <DiscordFeature title="Custom Bot: Ai" body="mldchan's Ai joins this server as a Discord bot, helping you with anything in the server." />
-                    <DiscordFeature title="mldchan announcements" body="mldchan announces everything in this server, meaning you can stay up to date." flipped />
-                    <DiscordFeature title="Never-before seen verification" body="When joining the server, you'll see a completely custom never-before seen verification flow." />
-                    <DiscordFeature title="Chill Chat" body="We've got a wide variety of channels for you to chat in, including a general channel, a memes channel, channels for gaming etc." flipped />
-                    <DiscordFeature title="Self Promotion" body="Promote yourself or your projects in this server. Even mldchan herself may check out your project!" />
-                    <DiscordFeature title="Dedicated Project Spaces" body="The Discord server features channels for each of my projects, including Akabot, Astolfo is coming for you etc." flipped />
-                    <DiscordFeature title="Feedback & Suggestions" body="You can suggest things for the server or for my projects in the feedback channels." />
-                    <DiscordFeature title="Yuri Channels" body="girls kissing,,," flipped />
-                    <DiscordFeature title="Catgirl Chaos" body="mldchan is a catgirl, so her insanity will sometimes take over the server." />
-                    <DiscordFeature title="Community-Driven" body="Your ideas constantly improve the Discord server for everyone." flipped />
+                    {highlights.map(x => (<DiscordFeature title={x.title} body={x.description}/>))}
 
-                    <Offset amt={4} />
+                    <Heading level={2}>So, what are you waiting for?</Heading>
+
+                    <div className={'flex justify-center'}>
+                        <Link href={'https://discord.gg/uTWjgy2E4v'}>
+                            <Button>Join!</Button>
+                        </Link>
+                    </div>
+
+                    <Offset amt={4}/>
                 </Content>
-                <Footer visits={props.visits} route={'/discord'} />
+                <Footer visits={props.visits} route={'/discord'}/>
             </Main>
         </>
     );

@@ -32,6 +32,6 @@ export default function Button(props: {
             type={props.type}
             onClick={props.onClick}
             disabled={props.disabled === true}
-            className={'p-1 px-2 bg-pink-400 hover:bg-pink-300 rounded-lg drop-shadow-md'}>{props.children}</motion.button>
+            className={'p-1 px-2 bg-pink-400 hover:bg-pink-300 rounded-lg drop-shadow-md cursor-pointer'}>{props.children}</motion.button>
     )
 }
