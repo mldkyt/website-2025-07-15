@@ -8,7 +8,6 @@ RUN yarn install && yarn cache clean
 
 COPY src/. src/.
 COPY public/. public/.
-COPY sentry.client.config.ts .
 COPY sentry.edge.config.ts .
 COPY sentry.server.config.ts .
 COPY next.config.ts .
@@ -29,7 +28,6 @@ RUN yarn install && yarn cache clean
 COPY src/. src/.
 COPY public/. public/.
 COPY prisma/. prisma/.
-COPY sentry.client.config.ts .
 COPY sentry.edge.config.ts .
 COPY sentry.server.config.ts .
 COPY next.config.ts .
