@@ -19,6 +19,15 @@
 import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
 
+import { z } from 'zod';
+
+const schema = z.object({
+    handle: z.string().min(1).max(32),
+    title: z.string().min(1).max(32),
+    description: z.string().min(1).max(200),
+    targetURL: z.string().url()
+});
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const authorization = req.headers.authorization;
 
@@ -30,7 +39,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(403).json({error: "Forbidden"});
     }
 
-    const {handle, title, description, targetURL} = req.body;
+    const {handle, title, description, targetURL} = schema.parse(req.body);
 
     if (!handle || !title || !description || !targetURL) {
         return res.status(400).json({error: "Bad Request"});

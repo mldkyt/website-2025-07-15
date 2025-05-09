@@ -19,6 +19,13 @@
 import {NextApiRequest, NextApiResponse} from "next";
 import {removeKeywordBan} from "@/backend/keywordBlocklist";
 
+
+import { z } from 'zod';
+
+const schema = z.object({
+    keyword: z.string()
+});
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const authorization = req.headers.authorization;
 
@@ -30,10 +37,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(403).json({error: "Forbidden"});
     }
 
-    const { keyword } =req.body;
-    if (!keyword) {
-        res.status(400).json({error: "Code not provided"});
-    }
+    const { keyword } = schema.parse(req.body);
 
     await removeKeywordBan(keyword);
 

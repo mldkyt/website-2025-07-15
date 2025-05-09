@@ -20,6 +20,12 @@ import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
 import {isCountryBlocked} from "@/backend/countryBlocklist";
 import {checkKeywordBan} from "@/backend/keywordBlocklist";
+import { z } from 'zod';
+
+const schema = z.object({
+    username: z.string().min(2).max(32),
+    body: z.string().min(4).max(200)
+})
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     let ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress as string;
@@ -27,16 +33,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         ip = ip[0];
     }
 
-    const {username, body} = req.body as { username: string, body: string };
-    if (!username || !body) {
-        return res.status(400).json({error: "Missing username or body"});
-    }
-    if (username.length < 2 || username.length > 32) {
-        return res.status(400).json({error: "Invalid username"});
-    }
-    if (body.length < 4 || body.length > 200) {
-        return res.status(400).json({error: "Invalid body"});
-    }
+    const {username, body} = schema.parse(req.body);
 
     const ipRes = await fetch(`https://freeipapi.com/api/json/${ip}`);
     const ipJson = await ipRes.json();

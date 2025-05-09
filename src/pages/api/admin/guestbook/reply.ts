@@ -19,6 +19,13 @@
 import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
 
+import { z } from 'zod';
+
+const schema = z.object({
+    replyTo: z.number().positive(),
+    body: z.string().min(1).max(200)
+});
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const {authorization} = req.headers;
     if (!authorization) {
@@ -30,16 +37,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const ip = '0.0.0.0';
 
-    const {body, replyTo} = req.body as { body: string, replyTo: string };
-    if (!body) {
-        return res.status(400).json({error: "Missing username or body"});
-    }
-    if (body.length < 4 || body.length > 200) {
-        return res.status(400).json({error: "Invalid body"});
-    }
-    if (isNaN(Number(replyTo))) {
-        return res.status(400).json({error: "Invalid replyTo"});
-    }
+    const {body, replyTo} = schema.parse(req.body);
 
     const prisma = new PrismaClient();
     await prisma.$connect();
@@ -53,7 +51,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             Username: "Lunya :3",
             Body: body,
             IP: ip,
-            ReplyTo: Number(replyTo)
+            ReplyTo: replyTo
         }
     });
 

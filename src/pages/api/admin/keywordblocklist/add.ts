@@ -19,6 +19,14 @@
 import {NextApiRequest, NextApiResponse} from "next";
 import {addBan} from "@/backend/keywordBlocklist";
 
+
+import { z } from 'zod';
+
+const schema = z.object({
+    keyword: z.string().min(1).max(32),
+    reason: z.string().min(1).max(50)
+});
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const authorization = req.headers.authorization;
 
@@ -30,11 +38,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(403).json({error: "Forbidden"});
     }
 
-    const {keyword, reason } = req.body;
-    if (!keyword || !reason) {
-        res.status(400).json({error: 'Parameters not provided'});
-        return;
-    }
+    const {keyword, reason } = schema.parse(req.body);
 
     await addBan(keyword, reason);
 

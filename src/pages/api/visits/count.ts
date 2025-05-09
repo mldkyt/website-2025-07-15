@@ -21,8 +21,13 @@ import {countVisit} from "@/backend/visitsCounter";
 import {isCountryBlocked} from "@/backend/countryBlocklist";
 import { PrismaClient } from "@prisma/client";
 import { DateTime } from 'luxon';
+import { z } from "zod";
 
 const prisma = new PrismaClient();
+
+const schema = z.object({
+    route: z.string().startsWith("/").min(1)
+})
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method !== 'POST') return res.status(400).json({error: 'Invalid method'});
@@ -50,11 +55,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         ip = ip[0];
     }
 
-    const {route} = req.body as { route: string | undefined };
-
-    if (!route || route.length < 1 || !route.startsWith("/")) {
-        return res.status(400).send({error: 'Parameters not defined'});
-    }
+    const {route} = schema.parse(req.body);
 
     await prisma.pageVisitCooldown.deleteMany({
         where: {

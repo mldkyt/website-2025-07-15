@@ -1,5 +1,12 @@
 import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
+import { z } from 'zod';
+
+
+const schema = z.object({
+    message: z.string().min(1).max(200),
+    cw: z.string().min(1).max(50).optional()
+});
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method !== 'POST') {
@@ -15,14 +22,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(500).json({error: 'IP is unknown'});
     }
     
-    const {message, cw} = req.body as {
-        message: string,
-        cw?: string
-    };
-
-    if (!message) {
-        return res.status(400).json({error: 'Message is required'});
-    }
+    const {message, cw} = schema.parse(req.body);
 
     const prisma = new PrismaClient();
     await prisma.$connect();

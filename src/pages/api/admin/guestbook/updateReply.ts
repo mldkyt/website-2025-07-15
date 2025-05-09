@@ -19,6 +19,13 @@
 import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
 
+import { z } from 'zod';
+
+const schema = z.object({
+    postId: z.number().positive(),
+    body: z.string().min(1).max(200)
+});
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const {authorization} = req.headers;
     if (!authorization) {
@@ -28,16 +35,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(403).json({error: "Forbidden"});
     }
 
-    const {body, postId} = req.body as { body: string, postId: string };
-    if (!body) {
-        return res.status(400).json({error: "Missing username or body"});
-    }
-    if (body.length < 4 || body.length > 200) {
-        return res.status(400).json({error: "Invalid body"});
-    }
-    if (isNaN(Number(postId))) {
-        return res.status(400).json({error: "Invalid replyTo"});
-    }
+    const {body, postId} = schema.parse(req.body);
 
     const prisma = new PrismaClient();
     await prisma.$connect();
@@ -48,7 +46,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     await prisma.guestbook.update({
         where: {
-            ID: Number(postId)
+            ID: postId
         },
         data:{ 
             Body: body

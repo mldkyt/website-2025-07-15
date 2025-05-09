@@ -1,6 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 
+import { z } from 'zod';
+
+const schema = z.object({
+    id: z.number().positive(),
+    reply: z.string().min(1)
+});
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const authorization = req.headers.authorization;
 
@@ -12,10 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(403).json({ error: "Forbidden" });
     }
 
-    const { id, reply } = req.body as {
-        id: number;
-        reply: string;
-    };
+    const { id, reply } = schema.parse(req.body);
 
     if (id === undefined) {
         return res.status(400).json({ error: "ID is required" });

@@ -19,20 +19,19 @@
 import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
 import {isCountryBlocked} from "@/backend/countryBlocklist";
+import { z } from 'zod';
+
+const schema = z.object({
+    handle: z.string(),
+    optionId: z.number(),
+    cfToken: z.string()
+});
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const {handle, optionId, cfToken} = req.body as { handle: string, optionId: number, cfToken: string };
+    const {handle, optionId, cfToken} = schema.parse(req.body);
     let ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress as string;
     if (Array.isArray(ip)) {
         ip = ip[0];
-    }
-
-    if (!handle || !optionId) {
-        return res.status(400).json({error: "Missing handle or optionId"});
-    }
-
-    if (isNaN(Number(optionId))) {
-        return res.status(400).json({error: "Bad Request"});
     }
 
     const formData = new FormData();

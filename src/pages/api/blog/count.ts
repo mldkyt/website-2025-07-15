@@ -19,6 +19,12 @@
 import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
 import {isCountryBlocked} from "@/backend/countryBlocklist";
+import { z } from 'zod';
+
+const schema = z.object({
+    cfToken: z.string(),
+    blogPost: z.string()
+})
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method !== 'POST') return res.status(400).json({error: 'Invalid method'});
@@ -42,7 +48,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         ip = ip[0];
     }
 
-    const {cfToken, blogPost} = req.body;
+    const {cfToken, blogPost} = schema.parse(req.body);
 
     const formData = new FormData();
     formData.append("secret", process.env['CLOUDFLARE_SECRET_TOKEN']!);

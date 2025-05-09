@@ -19,6 +19,12 @@
 import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
 
+import { z } from 'zod';
+
+const schema = z.object({
+    guestbookId: z.number().positive()
+});
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const {authorization} = req.headers;
     if (!authorization) {
@@ -28,13 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(403).json({error: "Forbidden"});
     }
 
-    const {guestbookId} = req.body as { guestbookId: string };
-    if (!guestbookId) {
-        return res.status(400).json({error: "Guestbook ID is required"});
-    }
-    if (isNaN(Number(guestbookId))) {
-        return res.status(400).json({error: "Guestbook ID is invalid"});
-    }
+    const {guestbookId} = schema.parse(req.body);
 
     const prisma = new PrismaClient();
 
@@ -42,7 +42,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     await prisma.guestbook.update({
         where: {
-            ID: Number(guestbookId)
+            ID: guestbookId
         },
         data: {
             Approved: 1

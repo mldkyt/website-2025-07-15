@@ -19,20 +19,18 @@
 import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
 
+import { z } from 'zod';
+
+const schema = z.object({
+    title: z.string().min(1).max(32),
+    handle: z.string().min(1).max(32),
+    options: z.array(
+        z.string().min(1).max(20)
+    ).min(2)
+});
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const {title, handle, options} = req.body as { title: string, handle: string, options: string[] };
-
-    if (!title || !handle) {
-        return res.status(400).json({error: "Bad Request"});
-    }
-
-    if (!Array.isArray(options) || !options.length) {
-        return res.status(400).json({error: "Bad Request"});
-    }
-
-    if (options.length < 2) {
-        return res.status(400).json({error: "Bad Request"});
-    }
+    const {title, handle, options} = schema.parse(req.body);
 
     const {authorization} = req.headers;
 

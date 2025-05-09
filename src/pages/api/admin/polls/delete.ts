@@ -19,13 +19,16 @@
 import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
 
+
+import { z } from 'zod';
+
+const schema = z.object({
+    handle: z.string()
+});
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
-    const {handle} = req.body;
-
-    if (!handle) {
-        return res.status(400).json({error: "Missing handle"});
-    }
+    const {handle} = schema.parse(req.body);
 
     const {authorization} = req.headers;
     if (!authorization) {

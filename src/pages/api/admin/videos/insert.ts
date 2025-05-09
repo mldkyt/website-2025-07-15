@@ -18,6 +18,16 @@
 
 import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
+import { z } from 'zod';
+
+const schema = z.object({
+    id: z.string().min(1).max(16),
+    title: z.string().min(1).max(100),
+    description: z.string().max(2000),
+    views: z.number(),
+    publishedAt: z.string().date(),
+    thumbnailURL: z.string().url()
+});
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const {authorization} = req.headers;
@@ -28,30 +38,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(403).json({error: "Forbidden"});
     }
 
-    const {id, title, description, views, publishedAt, thumbnailURL} = req.body as {
-        id: string;
-        title: string;
-        description: string,
-        views: number,
-        publishedAt: string;
-        thumbnailURL: string;
-    };
-
-    if (!id || !title || !description || !views || !publishedAt || !thumbnailURL) {
-        return res.status(403).json({error: "No title or description provided"});
-    }
-
-    if (title.length < 2 || title.length > 100) {
-        return res.status(403).json({error: "Title must be as long as a YouTube title can be"});
-    }
-
-    if (description.length > 2000) {
-        return res.status(403).json({error: "Description must be as long as a YouTube description can be"});
-    }
-
-    if (isNaN(Number(views))) {
-        return res.status(403).json({error: "Views must be a number"});
-    }
+    const {id, title, description, views, publishedAt, thumbnailURL} = schema.parse(req.body);
 
     const prisma = new PrismaClient();
     await prisma.$connect();

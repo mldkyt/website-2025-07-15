@@ -19,6 +19,13 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { addBan } from "@/backend/countryBlocklist";
 
+import { z } from 'zod';
+
+const schema = z.object({
+    code: z.string().min(2).max(5),
+    reason: z.string().min(1).max(100)
+});
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
@@ -32,9 +39,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(403).json({ error: "Forbidden" });
     }
 
-    const { code, reason } = req.body;
-    if (!code || !reason) return res.status(400).json({ error: "Parameters not provided" });
-
+    const { code, reason } = schema.parse(req.body);
+    
     await addBan(code, reason);
 
     res.status(200).json({ success: true });

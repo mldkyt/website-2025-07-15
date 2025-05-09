@@ -33,10 +33,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const prisma = new PrismaClient();
     await prisma.$connect();
 
-    // const posts = await sql`select *
-    //                         from blogPosts
-    //                         order by created desc`;
-
     const blogPosts = await prisma.blogposts.findMany({
         orderBy: {
             created: "desc"

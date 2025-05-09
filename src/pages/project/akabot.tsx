@@ -114,7 +114,7 @@ export default function Akabot(props: InferGetServerSidePropsType<typeof getServ
                 <Heading level={2}>Features</Heading>
 
                 <FeatureList>
-                    {features.map(x => (<Feature title={x.title} body={x.description}/>))}
+                    {features.map((x, i) => (<Feature key={i} title={x.title} body={x.description}/>))}
                 </FeatureList>
 
                 <Offset amt={2}/>

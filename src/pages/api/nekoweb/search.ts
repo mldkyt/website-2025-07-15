@@ -18,6 +18,10 @@
 
 import { NextApiRequest, NextApiResponse } from "next";
 import { MeiliSearch } from "meilisearch";
+import { z } from 'zod';
+const schema = z.object({
+    q: z.string().min(1).max(100)
+})
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -29,10 +33,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return;
     }
 
-    const { q } = req.query;
-    if (!q || q === "" || Array.isArray(q)) {
-        res.status(400).json({ error: "Bad parameters" });
-    }
+    const { q } = schema.parse(req.query);
 
     const meili = new MeiliSearch({
         host: "http://172.17.0.1:7700",

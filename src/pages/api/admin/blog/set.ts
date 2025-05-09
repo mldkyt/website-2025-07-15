@@ -19,6 +19,16 @@
 import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
 
+import { z } from 'zod';
+
+const schema = z.object({
+    postID: z.number().positive(),
+    newHandle: z.string().min(1).max(32),
+    newTitle: z.string().min(1).max(32),
+    newDescription: z.string().min(1).max(200),
+    newTargetURL: z.string().url()
+});
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const authorization = req.headers.authorization;
 
@@ -30,15 +40,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(403).json({error: "Forbidden"});
     }
 
-    const {postID, newHandle, newTitle, newDescription, newTargetURL} = req.body;
-
-    if (!postID || !newHandle || !newTitle || !newDescription || !newTargetURL) {
-        return res.status(400).json({error: "Bad Request"});
-    }
-
-    if (!(typeof postID === "number" && typeof newHandle === "string" && typeof newTitle === "string" && typeof newDescription === "string" && typeof newTargetURL === "string")) {
-        return res.status(400).json({error: "Bad Request"});
-    }
+    const {postID, newHandle, newTitle, newDescription, newTargetURL} = schema.parse(req.body);
 
     const prisma = new PrismaClient();
     await prisma.$connect();

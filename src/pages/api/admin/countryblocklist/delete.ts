@@ -19,6 +19,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { removeBan } from "@/backend/countryBlocklist";
 
+import { z } from 'zod';
+
+const schema = z.object({
+    code: z.string().min(2).max(5)
+});
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const authorization = req.headers.authorization;
 
@@ -30,10 +36,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(403).json({ error: "Forbidden" });
     }
 
-    const { code } = req.body;
-    if (!code) {
-        res.status(400).json({ error: "Code not provided" });
-    }
+    const { code } = schema.parse(req.body);
 
     await removeBan(code);
 

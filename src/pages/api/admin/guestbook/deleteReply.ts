@@ -19,6 +19,13 @@
 import { PrismaClient } from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
 
+
+import { z } from 'zod';
+
+const schema = z.object({
+    replyId: z.number().positive()
+});
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const {authorization} = req.headers;
     if (!authorization) {
@@ -28,20 +35,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(403).json({error: "Forbidden"});
     }
 
-    const {replyId} = req.body as { replyId: string };
-    if (!replyId) {
-        return res.status(400).json({error: "Guestbook ID is required"});
-    }
-    if (isNaN(Number(replyId))) {
-        return res.status(400).json({error: "Guestbook ID is invalid"});
-    }
+    const {replyId} = schema.parse(req.body);
 
     const prisma = new PrismaClient();
     await prisma.$connect();
 
     await prisma.guestbook.delete({
         where: {
-            ID: Number(replyId),
+            ID: replyId,
             ReplyTo: {not: null}
         }
     });
