@@ -68,7 +68,6 @@ export default function Projects(props: InferGetServerSidePropsType<typeof getSe
                 <Offset amt={4} />
                 <h1 className={"text-center text-2xl font-bold py-4"}>Luna&apos;s Projects :3</h1>
                 <Project image={akabot} imageAlt={"Akabot profile picture"} title={"Akabot"} description={"A Discord bot with lots of features."} link={"/project/akabot"} />
-                <Project title={"GirlSocial"} description={"An open-source chatting platform focused on inclusivity."} link={"/project/girlsocial"} />
                 <Project
                     image={astolfoIsComingForYou}
                     imageAlt={"Astolfo is coming for you window"}
