@@ -26,7 +26,6 @@ import {InferGetServerSidePropsType} from "next";
 import {getVisits} from "@/backend/visitsCounter";
 import Heading from "@/components/Generic/Heading";
 import Offset from "@/components/Generic/Offset";
-import {motion} from "motion/react";
 import Content from "@/components/Generic/Content";
 import Link from "next/link";
 import Button from "@/components/Generic/Button";
@@ -90,7 +89,7 @@ export default function Discord(props: InferGetServerSidePropsType<typeof getSer
     return (
         <>
             <Header highlight={'home'}/>
-            <Metadata title={'Home Page'} description={'mldchan\'s personal website'}/>
+            <Metadata title={'mldchan\'s Discord server'} description={'Join the official mldchan Discord server today!'}/>
             <Main>
                 <Offset amt={8}/>
                 <Content>
@@ -113,7 +112,7 @@ export default function Discord(props: InferGetServerSidePropsType<typeof getSer
 
                     <Heading level={2}>Highlights of our Discord server</Heading>
 
-                    {highlights.map(x => (<DiscordFeature title={x.title} body={x.description}/>))}
+                    {highlights.map((x, i) => (<DiscordFeature key={i} title={x.title} body={x.description}/>))}
 
                     <Heading level={2}>So, what are you waiting for?</Heading>
 
