@@ -130,3 +130,15 @@ model PageVisitCooldown {
   expires DateTime
   route   String   @default("/")
 }
+
+// Discord Bot models
+
+model DiscordKV {
+  key   String @id
+  value String
+}
+
+model DiscordHistory {
+  date         String @id
+  messageCount Int
+}
