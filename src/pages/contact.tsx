@@ -77,9 +77,11 @@ export default function Contact(props: InferGetServerSidePropsType<typeof getSer
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({
+            body: cw.length > 0 ? JSON.stringify({
                 message: message,
                 cw: cw,
+            }) : JSON.stringify({
+                message: message
             }),
         })
             .then((x) => {
