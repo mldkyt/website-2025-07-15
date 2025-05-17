@@ -26,7 +26,6 @@ import Project from "@/components/Projects/Project";
 
 import akabot from "@/images/akabot.png";
 import astolfoIsComingForYou from "@/images/astolfoiscomingforyou/safe_1.png";
-import astolfOS from "@/images/astolfos/desktop.png";
 import astolfoMod from "@/images/astolfomod/biome.png";
 import astolforp from "@/images/astolforp/menu.png";
 import catgirlNonsense from "@/images/catgirlnonsense.png";
@@ -75,7 +74,6 @@ export default function Projects(props: InferGetServerSidePropsType<typeof getSe
                     description={"Astolfo comes for you, with friendly and unfriendly variants."}
                     link={"/project/astolfoiscomingforyou"}
                 />
-                <Project image={astolfOS} imageAlt={"AstolfOS desktop"} title={"AstolfOS"} description={"An operating system with Astolfo."} link={"/project/astolfos"} />
                 <Project
                     image={astolfoMod}
                     imageAlt={"Astolfo biome"}

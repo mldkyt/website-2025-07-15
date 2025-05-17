@@ -52,6 +52,12 @@ export default function AstolfOS(props: InferGetServerSidePropsType<typeof getSe
             <Offset amt={4}/>
             <Heading level={1}>AstolfOS</Heading>
 
+            <div className="bg-yellow-950 p-2 rounded-xl">
+                <span className="font-bold mr-2">WARNING</span>
+                I&apos;ve delisted this project due to the lack of support from me. As the project hasn&apos;t been 
+                yet updated past Plasma 5 and Ubuntu 20.04 LTS, I am considering it unsupported. PR&apos;s on GitHub are welcome.
+            </div>
+
             <p>AstolfOS transfers your Linux into AstolfOS!</p>
             <p>This script changes the OS name, KDE splash screen, GRUB configuration, neofetch configuration, and
                 terminal style.</p>
