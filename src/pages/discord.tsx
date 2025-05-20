@@ -16,7 +16,7 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, {act} from "react";
+import React from "react";
 
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
@@ -179,7 +179,7 @@ export default function Discord(props: InferGetServerSidePropsType<typeof getSer
                             <span>{props.discordData.meows === -1 ? "Failed to load" : props.discordData.meows.toString()}</span>
                         </div>
                         <div className={'flex flex-col w-48 text-center'}>
-                            <span className={'font-bold'}>:3's</span>
+                            <span className={'font-bold'}>:3&apos;s</span>
                             <span>{props.discordData.catfaces === -1 ? "Failed to load" : props.discordData.catfaces.toString()}</span>
                         </div>
                     </div>

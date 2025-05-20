@@ -1,4 +1,4 @@
-FROM node:20 AS dev
+FROM node:24-slim AS dev
 
 WORKDIR /app
 
@@ -6,37 +6,25 @@ COPY package.json .
 
 RUN yarn install && yarn cache clean
 
-COPY src/. src/.
-COPY public/. public/.
-COPY sentry.edge.config.ts .
-COPY sentry.server.config.ts .
-COPY next.config.ts .
-COPY tsconfig.json .
-COPY postcss.config.mjs .
-COPY tailwind.config.ts .
+COPY . .
 
-CMD ["yarn", "dev"]
+CMD ["pnpm", "dev", "--turbo"]
 
-FROM node:20 AS build
+FROM node:24-slim AS build
+
+RUN npm i -g corepack@latest
+RUN corepack enable
+RUN corepack prepare pnpm@latest-10 --activate
 
 WORKDIR /app
 
 COPY package.json .
 
-RUN yarn install && yarn cache clean
+RUN pnpm install
 
-COPY src/. src/.
-COPY public/. public/.
-COPY prisma/. prisma/.
-COPY sentry.edge.config.ts .
-COPY sentry.server.config.ts .
-COPY next.config.ts .
-COPY tsconfig.json .
-COPY postcss.config.mjs .
-COPY tailwind.config.ts .
-COPY LICENSE .
+COPY . .
 
-RUN yarn prisma generate
-RUN yarn build
+RUN pnpm prisma generate
+RUN pnpm build
 
-CMD ["yarn", "start"]
+CMD ["pnpm", "start", "--turbo"]

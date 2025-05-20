@@ -1,0 +1,28 @@
+services:
+  website:
+    restart: unless-stopped
+    image: website:latest
+    environment:
+      - DATABASE_URL=postgres://mldchan:changeme@postgres:5432/website?schema=public
+      # FILL OTHER VALUES!
+    ports:
+      - 8001:3000
+    depends_on:
+      postgres:
+        condition: service_healthy
+  postgres:
+    restart: unless-stopped
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=mldchan
+      - POSTGRES_PASSWORD=changeme
+      - POSTGRES_DB=website
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U mldchan -d website
+      interval: 5s
+      timeout: 2s
+      retries: 20
+networks:
+  website: {}
