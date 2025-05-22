@@ -16,7 +16,7 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { useState } from "react";
+import React from "react";
 
 import Main from "@/components/Generic/Main";
 import { Header } from "@/components/Generic/Header";
@@ -41,59 +41,51 @@ export async function getServerSideProps() {
 }
 
 export default function Donate(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
-    const [showKofiWidget, setShowKofiWidget] = useState(true);
 
     return (
         <Main>
             <Metadata title={"Donate"} description={"Donate to Lunya to support her projects!"} />
             <Header highlight={"donate"} />
             <Content>
-                <Offset amt={4} />
-                <Heading level={1}>Donate</Heading>
-                <p>Even if I try to run as much on free stuff as possible, it&apos;s impossible to run everything completely free of charge.</p>
-                <p>For example, servers cost money -- regardless if it is running at your home or it&apos;s a VPS.</p>
+                <Heading level={1}>donate</Heading>
+                <p>support your local transfem catgirl ♡ :3 even a small donation helps a lot and i&apos;ll do more silly things if i get paid for it :3</p>
 
-                {showKofiWidget && (
-                    <>
-                        <Button onClick={() => setShowKofiWidget(false)}>Hide Ko-fi widget</Button>{" "}
-                        <iframe id="kofiframe" src="https://ko-fi.com/mldchan/?hidefeed=true&widget=true&embed=true&preview=true" className="border-none w-full p-[4px] bg-[#f9f9f9]" height="712" title="mldchan"></iframe>
-                    </>
-                )}
+                <details>
+                    <summary className="text-pink-400 hover:text-pink-200 transition-all cursor-pointer">Past Donators</summary>
+                    <p>Here&apos;s a list of past donators to me - Thank you all!</p>
 
-                <Heading level={2}>Past Donators</Heading>
-
-                <p>Here&apos;s a list of past donators to me - Thank you all!</p>
-
-                <ul className={"list-disc ml-4"}>
-                    <li>
-                        <strong>LeroMusic</strong> (Ko-fi) - $15
-                    </li>
-                    <li>
-                        <strong>DriftBot</strong> (Ko-fi) - $10
-                    </li>
-                    <li>
-                        <strong>Creitin Gameplays</strong> (GitHub Sponsors) - $2
-                    </li>
-                </ul>
+                    <ul className={"list-disc ml-4"}>
+                        <li>
+                            <strong>LeroMusic</strong> (Ko-fi) - $15
+                        </li>
+                        <li>
+                            <strong>DriftBot</strong> (Ko-fi) - $10
+                        </li>
+                        <li>
+                            <strong>Creitin Gameplays</strong> (GitHub Sponsors) - $2
+                        </li>
+                    </ul>
+                </details>
 
                 <Heading level={2}>How do I donate?</Heading>
-                <p>If you do got some spare money which you absolutely don&apos;t need for anything else, you can donate to me on the following platforms:</p>
+                <p>it&apos;s easy! use one of the following methods to donate~ i would love you to use ko-fi as it sends me the full payment!</p>
                 <ul className={"list-disc ml-4"}>
-                    <li>
-                        <span>
-                            <Link href={"https://liberapay.com/mldchan/donate"} className={"text-pink-400 hover:text-pink-200"}>
-                                Liberapay
-                            </Link>
-                        </span>{" "}
-                        is one way to donate to me. It allows recurring payments and is open source.
-                    </li>
+                    
                     <li>
                         <span>
                             <Link href={"https://ko-fi.com/mldchan"} className={"text-pink-400 hover:text-pink-200"}>
                                 Ko-fi
                             </Link>
                         </span>{" "}
-                        is another way to donate to me. Use this for one time payments -- Ko-fi takes very low cuts of your donated money.
+                        is my preferred method and I&apos;ll even respond to your message if you add one :3
+                    </li>
+                    <li>
+                        <span>
+                            <Link href={"https://liberapay.com/mldchan/donate"} className={"text-pink-400 hover:text-pink-200"}>
+                                Liberapay
+                            </Link>
+                        </span>{" "}
+                        is a good payment method for recursive payments, so use it if you want :3
                     </li>
                     <li>
                         <span>
@@ -101,32 +93,29 @@ export default function Donate(props: InferGetServerSidePropsType<typeof getServ
                                 GitHub Sponsors
                             </Link>
                         </span>{" "}
-                        - I set this one up recently. I don&apos;t know how much GitHub cuts, but you can use this to donate to me as well.
+                        is another one, although I don&apos;t prefer it, because a lot of my work is code, it&apos;s a good idea :3
                     </li>
                 </ul>
 
-                <Heading level={2}>Where will my money go if I donate?</Heading>
-                <p>Your money will most definitely go into my pockets. No third-parties involved. Unless I pay for something online.</p>
-                <p>Your money will be used for example:</p>
+                <Heading level={2}>where am i donating?</Heading>
+                <p>to your local transfem catgirl of course! but seriously, all of your donations will go to supporting me :3</p>
+                <p>examples of where the money would go:</p>
                 <ul className={"list-disc ml-4"}>
                     <li>
-                        <strong>To support servers</strong> - My servers aren&apos;t free to run -- just like any other server -- and your donation will help me in running my servers for not just only me and you, but for
-                        everyone!
+                        <strong>servers</strong> - servers aren&apos;t free, so your support will keep them alive. same goes for domains
                     </li>
                     <li>
-                        <strong>To motivate me in programming</strong> -If you are donating to me because I make good projects -- Congratulations! Your donations will help me get motivated in programming more, as I will
-                        make money from my work!
+                        <strong>motivation</strong> - if i get money for my work it will feel like i do actual work and will motivate me :3
                     </li>
                     <li>
-                        <strong>For other things</strong> - I am not only a programmer -- so if I will see an interesting game on Steam for sale, for example, I will buy it and maybe make a video on it! And I don&apos;t
-                        know... Maybe I&apos;ll spend it on HRT or something.
+                        <strong>other things</strong> - perhaps hrt in the future mwmrmwrmwrmwmrmrmwrmwmrwmrmwrmwmrwa :33333
                     </li>
                 </ul>
 
-                <Heading level={2}>What do I host?</Heading>
-                <p>For a list of what I host, I made a dedicated page for this content. You should check that out, because some of these services are partially open to the public!</p>
+                <Heading level={2}>what do i host?</Heading>
+                <p>i made a page for a full list, be sure to check it out :3</p>
                 <Link href={"/services"}>
-                    <Button>Services</Button>
+                    <Button>services</Button>
                 </Link>
 
                 <Offset amt={6} />
