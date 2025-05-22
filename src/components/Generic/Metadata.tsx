@@ -1,5 +1,5 @@
 /*
- *     mldchan's Personal Website
+ *     Lunya's Personal Website
  *     Copyright (C) 2024  エムエルディー
  *
  *     This program is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@ export default function Metadata(props: {
       <meta httpEquiv="content-language" content="en" />
       <meta
         property="og:title"
-        content={`${props.title} | Lunya/mldchan's website :3`}
+        content={`${props.title} | Lunya's website :3`}
       />
       <meta property="og:description" content={props.description} />
       <meta property="og:type" content="website" />
@@ -45,7 +45,7 @@ export default function Metadata(props: {
       <meta property="og:locale:alternate" content="ja_JP" />
       <meta
         name="twitter:title"
-        content={`${props.title} | Lunya/mldchan's website :3`}
+        content={`${props.title} | Lunya's website :3`}
       />
       <meta name="twitter:description" content={props.description} />
       <meta name="theme-color" content="#ff77ff" />

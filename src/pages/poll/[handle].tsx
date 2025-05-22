@@ -1,5 +1,5 @@
 /*
- *     mldchan's Personal Website
+ *     Lunya's Personal Website
  *     Copyright (C) 2024  エムエルディー
  *
  *     This program is free software: you can redistribute it and/or modify
@@ -151,14 +151,14 @@ export default function Poll(props: InferGetServerSidePropsType<typeof getServer
 
     return (
         <Main>
-            <Metadata title={`Poll: ${props.title}`} description={`Vote on mldchan's poll "${props.title}".`}/>
+            <Metadata title={`Poll: ${props.title}`} description={`Vote on Lunya's poll "${props.title}".`}/>
             <Header/>
 
             <Content>
                 <Heading level={1}>{`Poll: ${props.title}`}</Heading>
 
                 {props.privacyWarning && <div className="bg-yellow-800 p-2 m-1 rounded-lg drop-shadow-lg">
-                    <h2><strong>Warning: </strong> The website has detected that you don&apos;t want to be tracked. Please note the voting on polls will store the IP address on the server in order for you to be only able to vote once and to avoid spam. Note that no one, not even mldchan, can see your IP.</h2>
+                    <h2><strong>Warning: </strong> The website has detected that you don&apos;t want to be tracked. Please note the voting on polls will store the IP address on the server in order for you to be only able to vote once and to avoid spam. Note that no one, not even Lunya, can see your IP.</h2>
                 </div>}
 
                 <p>Here&apos;s what existing people voted:</p>

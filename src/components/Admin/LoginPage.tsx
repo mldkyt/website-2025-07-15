@@ -1,5 +1,5 @@
 /*
- *     mldchan's Personal Website
+ *     Lunya's Personal Website
  *     Copyright (C) 2024  エムエルディー
  *
  *     This program is free software: you can redistribute it and/or modify
@@ -38,11 +38,11 @@ export default function LoginPage(props: {
     }
 
     return <Main>
-        <Metadata title={'Login to Admin'} description={'Log into the administration of mldchan\'s website.'}/>
+        <Metadata title={'Login to Admin'} description={'Log into the administration of Lunya\'s website.'}/>
         <Content>
             <br/>
 
-            <h1 className={'text-center mt-16 mb-4 font-bold text-4xl'}>mldchan administration</h1>
+            <h1 className={'text-center mt-16 mb-4 font-bold text-4xl'}>Lunya administration</h1>
 
             <form onSubmit={submitForm}>
                 <label htmlFor={'key'}>Password</label>

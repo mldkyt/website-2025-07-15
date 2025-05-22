@@ -1,5 +1,5 @@
 /*
- *     mldchan's Personal Website
+ *     Lunya's Personal Website
  *     Copyright (C) 2024  エムエルディー
  *
  *     This program is free software: you can redistribute it and/or modify
@@ -186,7 +186,7 @@ export function PollManager() {
     }
 
     return <Main>
-        <Metadata title={'Poll Manager'} description={'Poll Manager on mldchan\'s admin panel'}/>
+        <Metadata title={'Poll Manager'} description={'Poll Manager on Lunya\'s admin panel'}/>
         <Content>
             <br/>
             <h1 className={'mt-8 mb-4 text-2xl font-bold'}>Manage polls</h1>

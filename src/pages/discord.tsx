@@ -1,5 +1,5 @@
 /*
- *     mldchan's Personal Website
+ *     Lunya's Personal Website
  *     Copyright (C) 2024  エムエルディー
  *
  *     This program is free software: you can redistribute it and/or modify
@@ -141,8 +141,8 @@ export default function Discord(props: InferGetServerSidePropsType<typeof getSer
     return (
         <>
             <Header highlight={'home'}/>
-            <Metadata title={'mldchan\'s Discord server'}
-                      description={'Join the official mldchan Discord server today!'}/>
+            <Metadata title={'Lunya\'s Discord server'}
+                      description={'Join the official Lunya Discord server today!'}/>
             <Main>
                 <Offset amt={8}/>
                 <Content>

@@ -1,5 +1,5 @@
 /*
- *     mldchan's Personal Website
+ *     Lunya's Personal Website
  *     Copyright (C) 2024  エムエルディー
  *
  *     This program is free software: you can redistribute it and/or modify
@@ -48,12 +48,12 @@ export async function getServerSideProps() {
 
 export default function Art(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return <Main>
-        <Metadata title={'Art'} description={'mldchan\'s art'}/>
+        <Metadata title={'Art'} description={'Lunya\'s art'}/>
         <Header/>
         <Content>
             <Offset amt={4}/>
             <Heading level={1}>Art</Heading>
-            <p>mldchan sometimes does art. Here are some of her works :3</p>
+            <p>Lunya sometimes does art. Here are some of her works :3</p>
 
             <Heading level={2}>BusLine</Heading>
             <p>A kawaii logo of the local bus transport company.</p>
@@ -63,9 +63,9 @@ export default function Art(props: InferGetServerSidePropsType<typeof getServerS
             <p>A Japanese way to react to a post with a &quot;Like&quot; or &quot;Thumbs Up&quot;</p> 
             <Image src={iine} alt={'IINE'}/>
 
-            <Heading level={2}>mldchan social</Heading>
+            <Heading level={2}>Lunya social</Heading>
             <p>Kawaii logo for my Sharkey instance</p>
-            <Image src={mldchanSocial} alt={'mldchan social logo'}/>
+            <Image src={mldchanSocial} alt={'Lunya social logo'}/>
 
             <Heading level={2}>Ohayoo</Heading>
             <p>Japanese for &quot;Good Morning&quot;</p>

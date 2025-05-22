@@ -1,5 +1,5 @@
 /*
- *     mldchan's Personal Website
+ *     Lunya's Personal Website
  *     Copyright (C) 2024  エムエルディー
  *
  *     This program is free software: you can redistribute it and/or modify
@@ -60,7 +60,7 @@ export async function getServerSideProps() {
 export default function Projects(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
-            <Metadata title={"Projects"} description={"A list of projects by mldchan."} />
+            <Metadata title={"Projects"} description={"A list of projects by Lunya."} />
             <Header highlight={"projects"} />
             <Content>
                 <h1 className={"text-center text-3xl font-bold py-4"}>Lunya&apos;s Projects :3</h1>

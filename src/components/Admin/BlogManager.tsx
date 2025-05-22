@@ -1,5 +1,5 @@
 /*
- *     mldchan's Personal Website
+ *     Lunya's Personal Website
  *     Copyright (C) 2024  エムエルディー
  *
  *     This program is free software: you can redistribute it and/or modify
@@ -236,7 +236,7 @@ export default function BlogManager() {
     }
 
     return <Main>
-        <Metadata title={'Blog Management'} description={'This is the blog management section of mldchan\'s website.'}/>
+        <Metadata title={'Blog Management'} description={'This is the blog management section of Lunya\'s website.'}/>
         <Content>
             <br/>
             <h1 className={'mt-8 mb-4 text-2xl font-bold'}>Blog Manager</h1>

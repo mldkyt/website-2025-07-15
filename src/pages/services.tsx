@@ -1,5 +1,5 @@
 /*
- *     mldchan's Personal Website
+ *     Lunya's Personal Website
  *     Copyright (C) 2024  エムエルディー
  *
  *     This program is free software: you can redistribute it and/or modify
@@ -40,10 +40,10 @@ export async function getServerSideProps() {
 export default function Services(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
-            <Metadata title={"Services"} description={"mldchan's services"} />
+            <Metadata title={"Services"} description={"Lunya's services"} />
             <Header highlight="services" />
             <Content>
-                <h1 className={"text-center text-3xl font-bold py-4"}>mldchan&apos;s Services</h1>
+                <h1 className={"text-center text-3xl font-bold py-4"}>Lunya&apos;s Services</h1>
 
                 <h2 className="text-xl font-bold">Public services</h2>
                 <p>Anyone can interact with these in some way!</p>
@@ -61,7 +61,7 @@ export default function Services(props: InferGetServerSidePropsType<typeof getSe
                 />
                 <Service
                     svcName={"Lunyakey: Fediverse Software"}
-                    svcDesc={"This is what mldchan uses to connect to the fediverse. Lunyakey is the cutest fork of Sharkey. "}
+                    svcDesc={"This is what Lunya uses to connect to the fediverse. Lunyakey is the cutest fork of Sharkey. "}
                     links={[{
                         label: "Open Sharkey",
                         url: "https://social.mldchan.dev"
@@ -129,20 +129,20 @@ export default function Services(props: InferGetServerSidePropsType<typeof getSe
 
                 <h2 className="text-xl font-bold">Private services</h2>
 
-                <Service svcName={"mlshortener: Link Shortener"} svcDesc={"mldchan's personal link shortener."} links={[{
+                <Service svcName={"mlshortener: Link Shortener"} svcDesc={"Lunya's personal link shortener."} links={[{
                     label: "Open mlshortener home page",
                     url: "https://s.mldchan.dev/"
                 }]} />
                 <Service
                     svcName={"Nextcloud: Personal Cloud"}
-                    svcDesc={"mldchan uses this to mostly store and sometimes share files."}
+                    svcDesc={"Lunya uses this to mostly store and sometimes share files."}
                     links={[{
                         label: "Open Nextcloud",
                         url: "https://nextcloud.mldchan.dev/"
                     }]}
                 />
                 <Service svcName={"uptime-kuma: Status monitor"} svcDesc={"Allows me to receive notifications when something doesn't work right."} />
-                <Service svcName={"Dockge: Server Management"} svcDesc={"Allows remote managing of mldchan's server."} />
+                <Service svcName={"Dockge: Server Management"} svcDesc={"Allows remote managing of Lunya's server."} />
                 <Service svcName={"Nekoweb View Tracker"} svcDesc={"Open-source tracker tracking the history of page visits on Nekoweb."} />
                 <Service svcName={"Cutie Hangout Services"} svcDesc={"Friends only services"} />
                 <Service svcName={"QueerBot"} svcDesc={"Another Discord bot for friends."} />

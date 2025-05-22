@@ -29,7 +29,7 @@ export default function Introduction(props: InferGetServerSidePropsType<typeof g
     return (
         <>
             <Header highlight="" />
-            <Metadata title={'Introduction'} description={'An extended introduction to mldchan and about her'} />
+            <Metadata title={'Introduction'} description={'An extended introduction to Lunya and about her'} />
             <Main>
                 <Content>
                     <Heading level={1}>Introduction</Heading>
@@ -42,8 +42,8 @@ export default function Introduction(props: InferGetServerSidePropsType<typeof g
                         <p>This page is under active editing. Please suggest improvements <Link href={'/socials'} className="text-pink-400 hover:text-pink-200">here</Link> :3</p>
                     </div>
 
-                    <Heading level={2}>About mldchan</Heading>
-                    <p className="py-2">mldchan is a transfem developer and a content creator from the Czech Republic. I use she/her pronouns exclusively and prefer not to be called by anything else. When in a voice call with me, you can call me &quot;mld&quot; or Lunya. I am transgender, pansexual and aromantic. Thus I am transitioning from a boy to a girl, I find anyone and anything attractive, but I do not like dating, it&apos;s not my cup of tea.</p>
+                    <Heading level={2}>About Lunya</Heading>
+                    <p className="py-2">Lunya is a transfem developer and a content creator from the Czech Republic. I use she/her pronouns exclusively and prefer not to be called by anything else. When in a voice call with me, you can call me &quot;mld&quot; or Lunya. I am transgender, pansexual and aromantic. Thus I am transitioning from a boy to a girl, I find anyone and anything attractive, but I do not like dating, it&apos;s not my cup of tea.</p>
                     <Heading level={2}>How to talk with me</Heading>
                     <p className="py-2">Talk to me in English. You can use a translator if you don&apos;t know English, or struggle with it.</p>
                     <p className="py-2">I like socializing with people that share the same interests and communities with me, which means I find people in the LGBTQ+ community amazing, and tech savvy people amazing. I also find many content creators interesting based on their content, or indie developers by their games. I heavily support people actively developing or maintaining free and open source software.</p>

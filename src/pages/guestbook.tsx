@@ -1,5 +1,5 @@
 /*
- *     mldchan's Personal Website
+ *     Lunya's Personal Website
  *     Copyright (C) 2024  エムエルディー
  *
  *     This program is free software: you can redistribute it and/or modify
@@ -157,10 +157,10 @@ export default function Guestbook(props: InferGetServerSidePropsType<typeof getS
     }
 
     return <Main>
-        <Metadata title={'mldchan\'s guestbook'} description={'Sign mldchan\'s guestbook today!'}/>
+        <Metadata title={'Lunya\'s guestbook'} description={'Sign Lunya\'s guestbook today!'}/>
         <Header highlight={'guestbook'}/>
         <Content>
-            <Heading level={1}>mldchan&apos;s Guestbook</Heading>
+            <Heading level={1}>Lunya&apos;s Guestbook</Heading>
 
             {postForm === true && <form className={'p-2 rounded-lg drop-shadow-md'}
                                         onSubmit={guestbookSubmit}>
@@ -189,7 +189,7 @@ export default function Guestbook(props: InferGetServerSidePropsType<typeof getS
             {submitError && <p className={'bg-red-800 p-2 rounded-lg'}>{submitError}</p>}
 
             {postForm === 'approval' &&
-                <p className="bg-blue-800 p-2 rounded-lg">Your message on this guestbook is currently awaiting approval from mldchan. This is done to prevent
+                <p className="bg-blue-800 p-2 rounded-lg">Your message on this guestbook is currently awaiting approval from Lunya. This is done to prevent
                     spam and
                     bigotry.</p>}
             {postForm === 'noip' &&

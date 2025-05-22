@@ -40,7 +40,7 @@ export async function getServerSideProps() {
 export default function Socials(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
-            <Metadata title={"Socials"} description={"mldchan's socials"} />
+            <Metadata title={"Socials"} description={"Lunya's socials"} />
             <Header highlight={"socials"} />
             <Content>
                 <h1 className={"text-center text-2xl font-bold py-4"}>Lunya&apos;s Contacts and Socials :3</h1>

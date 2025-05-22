@@ -1,5 +1,5 @@
 /*
- *     mldchan's Personal Website
+ *     Lunya's Personal Website
  *     Copyright (C) 2024  エムエルディー
  *
  *     This program is free software: you can redistribute it and/or modify
@@ -53,7 +53,7 @@ export default function FediStreaks(props: InferGetServerSidePropsType<typeof ge
                 </p>
                 <p className="pt-2">
                     This bot mainly derives from Chat Streaks in Akabot, which is pretty much this but for Discord. The
-                    bot follows back within 30 seconds which allows you to check that it actually works. (If mldchan&apos;s
+                    bot follows back within 30 seconds which allows you to check that it actually works. (If Lunya&apos;s
                     Sharkey instance is up, there&apos;s a high chance this is up as well).
                 </p>
 

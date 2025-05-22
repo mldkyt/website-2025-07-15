@@ -1,5 +1,5 @@
 /*
- *     mldchan's Personal Website
+ *     Lunya's Personal Website
  *     Copyright (C) 2024  エムエルディー
  *
  *     This program is free software: you can redistribute it and/or modify
@@ -107,18 +107,18 @@ export default function Contact(props: InferGetServerSidePropsType<typeof getSer
     return (
         <Main>
             <Header highlight={"contact"} />
-            <Metadata title={"Contact mldchan"} description={"This page contains information on how to contact mldchan."} />
+            <Metadata title={"Contact Lunya"} description={"This page contains information on how to contact Lunya."} />
             <Content>
                 <Offset amt={4} />
-                <Heading level={1}>Contact mldchan</Heading>
+                <Heading level={1}>Contact Lunya</Heading>
 
-                <p>NEW! Send an anonymous message to mldchan!</p>
+                <p>NEW! Send an anonymous message to Lunya!</p>
 
                 {props.privacyWarning && (
                     <div className="bg-yellow-800 p-2 m-1 rounded-lg drop-shadow-lg">
                         <h2>
                             <strong>Warning: </strong> The website has detected that you don&apos;t want to be tracked. Please note when you send anonymous messages the server stores your IP address due to avoiding spam.
-                            mldchan will never see your IP address. The source code is open.
+                            Lunya will never see your IP address. The source code is open.
                         </h2>
                     </div>
                 )}
@@ -135,7 +135,7 @@ export default function Contact(props: InferGetServerSidePropsType<typeof getSer
                 {success && <p className="text-green-500">Message was sent successfully!</p>}
                 {error && <p className="text-red-500">Error: {error}</p>}
 
-                <p>Welcome to the contact page for mldchan! This page contains information on how to contact me.</p>
+                <p>Welcome to the contact page for Lunya! This page contains information on how to contact me.</p>
 
                 <ContactWrapper name={"Discord"}>
                     <p>You can join the Discord server and chat with me in there!</p>
