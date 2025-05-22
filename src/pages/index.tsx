@@ -64,23 +64,15 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
                                 />
                             </div>
                             <div>
-                                <h1 className="font-bold text-2xl">Haiii, I&apos;m Lunya :33</h1> 
+                                <h1 className="font-bold text-2xl">haii, i&apos;m Lunya :33</h1> 
                                 <p className={"py-2"}> 
-                                    I&apos;m a part-time developer, some-time Mon Bazou mod creator, and full-time trans catgirl :3
-                                </p>
-                                <p className={"py-2"}>
-                                    I have a <Link className="underline text-pink-400 hover:text-pink-200" href="https://youtube.com/@mldchan">YouTube channel</Link> where I play games and tinker with tech. Go check it out~
+                                    i&apos;m a transgender catgirl, and i <Link className="underline text-pink-400 hover:text-pink-200 transition-all" href={"https://git.lunya.pet/Lunya"}>code</Link>! alongside coding, i also <Link className="underline text-pink-400 hover:text-pink-200 transition-all" href={"https://youtube.com/@mldchan"}>make videos</Link>!
                                 </p>
                                 <p className="py-2">
-                                    My most popular project is <Link className="underline text-pink-400 hover:text-pink-200" href='/project/akabot'>Akabot</Link>, a general purpose Discord bot. I also used to make My Summer Car mods, but most of them are private due to the <Link
-                                    href={"https://social.mldchan.dev/notes/a1tsf5xe9kiu00r2"}
-                                    className={"underline text-pink-400 hover:text-pink-200"}
-                                >
-                                    community&apos;s backlash
-                                </Link>.
+                                    my most successfull project is <Link className="underline text-pink-400 hover:text-pink-200 transition-all" href='/project/akabot'>Akabot</Link>, a general purpose discord bot with a lot of features :3 it&apos;s one of the <Link className="underline text-pink-400 hover:text-pink-200 transition-all" href={"/projects"}>cool projects</Link> you can find!
                                 </p>
                                 <p className={"py-2"}>
-                                    Read my <Link href="/introduction" className="underline text-pink-400 hover:text-pink-200">introduction</Link> for more!
+                                    you should consider reading my <Link href="/introduction" className="underline text-pink-400 hover:text-pink-200 transition-all">intro</Link> for a bit about me, it will tell you a bit about my online behaviour and how to chat with me :3
                                 </p>
                             </div>
                         </div>
@@ -90,7 +82,7 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
                 <Content>
                     {/* Projects */}
                     <div className="flex flex-row justify-between">
-                        <h1 className="text-2xl font-bold ml-4">Projects</h1>
+                        <h1 className="text-2xl font-bold ml-4">projects</h1>
                         <Link className="text-2xl underline mr-4" href='/projects'>more &#8594;</Link>
                     </div>
 
@@ -98,51 +90,51 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
                         <Link href={"/project/akabot"} className="bg-[#222] rounded-xl m-4">
                             <Image className="h-[256px] object-cover rounded-t-xl" src={akabot} alt="Akabot Logo" width={1024} height={1024}  /> 
                             <h1 className="font-bold text-xl m-2">Akabot</h1>
-                            <p className="m-2">Akabot is a Discord bot with lots of features.</p>
+                            <p className="m-2">a general purpose discord bot with a lot of features.</p>
                         </Link>
                         <Link href={'/project/catgirlnonsense'} className="bg-[#222] rounded-xl m-4">
                             <Image className="h-[256px] object-cover rounded-t-xl" src={catgirlNonsense} alt="Akabot Logo" width={1024} height={1024}  /> 
                             <h1 className="font-bold text-xl m-2">Catgirl Nonsense</h1>
-                            <p className="m-2">Catgirl nonsense generator.</p>
+                            <p className="m-2">catgirls dreams mmwrmwamrwamrmwa &gt;/////////&lt; wrwageiogjaa uwu :3 *pats you*</p>
                         </Link>
                         <Link href={'/project/astolfomod'} className="bg-[#222] rounded-xl m-4">
                             <Image className="h-[256px] object-cover rounded-t-xl" src={astolfoMod} alt="Akabot Logo" width={1024} height={1024} /> 
                             <h1 className="font-bold text-xl m-2">Astolfo Mod</h1>
-                            <p className="m-2">A Minecraft mod that adds many non-binary, transgender and femboy characters to the game.</p>
+                            <p className="m-2">a silly minecraft mod adding femboys and trans girls into minecraft :3</p>
                         </Link>
                     </div>
 
 
                     {/* Other */}
-                    <h1 className="text-2xl font-bold ml-4">Other</h1>
+                    <h1 className="text-2xl font-bold ml-4">other things i do uwu</h1>
 
                     <div className="m-4">
                         <div className="flex flex-row justify-between items-center">
-                            <h1 className="font-bold text-xl m-2">Self-hosting</h1>
+                            <h1 className="font-bold text-xl m-2">self hosting</h1>
                             <Link href="/services" className="text-xl mr-4 underline">services &#8594;</Link> 
                         </div>
-                        <p className="m-2">I host a few services, including my own <Link href="https://social.mldchan.dev" className="underline text-pink-400 hover:text-pink-200">Sharkey</Link> and <Link href="https://git.lunya.pet" className="underline text-pink-400 hover:text-pink-200">Forgejo</Link> instances. Most of these self-hosted services are for personal use only, or are shared across friends.</p>
+                        <p className="m-2">i run a few services for myself and/or friends, for example <Link href="https://fedi.lunya.pet/@Lunya" className="underline text-pink-400 hover:text-pink-200">Sharkey</Link> for frens and <Link href="https://git.lunya.pet" className="underline text-pink-400 hover:text-pink-200">Forgejo</Link> for my code :3</p>
                     </div>
                     <div className="m-4">
                         <div className="flex flex-row justify-between items-center">
-                            <h1 className="font-bold text-xl m-2">Video content creation</h1>
+                            <h1 className="font-bold text-xl m-2">videos</h1>
                             <Link href="https://youtube.com/@mldchan" className="text-xl mr-4 underline">youtube &#8594;</Link> 
                         </div>
-                        <p className="m-2">I post videos on <Link href="https://youtube.com/@mldchan" className="underline text-pink-400 hover:text-pink-200">YouTube</Link>, <Link className="underline text-pink-400 hover:text-pink-200" href="https://peertube.mldchan.dev/c/mldchan">PeerTube</Link> and <Link className="underline text-pink-400 hover:text-pink-200" href="https://tiktok.com/@grl.uwu">TikTok</Link>. I&apos;m most active on YouTube. My Celeste videos are quite successful.</p> 
+                        <p className="m-2">i put videos on <Link href="https://youtube.com/@mldchan" className="underline text-pink-400 hover:text-pink-200">yt</Link>, <Link className="underline text-pink-400 hover:text-pink-200" href="https://peertube.mldchan.dev/c/mldchan">peertube</Link> and <Link className="underline text-pink-400 hover:text-pink-200" href="https://tiktok.com/@grl.uwu">TikTok</Link> :3 i still use youtube the most</p> 
                     </div>
                     <div className="m-4">
                         <div className="flex flex-row justify-between items-center">
-                            <h1 className="font-bold text-xl m-2">Art</h1>
+                            <h1 className="font-bold text-xl m-2">art</h1>
                             <Link href="/art" className="text-xl mr-4 underline">gallery &#8594;</Link> 
                         </div>
-                        <p className="m-2">One of my kawaii arts is the website logo. Another one is the <Link href="https://social.mldchan.dev" className="underline text-pink-400 hover:text-pink-200">logo of my Sharkey instance</Link>.</p>
+                        <p className="m-2">i dont draw much but i did kawaii art for this website and also my <Link href="https://social.mldchan.dev" className="underline text-pink-400 hover:text-pink-200">Sharkey instance</Link> :3 for example</p>
                     </div>
                     <div className="m-4">
                         <div className="flex flex-row justify-between items-center">
-                            <h1 className="font-bold text-xl m-2">Discord Server</h1>
+                            <h1 className="font-bold text-xl m-2">discord community</h1>
                             <Link href="/services" className="text-xl mr-4 underline">join &#8594;</Link> 
                         </div>
-                        <p className="m-2">My server is a chill space for tech enthusiasts and gamers. Fun included!</p>
+                        <p className="m-2">i run a silly <Link className="underline text-pink-400 hover:text-pink-200" href={"/discord"}>discord server</Link> with silly features :3 you should totally join :33</p>
                     </div>
                     <Offset amt={3} />
                     <Footer visits={props.visits} route={'/'} />
