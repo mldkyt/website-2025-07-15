@@ -42,13 +42,13 @@ export async function getServerSideProps() {
 }
 
 function FeatureList(props: { children: ReactNode }) {
-    return <div>
+    return <div className="grid grid-cols-1 lg:grid-cols-2">
         {props.children}
     </div>
 }
 
 function Feature(props: { title: string, body: string, newFeat?: boolean }) {
-    return <div className={'m-3 bg-[#181818] drop-shadow-lg rounded-lg p-3'}>
+    return <div className={'m-2 bg-[#181818] drop-shadow-lg rounded-lg p-3'}>
         <h3 className={'text-2xl font-bold'}>{props.title} {props.newFeat === true &&
             <span className="text-pink-500">NEW!</span>}</h3>
         <p>{props.body}</p>
@@ -85,7 +85,7 @@ export default function Akabot(props: InferGetServerSidePropsType<typeof getServ
             <Metadata title={'Akabot'} description={'Akabot: A feature packed Discord bot that\'s free forever!'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={8}/>
+                <Offset amt={2}/>
 
                 <div>
                     <h1 className={'text-center text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold'}>Supercharge
@@ -117,21 +117,24 @@ export default function Akabot(props: InferGetServerSidePropsType<typeof getServ
                     {features.map((x, i) => (<Feature key={i} title={x.title} body={x.description}/>))}
                 </FeatureList>
 
-                <Offset amt={2}/>
+                <br />
 
-                <Heading level={2}>How do I self-host this bot?</Heading>
+                <Heading level={2}>FAQ</Heading>
 
 
-                <p>The bot is open-source, so if you want to host your own instance for the public or for personal use,
-                    click the button below to view the source code:</p>
-                <Link href={'https://code.mldchan.dev/mld/Akabot'} className={'m-1'}>
-                    <Button>View on Forgejo</Button>
-                </Link>
-                <Link href={'https://github.com/uwugrl/Akabot'} className={'m-1'}>
-                    <Button>View on GitHub</Button>
-                </Link>
+                <details>
+                    <summary>How do I self-host this bot?</summary>
+                    <p>The bot is open-source, so if you want to host your own instance for the public or for personal use,
+                        click the button below to view the source code:</p>
+                    <Link href={'https://code.mldchan.dev/mld/Akabot'} className={'m-1'}>
+                        <Button>View on Forgejo</Button>
+                    </Link>
+                    <Link href={'https://github.com/uwugrl/Akabot'} className={'m-1'}>
+                        <Button>View on GitHub</Button>
+                    </Link>
 
-                <p>Self-hosting instructions are available in the repository.</p>
+                    <p>Self-hosting instructions are available in the repository.</p>
+                </details>
 
                 <Heading level={2}>Donations are welcome!</Heading>
 

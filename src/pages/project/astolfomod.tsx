@@ -15,7 +15,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React from "react";
+import React, { useState } from "react";
 
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
@@ -50,127 +50,126 @@ export async function getServerSideProps() {
 }
 
 export default function Template(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
+    const [tab, setTab] = useState("description");
+
     return (
         <Main>
             <Metadata title={'Astolfo Mod'}
                       description={'Astolfo Mod for Minecraft, a mod that adds Astolfo and other characters to the game.'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={4}/>
                 <Heading level={1}>Astolfo Mod</Heading>
 
-                <div className="message">
-                    <strong>UPDATE: </strong>
-                    <span>The mod is now available on Modrinth for download! If you prefer that site for downloading, <a
-                        href="https://modrinth.com/mod/astolfo-forge-mod">click here</a>.</span>
+                <div className="w-full flex flex-row text-center">
+                    <div onClick={() => setTab('description')} className={`${tab === 'description' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>Description</div>
+                    <div onClick={() => setTab('gallery')} className={`${tab === 'gallery' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>Gallery</div>
+                    <div onClick={() => setTab('changelog')} className={`${tab === 'changelog' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>Changelog</div>
                 </div>
 
-                <Heading level={2}>What does this mod add?</Heading>
+                {tab === 'description' && <>
+                    <Heading level={2}>What does this mod add?</Heading>
 
-                <ul className={'ml-4 list-disc'}>
-                    <li><b>Astolfo in 3 outfits</b> - Astolfo Schoolgirl, Astolfo Armour, and Astolfo in Casual outfit
-                    </li>
-                    <li><b>Felix Argyle</b></li>
-                    <li><b>Hideri Kanzaki</b></li>
-                    <li><b>Venti</b></li>
-                    <li><b>Rimuru</b></li>
-                    <li><b>Nagisa Shiota</b></li>
-                    <li><b>Sieg</b> (Fate/Apocrypha)</li>
-                    <li><b>Bridget</b> <i>(I know she&apos;s a transgender girl but I included her because why not)</i></li>
-                </ul>
+                    <ul className={'ml-4 list-disc'}>
+                        <li><b>Astolfo in 3 outfits</b> - Astolfo Schoolgirl, Astolfo Armour, and Astolfo in Casual outfit
+                        </li>
+                        <li><b>Felix Argyle</b></li>
+                        <li><b>Hideri Kanzaki</b></li>
+                        <li><b>Venti</b></li>
+                        <li><b>Rimuru</b></li>
+                        <li><b>Nagisa Shiota</b></li>
+                        <li><b>Sieg</b> (Fate/Apocrypha)</li>
+                        <li><b>Bridget</b> <i>(I know she&apos;s a transgender girl but I included her because why not)</i></li>
+                    </ul>
 
-                <Heading level={2}>Commands</Heading>
+                    <Heading level={2}>Commands</Heading>
 
-                <ul className={'ml-4 list-disc'}>
-                    <li>
-                        <code>/duplicatecuties &lt;amount&gt; &lt;range&gt;</code> - Duplicate all of the added mobs
-                        within the
-                        range amount times. The mod doesn&apos;t have any limits in the 2 parameters, so entering big numbers
-                        might
-                        cause your
-                        game to crash!
-                    </li>
-                    <li>
-                        <code>/despawn &lt;selector&gt;</code> - This command is simple and allows you to &quot;kill&quot;
-                        monsters
-                        without the animation. This prevents the particles from death spawning and lagging your game if
-                        you have
-                        too many mobs
-                        from this mod spawned.
-                    </li>
-                    <li>
-                        <code>/cuterain &lt;iterations&gt; &lt;range&gt; &lt;height&gt;</code> - This command makes the
-                        mobs
-                        above rain from the sky. It runs how many times iterations is, spawning mobs in the range
-                        provided,
-                        spawning them in
-                        the specified height. Every iteration spawns 1 of each mob above, excluding creative mobs.
-                    </li>
-                </ul>
+                    <ul className={'ml-4 list-disc'}>
+                        <li>
+                            <code>/duplicatecuties &lt;amount&gt; &lt;range&gt;</code> - Duplicate all of the added mobs
+                            within the
+                            range amount times. The mod doesn&apos;t have any limits in the 2 parameters, so entering big numbers
+                            might
+                            cause your
+                            game to crash!
+                        </li>
+                        <li>
+                            <code>/despawn &lt;selector&gt;</code> - This command is simple and allows you to &quot;kill&quot;
+                            monsters
+                            without the animation. This prevents the particles from death spawning and lagging your game if
+                            you have
+                            too many mobs
+                            from this mod spawned.
+                        </li>
+                        <li>
+                            <code>/cuterain &lt;iterations&gt; &lt;range&gt; &lt;height&gt;</code> - This command makes the
+                            mobs
+                            above rain from the sky. It runs how many times iterations is, spawning mobs in the range
+                            provided,
+                            spawning them in
+                            the specified height. Every iteration spawns 1 of each mob above, excluding creative mobs.
+                        </li>
+                    </ul>
 
-                <Heading level={2}>Creative items and mobs</Heading>
+                    <Heading level={2}>Creative items and mobs</Heading>
 
-                <ul className={'ml-4 list-disc'}>
-                    <li><b>Astolfo Attractor</b> - The text &quot;gay&quot; in the menu, attracts only variants of Astolfo.</li> 
-                    <li><b>Astolfo Repellent</b> - A Felix Argyle entity which repels all Astolfos from its location.
-                    </li>
-                    <li><b>Monster White</b> - No crafting recipe yet, gives you speed and jump boost and gives you
-                        trans rights
-                        🏳️‍⚧️❤️
-                    </li>
-                </ul>
+                    <ul className={'ml-4 list-disc'}>
+                        <li><b>Astolfo Attractor</b> - The text &quot;gay&quot; in the menu, attracts only variants of Astolfo.</li> 
+                        <li><b>Astolfo Repellent</b> - A Felix Argyle entity which repels all Astolfos from its location.
+                        </li>
+                        <li><b>Monster White</b> - No crafting recipe yet, gives you speed and jump boost and gives you
+                            trans rights
+                            🏳️‍⚧️❤️
+                        </li>
+                    </ul>
 
-                <Heading level={2}>Video about the mod</Heading>
+                    <Heading level={2}>Video about the mod</Heading>
 
-                <p>I&apos;ve also made a video about the mod on my YouTube channel, so if you want to watch that, you can do
-                    so:</p>
+                    <p>I&apos;ve also made a video about the mod on my YouTube channel, so if you want to watch that, you can do
+                        so:</p>
 
-                <iframe width="343" height="200"
-                        src="https://www.youtube-nocookie.com/embed/bBvrp8puvdw?si=1KTa9xR-AzxIyX_2"
-                        title="YouTube video player" frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                    <iframe width="400" height="225"
+                            src="https://www.youtube-nocookie.com/embed/bBvrp8puvdw?si=1KTa9xR-AzxIyX_2"
+                            title="YouTube video player" frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
-                <Heading level={2}>Supporting this mod</Heading>
+                    <Heading level={2}>Supporting this mod</Heading>
 
-                <H3>1. Suggestions</H3>
+                    <H3>1. Suggestions</H3>
 
-                <p>
-                    The simplest you can do for now is to <b>create an idea suggestion</b> for the mod using a <Link
-                    className="text-pink-400 hover:text-pink-300"
-                    href="https://github.com/uwugrl/AstolfoForge/issues"
-                >GitHub issue</Link>.
-                </p>
+                    <p>
+                        The simplest you can do for now is to <b>create an idea suggestion</b> for the mod using a <Link
+                        className="text-pink-400 hover:text-pink-300"
+                        href="https://github.com/uwugrl/AstolfoForge/issues"
+                    >GitHub issue</Link>.
+                    </p>
 
-                <H3>2. Reporting bugs</H3>
+                    <H3>2. Reporting bugs</H3>
 
-                <p>
-                    If you find any bug in the mod, <b>you can report it</b> using <Link
-                    className="text-pink-400 hover:text-pink-300"
-                    href="https://github.com/uwugrl/AstolfoForge/issues">GitHub issues</Link> for it to be fixed.
-                    It will be fixed once I get some free time.
-                </p>
+                    <p>
+                        If you find any bug in the mod, <b>you can report it</b> using <Link
+                        className="text-pink-400 hover:text-pink-300"
+                        href="https://github.com/uwugrl/AstolfoForge/issues">GitHub issues</Link> for it to be fixed.
+                        It will be fixed once I get some free time.
+                    </p>
 
-                <H3>3. Financial support</H3>
+                    <H3>3. Financial support</H3>
 
-                <p><Link href={'/donate'} className="text-pink-400 hover:text-pink-300">You can donate me using various
-                    methods here.</Link> I accept donations on all of them.</p>
+                    <p><Link href={'/donate'} className="text-pink-400 hover:text-pink-300">You can donate me using various methods here.</Link>
+                     I accept donations on all of them.</p>
+                </>}
 
-                <details>
-                    <summary className={'text-pink-400 hover:text-pink-200'}>Gallery</summary>
-                    <div className="grid grid-cols-1 lg:grid-cols-2">
-                        <Image src={crowd} alt="Astolfo Crowd in Minecraft" className={'rounded-lg p-1'}/>
-                        <Image src={biome} alt="Astolfo Biome in Minecraft" className={'rounded-lg p-1'}/>
-                        <Image src={casual} alt="Casual Astolfo in Minecraft" className={'rounded-lg p-1'}/>
-                        <Image src={armor} alt="Armored Astolfo in Minecraft" className={'rounded-lg p-1'}/>
-                        <Image src={schoolgirl} alt="School girl outfit Astolfo in Minecraft"
-                               className={'rounded-lg p-1'}/>
-                        <Image src={astolfoFlower} alt="Astolfo Flower in Minecraft" className={'rounded-lg p-1'}/>
-                    </div>
-                </details>
+                {tab === 'gallery' && <div className="grid grid-cols-1 lg:grid-cols-2">
+                    <Image src={crowd} alt="Astolfo Crowd in Minecraft" className={'rounded-lg p-1'}/>
+                    <Image src={biome} alt="Astolfo Biome in Minecraft" className={'rounded-lg p-1'}/>
+                    <Image src={casual} alt="Casual Astolfo in Minecraft" className={'rounded-lg p-1'}/>
+                    <Image src={armor} alt="Armored Astolfo in Minecraft" className={'rounded-lg p-1'}/>
+                    <Image src={schoolgirl} alt="School girl outfit Astolfo in Minecraft"
+                            className={'rounded-lg p-1'}/>
+                    <Image src={astolfoFlower} alt="Astolfo Flower in Minecraft" className={'rounded-lg p-1'}/>
+                </div> }
 
-                <details>
-                    <summary className={'text-pink-400 hover:text-pink-200'}>Changelog</summary>
+                {tab === 'changelog' && <>
                     <H3>v1.2</H3>
                     <ul className={'ml-6 list-disc'}>
                         <li>Added Hideri</li>
@@ -194,18 +193,21 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                     <ul className={'ml-6 list-disc'}>
                         <li>First release</li>
                     </ul>
-                </details>
+                </>}
 
-                <Link href="https://modrinth.com/mod/astolfo-mod">
-                    <Button>Open Modrinth page</Button>
-                </Link>
-                <Link href="https://github.com/uwugrl/AstolfoForge/releases/latest" className="ml-2">
-                    <Button>GitHub</Button>
-                </Link>
-                <br />
-                <Link href={'/discord'}>
-                    <Button>Get support in the Discord server!</Button>
-                </Link>
+                <Offset amt={2} />
+
+                <div className="flex flex-col gap-2">
+                    <Link href="https://modrinth.com/mod/astolfo-mod">
+                        <Button fullWidth>Open Modrinth page</Button>
+                    </Link>
+                    <Link href="https://github.com/uwugrl/AstolfoForge/releases/latest">
+                        <Button fullWidth>GitHub</Button>
+                    </Link>
+                    <Link href={'/discord'}>
+                        <Button fullWidth>Get support in the Discord server!</Button>
+                    </Link>
+                </div>
 
                 <Offset amt={3}/>
                 <Footer visits={props.visits} route={'/project/astolfomod'}

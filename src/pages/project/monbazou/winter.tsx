@@ -47,7 +47,6 @@ export default function WinterMod(props: InferGetServerSidePropsType<typeof getS
                       description="The Mon Bazou Winter Mod changes the Mon Bazou game to take place in winter."/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={4}/>
                 <Heading level={1}>Winter Mod for Mon Bazou</Heading>
 
                 <Disclaimer title="Work in Progress"
@@ -69,13 +68,16 @@ export default function WinterMod(props: InferGetServerSidePropsType<typeof getS
                     </li>
                 </ul>
 
-                <Link href="https://github.com/uwugrl/MonBazouWinterMod/releases">
-                    <Button>Download latest release from GitHub</Button>
-                </Link>
-                <br/>
-                <Link href="https://code.mldchan.dev/mld/MonBazouWinterMod">
-                    <Button>Download source code</Button>
-                </Link>
+                <Offset amt={2} />
+
+                <div className="flex flex-col gap-2">
+                    <Link href="https://github.com/uwugrl/MonBazouWinterMod/releases">
+                        <Button fullWidth>Download latest release from GitHub</Button>
+                    </Link>
+                    <Link href="https://code.mldchan.dev/mld/MonBazouWinterMod">
+                        <Button fullWidth>Download source code</Button>
+                    </Link>
+                </div>
 
                 <Offset amt={3}/>
                 <Footer visits={props.visits} route={'/project/monbazou/wintermod'}

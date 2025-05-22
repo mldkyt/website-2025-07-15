@@ -24,10 +24,10 @@ import Heading from "@/components/Generic/Heading";
 import {ChangeEvent, JSX, useRef, useState} from "react";
 import Offset from "@/components/Generic/Offset";
 import Link from "next/link";
-import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
 import {InferGetServerSidePropsType} from "next";
 import {getVisits} from "@/backend/visitsCounter";
+import Disclaimer from "@/components/Generic/Disclaimer";
 
 function highlightText(text: string, query: string) {
     const words = query.toLowerCase().split(' ');
@@ -63,16 +63,9 @@ function highlightText(text: string, query: string) {
 export async function getServerSideProps() {
     const visits = await getVisits({route: '/project/neko/search2'});
 
-    const date = new Date();
-
-    let month = (date.getUTCMonth() + 1).toString();
-    if (month.length === 1) month = `0${month}`;
-
     return {
         props: {
-            visits,
-            year: date.getUTCFullYear(),
-            month
+            visits
         }
     }
 }
@@ -128,9 +121,10 @@ export default function NekoSearchV2(props: InferGetServerSidePropsType<typeof g
     return <Main>
         <Header highlight={'projects'}/>
         <Content>
-            <Offset amt={4}/>
-            <Heading level={1}>Neko Search</Heading>
-            <p><strong>{`The website index was last updated ${props.year}/${props.month}/01`}</strong>. This gets
+            <Disclaimer title="Discontinued" message="The index for this project is not actively updated. i wanna focus on other things uwu and this is not really much used sooooo i won't really update it. all of the source code is open so if you want to host it, go ahead ;3" />
+
+            <Heading level={1}>Nekosearch</Heading>
+            <p><strong>{`The website index was last updated 2024/11/01`}</strong>. This gets
                 reindexed every month, but note the date here is static.</p>
             <p className="pt-2">This version is powered by self-hosted Meilisearch on https://mldchan.dev/. No data is
                 collected, apart
@@ -147,10 +141,10 @@ export default function NekoSearchV2(props: InferGetServerSidePropsType<typeof g
                 <p className={'font-bold text-xl'}>No results found. Search for something else?</p> : null}
             {results.map((x, i) => {
                 return <div key={i} className={'m-1 bg-[#222] p-2 rounded-lg my-4 drop-shadow-md'}>
-                    <motion.h1 whileTap={{scale: 0.9}} whileHover={{scale: 1.1}} className={'w-max'}>
+                    <h1 className={'w-max'}>
                         <Link href={x.url}
                               className={'text-pink-400 hover:text-pink-200 text-xl font-bold'}>{x.name}</Link>
-                    </motion.h1>
+                    </h1>
                     <p className={'text-sm'}>{highlightText(x.desc, query)}</p>
                 </div>
             })}

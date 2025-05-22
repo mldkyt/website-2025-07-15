@@ -18,20 +18,19 @@
 
 
 import React from "react";
-import {motion} from "motion/react"
 
 export default function Button(props: {
     children: string,
     onClick?: () => void,
     type?: 'button' | 'submit' | 'reset',
-    disabled?: boolean
+    disabled?: boolean,
+    fullWidth?: boolean
 }) {
     return (
-        <motion.button
-            whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}
+        <button
             type={props.type}
             onClick={props.onClick}
             disabled={props.disabled === true}
-            className={'p-1 px-2 bg-pink-400 hover:bg-pink-300 rounded-lg drop-shadow-md cursor-pointer'}>{props.children}</motion.button>
+            className={`p-1 px-2 bg-pink-400 hover:bg-pink-300 text-black transition-all rounded-lg drop-shadow-md cursor-pointer ${props.fullWidth ? 'w-full' : ''}`}>{props.children}</button>
     )
 }

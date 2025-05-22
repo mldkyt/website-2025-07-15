@@ -48,7 +48,6 @@ export default function MCFuck(props: InferGetServerSidePropsType<typeof getServ
                   description={'MCFuck is a program that attempts to mess with your Minecraft settings, without corrupting them.'}/>
         <Header highlight={'projects'}/>
         <Content>
-            <Offset amt={4}/>
             <Heading level={1}>MCFuck</Heading>
 
             <p>MCFuck is a program that attempts to fuck with your Minecraft settings, as the name implies, without
@@ -67,7 +66,7 @@ export default function MCFuck(props: InferGetServerSidePropsType<typeof getServ
             <br/>
 
             <Link href={'https://github.com/uwugrl/MCFuck/releases'}>
-                <Button>Download this abomination</Button>
+                <Button fullWidth>Download this abomination</Button>
             </Link>
             <Offset amt={3}/>
             <Footer visits={props.visits} route={'/project/mcfuck'} />

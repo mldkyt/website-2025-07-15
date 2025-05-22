@@ -23,7 +23,6 @@ import Main from "@/components/Generic/Main";
 import Metadata from "@/components/Generic/Metadata";
 import Content from "@/components/Generic/Content";
 import {Header} from "@/components/Generic/Header";
-import Offset from "@/components/Generic/Offset";
 import Heading from "@/components/Generic/Heading";
 import Turnstile from "react-turnstile";
 import {useState} from "react";
@@ -119,7 +118,6 @@ export default function Blog(props: InferGetServerSidePropsType<typeof getServer
         <Metadata title={props.title} description={`${props.description} | ${props.views} views`}/>
         <Header/>
         <Content>
-            <Offset amt={4}/>
             <Heading level={1}>Please confirm yourself</Heading>
             <p>Due to too many bots visiting my site, I require people to verify they&apos;re not a bot. Everything that
                 modifies the database has a bot check to prevent abuse.</p>

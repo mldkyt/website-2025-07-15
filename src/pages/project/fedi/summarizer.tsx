@@ -15,7 +15,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React from "react";
+import React, { useState } from "react";
 
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
@@ -43,38 +43,48 @@ export async function getServerSideProps() {
 }
 
 export default function FediSummarizer(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
+    const [tab, setTab] = useState("description");
+
     return (
         <Main>
             <Metadata title={'Fedi Summarizer'}
                       description={'A fedi bot that summarizes the amount of notes you post every midnight.'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={4}/>
                 <Heading level={1}>Fedi Summarizer</Heading>
-                <p>
-                    This bot summarizes the amount of notes you post every midnight. It does so in your private
-                    messages.
-                </p>
-                <p>The message sent to you every midnight contains the following information currently:</p>
-                <ul className={'list-disc ml-4'}>
-                    <li>Notes count</li>
-                    <li>Quote notes</li>
-                    <li>Reply notes</li>
-                    <li>Renotes</li>
-                    <li>Total reactions on your posts</li>
-                    <li>Most popular used emoji on your posts</li>
-                </ul>
+                <div className="w-full flex flex-row text-center">
+                    <div onClick={() => setTab('description')} className={`${tab === 'description' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>Description</div>
+                    <div onClick={() => setTab('images')} className={`${tab === 'images' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>Images</div>
+                </div>
 
-                <Image src={message} alt={'Example message sent by the bot'}/>
+                {tab === 'description' && <>
+                    <p>
+                        This bot summarizes the amount of notes you post every midnight. It does so in your private
+                        messages.
+                    </p>
+                    <p>The message sent to you every midnight contains the following information currently:</p>
+                    <ul className={'list-disc ml-4'}>
+                        <li>Notes count</li>
+                        <li>Quote notes</li>
+                        <li>Reply notes</li>
+                        <li>Renotes</li>
+                        <li>Total reactions on your posts</li>
+                        <li>Most popular used emoji on your posts</li>
+                    </ul>
+                </>}
 
-                <br/>
+                {tab === 'images' && <Image src={message} className={'p-1 rounded-lg py-2'} alt={'Example message sent by the bot'}/>}
 
-                <Link href="https://social.mldchan.dev/@FediSummarizer">
-                    <Button>Official account</Button>
-                </Link>
-                <Link href="https://code.mldchan.dev/mld/fedi-summarizer">
-                    <Button>Source code</Button>
-                </Link>
+                <Offset amt={2} /> 
+
+                <div className="flex flex-col gap-2">
+                    <Link href="https://social.mldchan.dev/@FediSummarizer">
+                        <Button fullWidth>Official account</Button>
+                    </Link>
+                    <Link href="https://code.mldchan.dev/mld/fedi-summarizer">
+                        <Button fullWidth>Source code</Button>
+                    </Link>
+                </div>
 
                 <Offset amt={3}/>
                 <Footer visits={props.visits} route={'/project/fedi/summarizer'}

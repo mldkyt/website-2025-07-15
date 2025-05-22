@@ -46,30 +46,33 @@ export async function getServerSideProps() {
 export default function UwurandomRs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return <Main>
         <Metadata title={'uwurandom-rs'}
-                  description={'Catgirl nonsense, but in the Rust programming language, for maximum femininity.'}/>
+                  description={'an uwuifier written in the fastest language in the world, Rust.'}/>
         <Header highlight={'projects'}/>
         <Content>
-            <Offset amt={4}/>
             <Heading level={1}>uwurandom-rs</Heading>
-            <p>Catgirl nonsense, but in the Rust programming language, for maximum femininity.</p>
-            <p className="pt-2">
+            <p className="py-2">an uwuifier written in the fastest language in the world, Rust. <i>wait why do I have thigh highs?</i></p>
+            <p className="py-2">
                 This project, or library to say it right, does the same thing as <a href="/project/catgirlnonsense">Catgirl
                 nonsense</a> does, but it does it as a library in the Rust programming language. Written by a transgirl
                 btw.
             </p>
-            <p className="pt-2">The library is very easy to use, for the maximum femefficiency :3</p>
+            <p className="py-2">The library is very easy to use, for the maximum femefficiency :3</p>
             <Image src={image} alt={'UwUrandom-rs example source code'} className={'p-1 rounded-lg py-2'}/>
-            <Link href={'https://crates.io/crates/mldkyt-uwurandom-rs'}>
-                <Button>Download from crates.io</Button>
-            </Link>
-            <br/>
-            <Link href={'https://github.com/uwugrl/uwurandom-rs'}>
-                <Button>Download from GitHub</Button>
-            </Link>
-            <br />
-            <Link href={'/discord'}>
-                <Button>Get support in the Discord server!</Button>
-            </Link>
+            
+            <Offset amt={2} />
+
+            <div className="flex flex-col gap-2">
+                <Link href={'https://crates.io/crates/mldkyt-uwurandom-rs'}>
+                    <Button fullWidth>Download from crates.io</Button>
+                </Link>
+                <Link href={'https://github.com/uwugrl/uwurandom-rs'}>
+                    <Button fullWidth>Download from GitHub</Button>
+                </Link>
+                <Link href={'/discord'}>
+                    <Button fullWidth>Get support in the Discord server!</Button>
+                </Link>
+            </div>
+
             <Offset amt={6}/>
             <Footer visits={props.visits} route={'/project/uwurandom-rs'}
                     />

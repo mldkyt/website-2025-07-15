@@ -41,71 +41,112 @@ export default function Services(props: InferGetServerSidePropsType<typeof getSe
     return (
         <Main>
             <Metadata title={"Services"} description={"mldchan's services"} />
-            <Header />
+            <Header highlight="services" />
             <Content>
-                <Offset amt={4} />
-                <h1 className={"text-center text-2xl font-bold py-4"}>mldchan&apos;s Services</h1>
+                <h1 className={"text-center text-3xl font-bold py-4"}>mldchan&apos;s Services</h1>
+
+                <h2 className="text-xl font-bold">Public services</h2>
+                <p>Anyone can interact with these in some way!</p>
 
                 <Service
                     svcName={"Akabot: Discord bot"}
                     svcDesc={"This is a Discord bot packed with features. Official instance."}
-                    pubInfo={"This service is publicly available for public use."}
-                    links={["https://discord.com/oauth2/authorize?client_id=1172922944033411243", "/project/akabot"]}
+                    links={[{
+                        label: "Add the bot on Discord!",
+                        url: "https://discord.com/oauth2/authorize?client_id=1172922944033411243"
+                    }, {
+                        label: "View project page",
+                        url: "/project/akabot"
+                    }]}
                 />
                 <Service
                     svcName={"Lunyakey: Fediverse Software"}
                     svcDesc={"This is what mldchan uses to connect to the fediverse. Lunyakey is the cutest fork of Sharkey. "}
-                    pubInfo={"This service is limited to Luna's friends and people who she trusts."}
-                    links={["https://social.mldchan.dev", "https://social.mldchan.dev/@mld"]}
+                    links={[{
+                        label: "Open Sharkey",
+                        url: "https://social.mldchan.dev"
+                    }, {
+                        label: "View my profile",
+                        url: "https://social.mldchan.dev/@mld"
+                    }]}
                 />
                 <Service
                     svcName={"PeerTube: Federated P2P Video Sharing"}
                     svcDesc={"Any recent videos are posted here alongside YouTube."}
-                    pubInfo={"This service is publicly available for public use."}
-                    links={["https://peertube.mldchan.dev", "https://peertube.mldchan.dev/a/mld/video-channels", "https://peertube.mldchan.dev/c/mldchan/videos", "https://peertube.mldchan.dev/c/mldtiktok/videos"]}
+                    links={[{
+                        label: "Open Peertube",
+                        url: "https://peertube.mldchan.dev"
+                    }, {
+                        label: "View my channels",
+                        url: "https://peertube.mldchan.dev/a/mld/video-channels"
+                    }, {
+                        label: "View my main videos",
+                        url: "https://peertube.mldchan.dev/c/mldchan/videos"
+                    }, {
+                        label: "View my TikTok re-uploads",
+                        url: "https://peertube.mldchan.dev/c/mldtiktok/videos"
+                    }]}
                 />
                 <Service
                     svcName={"Forgejo: Code Hosting"}
                     svcDesc={"Hosts source code publicly. Accounts are public for forking and development reasons until federation gets added."}
-                    pubInfo={"This service is publicly available for public use."}
-                    links={["https://code.mldchan.dev", "https://code.mldchan.dev/mld"]}
+                    links={[{
+                        label: "Open Forgejo",
+                        url: "https://code.mldchan.dev"
+                    }, {
+                        label: "Open my profile on Forgejo",
+                        url: "https://code.mldchan.dev/mld"
+                    }]}
                 />
-                <Service
-                    svcName={"Uptime Kuma: Uptime Monitoring"}
-                    svcDesc={"This services allows monitoring the uptime of my services."}
-                    pubInfo={"This service is publicly available for public use."}
-                    links={["https://status.mldchan.dev/"]}
-                />
-                <Service svcName={"Website"} svcDesc={"Web server for this website."} pubInfo={"This service is publicly available for public use."} links={["https://mldchan.dev", "https://www.mldchan.dev"]} />
+                <Service svcName={"Website"} svcDesc={"Web server for this website."} links={[{
+                    label: "Home page",
+                    url: "https://mldchan.dev"
+                }]} />
                 <Service
                     svcName={"FediMeow: Meowing for for fedi"}
                     svcDesc={"Sends a meow note every hour on mldchan's sharkey instance."}
-                    pubInfo={"This service is publicly available for public use."}
-                    links={["https://social.mldchan.dev/@FediMeow"]}
+                    links={[{
+                        label: "Fediverse profile for the official account",
+                        url: "https://social.mldchan.dev/@FediMeow"
+                    }]}
                 />
                 <Service
                     svcName={"Fedi Streaks: Akabot Chat Streaks for the fediverse"}
                     svcDesc={"This bot provides similar functionality to Akabot's Chat Streaks on fedi."}
-                    pubInfo={"This service is publicly available for public use."}
-                    links={["https://social.mldchan.dev/@FediStreaks"]}
+                    links={[{
+                        label: "Fediverse profile for the official account",
+                        url: "https://social.mldchan.dev/@FediStreaks"
+                    }]}
                 />
                 <Service
                     svcName={"Fedi Summary: Akabot Chat Summary for the fediverse"}
                     svcDesc={"This bot provides similar functionality to Akabot's Chat Summary on fedi."}
-                    pubInfo={"This service is publicly available for public use."}
-                    links={["https://social.mldchan.dev/@FediStreaks"]}
+                    links={[{
+                        label: "Fediverse profile for the official account",
+                        url: "https://social.mldchan.dev/@FediSummary"
+                    }]}
                 />
-                <Service svcName={"mlshortener: Link Shortener"} svcDesc={"mldchan's personal link shortener."} pubInfo={"This service is for mldchan's personal use only."} links={["https://s.mldchan.dev/"]} />
+
+                <h2 className="text-xl font-bold">Private services</h2>
+
+                <Service svcName={"mlshortener: Link Shortener"} svcDesc={"mldchan's personal link shortener."} links={[{
+                    label: "Open mlshortener home page",
+                    url: "https://s.mldchan.dev/"
+                }]} />
                 <Service
                     svcName={"Nextcloud: Personal Cloud"}
-                    svcDesc={"mldchan uses this to store and share files."}
-                    pubInfo={"This service is for mldchan's personal use only."}
-                    links={["https://nextcloud.mldchan.dev/"]}
+                    svcDesc={"mldchan uses this to mostly store and sometimes share files."}
+                    links={[{
+                        label: "Open Nextcloud",
+                        url: "https://nextcloud.mldchan.dev/"
+                    }]}
                 />
-                <Service svcName={"Dockge: Server Management"} svcDesc={"Allows remote managing of mldchan's server."} pubInfo={"This service is for mldchan's personal use only."} />
-                <Service svcName={"Nekoweb View Tracker"} svcDesc={"Open-source tracker tracking the history of page visits on Nekoweb."} pubInfo={"This service is for mldchan's personal use only."} />
-                <Service svcName={"Cutie Hangout Services"} svcDesc={"Friends only services"} pubInfo={"This service is limited to Luna's friend circle only."} />
-                <Service svcName={"QueerBot"} svcDesc={"Another Discord bot for friends."} pubInfo={"This service is limited to Luna's friend circle only."} />
+                <Service svcName={"uptime-kuma: Status monitor"} svcDesc={"Allows me to receive notifications when something doesn't work right."} />
+                <Service svcName={"Dockge: Server Management"} svcDesc={"Allows remote managing of mldchan's server."} />
+                <Service svcName={"Nekoweb View Tracker"} svcDesc={"Open-source tracker tracking the history of page visits on Nekoweb."} />
+                <Service svcName={"Cutie Hangout Services"} svcDesc={"Friends only services"} />
+                <Service svcName={"QueerBot"} svcDesc={"Another Discord bot for friends."} />
+                
                 <Offset amt={6} />
                 <Footer visits={props.visits} route={"/services"} />
             </Content>

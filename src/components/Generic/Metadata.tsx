@@ -28,24 +28,24 @@ export default function Metadata(props: {
   return (
     <Head>
       <meta charSet="UTF-8" />
-      <title>{`${props.title} | Luna's website :3`}</title>
+      <title>{`${props.title} | Lunya's website :3`}</title>
       <meta name="description" content={props.description} />
-      <meta name="author" content="Luna :3" />
+      <meta name="author" content="Lunya :3" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta httpEquiv="content-language" content="en" />
       <meta
         property="og:title"
-        content={`${props.title} | Luna/mldchan's website :3`}
+        content={`${props.title} | Lunya/mldchan's website :3`}
       />
       <meta property="og:description" content={props.description} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://mldchan.dev" />
-      <meta property="og:site_name" content="Luna's website" />
+      <meta property="og:site_name" content="Lunya's website" />
       <meta property="og:locale" content="en_US" />
       <meta property="og:locale:alternate" content="ja_JP" />
       <meta
         name="twitter:title"
-        content={`${props.title} | Luna/mldchan's website :3`}
+        content={`${props.title} | Lunya/mldchan's website :3`}
       />
       <meta name="twitter:description" content={props.description} />
       <meta name="theme-color" content="#ff77ff" />

@@ -15,7 +15,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React from "react";
+import React, { useState } from "react";
 
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
@@ -46,38 +46,48 @@ export async function getServerSideProps() {
 }
 
 export default function Template(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
+    const [tab, setTab] = useState("description");
     return (
         <Main>
             <Metadata title={'Cutie Quiz'}
                       description={'[DEPRECATED] Cutie Quiz was a tiny app which takes a username and then determines how cute you are by analyzing brain waves.'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={4}/>
                 <Heading level={1}>Cutie Quiz</Heading>
                 <Disclaimer title="Deprecated Project" message="Deprecated on 2024/10/31."/>
 
-                <p>
-                    Cutie Quiz is a tiny app which takes a username and then determines how cute you are by analyzing
-                    brain waves.
-                </p>
-                <p className="mt-2">
-                    It does this using revolutionary next-generation technology, which is newer and better than AI and
-                    determines values without errors. It has such good accuracy that you don&apos;t need any other source of
-                    information to verify your results because our results are always accurate.
-                </p>
-                <p className="mt-2">
-                    <i>
-                        This application is a joke if you didn&apos;t figure it out yet.
-                    </i>
-                </p>
+                <div className="w-full flex flex-row text-center">
+                    <div onClick={() => setTab('description')} className={`${tab === 'description' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>Description</div>
+                    <div onClick={() => setTab('images')} className={`${tab === 'images' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>Images</div>
+                </div>
 
-                <Heading level={2}>Images</Heading>
-                <Image src={one} alt={'Cutie Quiz 1'} className={'p-1 rounded-lg'}/>
-                <Image src={two} alt={'Cutie Quiz 2'} className={'p-1 rounded-lg'}/>
-                <Image src={three} alt={'Cutie Quiz 3'} className={'p-1 rounded-lg'}/>
+                {tab === 'description' && <>
+                    <p className="py-2">
+                        Cutie Quiz was a tiny app which takes a username and then determines how cute you are by analyzing
+                        brain waves.
+                    </p>
+                    <p className="py-2">
+                        It does this using revolutionary next-generation technology, which is newer and better than AI and
+                        determines values without errors. It has such good accuracy that you don&apos;t need any other source of
+                        information to verify your results because our results are always accurate.
+                    </p>
+                    <p className="py-2">
+                        <i>
+                            This application is a joke if you didn&apos;t figure it out yet.
+                        </i>
+                    </p>
+                </>}
+
+                {tab === 'images' && <>
+                    <Image src={one} alt={'Cutie Quiz 1'} className={'p-1 rounded-lg'}/>
+                    <Image src={two} alt={'Cutie Quiz 2'} className={'p-1 rounded-lg'}/>
+                    <Image src={three} alt={'Cutie Quiz 3'} className={'p-1 rounded-lg'}/>
+                </>}
+
+                <Offset amt={2} />
 
                 <Link href="https://github.com/uwugrl/CutieQuiz">
-                    <Button>Source code</Button>
+                    <Button fullWidth>Source code</Button>
                 </Link>
 
                 <Offset amt={3}/>

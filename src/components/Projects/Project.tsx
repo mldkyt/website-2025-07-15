@@ -18,7 +18,7 @@
 
 import React from "react";
 
-import {motion} from "motion/react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Project(props: {
@@ -30,35 +30,11 @@ export default function Project(props: {
     link?: string
 }) {
 
-    let base = <></>;
-
-    if (props.image && props.imageAlt) {
-        base = <motion.div className={'flex flex-row h-[96px] bg-[#222] rounded-lg p-2 my-4 drop-shadow-md'}
-                           whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
-            <div style={{
-                backgroundImage: `url(${props.image.src})`
-            }} className={'w-[80px] h-[80px] rounded-lg bg-cover bg-center bg-no-repeat'}>
-            </div>
-            <div>
-                <h1 className={'text-xl font-bold ml-2'}>{props.title}</h1>
-                <p className={'ml-4 text-gray-400 text-sm lg:text-base'}>{props.description}</p>
-            </div>
-        </motion.div>;
-    } else {
-        base = <motion.div className={'flex flex-row h-[96px] bg-[#222] rounded-lg p-2 my-4 drop-shadow-md'}
-                           whileHover={{scale: 1.05}} whileTap={{scale: 0.95}}>
-            <div>
-                <h1 className={'text-xl font-bold ml-2'}>{props.title}</h1>
-                <p className={'ml-2 text-gray-400'}>(no image) {props.description}</p>
-            </div>
-        </motion.div>;
-    }
-
-    if (props.link) {
-        return <Link href={props.link}>
-            {base}
+    return <div className="bg-[#222] rounded-xl m-4">
+        <Link href={props.link ?? ''}>
+            {props.image && props.imageAlt && <Image className="h-[256px] object-cover rounded-t-xl" src={props.image} alt={props.imageAlt} width={1024} height={1024} /> }
+            <h1 className="font-bold text-xl m-2">{props.title}</h1>
+            <p className="m-2">{props.description}</p>
         </Link>
-    }
-
-    return base;
+    </div>;
 }

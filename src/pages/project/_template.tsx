@@ -46,13 +46,14 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 <Offset amt={4}/>
                 <Heading level={1}>PROJECT</Heading>
 
-                <Link href="LINK 1">
-                    <Button>LINK 1</Button>
-                </Link>
-                <br/>
-                <Link href="SOURCE LINK">
-                    <Button>SOURCE</Button>
-                </Link>
+                <div className="flex flex-col gap-2">
+                    <Link href="LINK 1">
+                        <Button>LINK 1</Button>
+                    </Link>
+                    <Link href="SOURCE LINK">
+                        <Button>SOURCE</Button>
+                    </Link>
+                </div>
 
                 <Offset amt={3}/>
                 <Footer visits={props.visits} route={'_TEMPLATE'} />

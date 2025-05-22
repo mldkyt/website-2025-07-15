@@ -25,7 +25,6 @@ import Offset from "@/components/Generic/Offset";
 import Link from "next/link";
 import Metadata from "@/components/Generic/Metadata";
 import Button from "@/components/Generic/Button";
-import { motion } from "motion/react";
 import Footer from "@/components/Generic/Footer";
 import { InferGetServerSidePropsType } from "next";
 import { getVisits } from "@/backend/visitsCounter";
@@ -46,7 +45,7 @@ export default function Donate(props: InferGetServerSidePropsType<typeof getServ
 
     return (
         <Main>
-            <Metadata title={"Donate"} description={"Donate to Luna to support her projects!"} />
+            <Metadata title={"Donate"} description={"Donate to Lunya to support her projects!"} />
             <Header highlight={"donate"} />
             <Content>
                 <Offset amt={4} />
@@ -81,27 +80,27 @@ export default function Donate(props: InferGetServerSidePropsType<typeof getServ
                 <p>If you do got some spare money which you absolutely don&apos;t need for anything else, you can donate to me on the following platforms:</p>
                 <ul className={"list-disc ml-4"}>
                     <li>
-                        <motion.span whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1 }}>
+                        <span>
                             <Link href={"https://liberapay.com/mldchan/donate"} className={"text-pink-400 hover:text-pink-200"}>
                                 Liberapay
                             </Link>
-                        </motion.span>{" "}
+                        </span>{" "}
                         is one way to donate to me. It allows recurring payments and is open source.
                     </li>
                     <li>
-                        <motion.span whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1 }}>
+                        <span>
                             <Link href={"https://ko-fi.com/mldchan"} className={"text-pink-400 hover:text-pink-200"}>
                                 Ko-fi
                             </Link>
-                        </motion.span>{" "}
+                        </span>{" "}
                         is another way to donate to me. Use this for one time payments -- Ko-fi takes very low cuts of your donated money.
                     </li>
                     <li>
-                        <motion.span whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1 }}>
+                        <span>
                             <Link href={"https://github.com/sponsors/mldchan"} className={"text-pink-400 hover:text-pink-200"}>
                                 GitHub Sponsors
                             </Link>
-                        </motion.span>{" "}
+                        </span>{" "}
                         - I set this one up recently. I don&apos;t know how much GitHub cuts, but you can use this to donate to me as well.
                     </li>
                 </ul>

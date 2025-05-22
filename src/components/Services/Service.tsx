@@ -18,43 +18,31 @@
 
 import React from "react";
 
-import { motion } from "motion/react";
 import Link from "next/link";
-
-export type PubInfo =
-  | "This service is publicly available for public use."
-  | "This service is limited to Luna's friends and people who she trusts."
-  | "This service is limited to Luna's friend circle only."
-  | "This service is for mldchan's personal use only.";
 
 export default function Service(props: {
   svcName: string;
   svcDesc: string;
-  pubInfo: PubInfo;
-  links?: string[];
+  links?: { label: string, url: string }[];
 }) {
   return (
     <div className={"bg-[#222] p-2 rounded-lg drop-shadow-md my-4"}>
-      <h1 className={"text-xl font-bold"}>{props.svcName}</h1>
+      <h1 className={"font-bold"}>{props.svcName}</h1>
       <p>{props.svcDesc}</p>
-      <h2 className={"text-lg font-bold"}>Can I use this service?</h2>
-      <p>{props.pubInfo}</p>
       {props.links &&
         props.links.map((link, index) => {
           return (
-            <motion.div
+            <div
               key={index}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
               className={"w-max"}
             >
               <Link
-                href={link}
-                className={"text-pink-400 hover:text-pink-200 block"}
+                href={link.url}
+                className={"text-pink-400 hover:text-pink-200 transition-all block"}
               >
-                {link}
+                {link.label}
               </Link>
-            </motion.div>
+            </div>
           );
         })}
     </div>

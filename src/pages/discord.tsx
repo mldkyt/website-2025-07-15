@@ -221,8 +221,8 @@ export default function Discord(props: InferGetServerSidePropsType<typeof getSer
                     </div>
 
                     <Offset amt={4}/>
+                    <Footer visits={props.visits} route={'/discord'}/>
                 </Content>
-                <Footer visits={props.visits} route={'/discord'}/>
             </Main>
         </>
     );

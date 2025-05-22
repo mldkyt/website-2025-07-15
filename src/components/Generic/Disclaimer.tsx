@@ -21,9 +21,9 @@ import React from "react";
 
 export default function Disclaimer(props: { title: string, message: string }) {
     return (
-        <div className={'border-2 border-red-600 rounded-xl bg-red-950 p-2'}>
-            <h1 className={'text-3xl font-bold'}>{props.title}</h1>
-            <p className={'text-lg'}>{props.message}</p>
+        <div className={'bg-red-600 rounded-xl p-2'}>
+            <h1 className={'text-2xl font-bold'}>{props.title}</h1>
+            <p>{props.message}</p>
         </div>
     );
 }

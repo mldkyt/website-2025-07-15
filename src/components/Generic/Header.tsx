@@ -24,19 +24,16 @@ import {ReactNode} from "react";
 import Link from "next/link";
 import logo from '@/images/logo.png';
 import Image from "next/image";
-import {motion} from "motion/react";
 
 const inter = Inter({subsets: ['latin', 'latin-ext']})
 
 function link(props: { baseProps: { highlight?: string }, href: string, highlight: string, children: ReactNode }) {
     return (
-        <motion.li className={'my-0'} whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>
-            <Link
-                href={props.href}
-                className={`${props.baseProps.highlight === props.highlight ? 'text-pink-400' : ''} hover:text-pink-200`}>
-                {props.children}
-            </Link>
-        </motion.li>
+        <Link
+            href={props.href}
+            className={`${props.baseProps.highlight === props.highlight ? 'text-pink-400' : ''} hover:text-pink-200`}>
+            {props.children}
+        </Link>
     )
 }
 
@@ -46,34 +43,17 @@ export function Header(props: {
 
     return (
         <header
-            className={`${inter.className} fixed top-8 left-1/2 -translate-x-1/2 w-[90vw] m-auto bg-[#222b] hover:bg-[#222] transition-all shadow-sm rounded-lg p-2 z-50`}>
-            <ul className={'list-none flex flex-row flex-wrap space-x-6'}>
-                <motion.li className={'my-0'} whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}><h1>
+            className={`${inter.className} p-4 z-50`}>
+            <ul className={'list-none flex flex-row flex-wrap space-x-6 justify-center'}>
+                <h1>
                     <Link href={'/'}><Image src={logo} alt={'Logo'} height={24}/></Link>
-                </h1></motion.li>
+                </h1>
                 {link({href: '/guestbook', highlight: 'guestbook', children: 'Guestbook', baseProps: props})}
                 {link({href: '/projects', highlight: 'projects', children: 'Projects', baseProps: props})}
                 {link({href: '/services', highlight: 'services', children: 'Services', baseProps: props})}
                 {link({href: '/socials', highlight: 'socials', children: 'Socials', baseProps: props})}
-                {link({href: '/videos', highlight: 'videos', children: 'Videos', baseProps: props})}
-                {link({href: '/discord', highlight: 'discord', children: 'Discord', baseProps: props})}
-                {link({href: '/contact', highlight: 'contact', children: 'Contact', baseProps: props})}
-                {link({href: '/donate', highlight: 'donate', children: 'Donate!', baseProps: props})}
-                {link({
-                    href: 'https://mldkyt.nekoweb.org',
-                    highlight: 'null',
-                    children: 'Legacy website',
-                    baseProps: props
-                })}
+                {link({href: '/donate', highlight: 'donate', children: 'Donate! <3', baseProps: props})}
             </ul>
-
-            <Link href="/donate">
-                <ul className="w-full bg-pink-400 p-1 rounded-lg drop-shadow-lg text-center">
-                    <span>
-                        Support my programming journey by donating today!
-                    </span>
-                </ul>
-            </Link>
         </header>
     )
 }

@@ -21,7 +21,6 @@ import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
 import Main from "@/components/Generic/Main";
 import Content from "@/components/Generic/Content";
 import {Header} from "@/components/Generic/Header";
-import Offset from "@/components/Generic/Offset";
 import Heading from "@/components/Generic/Heading";
 import {useRef, useState} from "react";
 import Button from "@/components/Generic/Button";
@@ -156,7 +155,6 @@ export default function Poll(props: InferGetServerSidePropsType<typeof getServer
             <Header/>
 
             <Content>
-                <Offset amt={4}/>
                 <Heading level={1}>{`Poll: ${props.title}`}</Heading>
 
                 {props.privacyWarning && <div className="bg-yellow-800 p-2 m-1 rounded-lg drop-shadow-lg">

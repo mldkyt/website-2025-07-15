@@ -186,8 +186,8 @@ export default function Contact(props: InferGetServerSidePropsType<typeof getSer
                 </p>
 
                 <Offset amt={3} />
+                <Footer visits={props.visits} route={"/contact"} />
             </Content>
-            <Footer visits={props.visits} route={"/contact"} />
         </Main>
     );
 }

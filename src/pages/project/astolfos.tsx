@@ -15,7 +15,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React from "react";
+import React, { useState } from "react";
 
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
@@ -45,11 +45,11 @@ export async function getServerSideProps() {
 }
 
 export default function AstolfOS(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
+    const [tab, setTab] = useState("description");
     return <Main>
         <Metadata title={'AstolfOS'} description={'AstolfOS is a script that changes your Linux into AstolfOS!'}/>
         <Header highlight={'projects'}/>
         <Content>
-            <Offset amt={4}/>
             <Heading level={1}>AstolfOS</Heading>
 
             <div className="bg-yellow-950 p-2 rounded-xl">
@@ -58,26 +58,39 @@ export default function AstolfOS(props: InferGetServerSidePropsType<typeof getSe
                 yet updated past Plasma 5 and Ubuntu 20.04 LTS, I am considering it unsupported. PR&apos;s on GitHub are welcome.
             </div>
 
-            <p>AstolfOS transfers your Linux into AstolfOS!</p>
-            <p>This script changes the OS name, KDE splash screen, GRUB configuration, neofetch configuration, and
-                terminal style.</p>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2">
-                <Image src={desktop} alt="Desktop view of AstolfOS"/>
-                <Image src={settings} alt="Settings view of AstolfOS"/>
-                <Image src={neofetch} alt="Neofetch view of AstolfOS"/>
+            
+            <div className="w-full flex flex-row text-center">
+                <div onClick={() => setTab('description')} className={`${tab === 'description' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>Description</div>
+                <div onClick={() => setTab('images')} className={`${tab === 'images' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>Images</div>
             </div>
 
-            <div>
+            {tab === 'description' && <>
+                <p>AstolfOS transforms your Linux into AstolfOS!</p>
+                <p className="font-bold">Changes</p>
+
+                <ul className="list-disc ml-4">
+                    <li>Changes OS name in all programs</li>
+                    <li>Changes logo in KDE Plasma</li>
+                    <li>Changes ASCII art inside the neofetch program for a different one</li>
+                    <li>Changes neofetch colors</li>
+                </ul>
+            </>}
+
+            {tab === 'images' && <>
+                <div className="grid grid-cols-1 lg:grid-cols-2">
+                    <Image src={desktop} alt="Desktop view of AstolfOS"/>
+                    <Image src={settings} alt="Settings view of AstolfOS"/>
+                    <Image src={neofetch} alt="Neofetch view of AstolfOS"/>
+                </div>
+            </>}
+
+            <Offset amt={2} />
+
+            <div className="flex flex-col gap-2">
                 <Link href={'https://github.com/uwugrl/AstolfOS/wiki/Manual-Installation'}>
-                    <Button>Installation Guide</Button>
+                    <Button fullWidth>Installation Guide (GitHub)</Button>
                 </Link>
             </div>
-            
-            <br />
-            <Link href={'/discord'}>
-                <Button>Get support in the Discord server!</Button>
-            </Link>
 
             <Offset amt={3}/>
             <Footer visits={props.visits} route={'/project/astolfos'} />

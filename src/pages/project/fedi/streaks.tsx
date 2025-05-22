@@ -46,7 +46,6 @@ export default function FediStreaks(props: InferGetServerSidePropsType<typeof ge
                       description={'Fedi Streaks is a bot that checks your profile every day for new notes. If it doesn\'t find you posting for one day, you lose the streak. Every day you post, you get +1 streaks of sending notes.'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={4}/>
                 <Heading level={1}>Fedi Streaks</Heading>
                 <p>
                     Fedi Streaks checks your profile every day for new notes. If it doesn&apos;t find you posting for one
@@ -58,13 +57,19 @@ export default function FediStreaks(props: InferGetServerSidePropsType<typeof ge
                     Sharkey instance is up, there&apos;s a high chance this is up as well).
                 </p>
 
-                <Link href="https://social.mldchan.dev/@FediStreaks">
-                    <Button>Official account</Button>
-                </Link>
-                <Link href="https://code.mldchan.dev/mld/fedi-streaks">
-                    <Button>Source code</Button>
-                </Link>
-                <Offset amt={3}/>
+                <Offset amt={2}/>
+                
+                <div className="flex flex-col gap-2">
+                    <Link href="https://social.mldchan.dev/@FediStreaks">
+                        <Button fullWidth>Official account</Button>
+                    </Link>
+                    <Link href="https://code.mldchan.dev/mld/fedi-streaks">
+                        <Button fullWidth>Source code</Button>
+                    </Link>
+                </div>
+
+                <br />
+
                 <Footer visits={props.visits} route={'/project/fedi/streaks'}
                         />
             </Content>

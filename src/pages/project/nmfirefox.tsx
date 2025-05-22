@@ -49,11 +49,10 @@ export default function NMFirefox(props: InferGetServerSidePropsType<typeof getS
                   description={'NexusMods Enhancements for Firefox is an extension that adds a few features to Nexus Mods, namely blocking people.'}/>
         <Header highlight={'projects'}/>
         <Content>
-            <Offset amt={4}/>
             <Heading level={1}>Nexus Enhancements for Firefox</Heading>
 
             <p>This is an extension for Firefox which adds a few features to Nexus Mods, namely blocking people.</p>
-            <p className="pt-2">
+            <p className="py-2">
                 The extension was made initially for personal use only, hence it not being available on Firefox
                 Extension
                 Store, only being on GitHub. By using this extension, you are viable for all damages, even if this
@@ -62,17 +61,17 @@ export default function NMFirefox(props: InferGetServerSidePropsType<typeof getS
                 any, unless NexusMods updates.
             </p>
             <Image src={nmfirefox} alt="User Interface" className={'rounded-lg'}/>
-            <p className="pt-2">
+            <p className="py-2">
                 The UI allows adding blocked people by username. Blocking a person will hide their comments and replies.
                 Unblocking a person requires reload to re-show any hidden comments.
             </p>
-            <p className="pt-2">
+            <p className="py-2">
                 To download and install this extension, follow the link to the download and download
                 the <code>xpi</code> file while using Firefox. The extension should install.
             </p>
             <br/>
             <Link href={'https://github.com/uwugrl/NexusEnhancementsForFirefox/releases'}>
-                <Button>Download Nexus Enhancements for Firefox</Button>
+                <Button fullWidth>Download Nexus Enhancements for Firefox</Button>
             </Link>
             <Offset amt={3}/>
             <Footer visits={props.visits} route={'/project/nmfirefox'} />

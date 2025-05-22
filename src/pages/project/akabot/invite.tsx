@@ -26,7 +26,6 @@ import Heading from "@/components/Generic/Heading";
 import Link from "next/link";
 import Button from "@/components/Generic/Button";
 import Metadata from "@/components/Generic/Metadata";
-import {motion} from "motion/react";
 import Footer from "@/components/Generic/Footer";
 import {InferGetServerSidePropsType} from "next";
 import {getVisits} from "@/backend/visitsCounter";
@@ -47,31 +46,28 @@ export default function InviteAkabot(props: InferGetServerSidePropsType<typeof g
             <Metadata title={'Invite Akabot'} description={'Invite the Akabot Discord bot into your server'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={4}/>
                 <Heading level={1}>Invite Akabot into your server</Heading>
-                <p>Before you continue inviting Akabot into your server, the public version of Akabot has a terms of
+                <p className="py-2">Before you continue inviting Akabot into your server, the public version of Akabot has a terms of
                     service and privacy policy, and I am required to make you read these:</p>
                 <ul className={'list-disc ml-4'}>
                     <li>
-                        <Link href={'/project/akabot/tos'} className={'text-pink-400 hover:text-pink-200'}>
-                            <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Terms of Service
-                            </motion.span>
+                        <Link href={'/project/akabot/tos'} className={'text-pink-400 hover:text-pink-200 transition-all'}>
+                            <span>Terms of Service</span>
                         </Link>
                     </li>
                     <li>
-                        <Link href={'/project/akabot/privacy'} className={'text-pink-400 hover:text-pink-200'}>
-                            <motion.span whileTap={{scale: 0.9}} whileHover={{scale: 1.1}}>Privacy Policy</motion.span>
+                        <Link href={'/project/akabot/privacy'} className={'text-pink-400 hover:text-pink-200 transition-all'}>
+                            <span>Privacy Policy</span>
                         </Link>
                     </li>
                 </ul>
 
-                <p>By clicking invite, I accept the Privacy Policy and Terms of Service above.</p>
+                <p className="py-2">By clicking invite, I accept the Privacy Policy and Terms of Service above.</p>
                 <Link href={'https://discord.com/oauth2/authorize?client_id=1172922944033411243'}>
-                    <Button>Invite Akabot</Button>
+                    <Button fullWidth>Invite Akabot</Button>
                 </Link>
                 <Offset amt={3}/>
-                <Footer visits={props.visits} route={'/project/akabot/invite'}
-                        />
+                <Footer visits={props.visits} route={'/project/akabot/invite'} />
             </Content>
         </Main>
     )

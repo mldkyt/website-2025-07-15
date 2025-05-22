@@ -46,10 +46,9 @@ export default function AkabotPrivacy(props: InferGetServerSidePropsType<typeof 
             <Metadata title={'Akabot Privacy Policy'} description={'Akabot Discord bot privacy policy'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={4}/>
                 <Heading level={1}>Akabot Privacy Policy</Heading>
-                <p>Last updated: 2024/05/16</p>
-                <p>
+                <p className="py-2">Last updated: 2024/05/16</p>
+                <p className="py-2">
                     The public instance of Akabot Discord bot takes privacy very seriously. It is as private as if you
                     would
                     host it yourself. If you think this privacy statement is way too privacy intrusive, check out the
@@ -58,12 +57,12 @@ export default function AkabotPrivacy(props: InferGetServerSidePropsType<typeof 
                     policy.
                 </p>
                 <PrivacyHeading>What Akabot stores in its databases</PrivacyHeading>
-                <p className={'text-lg'}>Each feature of the bot stores as little data as possible. Here&apos;s a quick
+                <p className={'text-lg py-2'}>Each feature of the bot stores as little data as possible. Here&apos;s a quick
                     overview of what is
                     stored and
                     what is associated with every feature:</p>
-                <ul className={'list-disc ml-4'}>
-                    <li>
+                <ul className={'list-disc ml-4 py-2'}>
+                    <li className="py-1">
                         <strong>Analytics</strong> - There&apos;s a feature in Akabot which counts which command is
                         executed how
                         many times, globally. This feature doesn&apos;t associate any command runs or button clicks with
@@ -73,7 +72,7 @@ export default function AkabotPrivacy(props: InferGetServerSidePropsType<typeof 
                         what
                         should be added or improved in the future.
                     </li>
-                    <li>
+                    <li className="py-1">
                         <strong>Anti Raid</strong> - The Anti Raid feature stores only your settings, and if you count
                         the RAM
                         of the server as storage, it stores the number of joins and the number of messages and the dates
@@ -82,7 +81,7 @@ export default function AkabotPrivacy(props: InferGetServerSidePropsType<typeof 
                         for a maximum of the user&apos;s desired time. No user ID&apos;s or messages are stored, only
                         numbers.
                     </li>
-                    <li>
+                    <li className="py-1">
                         <strong>Automod Actions</strong> - User defined actions along with all information about them
                         (names,
                         actions and the optional message) are stored. When an automod action with a name gets triggered,
@@ -90,12 +89,12 @@ export default function AkabotPrivacy(props: InferGetServerSidePropsType<typeof 
                         user defined actions
                         stored will be executed.
                     </li>
-                    <li><strong>Bot Help</strong> - The bot help commands don&apos;t store any user information.</li>
-                    <li><strong>Chat Revive</strong> - The Chat Revive feature only stores which role has been chosen,
+                    <li className="py-1"><strong>Bot Help</strong> - The bot help commands don&apos;t store any user information.</li>
+                    <li className="py-1"><strong>Chat Revive</strong> - The Chat Revive feature only stores which role has been chosen,
                         channels
                         which are active and the last message time sent in that channel.
                     </li>
-                    <li>
+                    <li className="py-1">
                         <strong>Chat Streaks</strong> - The Chat Streaks feature stored the date you started your chat
                         streak
                         along with the date of your last sent message. Using these 2 dates, the bot calculates the rest
@@ -105,7 +104,7 @@ export default function AkabotPrivacy(props: InferGetServerSidePropsType<typeof 
                         you can
                         always check your streak by using the `/streak` command.
                     </li>
-                    <li>
+                    <li className="py-1">
                         <strong>Chat Summary</strong> - The Chat Summary feature stores the amount of messages sent in a
                         channel
                         daily, along with who has sent how many messages in that channel. Only the top 5 chatters will
@@ -113,7 +112,7 @@ export default function AkabotPrivacy(props: InferGetServerSidePropsType<typeof 
                         in the summary.
                         No message content is stored. All numbers in this module are cleared every midnight.
                     </li>
-                    <li>
+                    <li className="py-1">
                         <strong>Feedback Commands</strong> - This module does explicitly state before usage that it does
                         share
                         user entered information, along with the user name and user ID with GitHub. No user information
@@ -123,21 +122,21 @@ export default function AkabotPrivacy(props: InferGetServerSidePropsType<typeof 
                         accounts. Any of the other commands like `/about` , `/privacy` , `/tos` do not save any user
                         information.
                     </li>
-                    <li>
+                    <li className="py-1">
                         <strong>Giveaways</strong> - The giveaways module stores the channel the giveaway was started
                         in, the
                         item entered and the ending date, calculated when the giveaway is created. The creator of the
                         giveaway
                         is not stored.
                     </li>
-                    <li>
+                    <li className="py-1">
                         <strong>Leveling</strong> - Each user has an associated number of XP points which is stored and
                         associated to every user. A list of leveling multipliers, the server general leveling
                         multiplier, and
                         the XP required to
                         level up are stored and associated to every server.
                     </li>
-                    <li><strong>Logging</strong> - The logging channel is stored and associated with the server. The bot
+                    <li className="py-1"><strong>Logging</strong> - The logging channel is stored and associated with the server. The bot
                         then
                         listens to Discord changes and creates messages from available information in your logs channel.
                     </li>
@@ -149,7 +148,7 @@ export default function AkabotPrivacy(props: InferGetServerSidePropsType<typeof 
                         associated
                         with the server and performed after adding a warning to the user.
                     </li>
-                    <li><strong>Per User Settings</strong> - All per user settings have settings associated with the
+                    <li className="py-1"><strong>Per User Settings</strong> - All per user settings have settings associated with the
                         user.
                     </li>
                     <li>
@@ -159,22 +158,22 @@ export default function AkabotPrivacy(props: InferGetServerSidePropsType<typeof 
                         button&apos;s
                         custom ID itself.
                     </li>
-                    <li><strong>Roles on Join</strong> - The list of roles to be added on join are stored and associated
+                    <li className="py-1"><strong>Roles on Join</strong> - The list of roles to be added on join are stored and associated
                         with
                         the server.
                     </li>
-                    <li><strong>Server Settings</strong> - All settings stored are associated with the server.</li>
-                    <li><strong>Verification</strong> - The verification difficulty and role are stored per server.</li>
-                    <li><strong>Welcome and Goodbye</strong> - All user defined settings are stored and associated with
+                    <li className="py-1"><strong>Server Settings</strong> - All settings stored are associated with the server.</li>
+                    <li className="py-1"><strong>Verification</strong> - The verification difficulty and role are stored per server.</li>
+                    <li className="py-1"><strong>Welcome and Goodbye</strong> - All user defined settings are stored and associated with
                         the
                         server.
                     </li>
                 </ul>
                 <p className={'mt-4 text-lg'}>Backend modules mostly don&apos;t mess with any user data or any server
                     data.</p>
-                <ul className={'list-disc ml-4'}>
-                    <li><strong>Heartbeat</strong> - Sends periodic network requests to a URL every set interval.</li>
-                    <li>
+                <ul className={'list-disc ml-4 py-2'}>
+                    <li className="py-1"><strong>Heartbeat</strong> - Sends periodic network requests to a URL every set interval.</li>
+                    <li className="py-1">
                         <strong>Power Outage Announcements</strong> - Stores the current time every minute, doesn&apos;t
                         associate it with any server or user. Reads the last saved time and current system time on
                         startup of
@@ -184,7 +183,7 @@ export default function AkabotPrivacy(props: InferGetServerSidePropsType<typeof 
                         period of time.
                     </li>
                 </ul>
-                <p>
+                <p className="py-2">
                     The developer doesn&apos;t have any access to read user data or any user control over the bot. They
                     always
                     write scripts to update the database and performs it on the test database, which contains one server
@@ -193,9 +192,9 @@ export default function AkabotPrivacy(props: InferGetServerSidePropsType<typeof 
                     4 of them are all variants of the bot. The only exception is analytics and the number of servers.
                 </p>
                 <PrivacyHeading>Linked or connected services</PrivacyHeading>
-                <p>The services that are connected to the bot are listed below:</p>
+                <p className="py-2">The services that are connected to the bot are listed below:</p>
                 <ul>
-                    <li>
+                    <li className="py-1">
                         <strong>GlitchTip</strong> is used to capture errors. Errors do not show me any personal
                         information,
                         only generic messages. These errors aren&apos;t associated with any server or user, only with
@@ -207,13 +206,13 @@ export default function AkabotPrivacy(props: InferGetServerSidePropsType<typeof 
                     </li>
                 </ul>
                 <PrivacyHeading>Third parties</PrivacyHeading>
-                <p>The Discord bot can share data with GitHub, only if a user executes one of the `/feedback bug` or
+                <p className="py-2">The Discord bot can share data with GitHub, only if a user executes one of the `/feedback bug` or
                     `/feedback
                     suggest` commands. These commands explicitly state before running that they share this data with
                     GitHub.</p>
-                <p>The bot doesn&apos;t share any user data with any other party, except the one listed above.</p>
+                <p className="py-2">The bot doesn&apos;t share any user data with any other party, except the one listed above.</p>
                 <PrivacyHeading>Changes to the privacy statement</PrivacyHeading>
-                <p>
+                <p className="py-2">
                     If the privacy statement ever changes, which it might in the future, a Discord ping in the support
                     server
                     will alert you about it, along with a summary of the changes, so you don&apos;t have to read the

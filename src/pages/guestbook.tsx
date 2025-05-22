@@ -26,7 +26,6 @@ import Content from "@/components/Generic/Content";
 import Heading from "@/components/Generic/Heading";
 import Offset from "@/components/Generic/Offset";
 import Metadata from "@/components/Generic/Metadata";
-import Button from "@/components/Generic/Button";
 import {FormEvent, useState} from "react";
 import Footer from "@/components/Generic/Footer";
 import { PrismaClient } from "@prisma/client";
@@ -161,12 +160,11 @@ export default function Guestbook(props: InferGetServerSidePropsType<typeof getS
         <Metadata title={'mldchan\'s guestbook'} description={'Sign mldchan\'s guestbook today!'}/>
         <Header highlight={'guestbook'}/>
         <Content>
-            <Offset amt={4}/>
             <Heading level={1}>mldchan&apos;s Guestbook</Heading>
 
-            {postForm === true && <form className={'p-2 rounded-lg drop-shadow-md bg-[#222]'}
+            {postForm === true && <form className={'p-2 rounded-lg drop-shadow-md'}
                                         onSubmit={guestbookSubmit}>
-                <h1 className={'text-2xl font-bold'}>Sign the guestbook</h1>
+                <h1 className={'text-2xl font-bold text-center'}>Sign the guestbook</h1>
 
                 {props.privacyWarning && <div className="bg-yellow-800 p-2 m-1 rounded-lg drop-shadow-lg">
                     <h2><strong>Warning: </strong> The website has detected that you don&apos;t want to be tracked. Please note the guestbook stores your IP address due to avoiding spam.</h2>
@@ -174,42 +172,43 @@ export default function Guestbook(props: InferGetServerSidePropsType<typeof getS
 
                 <label htmlFor={'username'}>Username:</label>
                 <br/>
-                <input type={'text'} name={'username'} className={'bg-[#333] rounded-lg p-1 px-2 w-full'}/>
+                <input type={'text'} name={'username'} className={'bg-[#333] rounded-lg p-1 w-full'}/>
 
-                <Offset amt={2}/>
+                <br />
                 <label htmlFor={'body'}>Message:</label>
                 <br/>
-                <textarea name={'body'} className={'bg-[#333] rounded-lg p-1 px-2 w-full'}></textarea>
+                <textarea name={'body'} className={'bg-[#333] rounded-lg p-1 w-full'}></textarea>
 
                 <br/>
-                <Button type={'submit'}>Submit!</Button>
-
-                {submitError && <p className={'text-red-600'}>{submitError}</p>}
+                <br/>
+                <button
+                    type={"submit"}
+                    className={'p-1 px-2 bg-pink-400 hover:bg-pink-300 transition-all rounded-lg drop-shadow-md cursor-pointer w-full'}>Submit</button>
             </form>}
 
+            {submitError && <p className={'bg-red-800 p-2 rounded-lg'}>{submitError}</p>}
+
             {postForm === 'approval' &&
-                <p>Your message on this guestbook is currently awaiting approval from mldchan. This is done to prevent
+                <p className="bg-blue-800 p-2 rounded-lg">Your message on this guestbook is currently awaiting approval from mldchan. This is done to prevent
                     spam and
                     bigotry.</p>}
             {postForm === 'noip' &&
-                <p>An unknown error on the server is preventing the IP address to be visible. We do not know who you
+                <p className="bg-red-800 p-2 rounded-lg">An unknown error on the server is preventing the IP address to be visible. We do not know who you
                     are.</p>}
-            {postForm === 'banned' && <p>You were banned from posting on this guestbook.</p>}
+            {postForm === 'banned' && <p className="bg-red-800 p-2 rounded-lg">You were banned from posting on this guestbook.</p>}
 
             <Heading level={2}>Messages</Heading>
             {props.posts.length === 0 && <p>No messages yet. Make one now!</p>}
             {props.posts.map((x, i) => {
-                return <div className={'bg-[#222] drop-shadow-md rounded-lg p-1 px-2 mt-4'} key={i}>
-                    <h1 className={'text-xl font-bold'}>{x.username}</h1>
-                    <p>{x.body}</p>
+                return <div className={'bg-[#222] drop-shadow-md rounded-lg p-2 mt-2'} key={i}>
+                    <h1 className={'font-bold'}>{x.username} <small className="ml-2 font-normal text-sm text-gray-500">Posted on {formatTime(x.created)}</small></h1>
+                    <span>{x.body}</span>
                     {x.replies.map((y, j) => {
-                        return <div key={j} className={'mt-4 bg-[#333] rounded-lg p-1 px-2 drop-shadow-md'}>
-                            <h2 className={'font-bold text-lg'}>mldchan
-                                replied:</h2>
-                            <p>{y}</p>
+                        return <div key={j} className={'bg-[#333]  mt-2 rounded-lg p-2 drop-shadow-md'}>
+                            <h2 className={'font-bold'}>Lunya: </h2>
+                            <span>{y}</span>
                         </div>
                     })}
-                    <p><small>Posted on {formatTime(x.created)}</small></p>
                 </div>
             })}
 

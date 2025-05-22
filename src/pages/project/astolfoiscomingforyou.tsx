@@ -15,7 +15,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React from "react";
+import React, { useState } from "react";
 
 import Main from "@/components/Generic/Main";
 import {Header} from "@/components/Generic/Header";
@@ -46,65 +46,60 @@ export async function getServerSideProps() {
 }
 
 export default function Astolfoiscomingforyou(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
+    const [variant, setVariant] = useState("safe");
+
     return (
         <Main>
             <Metadata title={'Astolfo is Coming for You'}
                       description={'Astolfo is coming for you has 2 variants: Safe and Evil. The main difference between the safe variant and evil variant is that the safe gives you compliments, while the evil shuts down your machine.'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Offset amt={4}/>
                 <Heading level={1}>Astolfo is Coming for You</Heading>
 
                 <p>Astolfo is coming for you has 2 variants: Safe and Evil.</p>
                 <p>The main difference between the safe variant and evil variant is that the safe gives you compliments,
                     while the evil shuts down your machine.</p>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2">
-                    <div>
-                        <Heading level={2}>Safe Variant</Heading>
-
-                        <p>The safe variant gives you compliments once it finishes.</p>
-                        <iframe width="343" height='200'
-                                src="https://www.youtube-nocookie.com/embed/HkuCNFGXMNU?si=lDmf3C1Cf65gE5bL"
-                                title="YouTube video player" frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-                        <Image className={'p-1 rounded-lg'} src={safe1}
-                               alt={'Window of Astolfo coming for you, with a countdown of kilometers'}/>
-                        <Image className={'p-1 rounded-lg'} src={safe2} alt={'Astolfo gives you lots of compliments'}/>
-
-                        <br/>
-                        <Link href={'https://github.com/uwugrl/AstolfoIsComingForYou/releases'}>
-                            <Button>Download the latest release</Button>
-                        </Link>
-                    </div>
-
-                    <div>
-                        <Heading level={2}>Evil Variant</Heading>
-
-                        <p>The evil variant shuts down your computer once it finishes.</p>
-                        <iframe width="343" height="200"
-                                src="https://www.youtube-nocookie.com/embed/ZtN1QqLx3ww?si=VaVwXDUo505gF9TS"
-                                title="YouTube video player" frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-                        <Image className={'p-1 rounded-lg'} src={evil1}
-                               alt={'Window of angry Astolfo coming for you, with a countdown of kilometers'}/>
-                        <Image className={'p-1 rounded-lg'} src={evil2}
-                               alt={'Astolfo shuts down your machine in anger'}/>
-                        <br/>
-
-                        <Link href={'https://github.com/uwugrl/AstolfoIsComingForYou/releases'}>
-                            <Button>
-                                Download the latest release
-                            </Button>
-                        </Link>
-                    </div>
+                <div className="w-full flex flex-row text-center">
+                    <div onClick={() => setVariant('safe')} className={`${variant === 'safe' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>Safe variant</div>
+                    <div onClick={() => setVariant('evil')} className={`${variant === 'evil' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>Evil variant</div>
                 </div>
+
+                {variant === 'safe' && <div>
+                    <p>The safe variant gives you compliments once it finishes.</p>
+                    <Image className={'p-1 rounded-lg'} src={safe1}
+                            alt={'Window of Astolfo coming for you, with a countdown of kilometers'}/>
+                    <Image className={'p-1 rounded-lg'} src={safe2} alt={'Astolfo gives you lots of compliments'}/>
+                    <iframe width="400" height='225'
+                            src="https://www.youtube-nocookie.com/embed/HkuCNFGXMNU?si=lDmf3C1Cf65gE5bL"
+                            title="YouTube video player" frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                    <br/>
+                </div>}
+
+                {variant === 'evil' && <div>
+                    <p>The evil variant shuts down your computer once it finishes.</p>
+                    <Image className={'p-1 rounded-lg'} src={evil1}
+                            alt={'Window of angry Astolfo coming for you, with a countdown of kilometers'}/>
+                    <Image className={'p-1 rounded-lg'} src={evil2}
+                            alt={'Astolfo shuts down your machine in anger'}/>
+                    <iframe width="400" height='225'
+                            src="https://www.youtube-nocookie.com/embed/ZtN1QqLx3ww?si=VaVwXDUo505gF9TS"
+                            title="YouTube video player" frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                    <br/>
+
+                </div>}
+                
+                <Link href={'https://github.com/uwugrl/AstolfoIsComingForYou/releases'}>
+                    <Button fullWidth>
+                        Download the latest release
+                    </Button>
+                </Link>
+
                 <br />
-                <Link href={'/discord'}>
-                    <Button>Get support in the Discord server!</Button>
-                </Link> 
                 <Offset amt={2}/>
                 <Footer visits={props.visits} route={'/project/astolfoiscomingforyou'}
                         />
