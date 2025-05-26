@@ -109,38 +109,36 @@ export default function Contact(props: InferGetServerSidePropsType<typeof getSer
             <Header highlight={"contact"} />
             <Metadata title={"Contact Lunya"} description={"This page contains information on how to contact Lunya."} />
             <Content>
-                <Offset amt={4} />
                 <Heading level={1}>Contact Lunya</Heading>
 
-                <p>NEW! Send an anonymous message to Lunya!</p>
+                <p>send anonymous messages to me 🥺</p>
 
                 {props.privacyWarning && (
                     <div className="bg-yellow-800 p-2 m-1 rounded-lg drop-shadow-lg">
                         <h2>
-                            <strong>Warning: </strong> The website has detected that you don&apos;t want to be tracked. Please note when you send anonymous messages the server stores your IP address due to avoiding spam.
-                            Lunya will never see your IP address. The source code is open.
+                            <strong>warning: </strong> you are running a browser with Do Not Track on. this will store your IP address when submitted.
                         </h2>
                     </div>
                 )}
 
-                <label htmlFor="cw">Optional CW</label>
+                <label htmlFor="cw">content warning</label>
                 <br />
                 <input value={cw} onChange={(e) => setCw(e.target.value)} className={"bg-[#333] rounded-lg p-1 px-2 w-full"} type="text" name="cw" id="cw"></input>
                 <br />
-                <label htmlFor="message">Message</label>
+                <label htmlFor="message">message</label>
                 <br />
                 <textarea value={message} onChange={(e) => setMessage(e.target.value)} className={"bg-[#333] rounded-lg p-1 px-2 w-full"} name="message"></textarea>
-                <Button onClick={send}>Submit!</Button>
+                <Button onClick={send}>send it to me 🥺</Button>
 
-                {success && <p className="text-green-500">Message was sent successfully!</p>}
-                {error && <p className="text-red-500">Error: {error}</p>}
+                {success && <p className="text-green-500">sent! thank you sis~</p>}
+                {error && <p className="text-red-500">ewwow: {error}</p>}
 
-                <p>Welcome to the contact page for Lunya! This page contains information on how to contact me.</p>
+                <p>welcome to my contact page! you can contact me using these methods:</p>
 
                 <ContactWrapper name={"Discord"}>
-                    <p>You can join the Discord server and chat with me in there!</p>
+                    <p>join my Discord community uwu :3</p>
                     <Link href={"/discord"}>
-                        <Button>Join Discord</Button>
+                        <Button>join</Button>
                     </Link>
                 </ContactWrapper>
 
@@ -148,13 +146,12 @@ export default function Contact(props: InferGetServerSidePropsType<typeof getSer
                     <p>
                         <code className="text-pink-400">@mld:mldchan.dev</code>
                     </p>
-                    <p>DM&apos;s open! DM me here and I&apos;ll respond.</p>
-                    <p>This is one of my preferred methods of getting DM&apos;s, alongside e-mail with PGP encryption.</p>
+                    <p>you can dm me here and I&apos;ll respond to your dm&apos;s.</p>
                 </ContactWrapper>
 
                 <ContactWrapper name={"E-mail"}>
-                    <p>Shoot an e-mail to mldkyt@proton.me and I&apos;ll respond pretty quickly (if I&apos;m awake, notifications for mail are the only notifications that work for me).</p>
-                    <p>If you can, please use my PGP encryption key.</p>
+                    <p>e-mail me here for any questions or support! :3</p>
+                    <p>also make sure to use my PGP key if you can :3</p>
                     <details className={"flex flex-col"}>
                         <summary className="text-pink-400">PGP key</summary>
                         <span>-----BEGIN PGP PUBLIC KEY BLOCK-----</span>
@@ -172,18 +169,6 @@ export default function Contact(props: InferGetServerSidePropsType<typeof getSer
                         <span>-----END PGP PUBLIC KEY BLOCK-----</span>
                     </details>
                 </ContactWrapper>
-
-                <ContactWrapper name={"Discord"}>
-                    <p>
-                        Add me on Discord! <code className="text-pink-400">uwu.grl</code>! Please note I might remove you for various reasons, so please do not misuse this 🥺.
-                    </p>
-                </ContactWrapper>
-
-                <Offset amt={2} />
-                <p>
-                    This page is kind of dead as of now... I tried to add as many contact methods but I kind of realized I don&apos;t have that many. But I feel like that everyone has an e-mail account which they can use
-                    to e-mail me.
-                </p>
 
                 <Offset amt={3} />
                 <Footer visits={props.visits} route={"/contact"} />

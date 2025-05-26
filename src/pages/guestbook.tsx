@@ -153,7 +153,7 @@ export default function Guestbook(props: InferGetServerSidePropsType<typeof getS
         if (hour.length < 2) hour = `0${hour}`;
         let minute = `${date.getUTCMinutes()}`;
         if (minute.length < 2) minute = `0${minute}`;
-        return `${date.getUTCFullYear()}/${month}/${day} ${hour}:${minute} UTC`;
+        return `${date.getUTCFullYear()}-${month}-${day} ${hour}:${minute} utc`;
     }
 
     return <Main>
@@ -164,18 +164,18 @@ export default function Guestbook(props: InferGetServerSidePropsType<typeof getS
 
             {postForm === true && <form className={'p-2 rounded-lg drop-shadow-md'}
                                         onSubmit={guestbookSubmit}>
-                <h1 className={'text-2xl font-bold text-center'}>Sign the guestbook</h1>
+                <h1 className={'text-2xl font-bold text-center'}>sign it 🥺</h1>
 
                 {props.privacyWarning && <div className="bg-yellow-800 p-2 m-1 rounded-lg drop-shadow-lg">
-                    <h2><strong>Warning: </strong> The website has detected that you don&apos;t want to be tracked. Please note the guestbook stores your IP address due to avoiding spam.</h2>
+                    <h2><strong>warning: </strong> your browser has Do Not Track active. this guestbook will link your request to an IP address to prevent abuse 🥺</h2>
                 </div>}
 
-                <label htmlFor={'username'}>Username:</label>
+                <label htmlFor={'username'} className="font-bold">name:</label>
                 <br/>
                 <input type={'text'} name={'username'} className={'bg-[#333] rounded-lg p-1 w-full'}/>
 
                 <br />
-                <label htmlFor={'body'}>Message:</label>
+                <label htmlFor={'body'} className="font-bold">message:</label>
                 <br/>
                 <textarea name={'body'} className={'bg-[#333] rounded-lg p-1 w-full'}></textarea>
 
@@ -183,29 +183,26 @@ export default function Guestbook(props: InferGetServerSidePropsType<typeof getS
                 <br/>
                 <button
                     type={"submit"}
-                    className={'p-1 px-2 bg-pink-400 hover:bg-pink-300 transition-all rounded-lg drop-shadow-md cursor-pointer w-full'}>Submit</button>
+                    className={'p-1 px-2 bg-pink-400 hover:bg-pink-300 transition-all rounded-lg drop-shadow-md cursor-pointer w-full'}>send it to me :3</button>
             </form>}
 
             {submitError && <p className={'bg-red-800 p-2 rounded-lg'}>{submitError}</p>}
 
             {postForm === 'approval' &&
-                <p className="bg-blue-800 p-2 rounded-lg">Your message on this guestbook is currently awaiting approval from Lunya. This is done to prevent
-                    spam and
-                    bigotry.</p>}
+                <p className="bg-blue-800 p-2 rounded-lg">thanks sis! wait for Lunya to approve your post :3</p>}
             {postForm === 'noip' &&
-                <p className="bg-red-800 p-2 rounded-lg">An unknown error on the server is preventing the IP address to be visible. We do not know who you
-                    are.</p>}
-            {postForm === 'banned' && <p className="bg-red-800 p-2 rounded-lg">You were banned from posting on this guestbook.</p>}
+                <p className="bg-red-800 p-2 rounded-lg">we couldn&apos;t find your IP address :(</p>}
+            {postForm === 'banned' && <p className="bg-red-800 p-2 rounded-lg">you were banned :(</p>}
 
-            <Heading level={2}>Messages</Heading>
-            {props.posts.length === 0 && <p>No messages yet. Make one now!</p>}
+            <Heading level={2}>messages :3</Heading>
+            {props.posts.length === 0 && <p>no messages :(</p>}
             {props.posts.map((x, i) => {
                 return <div className={'bg-[#222] drop-shadow-md rounded-lg p-2 mt-2'} key={i}>
-                    <h1 className={'font-bold'}>{x.username} <small className="ml-2 font-normal text-sm text-gray-500">Posted on {formatTime(x.created)}</small></h1>
+                    <h1 className={'font-bold'}>{x.username} <small className="ml-2 font-normal text-sm text-gray-500">posted on {formatTime(x.created)}</small></h1>
                     <span>{x.body}</span>
                     {x.replies.map((y, j) => {
                         return <div key={j} className={'bg-[#333]  mt-2 rounded-lg p-2 drop-shadow-md'}>
-                            <h2 className={'font-bold'}>Lunya: </h2>
+                            <h2 className={'font-bold'}>Lunya UwU </h2>
                             <span>{y}</span>
                         </div>
                     })}

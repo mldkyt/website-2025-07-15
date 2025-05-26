@@ -49,7 +49,7 @@ export default function FediMeow(props: InferGetServerSidePropsType<typeof getSe
             <Metadata title={'FediMeow'} description={'FediMeow is a bot that meows every hour on fedi.'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Heading level={1}>FediMeow</Heading>
+                <Heading level={1}>fedi meow</Heading>
 
                 <div className="w-full flex flex-row text-center">
                     <div onClick={() => setTab('description')} className={`${tab === 'description' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>Description</div>
@@ -58,11 +58,10 @@ export default function FediMeow(props: InferGetServerSidePropsType<typeof getSe
                 
                 {tab === 'description' && <>
                     <p>
-                        This is a bot that meows every hour on fedi.
+                        this is a silly fedi bot :333
                     </p>
                     <p className="pt-2">
-                        This bot is really simple. It sends a message containing meow or nya, randomly adding a tidlie or a
-                        :3 to the message.
+                        all this bot does btw is that it notes a variation of &quot;meow&quot; on the account it is connected to :33
                     </p>
                 </>}
                 
@@ -75,10 +74,10 @@ export default function FediMeow(props: InferGetServerSidePropsType<typeof getSe
                     
                 <div className="flex flex-col gap-2">
                     <Link href="https://social.mldchan.dev/@FediMeow">
-                        <Button fullWidth>Official account</Button>
+                        <Button fullWidth>official account</Button>
                     </Link>
                     <Link href="https://git.lunya.pet/Lunya/fedimeow">
-                        <Button fullWidth>Source code</Button>
+                        <Button fullWidth>source</Button>
                     </Link>
                 </div>
                 

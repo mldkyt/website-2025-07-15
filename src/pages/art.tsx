@@ -52,8 +52,9 @@ export default function Art(props: InferGetServerSidePropsType<typeof getServerS
         <Header/>
         <Content>
             <Offset amt={4}/>
-            <Heading level={1}>Art</Heading>
-            <p>Lunya sometimes does art. Here are some of her works :3</p>
+            <Heading level={1}>art</Heading>
+            <p>lunya sometimes draws, here you can see her beautiful artwork! :3</p>
+            <p className="text-sm text-gray-400">sometimes as cute as her &gt;//////&lt;</p>
 
             <Heading level={2}>BusLine</Heading>
             <p>A kawaii logo of the local bus transport company.</p>

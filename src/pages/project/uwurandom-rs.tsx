@@ -52,24 +52,23 @@ export default function UwurandomRs(props: InferGetServerSidePropsType<typeof ge
             <Heading level={1}>uwurandom-rs</Heading>
             <p className="py-2">an uwuifier written in the fastest language in the world, Rust. <i>wait why do I have thigh highs?</i></p>
             <p className="py-2">
-                This project, or library to say it right, does the same thing as <a href="/project/catgirlnonsense">Catgirl
-                nonsense</a> does, but it does it as a library in the Rust programming language. Written by a transgirl
-                btw.
+                this project, or library to say it right, does the same thing as <a href="/project/catgirlnonsense">catgirl
+                nonsense</a> does, but it does it as a library in the Rust programming language.
             </p>
-            <p className="py-2">The library is very easy to use, for the maximum femefficiency :3</p>
+            <p className="py-2">the library is very easy to use, for the maximum femefficiency :3</p>
             <Image src={image} alt={'UwUrandom-rs example source code'} className={'p-1 rounded-lg py-2'}/>
             
             <Offset amt={2} />
 
             <div className="flex flex-col gap-2">
                 <Link href={'https://crates.io/crates/mldkyt-uwurandom-rs'}>
-                    <Button fullWidth>Download from crates.io</Button>
+                    <Button fullWidth>crates.io</Button>
                 </Link>
                 <Link href={'https://github.com/LunyaPet/uwurandom-rs'}>
-                    <Button fullWidth>Download from GitHub</Button>
+                    <Button fullWidth>download from github</Button>
                 </Link>
                 <Link href={'/discord'}>
-                    <Button fullWidth>Get support in the Discord server!</Button>
+                    <Button fullWidth>join my Discord server for support :3</Button>
                 </Link>
             </div>
 

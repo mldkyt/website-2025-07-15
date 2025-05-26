@@ -63,51 +63,51 @@ export default function Projects(props: InferGetServerSidePropsType<typeof getSe
             <Metadata title={"Projects"} description={"A list of projects by Lunya."} />
             <Header highlight={"projects"} />
             <Content>
-                <h1 className={"text-center text-3xl font-bold py-4"}>Lunya&apos;s Projects :3</h1>
+                <h1 className={"text-center text-3xl font-bold py-4"}>Lunya&apos;s projects UwU :3</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-                    <Project image={akabot} imageAlt={"Akabot profile picture"} title={"Akabot"} description={"A Discord bot with lots of features."} link={"/project/akabot"} />
+                    <Project image={akabot} imageAlt={"Akabot profile picture"} title={"Akabot"} description={"free and open source discord bot packed with features :3"} link={"/project/akabot"} />
                     <Project
                         image={astolfoIsComingForYou}
                         imageAlt={"Astolfo is coming for you window"}
                         title={"Astolfo is coming for you"}
-                        description={"Astolfo comes for you, with friendly and unfriendly variants."}
+                        description={"astolfo comes for you as a windows program! comfy and evil variations :3"}
                         link={"/project/astolfoiscomingforyou"}
                     />
                     <Project
                         image={astolfoMod}
                         imageAlt={"Astolfo biome"}
                         title={"Astolfo Mod"}
-                        description={"A Minecraft mod that adds many non-binary, transgender and femboy characters to the game."}
+                        description={"adds femboys, and a trans girl into minecraft :3 along some other things :3"}
                         link={"/project/astolfomod"}
                     />
                     <Project
                         image={astolforp}
                         imageAlt="Minecraft main menu, but it says Astolfocraft: Femboy edition on the top and the panorama is replaced with Astolfo."
                         title="Astolfo Resource Pack"
-                        description="A resource pack for Minecraft with Astolfo."
+                        description="Astolfo resource pack, with changes to sounds and language files too :3"
                         link="/project/astolforesourcepack"
                     />
-                    <Project image={catgirlNonsense} imageAlt={"Catgirl nonsense"} title={"Catgirl nonsense"} description={"Catgirl nonsense generator."} link={"/project/catgirlnonsense"} />
+                    <Project image={catgirlNonsense} imageAlt={"Catgirl nonsense"} title={"Catgirl nonsense"} description={"generate catgirl nonsense :3333 UwU >/////////<"} link={"/project/catgirlnonsense"} />
                     <Project
                         image={uwurandomRs}
                         imageAlt={"UwUrandom in Rust programming language"}
                         title={"uwurandom-rs"}
-                        description={"Catgirl nonsense, but in the Rust programming langauge, for maximum femininity."}
+                        description={"catgirl nonsense but in Rust 🏳️‍⚧️ uwu"}
                         link={"/project/uwurandom-rs"}
                     />
-                    <Project image={fediMeow} imageAlt={"Fedi Meow bot on a Sharkey instance"} title={"FediMeow"} description={"This is a bot that meows every hour on fedi."} link={"/project/fedi/meow"} />
+                    <Project image={fediMeow} imageAlt={"Fedi Meow bot on a Sharkey instance"} title={"FediMeow"} description={"hourly meowing on fedi (needed)"} link={"/project/fedi/meow"} />
                     <Project
                         image={fediSummarizer}
                         imageAlt={"Fedi Summarizer bot on a Sharkey instance"}
                         title={"Fedi Summarizer"}
-                        description={"This bot summarizes the amount of notes you post every midnight."}
+                        description={"gives you a count of your posts every midnight, along with some insights."}
                         link={"/project/fedi/summarizer"}
                     />
                     <Project
                         image={fediStreaks}
                         imageAlt={"Fedi Streaks bot on a Sharkey instance"}
                         title={"Fedi Streaks"}
-                        description={"This bot counts consecutive days of you posting on fedi."}
+                        description={"counts consencutive days of activity :3"}
                         link={"/project/fedi/streaks"}
                     />
                 </div>
@@ -120,28 +120,28 @@ export default function Projects(props: InferGetServerSidePropsType<typeof getSe
 
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
                     <Project
-                        title={"Mod List"}
+                        title={"Mod list"}
                         image={monbazoumodlist}
                         imageAlt="A screenshot from the game showing the mod list button in the main menu."
-                        description={"A mod list in the main menu of Mon Bazou. Allows changing mod settings."}
+                        description={"a mod menu mod, adding a mod menu, settings and console."}
                         link={"/project/monbazou/modlist"}
                     />
-                    <Project image={search} imageAlt={"A search engine"} title={"Nekosearch v2"} description={"An enchanced version of Nekosearch v1. Way more accurate than before."} link={"/project/neko/search2"} />
+                    <Project image={search} imageAlt={"A search engine"} title={"Nekosearch v2"} description={"search engine for nekoweb.org, with independent index :3"} link={"/project/neko/search2"} />
                     <Project
                         image={birthday}
                         imageAlt={"A window showing to wish someone a happy birthday, with a text box on the bottom"}
-                        title={"Birthday"}
-                        description={"Forces you to wish birthday to anyone in your circle so you never forget."}
+                        title={"Birthday app"}
+                        description={"forces users to wish their friends bday before allowing u to use the pc :3"}
                         link={"/project/birthday"}
                     />
                     <Project
                         image={nexusmodsFirefox}
                         imageAlt={"A Firefox extension showing list of blocked users, which hides them from comments."}
-                        title={"Nexus Enhancements for Firefox"}
-                        description={"A Firefox extension that allows hiding comments from bad users."}
+                        title={"Nexus enhancements for Firefox"}
+                        description={"a Firefox extension that allows you to hide users in comments :3"}
                         link={"/project/nmfirefox"}
                     />
-                    <Project image={mcFuck} imageAlt={"MCFuck"} title={"MCFuck"} description={"An application to mess up your Minecraft settings."} link={"/project/mcfuck"} />
+                    <Project image={mcFuck} imageAlt={"MCFuck"} title={"MCFuck"} description={"an options.txt file fucker :3"} link={"/project/mcfuck"} />
 
                 </div>
 
@@ -150,14 +150,14 @@ export default function Projects(props: InferGetServerSidePropsType<typeof getSe
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
                     <Project
                         title={"Cutie Quiz"}
-                        description={"Cutie Quiz is a quiz app whic determines how cute you are. Archived and shut down on Oct 31st."}
+                        description={"cutie quiz uses the latest cuttin-edge technology to determine that you're cute :3"}
                         image={cutieQuiz}
                         imageAlt={"Cutie Quiz"}
                         link={"/project/cutiequiz"}
                     />
                     <Project
                         title={"Nekosearch v1"}
-                        description={"A instant, private and independently indexed search for Nekoweb, including content."}
+                        description={"instant, local search engine for nekoweb.org (not updated anymore)"}
                         image={search}
                         imageAlt={"Search engine"}
                         link={"https://mldkyt.nekoweb.org/project/neko/search"}

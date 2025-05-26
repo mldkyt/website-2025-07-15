@@ -48,25 +48,18 @@ export default function MCFuck(props: InferGetServerSidePropsType<typeof getServ
                   description={'MCFuck is a program that attempts to mess with your Minecraft settings, without corrupting them.'}/>
         <Header highlight={'projects'}/>
         <Content>
-            <Heading level={1}>MCFuck</Heading>
+            <Heading level={1}>mcfuck</Heading>
 
-            <p>MCFuck is a program that attempts to fuck with your Minecraft settings, as the name implies, without
-                corrupting them.</p>
-            <p className="pt-2">When this program finishes messing up your settings file, you&apos;ll be able to witness
-                those changes, if
-                your
-                game starts up, in game.</p>
-            <p className="pt-2">Since this was written purely for fun, the UI looks like so. <strong
-                className={'text-red-600'}>Although
-                before
-                you
-                run it and let your options file get corrupted, I highly recommend making a backup!</strong></p>
+            <p>mcfuck is a program that fucks with the options.txt save file :3</p>
+            <p className="pt-2">you are able to witness these changes right after loading into the game after applying these changes :3</p>
+            <p className="pt-2">the ui is like this for silly reasons :333 <strong
+                className={'text-red-600'}>make sure to make an options.txt backup! :333</strong></p>
             <Image src={mcfuck} alt="MC options.txt fucker main window"/>
 
             <br/>
 
             <Link href={'https://github.com/LunyaPet/MCFuck/releases'}>
-                <Button fullWidth>Download this abomination</Button>
+                <Button fullWidth>download abomination</Button>
             </Link>
             <Offset amt={3}/>
             <Footer visits={props.visits} route={'/project/mcfuck'} />

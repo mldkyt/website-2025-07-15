@@ -50,28 +50,26 @@ export default function AstolfoResourcePack(props: InferGetServerSidePropsType<t
         <Main>
             <Header highlight={'projects'}/>
             <Content>
-                <Heading level={1}>Astolfo Resource Pack</Heading>
+                <Heading level={1}>Astolfo resource pack</Heading>
 
-                <Heading level={2}>Minecraft :3 edition let&apos;s gooo</Heading>
-                <p>This resource pack changes the Minecraft loading screen, logo, totem of undying and ending screen to be more Astolfo themed.</p>
+                <Heading level={2}>minecraft :3 edition :3</Heading>
+                <p>changes a lot of things to be more Astolfo themed :3</p>
 
                 <div className="w-full flex flex-row text-center">
-                    <div onClick={() => setTab('features')} className={`${tab === 'features' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>Features</div>
-                    <div onClick={() => setTab('images')} className={`${tab === 'images' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>Images</div>
+                    <div onClick={() => setTab('features')} className={`${tab === 'features' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>features</div>
+                    <div onClick={() => setTab('images')} className={`${tab === 'images' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>images</div>
                 </div>
 
                 {tab === 'features' && <>
-                    <p className="font-bold">Full list of changes:</p>
+                    <p className="font-bold">full list :3:</p>
                     <ul className="list-disc ml-4">
-                        <li>Change a bunch of the text</li>
-                        <li>Change main menu panorama images</li>
-                        <li>Change loading screen image (requires jar mod)</li>
-                        <li>Change end subtitles text</li>
-                        <li>Cherry logs are femboy logs</li>
-                        <li>Change menu music to Astolfo rap</li>
-                        <li>Change menu logo and edition</li>
-                        <li>Change default server and resourcepack icon</li>
-                        <li>Change splash texts</li>
+                        <li>change lots of the text :3</li>
+                        <li>change the main menu panoramas, titles and music :3</li>
+                        <li>change loading screen (requires jar mod)</li>
+                        <li>change ending credits :3</li>
+                        <li>rename cherry logs to femboy logs :3</li>
+                        <li>change default server and resourcepack icon :3</li>
+                        <li>change splash texts :3</li>
                     </ul>
                 </>}
 
@@ -85,13 +83,13 @@ export default function AstolfoResourcePack(props: InferGetServerSidePropsType<t
 
                 <div className="flex flex-col gap-2">
                     <Link href="https://git.lunya.pet/Lunya/AstolfoResourcePackInstaller/releases">
-                        <Button fullWidth>Download builder</Button>
+                        <Button fullWidth>download buidler :3</Button>
                     </Link>
                     <Link href="https://git.lunya.pet/Lunya/AstolfoResourcePackInstaller">
-                        <Button fullWidth>Source code</Button>
+                        <Button fullWidth>source :3</Button>
                     </Link>
                     <Link href={'/discord'}>
-                        <Button fullWidth>Get support in the Discord server!</Button>
+                        <Button fullWidth>join my Discord server for support! :3</Button>
                     </Link>
                 </div>
 

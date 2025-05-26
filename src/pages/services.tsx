@@ -50,69 +50,69 @@ export default function Services(props: InferGetServerSidePropsType<typeof getSe
 
                 <Service
                     svcName={"Akabot: Discord bot"}
-                    svcDesc={"This is a Discord bot packed with features. Official instance."}
+                    svcDesc={"Akabot is my own free and open source Discord bot. this is its official instance."}
                     links={[{
-                        label: "Add the bot on Discord!",
+                        label: "add it now!",
                         url: "https://discord.com/oauth2/authorize?client_id=1172922944033411243"
                     }, {
-                        label: "View project page",
+                        label: "view project page",
                         url: "/project/akabot"
                     }]}
                 />
                 <Service
-                    svcName={"Lunyakey: Fediverse Software"}
-                    svcDesc={"This is what Lunya uses to connect to the fediverse. Lunyakey is the cutest fork of Sharkey. "}
+                    svcName={"Sharkey: Fediverse software"}
+                    svcDesc={"i use this to communicate with frens :3"}
                     links={[{
-                        label: "Open Sharkey",
+                        label: "open it :3",
                         url: "https://fedi.lunya.pet"
                     }, {
-                        label: "View my profile",
+                        label: "view my profile",
                         url: "https://fedi.lunya.pet/@Lunya"
                     }]}
                 />
                 <Service
-                    svcName={"PeerTube: Federated P2P Video Sharing"}
-                    svcDesc={"Any recent videos are posted here alongside YouTube."}
+                    svcName={"PeerTube: Federated P2P video sharing"}
+                    svcDesc={"i use this as an alterantive to youtube sometimes :3 but also to put my videos out there on fedi :3"}
                     links={[{
-                        label: "Open Peertube",
+                        label: "open Peertube",
                         url: "https://peertube.mldchan.dev"
                     }, {
-                        label: "View my channels",
+                        label: "view my channels",
                         url: "https://peertube.mldchan.dev/a/mld/video-channels"
                     }, {
-                        label: "View my main videos",
+                        label: "view my main videos",
                         url: "https://peertube.mldchan.dev/c/mldchan/videos"
                     }, {
-                        label: "View my TikTok re-uploads",
+                        label: "view my TikTok re-uploads",
                         url: "https://peertube.mldchan.dev/c/mldtiktok/videos"
                     }]}
                 />
                 <Service
-                    svcName={"Forgejo: Code Hosting"}
-                    svcDesc={"Hosts source code publicly. Accounts are public for forking and development reasons until federation gets added."}
+                    svcName={"Forgejo: Code forge"}
+                    svcDesc={"i use this to host my code :3"}
                     links={[{
-                        label: "Open Forgejo",
+                        label: "open Forgejo",
                         url: "https://git.lunya.pet"
                     }, {
-                        label: "Open my profile on Forgejo",
+                        label: "open my profile on Forgejo",
                         url: "https://git.lunya.pet/Lunya"
                     }]}
                 />
-                <Service svcName={"Website"} svcDesc={"Web server for this website."} links={[{
-                    label: "Home page",
+                <Service svcName={"website"} svcDesc={"this very website :3"} links={[{
+                    label: "home page",
                     url: "https://lunya.pet"
                 }]} />
                 <Service
                     svcName={"FediMeow: Meowing for for fedi"}
-                    svcDesc={"Sends a meow note every hour on mldchan's sharkey instance."}
+                    svcDesc={"meows hourly :3"}
                     links={[{
-                        label: "Fediverse profile for the official account",
+                        label: "",
                         url: "https://fedi.lunya.pet/@FediMeow"
                     }]}
                 />
                 <Service
                     svcName={"Fedi Streaks: Akabot Chat Streaks for the fediverse"}
-                    svcDesc={"This bot provides similar functionality to Akabot's Chat Streaks on fedi."}
+                    svcDesc={"this bot gives you consencutive days of activity :3"}
                     links={[{
                         label: "Fediverse profile for the official account",
                         url: "https://fedi.lunya.pet/@FediStreaks"
@@ -120,28 +120,12 @@ export default function Services(props: InferGetServerSidePropsType<typeof getSe
                 />
                 <Service
                     svcName={"Fedi Summary: Akabot Chat Summary for the fediverse"}
-                    svcDesc={"This bot provides similar functionality to Akabot's Chat Summary on fedi."}
+                    svcDesc={"this bot gives you a count of how many notes you have every midnight :3"}
                     links={[{
-                        label: "Fediverse profile for the official account",
+                        label: "official account",
                         url: "https://fedi.lunya.pet/@FediSummary"
                     }]}
                 />
-
-                <h2 className="text-xl font-bold">Private services</h2>
-
-                <Service
-                    svcName={"Nextcloud: Personal Cloud"}
-                    svcDesc={"Lunya uses this to mostly store and sometimes share files."}
-                    links={[{
-                        label: "Open Nextcloud",
-                        url: "https://nextcloud.mldchan.dev/"
-                    }]}
-                />
-                <Service svcName={"uptime-kuma: Status monitor"} svcDesc={"Allows me to receive notifications when something doesn't work right."} />
-                <Service svcName={"Dockge: Server Management"} svcDesc={"Allows remote managing of Lunya's server."} />
-                <Service svcName={"Nekoweb View Tracker"} svcDesc={"Open-source tracker tracking the history of page visits on Nekoweb."} />
-                <Service svcName={"Cutie Hangout Services"} svcDesc={"Friends only services"} />
-                <Service svcName={"QueerBot"} svcDesc={"Another Discord bot for friends."} />
                 
                 <Offset amt={6} />
                 <Footer visits={props.visits} route={"/services"} />

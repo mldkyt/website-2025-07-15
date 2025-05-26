@@ -49,29 +49,19 @@ export default function NMFirefox(props: InferGetServerSidePropsType<typeof getS
                   description={'NexusMods Enhancements for Firefox is an extension that adds a few features to Nexus Mods, namely blocking people.'}/>
         <Header highlight={'projects'}/>
         <Content>
-            <Heading level={1}>Nexus Enhancements for Firefox</Heading>
+            <Heading level={1}>Nexus enhancements for Firefox</Heading>
 
-            <p>This is an extension for Firefox which adds a few features to Nexus Mods, namely blocking people.</p>
-            <p className="py-2">
-                The extension was made initially for personal use only, hence it not being available on Firefox
-                Extension
-                Store, only being on GitHub. By using this extension, you are viable for all damages, even if this
-                shouldn&apos;t
-                cause
-                any, unless NexusMods updates.
-            </p>
+            <p>a small extension for Firefox originally made for personal use :3</p>
             <Image src={nmfirefox} alt="User Interface" className={'rounded-lg'}/>
             <p className="py-2">
-                The UI allows adding blocked people by username. Blocking a person will hide their comments and replies.
-                Unblocking a person requires reload to re-show any hidden comments.
+                this simple exception really simply allows you to hide comments from specific users on nexusmods mods and images.
             </p>
             <p className="py-2">
-                To download and install this extension, follow the link to the download and download
-                the <code>xpi</code> file while using Firefox. The extension should install.
+                this extension was last tested in like August 2024, so the extensions may not work :3c
             </p>
             <br/>
             <Link href={'https://github.com/LunyaPet/NexusEnhancementsForFirefox/releases'}>
-                <Button fullWidth>Download Nexus Enhancements for Firefox</Button>
+                <Button fullWidth>download the extension :3</Button>
             </Link>
             <Offset amt={3}/>
             <Footer visits={props.visits} route={'/project/nmfirefox'} />

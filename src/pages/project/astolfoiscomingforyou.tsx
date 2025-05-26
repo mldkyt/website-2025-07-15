@@ -54,19 +54,18 @@ export default function Astolfoiscomingforyou(props: InferGetServerSidePropsType
                       description={'Astolfo is coming for you has 2 variants: Safe and Evil. The main difference between the safe variant and evil variant is that the safe gives you compliments, while the evil shuts down your machine.'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Heading level={1}>Astolfo is Coming for You</Heading>
+                <Heading level={1}>astolfo is coming for you</Heading>
 
-                <p>Astolfo is coming for you has 2 variants: Safe and Evil.</p>
-                <p>The main difference between the safe variant and evil variant is that the safe gives you compliments,
-                    while the evil shuts down your machine.</p>
+                <p>choose between 2 variants: safe and evil :3</p>
+                <p>the safe variant is for cuddlies :3 and the evil one shuts down your computer &gt;:3</p>
 
                 <div className="w-full flex flex-row text-center">
-                    <div onClick={() => setVariant('safe')} className={`${variant === 'safe' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>Safe variant</div>
-                    <div onClick={() => setVariant('evil')} className={`${variant === 'evil' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>Evil variant</div>
+                    <div onClick={() => setVariant('safe')} className={`${variant === 'safe' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>safe and comf variant :3</div>
+                    <div onClick={() => setVariant('evil')} className={`${variant === 'evil' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>evil variant &gt;:3</div>
                 </div>
 
                 {variant === 'safe' && <div>
-                    <p>The safe variant gives you compliments once it finishes.</p>
+                    <p>the safe variant gives you comfy compliments once it finished counting down :3</p>
                     <Image className={'p-1 rounded-lg'} src={safe1}
                             alt={'Window of Astolfo coming for you, with a countdown of kilometers'}/>
                     <Image className={'p-1 rounded-lg'} src={safe2} alt={'Astolfo gives you lots of compliments'}/>
@@ -79,7 +78,7 @@ export default function Astolfoiscomingforyou(props: InferGetServerSidePropsType
                 </div>}
 
                 {variant === 'evil' && <div>
-                    <p>The evil variant shuts down your computer once it finishes.</p>
+                    <p>the evil variant turns off your computer once it finished &gt;:3</p>
                     <Image className={'p-1 rounded-lg'} src={evil1}
                             alt={'Window of angry Astolfo coming for you, with a countdown of kilometers'}/>
                     <Image className={'p-1 rounded-lg'} src={evil2}
@@ -95,7 +94,7 @@ export default function Astolfoiscomingforyou(props: InferGetServerSidePropsType
                 
                 <Link href={'https://github.com/LunyaPet/AstolfoIsComingForYou/releases'}>
                     <Button fullWidth>
-                        Download the latest release
+                        download latest :3
                     </Button>
                 </Link>
 

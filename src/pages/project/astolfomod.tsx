@@ -58,74 +58,56 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                       description={'Astolfo Mod for Minecraft, a mod that adds Astolfo and other characters to the game.'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Heading level={1}>Astolfo Mod</Heading>
+                <Heading level={1}>astolfo mod uwu</Heading>
 
                 <div className="w-full flex flex-row text-center">
-                    <div onClick={() => setTab('description')} className={`${tab === 'description' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>Description</div>
-                    <div onClick={() => setTab('gallery')} className={`${tab === 'gallery' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>Gallery</div>
-                    <div onClick={() => setTab('changelog')} className={`${tab === 'changelog' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>Changelog</div>
+                    <div onClick={() => setTab('description')} className={`${tab === 'description' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>description</div>
+                    <div onClick={() => setTab('gallery')} className={`${tab === 'gallery' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>gallery</div>
+                    <div onClick={() => setTab('changelog')} className={`${tab === 'changelog' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>changelog</div>
                 </div>
 
                 {tab === 'description' && <>
-                    <Heading level={2}>What does this mod add?</Heading>
+                    <Heading level={2}>mod features :3</Heading>
 
                     <ul className={'ml-4 list-disc'}>
-                        <li><b>Astolfo in 3 outfits</b> - Astolfo Schoolgirl, Astolfo Armour, and Astolfo in Casual outfit
+                        <li><b>Astolfo in 3 outfits :3</b> - astolfo is schoolgirl, casual and armour outfits :3
                         </li>
-                        <li><b>Felix Argyle</b></li>
+                        <li><b>Felix</b></li>
                         <li><b>Hideri Kanzaki</b></li>
                         <li><b>Venti</b></li>
                         <li><b>Rimuru</b></li>
                         <li><b>Nagisa Shiota</b></li>
                         <li><b>Sieg</b> (Fate/Apocrypha)</li>
-                        <li><b>Bridget</b> <i>(I know she&apos;s a transgender girl but I included her because why not)</i></li>
+                        <li><b>Bridget</b> <i>(i know she&apos;s a girl and she&apos;s in a mod about femboys, but whatever :3)</i></li>
                     </ul>
 
-                    <Heading level={2}>Commands</Heading>
+                    <Heading level={2}>commands :3</Heading>
 
                     <ul className={'ml-4 list-disc'}>
                         <li>
-                            <code>/duplicatecuties &lt;amount&gt; &lt;range&gt;</code> - Duplicate all of the added mobs
-                            within the
-                            range amount times. The mod doesn&apos;t have any limits in the 2 parameters, so entering big numbers
-                            might
-                            cause your
-                            game to crash!
+                            <code>/duplicatecuties &lt;amount&gt; &lt;range&gt;</code> - duplicate all of the femboys in range :3
                         </li>
                         <li>
-                            <code>/despawn &lt;selector&gt;</code> - This command is simple and allows you to &quot;kill&quot;
-                            monsters
-                            without the animation. This prevents the particles from death spawning and lagging your game if
-                            you have
-                            too many mobs
-                            from this mod spawned.
+                            <code>/despawn &lt;selector&gt;</code> - despawns anything matching the selector without playing the animation :3
                         </li>
                         <li>
-                            <code>/cuterain &lt;iterations&gt; &lt;range&gt; &lt;height&gt;</code> - This command makes the
-                            mobs
-                            above rain from the sky. It runs how many times iterations is, spawning mobs in the range
-                            provided,
-                            spawning them in
-                            the specified height. Every iteration spawns 1 of each mob above, excluding creative mobs.
+                            <code>/cuterain &lt;iterations&gt; &lt;range&gt; &lt;height&gt;</code> - makes femboys rain from the sky :3
                         </li>
                     </ul>
 
-                    <Heading level={2}>Creative items and mobs</Heading>
+                    <Heading level={2}>creative items</Heading>
 
                     <ul className={'ml-4 list-disc'}>
-                        <li><b>Astolfo Attractor</b> - The text &quot;gay&quot; in the menu, attracts only variants of Astolfo.</li> 
-                        <li><b>Astolfo Repellent</b> - A Felix Argyle entity which repels all Astolfos from its location.
+                        <li><b>Astolfo Attractor</b> - attracts all Astolfos to your location</li> 
+                        <li><b>Astolfo Repellent</b> - entity which repells Astolfos from it
                         </li>
-                        <li><b>Monster White</b> - No crafting recipe yet, gives you speed and jump boost and gives you
-                            trans rights
-                            🏳️‍⚧️❤️
+                        <li><b>Monster White</b> - a drink ig 💖🏳️‍⚧️
                         </li>
                     </ul>
 
-                    <Heading level={2}>Video about the mod</Heading>
+                    <Heading level={2}>video</Heading>
 
-                    <p>I&apos;ve also made a video about the mod on my YouTube channel, so if you want to watch that, you can do
-                        so:</p>
+                    <p>i made a video about this mod too :3</p>
 
                     <iframe width="400" height="225"
                             src="https://www.youtube-nocookie.com/embed/bBvrp8puvdw?si=1KTa9xR-AzxIyX_2"
@@ -135,28 +117,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
 
                     <Heading level={2}>Supporting this mod</Heading>
 
-                    <H3>1. Suggestions</H3>
-
-                    <p>
-                        The simplest you can do for now is to <b>create an idea suggestion</b> for the mod using a <Link
-                        className="text-pink-400 hover:text-pink-300"
-                        href="https://github.com/LunyaPet/AstolfoForge/issues"
-                    >GitHub issue</Link>.
-                    </p>
-
-                    <H3>2. Reporting bugs</H3>
-
-                    <p>
-                        If you find any bug in the mod, <b>you can report it</b> using <Link
-                        className="text-pink-400 hover:text-pink-300"
-                        href="https://github.com/LunyaPet/AstolfoForge/issues">GitHub issues</Link> for it to be fixed.
-                        It will be fixed once I get some free time.
-                    </p>
-
-                    <H3>3. Financial support</H3>
-
-                    <p><Link href={'/donate'} className="text-pink-400 hover:text-pink-300">You can donate me using various methods here.</Link>
-                     I accept donations on all of them.</p>
+                    <p><Link href={'/donate'} className="text-pink-400 hover:text-pink-300">pwease donate uwu 🥺 :3</Link></p>
                 </>}
 
                 {tab === 'gallery' && <div className="grid grid-cols-1 lg:grid-cols-2">
@@ -199,13 +160,13 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
 
                 <div className="flex flex-col gap-2">
                     <Link href="https://modrinth.com/mod/astolfo-mod">
-                        <Button fullWidth>Open Modrinth page</Button>
+                        <Button fullWidth>modrinth</Button>
                     </Link>
                     <Link href="https://github.com/LunyaPet/AstolfoForge/releases/latest">
-                        <Button fullWidth>GitHub</Button>
+                        <Button fullWidth>github</Button>
                     </Link>
                     <Link href={'/discord'}>
-                        <Button fullWidth>Get support in the Discord server!</Button>
+                        <Button fullWidth>join Discord for support and suggestions :3</Button>
                     </Link>
                 </div>
 

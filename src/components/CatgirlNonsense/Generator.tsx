@@ -60,8 +60,8 @@ export default function Generator() {
        return (
               <div>
                      <div className={'bg-[#222] rounded-lg p-2 drop-shadow-md'}>
-                            <Heading level={2}>Settings</Heading>
-                            <label>Amount</label>
+                            <Heading level={2}>settings uwu</Heading>
+                            <label>amt</label>
                             <input type={'number'} value={amount} onChange={e => setAmount(parseInt(e.target.value))}
                                    className={'bg-[#333] p-1 rounded-lg ml-2'} />
                             <br />
@@ -70,22 +70,22 @@ export default function Generator() {
                                    <div>
                                           <input type={'checkbox'} className={'accent-pink-400 hover:accent-pink-200'} checked={uwu}
                                                  onChange={() => setUwu(!uwu)} />
-                                          <label className={'ml-2'}>UwU</label>
+                                          <label className={'ml-2'}>uwu</label>
                                    </div>
                                    <div>
                                           <input type={'checkbox'} className={'accent-pink-400 hover:accent-pink-200'} checked={owo}
                                                  onChange={() => setOwo(!owo)} />
-                                          <label className={'ml-2'}>OwO</label>
+                                          <label className={'ml-2'}>owo</label>
                                    </div>
                                    <div>
                                           <input type={'checkbox'} className={'accent-pink-400 hover:accent-pink-200'} checked={nya}
                                                  onChange={() => setNya(!nya)} />
-                                          <label className={'ml-2'}>Nya</label>
+                                          <label className={'ml-2'}>nya</label>
                                    </div>
                                    <div>
                                           <input type={'checkbox'} className={'accent-pink-400 hover:accent-pink-200'} checked={blush}
                                                  onChange={() => setBlush(!blush)} />
-                                          <label className={'ml-2'}>Blush</label>
+                                          <label className={'ml-2'}>&gt;////&lt;</label>
                                    </div>
                                    <div>
                                           <input type={'checkbox'} className={'accent-pink-400 hover:accent-pink-200'} checked={colon3}
@@ -95,41 +95,41 @@ export default function Generator() {
                                    <div>
                                           <input type={'checkbox'} className={'accent-pink-400 hover:accent-pink-200'} checked={actions}
                                                  onChange={() => setActions(!actions)} />
-                                          <label className={'ml-2'}>Actions</label>
+                                          <label className={'ml-2'}>*paws at u*</label>
                                    </div>
                                    <div>
                                           <input type={'checkbox'} className={'accent-pink-400 hover:accent-pink-200'} checked={keysmash}
                                                  onChange={() => setKeysmash(!keysmash)} />
-                                          <label className={'ml-2'}>Keysmash</label>
+                                          <label className={'ml-2'}>keysmash</label>
                                    </div>
                                    <div>
                                           <input type={'checkbox'} className={'accent-pink-400 hover:accent-pink-200'} checked={screaming}
                                                  onChange={() => setScreaming(!screaming)} />
-                                          <label className={'ml-2'}>Screaming</label>
+                                          <label className={'ml-2'}>AAAAAAAA</label>
                                    </div>
                                    <div>
                                           <input type={'checkbox'} className={'accent-pink-400 hover:accent-pink-200'} checked={scrunkly}
                                                  onChange={() => setScrunkly(!scrunkly)} />
-                                          <label className={'ml-2'}>Scrunkly</label>
+                                          <label className={'ml-2'}>awww the scrunkly</label>
                                    </div>
                                    <div>
                                           <input type={'checkbox'} className={'accent-pink-400 hover:accent-pink-200'} checked={nonsense}
                                                  onChange={() => setNonsense(!nonsense)} />
-                                          <label className={'ml-2'}>Nonsense</label>
+                                          <label className={'ml-2'}>nonsense</label>
                                    </div>
                                    <div>
                                           <input type={'checkbox'} className={'accent-pink-400 hover:accent-pink-200'} checked={araAra}
                                                  onChange={() => setAraAra(!araAra)} />
-                                          <label className={'ml-2'}>Ara Ara</label>
+                                          <label className={'ml-2'}>ara ara~</label>
                                    </div>
                             </div>
 
                             <br />
-                            <Button onClick={submit} fullWidth>Generate</Button>
+                            <Button onClick={submit} fullWidth>generate uwu</Button>
                      </div>
 
                      <div className={'mt-4 bg-[#222] rounded-lg drop-shadow-md p-2'}>
-                            <Heading level={2}>Generated output</Heading>
+                            <Heading level={2}>generated output :3</Heading>
 
                             <p>{output}</p>
                      </div>

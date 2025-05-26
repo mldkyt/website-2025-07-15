@@ -27,6 +27,7 @@ import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
 import {InferGetServerSidePropsType} from "next";
 import {getVisits} from "@/backend/visitsCounter";
+import Link from "next/link";
 
 const ToSHeading = (props: { children: string }) => {
     return (
@@ -51,51 +52,28 @@ export default function TermsOfService(props: InferGetServerSidePropsType<typeof
             <Metadata title={'Akabot Terms of Service'} description={'Akabot Discord bot terms of service'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Heading level={1}>Akabot Terms of Service</Heading>
-                <p className="py-2">Last updated: 2024/05/16</p>
+                <Heading level={1}>akabot terms of service uwu</Heading>
+                <p className="py-2">last update: 2025/05/26</p>
 
-                <p className="py-2">By using the Akabot Discord bot, you agree to the following terms and conditions:</p>
-                <ToSHeading>Usage Restrictions</ToSHeading>
+                <p className="py-2">by using the bot you agree to my work uwu 🥺:</p>
+                <ToSHeading>usage restrictions</ToSHeading>
                 <p className="py-2">
-                    Akabot is intended for use in family-friendly, all-ages Discord servers. You agree not to use Akabot
-                    in any
-                    NSFW (Not Safe For Work) channels, servers, or areas. Akabot is not designed or permitted for use in
-                    adult-oriented or explicit content environments.
+                    akabot may only be used in places where it is appropriate to, no extremist organizations, no hate speech organizations and nothing violation discord&apos;s terms of service.
                 </p>
-                <ToSHeading>Compliance with Discord Terms</ToSHeading>
+                <ToSHeading>no data collection</ToSHeading>
+                <p className="py-2">akabot doesn&apos;t store data. as a single developer i do not need the data for anything anyway.</p>
+                <ToSHeading>modifications to this document</ToSHeading>
                 <p className="py-2">
-                    Your use of Akabot must comply with the Discord Terms of Service and Community Guidelines. You are
-                    responsible for ensuring that your server and user activities adhere to Discord&apos;s policies. Akabot
-                    will not
-                    be used to
-                    violate Discord&apos;s rules or enable others to do so.
+                    the modifications of this document will be announced on the <Link href="https://discord.gg/YFksXpXnn6" className={'text-pink-400 hover:text-pink-200 transition-all'}>support discord server</Link>.
                 </p>
-                <ToSHeading>No User Data Collection</ToSHeading>
-                <p className="py-2">Akabot does not collect, store, or share any personal user data. Your interactions with the bot are
-                    completely private, and we do not have access to any of your Discord information or content.</p>
-                <ToSHeading>Modifications to Terms</ToSHeading>
-                <p className="py-2">
-                    We may update these Terms of Service from time to time. It is your responsibility to review the
-                    current
-                    terms each time before using Akabot. Continued use of the bot after any changes indicates your
-                    acceptance of
-                    the
-                    revised terms.
-                </p>
-                <ToSHeading>Termination of Access</ToSHeading>
-                <p className="py-2">We reserve the right to suspend or terminate your access to Akabot at any time for any reason,
-                    including if
-                    we reasonably believe you have violated these terms or Discord&apos;s policies.</p>
-                <ToSHeading>Limitation of Liability</ToSHeading>
-                <p className="py-2">Akabot is provided &quot;as is&quot; without warranties. We are not liable for any issues, damages, or
-                    disruptions
-                    caused by the bot&apos;s use or malfunction. Your use of Akabot is at your own risk.</p>
-                <ToSHeading>Contact Us</ToSHeading>
-                <p className="py-2">If you have any questions or concerns about these Terms of Service, please contact us at <a
+                <ToSHeading>access restrictions</ToSHeading>
+                <p className="py-2">if you&apos;re found in violation of these terms, we may restrict access to the bot to you, or your server.</p>
+                <ToSHeading>limitation of liability</ToSHeading>
+                <p className="py-2">the bot is not responsible for any damages done to your server. this is further reinforced by <Link href="https://git.lunya.pet/Lunya/Akabot/src/branch/1.0/LICENSE.md">the license</Link>.</p>
+                <ToSHeading>contact</ToSHeading>
+                <p className="py-2">you can contact me at <a
                     href="mailto:mldkyt@proton.me">mldkyt@proton.me</a>.</p>
-                <p className="py-2">By using Akabot, you agree to these terms and conditions. If you do not agree, please refrain from
-                    using the
-                    bot.</p>
+                <p className="py-2">please agree to my fancy work 🥺 or pwease don&pos;t use the official instance of the bot.</p>
                 <Offset amt={3}/>
                 <Footer visits={props.visits} route={'/project/akabot/tos'}
                         />

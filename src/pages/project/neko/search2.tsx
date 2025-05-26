@@ -121,24 +121,21 @@ export default function NekoSearchV2(props: InferGetServerSidePropsType<typeof g
     return <Main>
         <Header highlight={'projects'}/>
         <Content>
-            <Disclaimer title="Discontinued" message="The index for this project is not actively updated. i wanna focus on other things uwu and this is not really much used sooooo i won't really update it. all of the source code is open so if you want to host it, go ahead ;3" />
+            <Disclaimer title="discontinued uwu" message="the index of this project is outdated. i wanna focus on other projects and i don't have time for this project due to that." />
 
-            <Heading level={1}>Nekosearch</Heading>
-            <p><strong>{`The website index was last updated 2024/11/01`}</strong>. This gets
-                reindexed every month, but note the date here is static.</p>
-            <p className="pt-2">This version is powered by self-hosted Meilisearch on https://lunya.dev/. No data is
-                collected, apart
-                from error logs.</p>
+            <Heading level={1}>nekosearch</Heading>
+            <p><strong>{`last update of index was on 2024/11/01`}</strong>. the content would be redirected every month, if i didn&apos;t deprecate this project.</p>
+            <p className="pt-2">this version uses meilisearch for accurate searching :3</p>
 
-            <Heading level={2}>Search</Heading>
+            <Heading level={2}>search</Heading>
             <input type={'text'} onChange={change} className={'bg-[#333] p-1 rounded-lg w-full'}/>
 
 
             {error ? <p className={'text-red-500'}>{error}</p> : null}
-            {time !== '0ms' ? <p>Search took {time}{searching && '...'}</p> : (searching && '...')}
-            <Heading level={2}>Results</Heading>
+            {time !== '0ms' ? <p>search took {time}{searching && '...'}</p> : (searching && '...')}
+            <Heading level={2}>results</Heading>
             {(results.length === 0 && hasSearched && !searching) ?
-                <p className={'font-bold text-xl'}>No results found. Search for something else?</p> : null}
+                <p className={'font-bold text-xl'}>nothing found. pwease try something else 🥺</p> : null}
             {results.map((x, i) => {
                 return <div key={i} className={'m-1 bg-[#222] p-2 rounded-lg my-4 drop-shadow-md'}>
                     <h1 className={'w-max'}>

@@ -46,25 +46,24 @@ export default function InviteAkabot(props: InferGetServerSidePropsType<typeof g
             <Metadata title={'Invite Akabot'} description={'Invite the Akabot Discord bot into your server'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Heading level={1}>Invite Akabot into your server</Heading>
-                <p className="py-2">Before you continue inviting Akabot into your server, the public version of Akabot has a terms of
-                    service and privacy policy, and I am required to make you read these:</p>
+                <Heading level={1}>invite akabot :3</Heading>
+                <p className="py-2">before you continue, pwease read my hard work 🥺</p>
                 <ul className={'list-disc ml-4'}>
                     <li>
                         <Link href={'/project/akabot/tos'} className={'text-pink-400 hover:text-pink-200 transition-all'}>
-                            <span>Terms of Service</span>
+                            <span>terms of service for using the bot</span>
                         </Link>
                     </li>
                     <li>
                         <Link href={'/project/akabot/privacy'} className={'text-pink-400 hover:text-pink-200 transition-all'}>
-                            <span>Privacy Policy</span>
+                            <span>privacy policy, what is stored and what not</span>
                         </Link>
                     </li>
                 </ul>
 
-                <p className="py-2">By clicking invite, I accept the Privacy Policy and Terms of Service above.</p>
+                <p className="py-2">by clicking the link below, you agree to my hard work 🥺</p>
                 <Link href={'https://discord.com/oauth2/authorize?client_id=1172922944033411243'}>
-                    <Button fullWidth>Invite Akabot</Button>
+                    <Button fullWidth>add the bot uwu</Button>
                 </Link>
                 <Offset amt={3}/>
                 <Footer visits={props.visits} route={'/project/akabot/invite'} />

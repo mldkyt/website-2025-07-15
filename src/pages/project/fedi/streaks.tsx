@@ -46,25 +46,22 @@ export default function FediStreaks(props: InferGetServerSidePropsType<typeof ge
                       description={'Fedi Streaks is a bot that checks your profile every day for new notes. If it doesn\'t find you posting for one day, you lose the streak. Every day you post, you get +1 streaks of sending notes.'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Heading level={1}>Fedi Streaks</Heading>
+                <Heading level={1}>fedi streaks</Heading>
                 <p>
-                    Fedi Streaks checks your profile every day for new notes. If it doesn&apos;t find you posting for one
-                    day, you lose the streak. Every day you post, you get +1 streaks of sending notes.
+                    fedi streaks is a simple silly fedi bot which counts your activity on fedi :333
                 </p>
                 <p className="pt-2">
-                    This bot mainly derives from Chat Streaks in Akabot, which is pretty much this but for Discord. The
-                    bot follows back within 30 seconds which allows you to check that it actually works. (If Lunya&apos;s
-                    Sharkey instance is up, there&apos;s a high chance this is up as well).
+                    basically, if you&apos;re active in consencutive days on fedi, the bot will count those days. if you miss one day, the count of days gets reset to 1.
                 </p>
 
                 <Offset amt={2}/>
                 
                 <div className="flex flex-col gap-2">
                     <Link href="https://social.mldchan.dev/@FediStreaks">
-                        <Button fullWidth>Official account</Button>
+                        <Button fullWidth>official account</Button>
                     </Link>
                     <Link href="https://git.lunya.pet/Lunya/fedi-streaks">
-                        <Button fullWidth>Source code</Button>
+                        <Button fullWidth>source</Button>
                     </Link>
                 </div>
 

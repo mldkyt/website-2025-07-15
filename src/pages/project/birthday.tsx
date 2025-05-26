@@ -50,7 +50,7 @@ export default function Birthday(props: InferGetServerSidePropsType<typeof getSe
         <Metadata title={'Birthday'} description={'Birthday App'}/>
         <Header highlight={'projects'}/>
         <Content>
-            <Heading level={1}>Birthday App</Heading>
+            <Heading level={1}>birthday app</Heading>
             
             <div className="w-full flex flex-row text-center">
                 <div onClick={() => setTab('description')} className={`${tab === 'description' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>Description</div>
@@ -60,19 +60,11 @@ export default function Birthday(props: InferGetServerSidePropsType<typeof getSe
 
             {tab === 'description' && <>
             
-                <p>The birthday app shows a popup forcing you to wish happy birthday to somebody on their birthday.</p>
+                <p>forces you to wish someone a happy birthday before you can use your pc :3</p>
 
-                <p className="pt-2">Running the app with <code>/config</code> as a parameter will show a configuration
-                    window.</p>
+                <p className="pt-2">running with <code>/config</code> cmd parameter launches a config window :3</p>
 
-                <p className="pt-2">To add a new birthday, click on Actions &gt; Add new birthday.</p>
-                <p className="pt-2"><strong>Don&apos;t forget to save your birthdays before exiting the application!
-                    File &gt; Save
-                    changes</strong>
-                </p>
-                <p className="pt-2">Please note that because of this app being old, there is a link pointing to mldkyt.com,
-                    which doesn&apos;t
-                    work.</p>
+                <p className="pt-2">from there you can add, remove and edit the birthdays. don&apos;t forget to save your work :3</p>
             </>}
 
             {tab === 'images' && <>
@@ -84,10 +76,10 @@ export default function Birthday(props: InferGetServerSidePropsType<typeof getSe
 
             <div className="flex flex-col gap-2">
                 <Link href="https://github.com/LunyaPet/Birthday/releases">
-                    <Button fullWidth>Download latest release</Button>
+                    <Button fullWidth>download latest</Button>
                 </Link>
                 <Link href="https://github.com/LunyaPet/Birthday">
-                    <Button fullWidth>View source code</Button>
+                    <Button fullWidth>source</Button>
                 </Link>
             </div>
 

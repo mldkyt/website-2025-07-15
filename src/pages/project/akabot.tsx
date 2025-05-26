@@ -56,26 +56,26 @@ function Feature(props: { title: string, body: string, newFeat?: boolean }) {
 }
 
 const features = [
-    {title: 'Free Forever', description: 'Akabot is open-source and completely free forever.'},
+    {title: 'FREE SOFTWARE BABY', description: 'GNU licensed for maximum freedom. :3'},
     {
-        title: 'Multilingual',
-        description: 'Supports 10+ languages including Japanese, French, Russian, English, Spanish, Czech, Chinese, Dutch, Hindi, and German.'
+        title: 'multilingual',
+        description: 'we support 10+ languages and anyone can contribute more :3'
     },
-    {title: 'Chat Revive', description: 'Automatically ping inactive channels to keep conversations alive.'},
-    {title: 'Chat Streaks', description: 'Build a leaderboard of users who stay active daily.'},
-    {title: 'Chat Summary', description: 'Track daily message activity and top message senders.'},
-    {title: 'Economy (New!)', description: 'Manage virtual currencies within your server.'},
-    {title: 'Leveling', description: 'Reward active users with levels and roles.'},
-    {title: 'Logging', description: 'Log moderation actions, message edits, and deletes.'},
-    {title: 'Message Time Capsule (New!)', description: 'Schedule messages, reminders, and collection messages.'},
-    {title: 'Moderation', description: 'Kick, ban, mute, and warn members with ease.'},
-    {title: 'Automod Actions', description: 'Automatically take action on rule violations.'},
-    {title: 'Reaction Roles', description: 'Let users assign roles by reacting to messages.'},
-    {title: 'Giveaways', description: 'Run giveaways, track entries, and pick winners.'},
-    {title: 'Verification', description: 'Verify new users with customizable methods.'},
-    {title: 'Suggestions', description: 'Collect user feedback easily.'},
-    {title: 'Temporary VCs', description: 'Create and remove voice channels on demand.'},
-    {title: 'Welcome and Goodbye', description: 'Welcome new users and say goodbye to those who leave.'},
+    {title: 'chat revive', description: 'fully automated chat revive after inactivity :3'},
+    {title: 'chat streaks', description: 'count consencutive days of activity in your server :3'},
+    {title: 'chat summary', description: 'count daily, monthly and yearly messages into small summaries and see who is the most active daily! :3'},
+    {title: 'economy', description: 'we got AkaCoins :3 you can make and trade money and items :3'},
+    {title: 'leveling', description: 'get xp for chatting, levels and rewards for leveling :3'},
+    {title: 'logging', description: 'log activity that might be baddd :3'},
+    {title: 'message time capsule', description: 'schedule messages and collect messages to a collection message.'},
+    {title: 'moderation', description: 'set up moderator roles and only let specific moderators kick, ban, warn and timeout members.'},
+    {title: 'automod actions', description: 'perform actions on Automod rule triggers :3'},
+    {title: 'reaction roles', description: 'let users pick roles for themselves :3'},
+    {title: 'giveaways', description: 'run giveaways and automatically pick winners :3'},
+    {title: 'verification', description: 'verify that members are legitimate! 3 methods of verification :3'},
+    {title: 'suggestions', description: 'let members suggest content and vote on it.'},
+    {title: 'temporary vc\'s', description: 'let members create as many vc\'s on demand as they want :3'},
+    {title: 'welcome and goodbye', description: 'welcome new members and say goodbye to those who leave 3:'},
 ];
 
 export default function Akabot(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
@@ -88,20 +88,18 @@ export default function Akabot(props: InferGetServerSidePropsType<typeof getServ
                 <Offset amt={2}/>
 
                 <div>
-                    <h1 className={'text-center text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold'}>Supercharge
-                        Your Discord Server with Akabot!</h1>
-                    <p className={'text-center text-lg'}>Akabot is a free, open-source bot packed with powerful features to enhance your community.</p>
+                    <h1 className={'text-center text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold'}>Akabot discord bot uwu</h1>
+                    <p className={'text-center text-lg'}>akabot is a free and open source feature packed bot :3</p>
                     <br/>
                     <div className={'w-max m-auto space-x-2'}>
                         <Link href={'/project/akabot/invite'}>
-                            <Button>Invite Akabot</Button>
+                            <Button>add it</Button>
                         </Link>
                         <Link href={'https://discord.gg/YFksXpXnn6'}>
-                            <Button>Join Support Server</Button>
+                            <Button>get support :3</Button>
                         </Link>
                     </div>
-                    <p className={'text-sm text-center text-gray-500'}>By inviting the public instance, you agree to
-                        the <Link className={'text-pink-500'}
+                    <p className={'text-sm text-center text-gray-500'}>the public instance has 2 fancy documents: <Link className={'text-pink-500'}
                                   href={'/project/akabot/tos'}>terms
                             of
                             service</Link> and <Link className={'text-pink-500'} href={'/project/akabot/privacy'}>privacy
@@ -111,7 +109,7 @@ export default function Akabot(props: InferGetServerSidePropsType<typeof getServ
 
                 <br />
 
-                <Heading level={2}>Features</Heading>
+                <Heading level={2}>features uwu</Heading>
 
                 <FeatureList>
                     {features.map((x, i) => (<Feature key={i} title={x.title} body={x.description}/>))}
@@ -123,32 +121,30 @@ export default function Akabot(props: InferGetServerSidePropsType<typeof getServ
 
 
                 <details>
-                    <summary>How do I self-host this bot?</summary>
-                    <p>The bot is open-source, so if you want to host your own instance for the public or for personal use,
-                        click the button below to view the source code:</p>
+                    <summary>self hosting?</summary>
+                    <p>YES! the bot is open source, here it is:</p>
                     <Link href={'https://git.lunya.pet/Lunya/Akabot'} className={'m-1'}>
-                        <Button>View on Forgejo</Button>
+                        <Button>Forgejo</Button>
                     </Link>
                     <Link href={'https://github.com/LunyaPet/Akabot'} className={'m-1'}>
-                        <Button>View on GitHub</Button>
+                        <Button>GitHub</Button>
                     </Link>
 
-                    <p>Self-hosting instructions are available in the repository.</p>
+                    <p>instructions are in the repository :3</p>
                 </details>
 
-                <Heading level={2}>Donations are welcome!</Heading>
+                <Heading level={2}>I love donations!</Heading>
 
-                <p>The bot is not free to run, as any of my services, so donations are welcome!</p>
+                <p>while I try to develop and run the bot as free as possible, I would love people to donate &lt;3</p>
 
                 <Link href={'/donate'}>
-                    <Button>Donate</Button>
+                    <Button>donate uwu</Button>
                 </Link>
 
-                <p>If you don&apos;t have money to donate, you can help translating the bot into other languages on
-                    Crowdin!</p>
+                <p>you can also support me non-financially, e.g. submitting your code or submitting translations on Codeberg weblate!</p>
 
                 <Link href={'https://translate.codeberg.org/projects/akabot/'}>
-                    <Button>Help with translating!</Button>
+                    <Button>help translate Akabot :3</Button>
                 </Link>
 
                 <Offset amt={2} />

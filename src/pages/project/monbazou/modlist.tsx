@@ -51,22 +51,20 @@ export default function MonBazouModList(props: InferGetServerSidePropsType<typeo
                       description="Mon Bazou Mod List adds a mod list in the main menu of the game."/>
             <Header highlight={'projects'}/>
             <Content>
-                <Heading level={1}>Mon Bazou Mod List</Heading>
+                <Heading level={1}>Mon Bazou mod list</Heading>
 
                 <div className="w-full flex flex-row text-center">
-                    <div onClick={() => setTab('description')} className={`${tab === 'description' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>Description</div>
-                    <div onClick={() => setTab('images')} className={`${tab === 'images' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>Images</div>
+                    <div onClick={() => setTab('description')} className={`${tab === 'description' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>description</div>
+                    <div onClick={() => setTab('images')} className={`${tab === 'images' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>images</div>
                 </div>
 
                 {tab === 'description' && <>
-                    <p className="font-bold">Features:</p>
+                    <p className="font-bold">features:</p>
                     <ul className="list-disc ml-4">
-                        <li><strong>List of Mods</strong>: A convenient list of mods that allows you to change the settings
-                            of mods.
+                        <li><strong>List of Mods</strong>: the mod shows you a list of mods you can enable, disable and configure.
                         </li>
-                        <li><strong>Console</strong>: You&apos;ll be able to access the console directly within the game.</li>
-                        <li><strong>Languages</strong>: This mod features English, Japanese, Spanish, French, Russian,
-                            Chinese, Hungarian, German and Czech translations!
+                        <li><strong>Console</strong>: get information to what mod throws what errors :3</li>
+                        <li><strong>Languages</strong>: we got multiple languages :3
                         </li>
                     </ul>
                 </>}
@@ -80,10 +78,10 @@ export default function MonBazouModList(props: InferGetServerSidePropsType<typeo
 
                 <div className="flex flex-col gap-2">
                     <Link href="https://www.nexusmods.com/monbazou/mods/288">
-                        <Button fullWidth>Download from NexusMods</Button>
+                        <Button fullWidth>nexusmods link</Button>
                     </Link>
                     <Link href="https://git.lunya.pet/Lunya/monbazoumodlist">
-                        <Button fullWidth>Download the source code</Button>
+                        <Button fullWidth>source link</Button>
                     </Link>
                 </div>
 

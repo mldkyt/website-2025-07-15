@@ -51,26 +51,19 @@ export default function FediSummarizer(props: InferGetServerSidePropsType<typeof
                       description={'A fedi bot that summarizes the amount of notes you post every midnight.'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Heading level={1}>Fedi Summarizer</Heading>
+                <Heading level={1}>fedi summarizer</Heading>
                 <div className="w-full flex flex-row text-center">
-                    <div onClick={() => setTab('description')} className={`${tab === 'description' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>Description</div>
-                    <div onClick={() => setTab('images')} className={`${tab === 'images' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>Images</div>
+                    <div onClick={() => setTab('description')} className={`${tab === 'description' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>description</div>
+                    <div onClick={() => setTab('images')} className={`${tab === 'images' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>images</div>
                 </div>
 
                 {tab === 'description' && <>
                     <p>
-                        This bot summarizes the amount of notes you post every midnight. It does so in your private
-                        messages.
+                        this is a fedi bot that gives you a summary of your activity on the fediverse for the day :3
                     </p>
-                    <p>The message sent to you every midnight contains the following information currently:</p>
-                    <ul className={'list-disc ml-4'}>
-                        <li>Notes count</li>
-                        <li>Quote notes</li>
-                        <li>Reply notes</li>
-                        <li>Renotes</li>
-                        <li>Total reactions on your posts</li>
-                        <li>Most popular used emoji on your posts</li>
-                    </ul>
+                    <p>
+                        it includes everything, from notes, renotes, quote notes to what reactions have reached your posts :3
+                    </p>
                 </>}
 
                 {tab === 'images' && <Image src={message} className={'p-1 rounded-lg py-2'} alt={'Example message sent by the bot'}/>}
@@ -79,10 +72,10 @@ export default function FediSummarizer(props: InferGetServerSidePropsType<typeof
 
                 <div className="flex flex-col gap-2">
                     <Link href="https://social.mldchan.dev/@FediSummarizer">
-                        <Button fullWidth>Official account</Button>
+                        <Button fullWidth>official account</Button>
                     </Link>
                     <Link href="https://git.lunya.pet/Lunya/fedi-summarizer">
-                        <Button fullWidth>Source code</Button>
+                        <Button fullWidth>source</Button>
                     </Link>
                 </div>
 

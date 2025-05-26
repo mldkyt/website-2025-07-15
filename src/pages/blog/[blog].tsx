@@ -118,23 +118,22 @@ export default function Blog(props: InferGetServerSidePropsType<typeof getServer
         <Metadata title={props.title} description={`${props.description} | ${props.views} views`}/>
         <Header/>
         <Content>
-            <Heading level={1}>Please confirm yourself</Heading>
-            <p>Due to too many bots visiting my site, I require people to verify they&apos;re not a bot. Everything that
-                modifies the database has a bot check to prevent abuse.</p>
+            <Heading level={1}>pwease verify 🥺</Heading>
+            <p>due to bot attacks and too much scraping, this website requires bot checks :3</p>
 
-            <p>Once the bot check finishes, you&apos;ll automatically get redirected to the blog.</p>
+            <p>once the bot check finished, you&apos;ll automatically go to the blog :33</p>
 
             
             {props.privacyWarning && <div className="bg-yellow-800 p-2 m-1 rounded-lg drop-shadow-lg">
-                <h2><strong>Warning: </strong> The website has detected that you don&apos;t want to be tracked. Your blog visit won&apos;t be counted.</h2>
+                <h2><strong>warning: </strong> i noticed you got one of DNT or SEC set up :3 i&pos;ll not count your visit :3</h2>
             </div>}
 
             <Turnstile sitekey={props.cloudflareSiteToken} onVerify={x => proveInnocence(x)}/>
 
             {error && <p className={'text-red-600'}>{error}</p>}
 
-            <p className={'text-sm text-gray-500'}>This page was displayed in order to have
-                lunya.pet/blog/&lt;url&gt; links for my blogs. It was also displayed to count views for my blogs.</p>
+            <p className={'text-sm text-gray-500'}>this page was displayed for the 
+                lunya.pet/blog/&lt;url&gt; links for my blogs and for analytical purposes uwu</p>
         </Content>
     </Main>
 }

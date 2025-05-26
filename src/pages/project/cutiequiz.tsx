@@ -53,8 +53,8 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                       description={'[DEPRECATED] Cutie Quiz was a tiny app which takes a username and then determines how cute you are by analyzing brain waves.'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Heading level={1}>Cutie Quiz</Heading>
-                <Disclaimer title="Deprecated Project" message="Deprecated on 2024/10/31."/>
+                <Heading level={1}>cutie quiz :3</Heading>
+                <Disclaimer title="depwecated uwu" message="i deprecated this project on 2024/10/31."/>
 
                 <div className="w-full flex flex-row text-center">
                     <div onClick={() => setTab('description')} className={`${tab === 'description' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>Description</div>
@@ -63,18 +63,10 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
 
                 {tab === 'description' && <>
                     <p className="py-2">
-                        Cutie Quiz was a tiny app which takes a username and then determines how cute you are by analyzing
-                        brain waves.
+                        cutie quiz was a tiny app made for me to try out supabase. it would take in a username and then calculate user cuteness :3
                     </p>
                     <p className="py-2">
-                        It does this using revolutionary next-generation technology, which is newer and better than AI and
-                        determines values without errors. It has such good accuracy that you don&apos;t need any other source of
-                        information to verify your results because our results are always accurate.
-                    </p>
-                    <p className="py-2">
-                        <i>
-                            This application is a joke if you didn&apos;t figure it out yet.
-                        </i>
+                        it did this using revolutionary next gen technology, which was literally telling them they are cute :3
                     </p>
                 </>}
 
@@ -87,7 +79,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                 <Offset amt={2} />
 
                 <Link href="https://github.com/LunyaPet/CutieQuiz">
-                    <Button fullWidth>Source code</Button>
+                    <Button fullWidth>source</Button>
                 </Link>
 
                 <Offset amt={3}/>

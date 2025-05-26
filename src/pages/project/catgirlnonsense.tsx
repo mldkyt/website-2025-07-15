@@ -45,11 +45,11 @@ export default function CatgirlNonsense(props: InferGetServerSidePropsType<typeo
         <Metadata title={'Catgirl Nonsense'} description={'Catgirl Nonsense generator'}/>
         <Header highlight={'projects'}/>
         <Content>
-            <Heading level={1}>Catgirl Nonsense Generator</Heading>
+            <Heading level={1}>Catgirl nonsense generator uwu :3</Heading>
             <Generator/>
             <br />
             <Link href={'/discord'}>
-                <Button fullWidth>Get support in the Discord server!</Button>
+                <Button fullWidth>join my Discord server for support :3</Button>
             </Link>
             <Offset amt={2}/>
             <Footer visits={props.visits} route={'/project/catgirlnonsense'}

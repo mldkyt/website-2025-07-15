@@ -27,6 +27,7 @@ import Metadata from "@/components/Generic/Metadata";
 import Footer from "@/components/Generic/Footer";
 import {InferGetServerSidePropsType} from "next";
 import {getVisits} from "@/backend/visitsCounter";
+import Link from "next/link";
 
 const PrivacyHeading = (props: { children: string }) => <h2 className={'text-xl font-bold my-4'}>{props.children}</h2>;
 
@@ -46,179 +47,73 @@ export default function AkabotPrivacy(props: InferGetServerSidePropsType<typeof 
             <Metadata title={'Akabot Privacy Policy'} description={'Akabot Discord bot privacy policy'}/>
             <Header highlight={'projects'}/>
             <Content>
-                <Heading level={1}>Akabot Privacy Policy</Heading>
-                <p className="py-2">Last updated: 2024/05/16</p>
+                <Heading level={1}>akabot privacy policy uwu</Heading>
+                <p className="py-2">last update: 2025/05/26</p>
                 <p className="py-2">
-                    The public instance of Akabot Discord bot takes privacy very seriously. It is as private as if you
-                    would
-                    host it yourself. If you think this privacy statement is way too privacy intrusive, check out the
-                    Discord
-                    privacy
-                    policy.
+                    the public instance of akabot (just like any other) saves some form of user data.
                 </p>
-                <PrivacyHeading>What Akabot stores in its databases</PrivacyHeading>
-                <p className={'text-lg py-2'}>Each feature of the bot stores as little data as possible. Here&apos;s a quick
-                    overview of what is
-                    stored and
-                    what is associated with every feature:</p>
+                <PrivacyHeading>what does it store?</PrivacyHeading>
+                <p className={'text-lg py-2'}>each feature stores as little information as possible:</p>
                 <ul className={'list-disc ml-4 py-2'}>
                     <li className="py-1">
-                        <strong>Analytics</strong> - There&apos;s a feature in Akabot which counts which command is
-                        executed how
-                        many times, globally. This feature doesn&apos;t associate any command runs or button clicks with
-                        any
-                        users or servers,
-                        it only counts them. This feature is here to see which features are used the most on the bot and
-                        what
-                        should be added or improved in the future.
+                        <strong>analytics</strong> - counts the amounts of runs of individual commands.
                     </li>
                     <li className="py-1">
-                        <strong>Anti Raid</strong> - The Anti Raid feature stores only your settings, and if you count
-                        the RAM
-                        of the server as storage, it stores the number of joins and the number of messages and the dates
-                        they
-                        were last updated
-                        for a maximum of the user&apos;s desired time. No user ID&apos;s or messages are stored, only
-                        numbers.
+                        <strong>anti raid</strong> - there&apos;s absolutely nothing stored in the db at all. only RAM of the server is used.
                     </li>
                     <li className="py-1">
-                        <strong>Automod Actions</strong> - User defined actions along with all information about them
-                        (names,
-                        actions and the optional message) are stored. When an automod action with a name gets triggered,
-                        the
-                        user defined actions
-                        stored will be executed.
+                        <strong>automod actions</strong> - stores user defined actions.
                     </li>
-                    <li className="py-1"><strong>Bot Help</strong> - The bot help commands don&apos;t store any user information.</li>
-                    <li className="py-1"><strong>Chat Revive</strong> - The Chat Revive feature only stores which role has been chosen,
-                        channels
-                        which are active and the last message time sent in that channel.
+                    <li className="py-1"><strong>help command</strong> - nothing is stored.</li>
+                    <li className="py-1"><strong>chat revive</strong> - stores user set information and date of last message. also stores if the channel was revived or not
                     </li>
                     <li className="py-1">
-                        <strong>Chat Streaks</strong> - The Chat Streaks feature stored the date you started your chat
-                        streak
-                        along with the date of your last sent message. Using these 2 dates, the bot calculates the rest
-                        of the
-                        messages. You
-                        can disable the notifications of this feature using `/user_settings chat_streaks_alerts off` and
-                        you can
-                        always check your streak by using the `/streak` command.
+                        <strong>chat streaks</strong> - stores dates of the start of the streak and last message, for every server per user.
                     </li>
                     <li className="py-1">
-                        <strong>Chat Summary</strong> - The Chat Summary feature stores the amount of messages sent in a
-                        channel
-                        daily, along with who has sent how many messages in that channel. Only the top 5 chatters will
-                        be shown
-                        in the summary.
-                        No message content is stored. All numbers in this module are cleared every midnight.
+                        <strong>chat summary</strong> - stores counts of 
                     </li>
                     <li className="py-1">
-                        <strong>Feedback Commands</strong> - This module does explicitly state before usage that it does
-                        share
-                        user entered information, along with the user name and user ID with GitHub. No user information
-                        is saved
-                        with these
-                        commands. If the user doesn&apos;t want this to happen, they can use GitHub with their personal
-                        accounts. Any of the other commands like `/about` , `/privacy` , `/tos` do not save any user
-                        information.
+                        <strong>feedback cmds</strong> - these store the content inputted and the user name, id of the user who submitted it.
                     </li>
                     <li className="py-1">
-                        <strong>Giveaways</strong> - The giveaways module stores the channel the giveaway was started
-                        in, the
-                        item entered and the ending date, calculated when the giveaway is created. The creator of the
-                        giveaway
-                        is not stored.
+                        <strong>giveaways</strong> - stores information given by the user (end date and item) and stores all participants.
                     </li>
                     <li className="py-1">
-                        <strong>Leveling</strong> - Each user has an associated number of XP points which is stored and
-                        associated to every user. A list of leveling multipliers, the server general leveling
-                        multiplier, and
-                        the XP required to
-                        level up are stored and associated to every server.
+                        <strong>leveling</strong> - stores the XP associated to each member in each server, and rewards per server.
                     </li>
-                    <li className="py-1"><strong>Logging</strong> - The logging channel is stored and associated with the server. The bot
-                        then
-                        listens to Discord changes and creates messages from available information in your logs channel.
+                    <li className="py-1"><strong>logging</strong> - stores which channel is used for logging.
                     </li>
                     <li>
-                        <strong>Moderation</strong> - No information is stored when using kick, ban and timeout
-                        commands. When
-                        using warnings, a list of warnings created using the bot are stored. Warning actions are also
-                        stored and
-                        associated
-                        with the server and performed after adding a warning to the user.
+                        <strong>moderation</strong> - stores roles marked as moderator roles.
                     </li>
-                    <li className="py-1"><strong>Per User Settings</strong> - All per user settings have settings associated with the
-                        user.
+                    <li className="py-1"><strong>per user settings</strong> - user settings like language are saved.
                     </li>
                     <li>
-                        <strong>Reaction Roles</strong> - You wouldn&apos;t believe it, but this module doesn&apos;t
-                        store any
-                        information at all. The Role ID&apos;s and types of the reaction roles are stored in the
-                        button&apos;s
-                        custom ID itself.
+                        <strong>reaction roles</strong> - surprisingly nothing!
                     </li>
-                    <li className="py-1"><strong>Roles on Join</strong> - The list of roles to be added on join are stored and associated
-                        with
-                        the server.
+                    <li className="py-1"><strong>roles on join</strong> - list of roles that are defined to be added on join.
                     </li>
-                    <li className="py-1"><strong>Server Settings</strong> - All settings stored are associated with the server.</li>
-                    <li className="py-1"><strong>Verification</strong> - The verification difficulty and role are stored per server.</li>
-                    <li className="py-1"><strong>Welcome and Goodbye</strong> - All user defined settings are stored and associated with
-                        the
-                        server.
-                    </li>
-                </ul>
-                <p className={'mt-4 text-lg'}>Backend modules mostly don&apos;t mess with any user data or any server
-                    data.</p>
-                <ul className={'list-disc ml-4 py-2'}>
-                    <li className="py-1"><strong>Heartbeat</strong> - Sends periodic network requests to a URL every set interval.</li>
-                    <li className="py-1">
-                        <strong>Power Outage Announcements</strong> - Stores the current time every minute, doesn&apos;t
-                        associate it with any server or user. Reads the last saved time and current system time on
-                        startup of
-                        the bot and makes
-                        an announcement in a channel preconfigured in the bot configuration if the bot was offline for a
-                        longer
-                        period of time.
+                    <li className="py-1"><strong>server settings</strong> - whatever the user sets (language, logging channel) are stored.</li>
+                    <li className="py-1"><strong>verification</strong> - verification settings are stored.</li>
+                    <li className="py-1"><strong>welcome and goodbye</strong> - information related to welcoming and saying goodbye to members, such as channel, title and content are stored.
                     </li>
                 </ul>
                 <p className="py-2">
-                    The developer doesn&apos;t have any access to read user data or any user control over the bot. They
-                    always
-                    write scripts to update the database and performs it on the test database, which contains one server
-                    and 5
-                    users,
-                    4 of them are all variants of the bot. The only exception is analytics and the number of servers.
+                    Lunya is not allowed for privacy reasons to read the database. however, she is still allowed to run queries that modify the database, granted that the query doesn&apos;t output anything
                 </p>
-                <PrivacyHeading>Linked or connected services</PrivacyHeading>
-                <p className="py-2">The services that are connected to the bot are listed below:</p>
+                <PrivacyHeading>connected services</PrivacyHeading>
+                <p className="py-2">there are a few services that are linked to the project:</p>
                 <ul>
                     <li className="py-1">
-                        <strong>GlitchTip</strong> is used to capture errors. Errors do not show me any personal
-                        information,
-                        only generic messages. These errors aren&apos;t associated with any server or user, only with
-                        the line
-                        of code which
-                        caused the error. The used GlitchTip instance is a self-hosted one, running on the same server
-                        as the
-                        bot itself.
+                        <strong>GlitchTip</strong> - essentially a Sentry alternative. it is used to catch and collect all errors of the code and fix them.
                     </li>
                 </ul>
-                <PrivacyHeading>Third parties</PrivacyHeading>
-                <p className="py-2">The Discord bot can share data with GitHub, only if a user executes one of the `/feedback bug` or
-                    `/feedback
-                    suggest` commands. These commands explicitly state before running that they share this data with
-                    GitHub.</p>
-                <p className="py-2">The bot doesn&apos;t share any user data with any other party, except the one listed above.</p>
-                <PrivacyHeading>Changes to the privacy statement</PrivacyHeading>
+                <PrivacyHeading>3rd parties</PrivacyHeading>
+                <p className="py-2">the bot will send data to <Link href="https://git.lunya.pet" className={'text-pink-400 hover:text-pink-200 transition-all'}>git.lunya.pet</Link> when you submit feedback through one of the 2 commands.</p>
+                <PrivacyHeading>changes to privacy statement</PrivacyHeading>
                 <p className="py-2">
-                    If the privacy statement ever changes, which it might in the future, a Discord ping in the support
-                    server
-                    will alert you about it, along with a summary of the changes, so you don&apos;t have to read the
-                    entire
-                    statement
-                    again.
+                    if the privacy statement changes, and the changes have actual impact, a notification will be made in the <Link href="https://discord.gg/YFksXpXnn6" className={'text-pink-400 hover:text-pink-200 transition-all'}>official support server</Link>.
                 </p>
                 <Offset amt={3}/>
                 <Footer visits={props.visits} route={'/project/akabot/privacy'}
