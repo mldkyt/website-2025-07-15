@@ -1,6 +1,6 @@
 /*
  *     Lunya's Personal Website
- *     Copyright (C) 2024  エムエルディー
+ *     Copyright (C) 2024  Lunya UwU :3
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -86,7 +86,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
 
                 <Offset amt={2} />
 
-                <Link href="https://github.com/uwugrl/CutieQuiz">
+                <Link href="https://github.com/LunyaPet/CutieQuiz">
                     <Button fullWidth>Source code</Button>
                 </Link>
 

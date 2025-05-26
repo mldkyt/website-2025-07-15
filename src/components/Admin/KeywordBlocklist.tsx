@@ -1,6 +1,6 @@
 /*
  *     Lunya's Personal Website
- *     Copyright (C) 2024  エムエルディー
+ *     Copyright (C) 2024  Lunya UwU :3
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by

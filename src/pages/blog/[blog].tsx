@@ -1,6 +1,6 @@
 /*
  *     Lunya's Personal Website
- *     Copyright (C) 2024  エムエルディー
+ *     Copyright (C) 2024  Lunya UwU :3
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -134,7 +134,7 @@ export default function Blog(props: InferGetServerSidePropsType<typeof getServer
             {error && <p className={'text-red-600'}>{error}</p>}
 
             <p className={'text-sm text-gray-500'}>This page was displayed in order to have
-                mldchan.dev/blog/&lt;url&gt; links for my blogs. It was also displayed to count views for my blogs.</p>
+                lunya.pet/blog/&lt;url&gt; links for my blogs. It was also displayed to count views for my blogs.</p>
         </Content>
     </Main>
 }

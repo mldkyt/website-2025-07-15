@@ -1,6 +1,6 @@
 /*
  *     Lunya's Personal Website
- *     Copyright (C) 2024  エムエルディー
+ *     Copyright (C) 2024  Lunya UwU :3
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -70,7 +70,7 @@ export default function NMFirefox(props: InferGetServerSidePropsType<typeof getS
                 the <code>xpi</code> file while using Firefox. The extension should install.
             </p>
             <br/>
-            <Link href={'https://github.com/uwugrl/NexusEnhancementsForFirefox/releases'}>
+            <Link href={'https://github.com/LunyaPet/NexusEnhancementsForFirefox/releases'}>
                 <Button fullWidth>Download Nexus Enhancements for Firefox</Button>
             </Link>
             <Offset amt={3}/>

@@ -1,6 +1,6 @@
 /*
- *     mldchan's Personal Website
- *     Copyright (C) 2024  エムエルディー
+ *     Lunya's Personal Website
+ *     Copyright (C) 2024  Lunya UwU :3
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -49,7 +49,7 @@ export default function Socials(props: InferGetServerSidePropsType<typeof getSer
 
                 <div className="bg-[#222] rounded-lg m-2">
                     <h3 className="font-bold p-2 text-lg">Anonymous Messages</h3>
-                    <p className="p-2 pt-0"><Link href="/anonymous-message" className="underline text-pink-400 hover:text-pink-200">Send me an anonymous message</Link>, and I&apos;ll reply to it on <Link href="https://social.mldchan.dev/@mld" className="underline text-pink-400 hover:text-pink-200">my Fediverse page</Link>!</p>
+                    <p className="p-2 pt-0"><Link href="/anonymous-message" className="underline text-pink-400 hover:text-pink-200">Send me an anonymous message</Link>, and I&apos;ll reply to it on <Link href="https://fedi.lunya.pet/@Lunya" className="underline text-pink-400 hover:text-pink-200">my Fediverse page</Link>!</p>
                 </div>
 
                 <div className="bg-[#222] rounded-lg m-2">
@@ -77,24 +77,24 @@ export default function Socials(props: InferGetServerSidePropsType<typeof getSer
                 <div className="bg-[#222] rounded-lg m-2">
                     <h3 className="font-bold p-2 text-lg">Fediverse</h3>
                     <p className="p-2 pt-0">I got many fediverse accounts! I post here a lot, most of my posts are meows and :3s and other sillies :3</p>
-                    <p className="p-2 pt-0"><Link className="underline text-pink-400 hover:text-pink-200" href="https://social.mldchan.dev/@mld">@mld@social.mldchan.dev</Link></p>
+                    <p className="p-2 pt-0"><Link className="underline text-pink-400 hover:text-pink-200" href="https://fedi.lunya.pet/@Lunya">@Lunya@fedi.lunya.pet</Link></p>
                     <p className="p-2 pt-0"><Link className="underline text-pink-400 hover:text-pink-200" href="https://fedi.lunya.pet/@Lunya">@Lunya@fedi.lunya.pet</Link></p>
                 </div>
 
                 <div className="bg-[#222] rounded-lg m-2">
                     <h3 className="font-bold p-2 text-lg">GitHub and git forges</h3>
                     <p className="p-2 pt-0">I code a TON! Here are links to my various GitHub/Forgejo profiles :3 You can follow me on them so that you can stay up to date with my projects.</p>
-                    <p className="p-2 pt-0"><Link className="underline text-pink-400 hover:text-pink-200" href="https://github.com/uwugrl">GitHub</Link></p>
+                    <p className="p-2 pt-0"><Link className="underline text-pink-400 hover:text-pink-200" href="https://github.com/LunyaPet">GitHub</Link></p>
                     <p className="p-2 pt-0"><Link className="underline text-pink-400 hover:text-pink-200" href="https://git.lunya.pet/Lunya">Lunya on git.lunya.pet</Link></p>
-                    <p className="p-2 pt-0"><Link className="underline text-pink-400 hover:text-pink-200" href="https://codeberg.org/mldchan">mldchan on Codeberg</Link></p>
+                    <p className="p-2 pt-0"><Link className="underline text-pink-400 hover:text-pink-200" href="https://codeberg.org/LunyaUwU">Lunya on Codeberg</Link></p>
                     <p className="p-2 pt-0"><Link className="underline text-pink-400 hover:text-pink-200" href="https://git.gay/mld">mld on git.gay</Link></p>
                 </div>
 
                 <div className="bg-[#222] rounded-lg m-2">
                     <h3 className="font-bold p-2 text-lg">YouTube/Peertube</h3>
                     <p className="p-2 pt-0">I post videos here frequently! Make sure to subscribe to get the latest video upload notifications! PeerTube is pretty much decentralized YouTube and you can subscribe through the second link.</p>
-                    <p className="p-2 pt-0"><Link className="underline text-pink-400 hover:text-pink-200" href="https://youtube.com/@mldchan">mldchan on YouTube</Link></p>
-                    <p className="p-2 pt-0"><Link className="underline text-pink-400 hover:text-pink-200" href="https://peertube.mldchan.dev/c/mldchan">mldchan on PeerTube</Link></p>
+                    <p className="p-2 pt-0"><Link className="underline text-pink-400 hover:text-pink-200" href="https://youtube.com/@mldchan">Lunya on YouTube</Link></p>
+                    <p className="p-2 pt-0"><Link className="underline text-pink-400 hover:text-pink-200" href="https://peertube.mldchan.dev/c/mldchan">Lunya on PeerTube</Link></p>
                 </div>
 
                 <div className="bg-[#222] rounded-lg m-2">
@@ -113,13 +113,13 @@ export default function Socials(props: InferGetServerSidePropsType<typeof getSer
                     <h3 className="font-bold p-2 text-lg">Bluesky</h3>
                     <p className="p-2 pt-0">Although I don&apos;t use it much, you can follow my Bluesky account! If you got a Bluesky account, but not a fedi account, you can also follow my bridged profile there.</p>
                     <p className="p-2 pt-0"><Link className="underline text-pink-400 hover:text-pink-200" href="https://bsky.app/profile/lunya.pet">View main Bluesky account</Link></p>
-                    <p className="p-2 pt-0"><Link className="underline text-pink-400 hover:text-pink-200" href="https://bsky.app/profile/mld.social.mldchan.dev.ap.brid.gy">View bridged fedi account</Link></p>
+                    <p className="p-2 pt-0"><Link className="underline text-pink-400 hover:text-pink-200" href="https://bsky.app/profile/lunya.fedi.lunya.pet.ap.brid.gy">View bridged fedi account</Link></p>
                 </div>
 
                 <div className="bg-[#222] rounded-lg m-2">
                     <h3 className="font-bold p-2 text-lg">Instagram</h3>
                     <p className="p-2 pt-0">I am not really active here, but give me a follow here too :3</p>
-                    <p className="p-2 pt-0"><Link className="underline text-pink-400 hover:text-pink-200" href="https://instagram.com/_mldchan_">View Instagram profile</Link></p>
+                    <p className="p-2 pt-0"><Link className="underline text-pink-400 hover:text-pink-200" href="https://instagram.com/lunya.pet">View Instagram profile</Link></p>
                 </div>
 
                 <Offset amt={6} />

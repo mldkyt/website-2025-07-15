@@ -1,6 +1,6 @@
 /*
  *     Lunya's Personal Website
- *     Copyright (C) 2024  エムエルディー
+ *     Copyright (C) 2024  Lunya UwU :3
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -140,7 +140,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                     <p>
                         The simplest you can do for now is to <b>create an idea suggestion</b> for the mod using a <Link
                         className="text-pink-400 hover:text-pink-300"
-                        href="https://github.com/uwugrl/AstolfoForge/issues"
+                        href="https://github.com/LunyaPet/AstolfoForge/issues"
                     >GitHub issue</Link>.
                     </p>
 
@@ -149,7 +149,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                     <p>
                         If you find any bug in the mod, <b>you can report it</b> using <Link
                         className="text-pink-400 hover:text-pink-300"
-                        href="https://github.com/uwugrl/AstolfoForge/issues">GitHub issues</Link> for it to be fixed.
+                        href="https://github.com/LunyaPet/AstolfoForge/issues">GitHub issues</Link> for it to be fixed.
                         It will be fixed once I get some free time.
                     </p>
 
@@ -201,7 +201,7 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                     <Link href="https://modrinth.com/mod/astolfo-mod">
                         <Button fullWidth>Open Modrinth page</Button>
                     </Link>
-                    <Link href="https://github.com/uwugrl/AstolfoForge/releases/latest">
+                    <Link href="https://github.com/LunyaPet/AstolfoForge/releases/latest">
                         <Button fullWidth>GitHub</Button>
                     </Link>
                     <Link href={'/discord'}>

@@ -1,6 +1,6 @@
 /*
- *     mldchan's Personal Website
- *     Copyright (C) 2024  エムエルディー
+ *     Lunya's Personal Website
+ *     Copyright (C) 2024  Lunya UwU :3
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -126,7 +126,7 @@ export default function NekoSearchV2(props: InferGetServerSidePropsType<typeof g
             <Heading level={1}>Nekosearch</Heading>
             <p><strong>{`The website index was last updated 2024/11/01`}</strong>. This gets
                 reindexed every month, but note the date here is static.</p>
-            <p className="pt-2">This version is powered by self-hosted Meilisearch on https://mldchan.dev/. No data is
+            <p className="pt-2">This version is powered by self-hosted Meilisearch on https://lunya.dev/. No data is
                 collected, apart
                 from error logs.</p>
 

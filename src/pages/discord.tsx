@@ -1,6 +1,6 @@
 /*
  *     Lunya's Personal Website
- *     Copyright (C) 2024  エムエルディー
+ *     Copyright (C) 2024  Lunya UwU :3
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -144,7 +144,7 @@ export default function Discord(props: InferGetServerSidePropsType<typeof getSer
             <Main>
                 <Content>
                     <h1 className={'text-center text-3xl font-bold'}>join my discord server!</h1>
-                    <p className="text-center text-lg">a discord server for everything mldchan.</p>
+                    <p className="text-center text-lg">a discord server for everything about Lunya :3</p>
 
                     <br/>
 

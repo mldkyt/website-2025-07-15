@@ -1,6 +1,6 @@
 /*
  *     Lunya's Personal Website
- *     Copyright (C) 2024  エムエルディー
+ *     Copyright (C) 2024  Lunya UwU :3
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -81,7 +81,7 @@ export default function FediSummarizer(props: InferGetServerSidePropsType<typeof
                     <Link href="https://social.mldchan.dev/@FediSummarizer">
                         <Button fullWidth>Official account</Button>
                     </Link>
-                    <Link href="https://code.mldchan.dev/mld/fedi-summarizer">
+                    <Link href="https://git.lunya.pet/Lunya/fedi-summarizer">
                         <Button fullWidth>Source code</Button>
                     </Link>
                 </div>

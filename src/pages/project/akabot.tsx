@@ -1,6 +1,6 @@
 /*
  *     Lunya's Personal Website
- *     Copyright (C) 2024  エムエルディー
+ *     Copyright (C) 2024  Lunya UwU :3
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -126,10 +126,10 @@ export default function Akabot(props: InferGetServerSidePropsType<typeof getServ
                     <summary>How do I self-host this bot?</summary>
                     <p>The bot is open-source, so if you want to host your own instance for the public or for personal use,
                         click the button below to view the source code:</p>
-                    <Link href={'https://code.mldchan.dev/mld/Akabot'} className={'m-1'}>
+                    <Link href={'https://git.lunya.pet/Lunya/Akabot'} className={'m-1'}>
                         <Button>View on Forgejo</Button>
                     </Link>
-                    <Link href={'https://github.com/uwugrl/Akabot'} className={'m-1'}>
+                    <Link href={'https://github.com/LunyaPet/Akabot'} className={'m-1'}>
                         <Button>View on GitHub</Button>
                     </Link>
 

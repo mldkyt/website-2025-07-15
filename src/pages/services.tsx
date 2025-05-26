@@ -1,6 +1,6 @@
 /*
  *     Lunya's Personal Website
- *     Copyright (C) 2024  エムエルディー
+ *     Copyright (C) 2024  Lunya UwU :3
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -64,10 +64,10 @@ export default function Services(props: InferGetServerSidePropsType<typeof getSe
                     svcDesc={"This is what Lunya uses to connect to the fediverse. Lunyakey is the cutest fork of Sharkey. "}
                     links={[{
                         label: "Open Sharkey",
-                        url: "https://social.mldchan.dev"
+                        url: "https://fedi.lunya.pet"
                     }, {
                         label: "View my profile",
-                        url: "https://social.mldchan.dev/@mld"
+                        url: "https://fedi.lunya.pet/@Lunya"
                     }]}
                 />
                 <Service
@@ -92,22 +92,22 @@ export default function Services(props: InferGetServerSidePropsType<typeof getSe
                     svcDesc={"Hosts source code publicly. Accounts are public for forking and development reasons until federation gets added."}
                     links={[{
                         label: "Open Forgejo",
-                        url: "https://code.mldchan.dev"
+                        url: "https://git.lunya.pet"
                     }, {
                         label: "Open my profile on Forgejo",
-                        url: "https://code.mldchan.dev/mld"
+                        url: "https://git.lunya.pet/Lunya"
                     }]}
                 />
                 <Service svcName={"Website"} svcDesc={"Web server for this website."} links={[{
                     label: "Home page",
-                    url: "https://mldchan.dev"
+                    url: "https://lunya.pet"
                 }]} />
                 <Service
                     svcName={"FediMeow: Meowing for for fedi"}
                     svcDesc={"Sends a meow note every hour on mldchan's sharkey instance."}
                     links={[{
                         label: "Fediverse profile for the official account",
-                        url: "https://social.mldchan.dev/@FediMeow"
+                        url: "https://fedi.lunya.pet/@FediMeow"
                     }]}
                 />
                 <Service
@@ -115,7 +115,7 @@ export default function Services(props: InferGetServerSidePropsType<typeof getSe
                     svcDesc={"This bot provides similar functionality to Akabot's Chat Streaks on fedi."}
                     links={[{
                         label: "Fediverse profile for the official account",
-                        url: "https://social.mldchan.dev/@FediStreaks"
+                        url: "https://fedi.lunya.pet/@FediStreaks"
                     }]}
                 />
                 <Service
@@ -123,16 +123,12 @@ export default function Services(props: InferGetServerSidePropsType<typeof getSe
                     svcDesc={"This bot provides similar functionality to Akabot's Chat Summary on fedi."}
                     links={[{
                         label: "Fediverse profile for the official account",
-                        url: "https://social.mldchan.dev/@FediSummary"
+                        url: "https://fedi.lunya.pet/@FediSummary"
                     }]}
                 />
 
                 <h2 className="text-xl font-bold">Private services</h2>
 
-                <Service svcName={"mlshortener: Link Shortener"} svcDesc={"Lunya's personal link shortener."} links={[{
-                    label: "Open mlshortener home page",
-                    url: "https://s.mldchan.dev/"
-                }]} />
                 <Service
                     svcName={"Nextcloud: Personal Cloud"}
                     svcDesc={"Lunya uses this to mostly store and sometimes share files."}

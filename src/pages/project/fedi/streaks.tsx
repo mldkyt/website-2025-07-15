@@ -1,6 +1,6 @@
 /*
  *     Lunya's Personal Website
- *     Copyright (C) 2024  エムエルディー
+ *     Copyright (C) 2024  Lunya UwU :3
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -63,7 +63,7 @@ export default function FediStreaks(props: InferGetServerSidePropsType<typeof ge
                     <Link href="https://social.mldchan.dev/@FediStreaks">
                         <Button fullWidth>Official account</Button>
                     </Link>
-                    <Link href="https://code.mldchan.dev/mld/fedi-streaks">
+                    <Link href="https://git.lunya.pet/Lunya/fedi-streaks">
                         <Button fullWidth>Source code</Button>
                     </Link>
                 </div>

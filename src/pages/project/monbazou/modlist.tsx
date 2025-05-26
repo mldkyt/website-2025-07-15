@@ -1,6 +1,6 @@
 /*
  *     Lunya's Personal Website
- *     Copyright (C) 2024  エムエルディー
+ *     Copyright (C) 2024  Lunya UwU :3
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -82,7 +82,7 @@ export default function MonBazouModList(props: InferGetServerSidePropsType<typeo
                     <Link href="https://www.nexusmods.com/monbazou/mods/288">
                         <Button fullWidth>Download from NexusMods</Button>
                     </Link>
-                    <Link href="https://code.mldchan.dev/mld/monbazoumodlist">
+                    <Link href="https://git.lunya.pet/Lunya/monbazoumodlist">
                         <Button fullWidth>Download the source code</Button>
                     </Link>
                 </div>

@@ -1,6 +1,6 @@
 /*
  *     Lunya's Personal Website
- *     Copyright (C) 2024  エムエルディー
+ *     Copyright (C) 2024  Lunya UwU :3
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@ export default function Metadata(props: {
       />
       <meta property="og:description" content={props.description} />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://mldchan.dev" />
+      <meta property="og:url" content="https://lunya.pet" />
       <meta property="og:site_name" content="Lunya's website" />
       <meta property="og:locale" content="en_US" />
       <meta property="og:locale:alternate" content="ja_JP" />

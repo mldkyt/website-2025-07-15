@@ -1,6 +1,6 @@
 /*
  *     Lunya's Personal Website
- *     Copyright (C) 2024  エムエルディー
+ *     Copyright (C) 2024  Lunya UwU :3
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -77,7 +77,7 @@ export default function FediMeow(props: InferGetServerSidePropsType<typeof getSe
                     <Link href="https://social.mldchan.dev/@FediMeow">
                         <Button fullWidth>Official account</Button>
                     </Link>
-                    <Link href="https://code.mldchan.dev/mld/fedimeow">
+                    <Link href="https://git.lunya.pet/Lunya/fedimeow">
                         <Button fullWidth>Source code</Button>
                     </Link>
                 </div>

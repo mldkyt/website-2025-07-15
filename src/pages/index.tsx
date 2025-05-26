@@ -1,6 +1,6 @@
 /*
  *     Lunya's Personal Website
- *     Copyright (C) 2024  エムエルディー
+ *     Copyright (C) 2024  Lunya UwU :3
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -127,7 +127,7 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
                             <h1 className="font-bold text-xl m-2">art</h1>
                             <Link href="/art" className="text-xl mr-4 underline">gallery &#8594;</Link> 
                         </div>
-                        <p className="m-2">i dont draw much but i did kawaii art for this website and also my <Link href="https://social.mldchan.dev" className="underline text-pink-400 hover:text-pink-200">Sharkey instance</Link> :3 for example</p>
+                        <p className="m-2">i dont draw much but i did kawaii art for this website and also my <Link href="https://fedi.lunya.pet" className="underline text-pink-400 hover:text-pink-200">Sharkey instance</Link> :3 for example</p>
                     </div>
                     <div className="m-4">
                         <div className="flex flex-row justify-between items-center">

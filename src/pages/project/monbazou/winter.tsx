@@ -1,6 +1,6 @@
 /*
  *     Lunya's Personal Website
- *     Copyright (C) 2024  エムエルディー
+ *     Copyright (C) 2024  Lunya UwU :3
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -71,10 +71,10 @@ export default function WinterMod(props: InferGetServerSidePropsType<typeof getS
                 <Offset amt={2} />
 
                 <div className="flex flex-col gap-2">
-                    <Link href="https://github.com/uwugrl/MonBazouWinterMod/releases">
+                    <Link href="https://github.com/LunyaPet/MonBazouWinterMod/releases">
                         <Button fullWidth>Download latest release from GitHub</Button>
                     </Link>
-                    <Link href="https://code.mldchan.dev/mld/MonBazouWinterMod">
+                    <Link href="https://git.lunya.pet/Lunya/MonBazouWinterMod">
                         <Button fullWidth>Download source code</Button>
                     </Link>
                 </div>

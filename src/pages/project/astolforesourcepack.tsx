@@ -1,6 +1,6 @@
 /*
  *     Lunya's Personal Website
- *     Copyright (C) 2024  エムエルディー
+ *     Copyright (C) 2024  Lunya UwU :3
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -84,10 +84,10 @@ export default function AstolfoResourcePack(props: InferGetServerSidePropsType<t
                 <Offset amt={2} />
 
                 <div className="flex flex-col gap-2">
-                    <Link href="https://code.mldchan.dev/mld/AstolfoResourcePackInstaller/releases">
+                    <Link href="https://git.lunya.pet/Lunya/AstolfoResourcePackInstaller/releases">
                         <Button fullWidth>Download builder</Button>
                     </Link>
-                    <Link href="https://code.mldchan.dev/mld/AstolfoResourcePackInstaller">
+                    <Link href="https://git.lunya.pet/Lunya/AstolfoResourcePackInstaller">
                         <Button fullWidth>Source code</Button>
                     </Link>
                     <Link href={'/discord'}>

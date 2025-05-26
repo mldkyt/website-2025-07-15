@@ -1,6 +1,6 @@
 /*
  *     Lunya's Personal Website
- *     Copyright (C) 2024  エムエルディー
+ *     Copyright (C) 2024  Lunya UwU :3
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -83,10 +83,10 @@ export default function Birthday(props: InferGetServerSidePropsType<typeof getSe
             <Offset amt={2} />
 
             <div className="flex flex-col gap-2">
-                <Link href="https://github.com/uwugrl/Birthday/releases">
+                <Link href="https://github.com/LunyaPet/Birthday/releases">
                     <Button fullWidth>Download latest release</Button>
                 </Link>
-                <Link href="https://github.com/uwugrl/Birthday">
+                <Link href="https://github.com/LunyaPet/Birthday">
                     <Button fullWidth>View source code</Button>
                 </Link>
             </div>

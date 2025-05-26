@@ -1,6 +1,6 @@
 /*
  *     Lunya's Personal Website
- *     Copyright (C) 2024  エムエルディー
+ *     Copyright (C) 2024  Lunya UwU :3
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -65,7 +65,7 @@ export default function UwurandomRs(props: InferGetServerSidePropsType<typeof ge
                 <Link href={'https://crates.io/crates/mldkyt-uwurandom-rs'}>
                     <Button fullWidth>Download from crates.io</Button>
                 </Link>
-                <Link href={'https://github.com/uwugrl/uwurandom-rs'}>
+                <Link href={'https://github.com/LunyaPet/uwurandom-rs'}>
                     <Button fullWidth>Download from GitHub</Button>
                 </Link>
                 <Link href={'/discord'}>
