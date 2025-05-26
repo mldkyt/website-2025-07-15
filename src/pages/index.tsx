@@ -132,7 +132,7 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
                     <div className="m-4">
                         <div className="flex flex-row justify-between items-center">
                             <h1 className="font-bold text-xl m-2">discord community</h1>
-                            <Link href="/services" className="text-xl mr-4 underline">join &#8594;</Link> 
+                            <Link href="/discord" className="text-xl mr-4 underline">join &#8594;</Link> 
                         </div>
                         <p className="m-2">i run a silly <Link className="underline text-pink-400 hover:text-pink-200" href={"/discord"}>discord server</Link> with silly features :3 you should totally join :33</p>
                     </div>

@@ -105,36 +105,34 @@ function DiscordFeature(props: {
 
 const highlights = [
     {
-        title: 'Custom Bot with Interactive Verification',
-        description: 'Enjoy a unique verification process with custom questions, role selection, and guided server tours.'
+        title: 'Lunya\'s love',
+        description: 'enjoy a custom discord bot with a bunch of silly features :33333333'
     },
     {
-        title: 'Engaging Channels',
-        description: 'From memes to tech discussions, share and discover interesting content in a wide variety of channels.'
+        title: 'channels',
+        description: 'we got them. for everything :3'
     },
     {
-        title: 'Gaming Community',
-        description: 'Connect with other gamers and discuss your favorite titles like VRChat, Celeste, Mon Bazou, and more.'
+        title: 'gaming',
+        description: 'gaming related channels related to what Lunya plays on her yt! :3'
     },
     {
-        title: 'Creative Spaces',
-        description: 'Show off your art, memes, and self-promotion or chat about your favorite media.'
+        title: 'creative spaces',
+        description: 'art, music, media, we got them all.'
     },
     {
-        title: 'Development Hub',
-        description: 'Join project discussions for Akabot, Astolfo Mod, uwurandom-rs, Nekosearch, and more.'
+        title: 'dev hub',
+        description: 'discuss any of my projects within dedicated channels in the discord server! :3'
     },
     {
-        title: 'Interactive Bots',
-        description: 'Chat with silly autoresponses, make suggestions, and automate your server with Akabot.'
+        title: 'bots',
+        description: 'we got akabot :3 and that\'s about it :3'
     },
-    {title: 'Fedi Integration', description: 'Stay up to date with new posts from your Fediverse account.'},
     {
-        title: 'LGBTQ+ Friendly',
-        description: 'Join a welcoming community that celebrates diversity, with dedicated yuri and yaoi channels.'
+        title: 'lgbtq+ friendly',
+        description: 'we are cutie friendly. we also got dedicated anime girls kissing and anime boys kissing channels :3333'
     },
-    {title: 'Fun and Randomness', description: 'Meow, catface, and other nonsense for those who love chaotic fun.'},
-    {title: 'Exclusive Project Channels', description: 'Dive deep into projects like AstolfOS, Nekosearch, and more.'}
+    {title: 'fun', description: 'dedicated channel for meowing, :3 because why not! it\'s needed if i am in the server :3'}
 ];
 
 export default function Discord(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
@@ -144,10 +142,9 @@ export default function Discord(props: InferGetServerSidePropsType<typeof getSer
             <Metadata title={'Lunya\'s Discord server'}
                       description={'Join the official Lunya Discord server today!'}/>
             <Main>
-                <Offset amt={8}/>
                 <Content>
-                    <h1 className={'text-center text-3xl font-bold'}>Join My Personal Discord Server</h1>
-                    <p className="text-center text-lg">A chill space for tech enthusiasts, gamers, and fun!</p>
+                    <h1 className={'text-center text-3xl font-bold'}>join my discord server!</h1>
+                    <p className="text-center text-lg">a discord server for everything mldchan.</p>
 
                     <br/>
 
@@ -157,36 +154,35 @@ export default function Discord(props: InferGetServerSidePropsType<typeof getSer
                         </Link>
                     </div>
 
-                    <p className={'text-gray-500 text-sm text-center'}>Searching for the Akabot support server? You can
-                        join <Link
+                    <p className={'text-gray-500 text-sm text-center'}>akabot support? please join <Link
                             href={'/project/akabot'} className="text-pink-400 hover:text-pink-300">the Akabot&apos;s
-                            support
-                            server here</Link>.</p>
+                            akabot support</Link> here uwu</p>
 
                     <br/>
 
-                    <h1 className={"text-4xl text-center"}>The best community you can ever join :3</h1>
+                    <h1 className={"text-4xl text-center"}>the best community one can join!!! :333 </h1>
 
                     <br/>
 
                     <div className={'flex flex-row justify-center text-2xl'}>
                         <div className={'flex flex-col w-48 text-center'}>
-                            <span className={'font-bold'}>Total Messages</span>
+                            <span className={'font-bold'}>messages :3</span>
                             <span>{props.discordData.totalMessages === -1 ? "Failed to load" : props.discordData.totalMessages.toString()}</span>
                         </div>
                         <div className={'flex flex-col w-48 text-center'}>
-                            <span className={'font-bold'}>Meows</span>
+                            <span className={'font-bold'}>meows :3</span>
                             <span>{props.discordData.meows === -1 ? "Failed to load" : props.discordData.meows.toString()}</span>
                         </div>
                         <div className={'flex flex-col w-48 text-center'}>
-                            <span className={'font-bold'}>:3&apos;s</span>
+                            <span className={'font-bold'}>:3&apos;s :3</span>
                             <span>{props.discordData.catfaces === -1 ? "Failed to load" : props.discordData.catfaces.toString()}</span>
                         </div>
                     </div>
 
                     <br/>
 
-                    <h2 className={'text-center font-bold'}>3 most active days:</h2>
+                    <h2 className={'text-center font-bold'}>we got lots of activity! :3</h2>
+                    <p className="text-gray-400 text-sm text-center">3 most active days within the last week</p>
 
                     <br/>
 
@@ -208,11 +204,13 @@ export default function Discord(props: InferGetServerSidePropsType<typeof getSer
 
                     <br/>
 
-                    <Heading level={2}>Highlights of our Discord server</Heading>
+                    <Heading level={2}>highlights</Heading>
 
-                    {highlights.map((x, i) => (<DiscordFeature key={i} title={x.title} body={x.description}/>))}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3">
+                        {highlights.map((x, i) => (<DiscordFeature key={i} title={x.title} body={x.description}/>))}
+                    </div>
 
-                    <Heading level={2}>So, what are you waiting for?</Heading>
+                    <Heading level={2}>so pwease join? 🥺</Heading>
 
                     <div className={'flex justify-center'}>
                         <Link href={'https://discord.gg/uTWjgy2E4v'}>
