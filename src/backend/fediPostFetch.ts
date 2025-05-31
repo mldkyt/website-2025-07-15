@@ -25,12 +25,6 @@ type Post = {
     createDate: string;
 }
 
-// valkey connection
-const valkey = new Valkey(
-    Number(process.env.VALKEY_PORT ?? "6379"),
-    process.env.VALKEY_HOST ?? "localhost"
-);
-
 async function fetchPostsFromFedi() {
     const req = await fetch(`https://${process.env.MISSKEY_INSTANCE!}/api/users/notes`, {
         method: 'POST',
@@ -47,7 +41,15 @@ async function fetchPostsFromFedi() {
         return [];
     }
 
-    const json = await req.json() as any[];
+    const json = await req.json() as {
+        cw: string | null;
+        visibility: string;
+        renoteId: string | null;
+        replyId: string | null;
+        text: string;
+        createdAt: string;
+        id: string;
+    }[];
 
     return json
         .filter(x => x.cw === null)
@@ -61,6 +63,12 @@ async function fetchPostsFromFedi() {
 }
 
 export async function fetchLatestPost() {
+    // valkey connection
+    const valkey = new Valkey(
+        Number(process.env.VALKEY_PORT ?? "6379"),
+        process.env.VALKEY_HOST ?? "localhost"
+    );
+
     await valkey.del("lastPostFetchDate", "lastPostText", "lastPostLink", "lastPostCreateDate");
     console.log("getting latest post");
     if (await valkey.exists("lastPostFetchDate", "lastPostText", "lastPostLink", "lastPostCreateDate")) {
@@ -92,8 +100,7 @@ export async function fetchLatestPost() {
     ])).flat();
 
     const post = posts
-        .sort((a, b) => new Date(b.createDate).getTime() - new Date(a.createDate).getTime())
-        [0];
+        .sort((a, b) => new Date(b.createDate).getTime() - new Date(a.createDate).getTime())[0];
 
     console.log("writing cache data");
     await Promise.all([
