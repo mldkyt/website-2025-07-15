@@ -25,8 +25,8 @@ import Footer from "@/components/Generic/Footer";
 import {InferGetServerSidePropsType} from "next";
 import {getVisits} from "@/backend/visitsCounter";
 import Image from "next/image";
+import {formatDistance, parseISO} from 'date-fns';
 
-import bg from '@/images/bg.png';
 import Content from "@/components/Generic/Content";
 import Offset from "@/components/Generic/Offset";
 import Link from "next/link";
@@ -34,13 +34,24 @@ import Link from "next/link";
 import akabot from "@/images/akabot.png";
 import catgirlNonsense from "@/images/catgirlnonsense.png";
 import astolfoMod from "@/images/astolfomod/biome.png";
+import {fetchLatestPost} from "@/backend/fediPostFetch";
 
 export async function getServerSideProps() {
     const visits = await getVisits({route: '/'});
 
+    const post = await fetchLatestPost();
+
+    let strippedText = post.text;
+    if (strippedText.length > 300) {
+        strippedText = `${strippedText.slice(0, 297)}...`;
+    }
+
     return {
         props: {
-            visits
+            visits,
+            post,
+            postRelativeDate: formatDistance(parseISO(post.createDate), new Date(), { addSuffix: true }),
+            strippedText
         }
     }
 }
@@ -55,31 +66,46 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
 
                     <Content>
                         <Header highlight={'home'}/>
-                        <div className="grid grid-cols-1 lg:grid-cols-2">
-                            <div className="m-auto w-max">
-                                <Image
-                                    src={bg}
-                                    alt={"Lunya anime girl peace sign"}
-                                    className="w-[50vw] max-h-[1000px] object-contain" 
-                                />
-                            </div>
-                            <div>
-                                <h1 className="font-bold text-2xl">haii, i&apos;m Lunya :33</h1> 
-                                <p className={"py-2"}> 
-                                    i&apos;m a transgender catgirl, and i <Link className="underline text-pink-400 hover:text-pink-200 transition-all" href={"https://git.lunya.pet/Lunya"}>code</Link>! alongside coding, i also <Link className="underline text-pink-400 hover:text-pink-200 transition-all" href={"https://youtube.com/@mldchan"}>make videos</Link>!
-                                </p>
-                                <p className="py-2">
-                                    my most successfull project is <Link className="underline text-pink-400 hover:text-pink-200 transition-all" href='/project/akabot'>Akabot</Link>, a general purpose discord bot with a lot of features :3 it&apos;s one of the <Link className="underline text-pink-400 hover:text-pink-200 transition-all" href={"/projects"}>cool projects</Link> you can find!
-                                </p>
-                                <p className={"py-2"}>
-                                    you should consider reading my <Link href="/introduction" className="underline text-pink-400 hover:text-pink-200 transition-all">intro</Link> for a bit about me, it will tell you a bit about my online behaviour and how to chat with me :3
-                                </p>
-                            </div>
-                        </div>
+                        <h1 className="font-bold text-center text-5xl">haii, i&apos;m Lunya :33</h1>
                     </Content>
-                    <Offset amt={3} />
+                    <Offset amt={2} />
                 </div>
                 <Content>
+                    {/*About me*/}
+
+                    <div className="mx-4">
+                        <p className={"py-2"}>
+                            i&apos;m a transgender catgirl, and i <Link className="underline text-pink-400 hover:text-pink-200 transition-all" href={"https://git.lunya.pet/Lunya"}>code</Link>! alongside coding, i also <Link className="underline text-pink-400 hover:text-pink-200 transition-all" href={"https://youtube.com/@mldchan"}>make videos</Link>!
+                        </p>
+                        <p className="py-2">
+                            my most successfull project is <Link className="underline text-pink-400 hover:text-pink-200 transition-all" href='/project/akabot'>Akabot</Link>, a general purpose discord bot with a lot of features :3 it&apos;s one of the <Link className="underline text-pink-400 hover:text-pink-200 transition-all" href={"/projects"}>cool projects</Link> you can find!
+                        </p>
+                        <p className={"py-2"}>
+                            you should consider reading my <Link href="/introduction" className="underline text-pink-400 hover:text-pink-200 transition-all">intro</Link> for a bit about me, it will tell you a bit about my online behaviour and how to chat with me :3
+                        </p>
+                    </div>
+
+                    {/*Latest post*/}
+
+                    <Offset amt={1} />
+
+                    <div className="flex flex-row justify-between">
+                        <h1 className="text-2xl font-bold ml-4">check out my status :3</h1>
+                    </div>
+
+                    <Link href={props.post.link}>
+                        <div className={"m-4"}>
+                            <div className={"flex flex-row items-center"}>
+                                <Image className={"rounded-full"} src={"https://fedi.lunya.pet/files/3230dfa7-23f1-4cdb-9202-b8c9c7396634.webp"} alt={"Lunya's Profile Picture"} width={32} height={32}/>
+                                <span className={"ml-4 font-bold text-lg"}>Lunya UwU</span>
+                                <span className={"ml-6 text-gray-400 text-sm"}>{props.postRelativeDate}</span>
+                            </div>
+                            <p className={"m-1 ml-0"}>{props.strippedText}</p>
+                        </div>
+                    </Link>
+
+                    <Offset amt={1} />
+
                     {/* Projects */}
                     <div className="flex flex-row justify-between">
                         <h1 className="text-2xl font-bold ml-4">projects</h1>
