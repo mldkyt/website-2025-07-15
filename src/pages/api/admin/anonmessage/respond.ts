@@ -19,7 +19,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(403).json({ error: "Forbidden" });
     }
 
-    const { id, reply } = schema.parse(req.body);
+    const parsed = schema.safeParse(req.body);
+    if (!parsed.success) {
+        return res.status(400).json({
+            error: parsed.error.message
+        });
+    }
+
+    const { id, reply } = parsed.data;
 
     if (id === undefined) {
         return res.status(400).json({ error: "ID is required" });

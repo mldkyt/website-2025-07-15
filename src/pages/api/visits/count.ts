@@ -55,7 +55,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         ip = ip[0];
     }
 
-    const {route} = schema.parse(req.body);
+    const parsed = schema.safeParse(req.body);
+    if (!parsed.success) {
+        return res.status(400).json({
+            error: parsed.error.message
+        });
+    }
+    const {route} = parsed.data;
 
     await prisma.pageVisitCooldown.deleteMany({
         where: {

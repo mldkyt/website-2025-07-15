@@ -33,7 +33,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         ip = ip[0];
     }
 
-    const {username, body} = schema.parse(req.body);
+    const parsed = schema.safeParse(req.body);
+    if (!parsed.success) {
+        return res.status(400).json({
+            error: parsed.error.message
+        });
+    }
+    const {username, body} = parsed.data;
 
     const ipRes = await fetch(`https://freeipapi.com/api/json/${ip}`);
     const ipJson = await ipRes.json();

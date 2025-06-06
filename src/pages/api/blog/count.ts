@@ -48,7 +48,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         ip = ip[0];
     }
 
-    const {cfToken, blogPost} = schema.parse(req.body);
+    const parsed = schema.safeParse(req.body);
+    if (!parsed.success) {
+        return res.status(400).json({
+            error: parsed.error.message
+        });
+    }
+    const {cfToken, blogPost} = parsed.data;
 
     const formData = new FormData();
     formData.append("secret", process.env['CLOUDFLARE_SECRET_TOKEN']!);

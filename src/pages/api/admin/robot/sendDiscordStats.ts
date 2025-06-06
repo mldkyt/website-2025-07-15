@@ -59,7 +59,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method !== "POST") return res.status(400).send("Method not allowed");
     if (!req.headers['content-type']?.startsWith("application/json")) return res.status(400).send("Invalid content-type");
 
-    const data = schema.parse(req.body);
+    const parsed = schema.safeParse(req.body);
+    if (!parsed.success) {
+        return res.status(400).json({
+            error: parsed.error.message
+        });
+    }
+    const data = parsed.data;
 
     // Authorize the request against the local token
     if (data.code !== process.env.BOT_TOKEN) return res.status(400).send("Invalid code");

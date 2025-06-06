@@ -33,7 +33,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return;
     }
 
-    const { q } = schema.parse(req.query);
+    const parsed = schema.safeParse(req.body);
+    if (!parsed.success) {
+        return res.status(400).json({
+            error: parsed.error.message
+        });
+    }
+    const { q } = parsed.data;
 
     const meili = new MeiliSearch({
         host: "http://172.17.0.1:7700",

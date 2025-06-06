@@ -30,7 +30,13 @@ const schema = z.object({
 });
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const {title, handle, options} = schema.parse(req.body);
+    const parsed = schema.safeParse(req.body);
+    if (!parsed.success) {
+        return res.status(400).json({
+            error: parsed.error.message
+        });
+    }
+    const {title, handle, options} = parsed.data;
 
     const {authorization} = req.headers;
 

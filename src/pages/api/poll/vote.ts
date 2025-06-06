@@ -28,7 +28,13 @@ const schema = z.object({
 });
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const {handle, optionId, cfToken} = schema.parse(req.body);
+    const parsed = schema.safeParse(req.body);
+    if (!parsed.success) {
+        return res.status(400).json({
+            error: parsed.error.message
+        });
+    }
+    const {handle, optionId, cfToken} = parsed.data;
     let ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress as string;
     if (Array.isArray(ip)) {
         ip = ip[0];
