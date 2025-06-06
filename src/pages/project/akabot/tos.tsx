@@ -72,7 +72,7 @@ export default function TermsOfService(props: InferGetServerSidePropsType<typeof
                 <p className="py-2">the bot is not responsible for any damages done to your server. this is further reinforced by <Link href="https://git.lunya.pet/Lunya/Akabot/src/branch/1.0/LICENSE.md">the license</Link>.</p>
                 <ToSHeading>contact</ToSHeading>
                 <p className="py-2">you can contact me at <a
-                    href="mailto:mldkyt@proton.me">mldkyt@proton.me</a>.</p>
+                    href="mailto:lunya.pet@proton.me">lunya.pet@proton.me</a>.</p>
                 <p className="py-2">please agree to my fancy work 🥺 or pwease don&pos;t use the official instance of the bot.</p>
                 <Offset amt={3}/>
                 <Footer visits={props.visits} route={'/project/akabot/tos'}

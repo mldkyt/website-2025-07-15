@@ -67,9 +67,9 @@ export default function Socials(props: InferGetServerSidePropsType<typeof getSer
 
                 <div className="bg-[#222] rounded-lg m-2">
                     <h3 className="font-bold p-2 text-lg">e-mail</h3>
-                    <p className="p-2 pt-0"><code className="text-pink-400">mldkyt@proton.me</code></p>
+                    <p className="p-2 pt-0"><code className="text-pink-400">lunya.pet@proton.me</code></p>
                     <p className="p-2 pt-0">you can send an e-mail here and expect a reply time approximately from 0-12 hours. i reply to all e-mails sent to me.</p>
-                    <p className="p-2 pt-0">if you can, please use my PGP encryption key.</p>
+                    <p className="p-2 pt-0">if you can, please use my <a href="/publickey.asc" className="underline text-pink-400 hover:text-pink-200">PGP encryption key</a> :3</p>
                 </div>
 
                 <h2 className="text-xl font-bold py-2 ml-2">other accounts uwu :33</h2>
