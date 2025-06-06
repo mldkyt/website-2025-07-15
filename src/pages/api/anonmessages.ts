@@ -4,8 +4,8 @@ import { z } from 'zod';
 
 
 const schema = z.object({
-    message: z.string().min(1).max(200),
-    cw: z.string().min(1).max(50).optional()
+    message: z.string().min(1).max(1000),
+    cw: z.string().min(1).max(100).optional()
 });
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
