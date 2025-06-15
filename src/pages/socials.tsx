@@ -114,12 +114,6 @@ export default function Socials(props: InferGetServerSidePropsType<typeof getSer
                     <p className="p-2 pt-0"><Link className="underline text-pink-400 hover:text-pink-200" href="https://bsky.app/profile/lunya.fedi.lunya.pet.ap.brid.gy">View bridged fedi account</Link></p>
                 </div>
 
-                <div className="bg-[#222] rounded-lg m-2">
-                    <h3 className="font-bold p-2 text-lg">instagram</h3>
-                    <p className="p-2 pt-0">i am not really active here, but give me a follow here too :3</p>
-                    <p className="p-2 pt-0"><Link className="underline text-pink-400 hover:text-pink-200" href="https://instagram.com/lunya.pet">view instagram profile</Link></p>
-                </div>
-
                 <Offset amt={6} />
                 <Footer visits={props.visits} route={"/socials"} />
             </Content>
