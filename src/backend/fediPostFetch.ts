@@ -18,6 +18,7 @@
 import fetch from 'node-fetch';
 import Valkey from 'iovalkey';
 import {parseISO, formatISO, differenceInHours} from "date-fns";
+import { captureException } from '@sentry/nextjs';
 
 type Post = {
     link: string;
@@ -53,6 +54,7 @@ async function fetchPostsFromFedi() {
 
     return json
         .filter(x => x.cw === null)
+        .filter(x => x.text !== null && x.text.trim().length > 0)
         .filter(x => x.renoteId === null && x.replyId === null)
         .filter(x => x.visibility === "public")
         .map((x) => ({
@@ -63,52 +65,19 @@ async function fetchPostsFromFedi() {
 }
 
 export async function fetchLatestPost() {
-    // valkey connection
-    const valkey = new Valkey(
-        Number(process.env.VALKEY_PORT ?? "6379"),
-        process.env.VALKEY_HOST ?? "localhost"
-    );
+    try {
+        console.log("fetching post");
+        const posts = (await Promise.all([
+            fetchPostsFromFedi()
+        ])).flat();
 
-    await valkey.del("lastPostFetchDate", "lastPostText", "lastPostLink", "lastPostCreateDate");
-    console.log("getting latest post");
-    if (await valkey.exists("lastPostFetchDate", "lastPostText", "lastPostLink", "lastPostCreateDate")) {
-        console.log("cache exists");
-        const data = await Promise.all([
-            valkey.get("lastPostFetchDate"),
-            valkey.get("lastPostText"),
-            valkey.get("lastPostLink"),
-            valkey.get("lastPostCreateDate")
-        ]);
+        const post = posts
+            .sort((a, b) => new Date(b.createDate).getTime() - new Date(a.createDate).getTime())[0];
 
-        if (differenceInHours(new Date(), parseISO(data[0] ?? "2025-01-01")) >= 1) {
-            console.log("cache expired");
-            await valkey.del("lastPostFetchDate", "lastPostText", "lastPostLink", "lastPostCreateDate");
-            return await fetchLatestPost();
-        }
-
-        return {
-            text: data[1],
-            link: data[2],
-            createDate: data[3]
-        } as Post;
+        return post;
     }
-
-    console.log("fetching post");
-    const posts = (await Promise.all([
-        fetchPostsFromFedi()
-        // TODO: more post sources
-    ])).flat();
-
-    const post = posts
-        .sort((a, b) => new Date(b.createDate).getTime() - new Date(a.createDate).getTime())[0];
-
-    console.log("writing cache data");
-    await Promise.all([
-        valkey.set("lastPostFetchDate", formatISO(new Date())),
-        valkey.set("lastPostText", post.text),
-        valkey.set("lastPostLink", post.link),
-        valkey.set("lastPostCreateDate", post.createDate),
-    ])
-
-    return post;
+    catch (e) {
+        captureException(e);
+        return null;
+    }
 }

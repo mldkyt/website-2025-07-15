@@ -41,7 +41,7 @@ export async function getServerSideProps() {
 
     const post = await fetchLatestPost();
 
-    let strippedText = post.text;
+    let strippedText = post?.text ?? "";
     if (strippedText.length > 300) {
         strippedText = `${strippedText.slice(0, 297)}...`;
     }
@@ -50,7 +50,7 @@ export async function getServerSideProps() {
         props: {
             visits,
             post,
-            postRelativeDate: formatDistance(parseISO(post.createDate), new Date(), { addSuffix: true }),
+            postRelativeDate: formatDistance(parseISO(post?.createDate ?? "1970-01-01"), new Date(), { addSuffix: true }),
             strippedText
         }
     }
@@ -93,16 +93,18 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
                         <h1 className="text-2xl font-bold ml-4">check out my status :3</h1>
                     </div>
 
-                    <Link href={props.post.link}>
-                        <div className={"m-4"}>
-                            <div className={"flex flex-row items-center"}>
-                                <Image className={"rounded-full"} src={"https://fedi.lunya.pet/files/3230dfa7-23f1-4cdb-9202-b8c9c7396634.webp"} alt={"Lunya's Profile Picture"} width={32} height={32}/>
-                                <span className={"ml-4 font-bold text-lg"}>Lunya UwU</span>
-                                <span className={"ml-6 text-gray-400 text-sm"}>{props.postRelativeDate}</span>
+                    {props.post && <>
+                        <Link href={props.post.link}>
+                            <div className={"m-4"}>
+                                <div className={"flex flex-row items-center"}>
+                                    <Image className={"rounded-full"} src={"https://fedi.lunya.pet/files/3230dfa7-23f1-4cdb-9202-b8c9c7396634.webp"} alt={"Lunya's Profile Picture"} width={32} height={32}/>
+                                    <span className={"ml-4 font-bold text-lg"}>Lunya UwU</span>
+                                    <span className={"ml-6 text-gray-400 text-sm"}>{props.postRelativeDate}</span>
+                                </div>
+                                <p className={"m-1 ml-0"}>{props.strippedText}</p>
                             </div>
-                            <p className={"m-1 ml-0"}>{props.strippedText}</p>
-                        </div>
-                    </Link>
+                        </Link>
+                    </>}
 
                     <Offset amt={1} />
 
