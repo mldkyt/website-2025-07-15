@@ -16,87 +16,92 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {NextApiRequest, NextApiResponse} from "next";
-import {countVisit} from "@/backend/visitsCounter";
-import {isCountryBlocked} from "@/backend/countryBlocklist";
+import { NextApiRequest, NextApiResponse } from "next";
+import { countVisit } from "@/backend/visitsCounter";
+import { isCountryBlocked } from "@/backend/countryBlocklist";
 import { PrismaClient } from "@prisma/client";
-import { DateTime } from 'luxon';
+import { DateTime } from "luxon";
 import { z } from "zod";
 
 const prisma = new PrismaClient();
 
 const schema = z.object({
-    route: z.string().startsWith("/").min(1)
-})
+    route: z.string().startsWith("/").min(1),
+});
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    if (req.method !== 'POST') return res.status(400).json({error: 'Invalid method'});
+    if (req.method !== "POST") return res.status(400).json({ error: "Invalid method" });
 
     let privacyWarning = false;
 
-    const gpcHeader = req.headers['sec-gpc'];
+    const gpcHeader = req.headers["sec-gpc"];
 
     if (gpcHeader === "1") {
         privacyWarning = true;
     }
 
-    const dntHeader = req.headers['dnt'];
+    const dntHeader = req.headers["dnt"];
 
     if (dntHeader === "1") {
         privacyWarning = true;
     }
 
     if (privacyWarning) {
-        return res.status(200).send({success: true, message: 'Privacy mode active, not counting page view.'});
+        return res.status(200).send({ success: true, message: "Privacy mode active, not counting page view." });
     }
 
-    let ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress as string;
+    let ip = req.headers["x-real-ip"] || req.headers["x-forwarded-for"] || (req.socket.remoteAddress as string);
     if (Array.isArray(ip)) {
         ip = ip[0];
+    }
+
+    if (ip.includes(",")) {
+        ip = ip.split(",")[0];
     }
 
     const parsed = schema.safeParse(req.body);
     if (!parsed.success) {
         return res.status(400).json({
-            error: parsed.error.message
+            error: parsed.error.message,
         });
     }
-    const {route} = parsed.data;
+    const { route } = parsed.data;
 
     await prisma.pageVisitCooldown.deleteMany({
         where: {
             expires: {
-                lt: DateTime.now().toJSDate()
-            }
-        }
+                lt: DateTime.now().toJSDate(),
+            },
+        },
     });
 
-    if (await prisma.pageVisitCooldown.count({
-        where: {
-            ip,
-            route
-        }
-    })) {
-        return res.status(429).send({error: 'Too many requests, try again later.'});
+    if (
+        await prisma.pageVisitCooldown.count({
+            where: {
+                ip,
+                route,
+            },
+        })
+    ) {
+        return res.status(429).send({ error: "Too many requests, try again later." });
     }
 
     await prisma.pageVisitCooldown.create({
         data: {
             ip,
-            expires: DateTime.now().plus({seconds: 10}).toJSDate(),
-            route
-        }
+            expires: DateTime.now().plus({ seconds: 10 }).toJSDate(),
+            route,
+        },
     });
-
 
     const ipRes = await fetch(`https://freeipapi.com/api/json/${ip}`);
     const json = await ipRes.json();
     if (await isCountryBlocked(json.countryCode)) {
-        res.status(200).json({success: true});
+        res.status(200).json({ success: true });
         return;
     }
 
-    await countVisit({route});
+    await countVisit({ route });
 
-    res.status(200).json({success: true});
+    res.status(200).json({ success: true });
 }

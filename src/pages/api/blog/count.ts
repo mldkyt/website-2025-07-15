@@ -17,47 +17,51 @@
  */
 
 import { PrismaClient } from "@prisma/client";
-import {NextApiRequest, NextApiResponse} from "next";
-import {isCountryBlocked} from "@/backend/countryBlocklist";
-import { z } from 'zod';
+import { NextApiRequest, NextApiResponse } from "next";
+import { isCountryBlocked } from "@/backend/countryBlocklist";
+import { z } from "zod";
 
 const schema = z.object({
     cfToken: z.string(),
-    blogPost: z.string()
-})
+    blogPost: z.string(),
+});
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    if (req.method !== 'POST') return res.status(400).json({error: 'Invalid method'});
+    if (req.method !== "POST") return res.status(400).json({ error: "Invalid method" });
 
     let privacyWarning = false;
 
-    const gpcHeader = req.headers['sec-gpc'];
+    const gpcHeader = req.headers["sec-gpc"];
 
     if (gpcHeader === "1") {
         privacyWarning = true;
     }
 
-    const dntHeader = req.headers['dnt'];
+    const dntHeader = req.headers["dnt"];
 
     if (dntHeader === "1") {
         privacyWarning = true;
     }
 
-    let ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress as string;
+    let ip = req.headers["x-real-ip"] || req.headers["x-forwarded-for"] || (req.socket.remoteAddress as string);
     if (Array.isArray(ip)) {
         ip = ip[0];
+    }
+
+    if (ip.includes(",")) {
+        ip = ip.split(",")[0];
     }
 
     const parsed = schema.safeParse(req.body);
     if (!parsed.success) {
         return res.status(400).json({
-            error: parsed.error.message
+            error: parsed.error.message,
         });
     }
-    const {cfToken, blogPost} = parsed.data;
+    const { cfToken, blogPost } = parsed.data;
 
     const formData = new FormData();
-    formData.append("secret", process.env['CLOUDFLARE_SECRET_TOKEN']!);
+    formData.append("secret", process.env["CLOUDFLARE_SECRET_TOKEN"]!);
     formData.append("response", cfToken);
     formData.append("remoteip", ip);
 
@@ -68,53 +72,53 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
 
     const outcome = await result.json();
-    if (!outcome.success) res.status(403).json({error: 'Bot detected, exit'});
+    if (!outcome.success) res.status(403).json({ error: "Bot detected, exit" });
 
     const prisma = new PrismaClient();
     await prisma.$connect();
 
     const ipRes = await fetch(`https://freeipapi.com/api/json/${ip}`);
     const ipJson = await ipRes.json();
-    const banned = await isCountryBlocked(ipJson.countryCode) || privacyWarning;
+    const banned = (await isCountryBlocked(ipJson.countryCode)) || privacyWarning;
     if (banned) {
         const result3 = await prisma.blogposts.findFirst({
             where: {
-                handle: blogPost
-            }
+                handle: blogPost,
+            },
         });
 
         if (!result3) {
-            res.status(404).json({error: 'No such blog post'});
+            res.status(404).json({ error: "No such blog post" });
             return;
         }
 
-        res.status(200).json({success: true, url: result3.targeturl});
+        res.status(200).json({ success: true, url: result3.targeturl });
         return;
     }
 
     const blogPost2 = await prisma.blogposts.findFirst({
         where: {
-            handle: blogPost
-        }
+            handle: blogPost,
+        },
     });
 
     if (!blogPost2) {
-        res.status(404).json({error: 'No such blog post'});
+        res.status(404).json({ error: "No such blog post" });
         return;
     }
 
     await prisma.blogposts.update({
         where: {
-            handle: blogPost
+            handle: blogPost,
         },
         data: {
             views: {
-                increment: 1
-            }
-        }
+                increment: 1,
+            },
+        },
     });
 
     await prisma.$disconnect();
 
-    res.status(200).json({success: true, url: blogPost2.targeturl});
+    res.status(200).json({ success: true, url: blogPost2.targeturl });
 }
