@@ -73,13 +73,7 @@ export default function Projects(props: InferGetServerSidePropsType<typeof getSe
                         description={"astolfo comes for you as a windows program! comfy and evil variations :3"}
                         link={"/project/astolfoiscomingforyou"}
                     />
-                    <Project
-                        image={astolfoMod}
-                        imageAlt={"Astolfo biome"}
-                        title={"Astolfo Mod"}
-                        description={"adds femboys, and a trans girl into minecraft :3 along some other things :3"}
-                        link={"/project/astolfomod"}
-                    />
+                    <Project image={astolfoMod} imageAlt={"Astolfo biome"} title={"Astolfo Mod"} description={"adds femboys, and a trans girl into minecraft :3 along some other things :3"} link={"/project/astolfomod"} />
                     <Project
                         image={astolforp}
                         imageAlt="Minecraft main menu, but it says Astolfocraft: Femboy edition on the top and the panorama is replaced with Astolfo."
@@ -88,13 +82,7 @@ export default function Projects(props: InferGetServerSidePropsType<typeof getSe
                         link="/project/astolforesourcepack"
                     />
                     <Project image={catgirlNonsense} imageAlt={"Catgirl nonsense"} title={"Catgirl nonsense"} description={"generate catgirl nonsense :3333 UwU >/////////<"} link={"/project/catgirlnonsense"} />
-                    <Project
-                        image={uwurandomRs}
-                        imageAlt={"UwUrandom in Rust programming language"}
-                        title={"uwurandom-rs"}
-                        description={"catgirl nonsense but in Rust 🏳️‍⚧️ uwu"}
-                        link={"/project/uwurandom-rs"}
-                    />
+                    <Project image={uwurandomRs} imageAlt={"UwUrandom in Rust programming language"} title={"uwurandom-rs"} description={"catgirl nonsense but in Rust 🏳️‍⚧️ uwu"} link={"/project/uwurandom-rs"} />
                     <Project image={fediMeow} imageAlt={"Fedi Meow bot on a Sharkey instance"} title={"FediMeow"} description={"hourly meowing on fedi (needed)"} link={"/project/fedi/meow"} />
                     <Project
                         image={fediSummarizer}
@@ -103,13 +91,7 @@ export default function Projects(props: InferGetServerSidePropsType<typeof getSe
                         description={"gives you a count of your posts every midnight, along with some insights."}
                         link={"/project/fedi/summarizer"}
                     />
-                    <Project
-                        image={fediStreaks}
-                        imageAlt={"Fedi Streaks bot on a Sharkey instance"}
-                        title={"Fedi Streaks"}
-                        description={"counts consencutive days of activity :3"}
-                        link={"/project/fedi/streaks"}
-                    />
+                    <Project image={fediStreaks} imageAlt={"Fedi Streaks bot on a Sharkey instance"} title={"Fedi Streaks"} description={"counts consencutive days of activity :3"} link={"/project/fedi/streaks"} />
                 </div>
 
                 <h1 className={"text-center text-2xl font-bold py-4"}>Lunya&apos;s stale projects</h1>
@@ -126,7 +108,6 @@ export default function Projects(props: InferGetServerSidePropsType<typeof getSe
                         description={"a mod menu mod, adding a mod menu, settings and console."}
                         link={"/project/monbazou/modlist"}
                     />
-                    <Project image={search} imageAlt={"A search engine"} title={"Nekosearch v2"} description={"search engine for nekoweb.org, with independent index :3"} link={"/project/neko/search2"} />
                     <Project
                         image={birthday}
                         imageAlt={"A window showing to wish someone a happy birthday, with a text box on the bottom"}
@@ -142,7 +123,6 @@ export default function Projects(props: InferGetServerSidePropsType<typeof getSe
                         link={"/project/nmfirefox"}
                     />
                     <Project image={mcFuck} imageAlt={"MCFuck"} title={"MCFuck"} description={"an options.txt file fucker :3"} link={"/project/mcfuck"} />
-
                 </div>
 
                 <h1 className={"text-center text-2xl font-bold py-4"}>Lunya&apos;s archived projects</h1>
