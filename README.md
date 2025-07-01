@@ -1,5 +1,12 @@
 # Lunya's new website :3
 
+[![Discord](https://img.shields.io/discord/1217145199151681656?label=support%20Discord%20server)
+](https://discord.gg/YFksXpXnn6)
+[![Gitea Issues](https://img.shields.io/gitea/issues/open/Lunya/website?gitea_url=https%3A%2F%2Fgit.lunya.pet)
+](https://git.lunya.pet/Lunya/website/issues)
+[![Gitea Pull Requests](https://img.shields.io/gitea/pull-requests/open/Lunya/website?gitea_url=https%3A%2F%2Fgit.lunya.pet)
+](https://git.lunya.pet/Lunya/website/pulls)
+
 Lunya's new website, since 2025.
 
 ## Environment Setup
