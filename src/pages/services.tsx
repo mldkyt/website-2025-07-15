@@ -60,7 +60,7 @@ export default function Services(props: InferGetServerSidePropsType<typeof getSe
                     }]}
                 />
                 <Service
-                    svcName={"Sharkey: Fediverse software"}
+                    svcName={"Sharkey for friends"}
                     svcDesc={"i use this to communicate with frens :3"}
                     links={[{
                         label: "open it :3",
@@ -71,20 +71,11 @@ export default function Services(props: InferGetServerSidePropsType<typeof getSe
                     }]}
                 />
                 <Service
-                    svcName={"PeerTube: Federated P2P video sharing"}
-                    svcDesc={"i use this as an alterantive to youtube sometimes :3 but also to put my videos out there on fedi :3"}
+                    svcName={"nsfw Sharkey instance (18+)"}
+                    svcDesc={"this instance runs for my lewd alt and a few other users"}
                     links={[{
-                        label: "open Peertube",
-                        url: "https://peertube.mldchan.dev"
-                    }, {
-                        label: "view my channels",
-                        url: "https://peertube.mldchan.dev/a/mld/video-channels"
-                    }, {
-                        label: "view my main videos",
-                        url: "https://peertube.mldchan.dev/c/mldchan/videos"
-                    }, {
-                        label: "view my TikTok re-uploads",
-                        url: "https://peertube.mldchan.dev/c/mldtiktok/videos"
+                        label: "open (registrations are open)",
+                        url: "https://desparatesluts.online/"
                     }]}
                 />
                 <Service
