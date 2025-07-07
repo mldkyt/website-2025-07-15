@@ -16,22 +16,22 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from "react";
+import React from 'react';
+import Link from 'next/link';
+import { InferGetServerSidePropsType } from 'next';
 
-import Main from "@/components/Generic/Main";
-import { Header } from "@/components/Generic/Header";
-import Content from "@/components/Generic/Content";
-import Offset from "@/components/Generic/Offset";
-import Link from "next/link";
-import Metadata from "@/components/Generic/Metadata";
-import Button from "@/components/Generic/Button";
-import Footer from "@/components/Generic/Footer";
-import { InferGetServerSidePropsType } from "next";
-import { getVisits } from "@/backend/visitsCounter";
-import Heading from "@/components/Generic/Heading";
+import Main from '@/components/Generic/main';
+import { Header } from '@/components/Generic/header';
+import Content from '@/components/Generic/content';
+import Offset from '@/components/Generic/offset';
+import Metadata from '@/components/Generic/metadata';
+import Button from '@/components/Generic/button';
+import Footer from '@/components/Generic/footer';
+import { getVisits } from '@/backend/visits-counter';
+import Heading from '@/components/Generic/heading';
 
 export async function getServerSideProps() {
-    const visits = await getVisits({ route: "/donate" });
+    const visits = await getVisits({ route: '/donate' });
 
     return {
         props: {
@@ -41,11 +41,10 @@ export async function getServerSideProps() {
 }
 
 export default function Donate(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
-
     return (
         <Main>
-            <Metadata title={"Donate"} description={"Donate to Lunya to support her projects!"} />
-            <Header highlight={"donate"} />
+            <Metadata title={'Donate'} description={'Donate to Lunya to support her projects!'} />
+            <Header highlight={'donate'} />
             <Content>
                 <Heading level={1}>donate</Heading>
                 <p>support your local transfem catgirl ♡ :3 even a small donation helps a lot and i&apos;ll do more silly things if i get paid for it :3</p>
@@ -54,7 +53,7 @@ export default function Donate(props: InferGetServerSidePropsType<typeof getServ
                     <summary className="text-pink-400 hover:text-pink-200 transition-all cursor-pointer">Past Donators</summary>
                     <p>Here&apos;s a list of past donators to me - Thank you all!</p>
 
-                    <ul className={"list-disc ml-4"}>
+                    <ul className={'list-disc ml-4'}>
                         <li>
                             <strong>LeroMusic</strong> (Ko-fi) - $15
                         </li>
@@ -69,30 +68,29 @@ export default function Donate(props: InferGetServerSidePropsType<typeof getServ
 
                 <Heading level={2}>How do I donate?</Heading>
                 <p>it&apos;s easy! use one of the following methods to donate~ i would love you to use ko-fi as it sends me the full payment!</p>
-                <ul className={"list-disc ml-4"}>
-                    
+                <ul className={'list-disc ml-4'}>
                     <li>
                         <span>
-                            <Link href={"https://ko-fi.com/mldchan"} className={"text-pink-400 hover:text-pink-200"}>
+                            <Link href={'https://ko-fi.com/mldchan'} className={'text-pink-400 hover:text-pink-200'}>
                                 Ko-fi
                             </Link>
-                        </span>{" "}
+                        </span>{' '}
                         is my preferred method and I&apos;ll even respond to your message if you add one :3
                     </li>
                     <li>
                         <span>
-                            <Link href={"https://liberapay.com/mldchan/donate"} className={"text-pink-400 hover:text-pink-200"}>
+                            <Link href={'https://liberapay.com/mldchan/donate'} className={'text-pink-400 hover:text-pink-200'}>
                                 Liberapay
                             </Link>
-                        </span>{" "}
+                        </span>{' '}
                         is a good payment method for recursive payments, so use it if you want :3
                     </li>
                     <li>
                         <span>
-                            <Link href={"https://github.com/sponsors/mldchan"} className={"text-pink-400 hover:text-pink-200"}>
+                            <Link href={'https://github.com/sponsors/mldchan'} className={'text-pink-400 hover:text-pink-200'}>
                                 GitHub Sponsors
                             </Link>
-                        </span>{" "}
+                        </span>{' '}
                         is another one, although I don&apos;t prefer it, because a lot of my work is code, it&apos;s a good idea :3
                     </li>
                 </ul>
@@ -100,7 +98,7 @@ export default function Donate(props: InferGetServerSidePropsType<typeof getServ
                 <Heading level={2}>where am i donating?</Heading>
                 <p>to your local transfem catgirl of course! but seriously, all of your donations will go to supporting me :3</p>
                 <p>examples of where the money would go:</p>
-                <ul className={"list-disc ml-4"}>
+                <ul className={'list-disc ml-4'}>
                     <li>
                         <strong>servers</strong> - servers aren&apos;t free, so your support will keep them alive. same goes for domains
                     </li>
@@ -114,12 +112,12 @@ export default function Donate(props: InferGetServerSidePropsType<typeof getServ
 
                 <Heading level={2}>what do i host?</Heading>
                 <p>i made a page for a full list, be sure to check it out :3</p>
-                <Link href={"/services"}>
+                <Link href={'/services'}>
                     <Button>services</Button>
                 </Link>
 
                 <Offset amt={6} />
-                <Footer visits={props.visits} route={"/donate"} />
+                <Footer visits={props.visits} route={'/donate'} />
             </Content>
         </Main>
     );

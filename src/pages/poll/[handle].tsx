@@ -15,25 +15,25 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React from "react";
+import React from 'react';
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
+import { useRef, useState } from 'react';
+import Turnstile from 'react-turnstile';
+import { PrismaClient } from '@prisma/client';
 
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import Main from "@/components/Generic/Main";
-import Content from "@/components/Generic/Content";
-import {Header} from "@/components/Generic/Header";
-import Heading from "@/components/Generic/Heading";
-import {useRef, useState} from "react";
-import Button from "@/components/Generic/Button";
-import Metadata from "@/components/Generic/Metadata";
-import Turnstile from "react-turnstile";
-import { PrismaClient } from "@prisma/client";
+import Main from '@/components/Generic/main';
+import Content from '@/components/Generic/content';
+import { Header } from '@/components/Generic/header';
+import Heading from '@/components/Generic/heading';
+import Button from '@/components/Generic/button';
+import Metadata from '@/components/Generic/metadata';
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    const {handle} = ctx.params as { handle: string };
+    const { handle } = ctx.params as { handle: string };
     if (!handle) {
         return {
-            notFound: true
-        }
+            notFound: true,
+        };
     }
 
     const prisma = new PrismaClient();
@@ -41,32 +41,32 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 
     const dbPolls = await prisma.polls.findFirst({
         where: {
-            Handle: handle
+            Handle: handle,
         },
         include: {
             PollOptions: true,
-            PollVotes: true
-        }
+            PollVotes: true,
+        },
     });
 
     if (!dbPolls) {
         await prisma.$disconnect();
         return {
-            notFound: true
-        }
+            notFound: true,
+        };
     }
 
     let privacyWarning = false;
 
     const gpcHeader = ctx.req.headers['sec-gpc'];
 
-    if (gpcHeader === "1") {
+    if (gpcHeader === '1') {
         privacyWarning = true;
     }
 
     const dntHeader = ctx.req.headers['dnt'];
 
-    if (dntHeader === "1") {
+    if (dntHeader === '1') {
         privacyWarning = true;
     }
 
@@ -85,21 +85,20 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
                 return {
                     id: option.ID as number,
                     option: option.Option as string,
-                    votes: votes
-                }
+                    votes: votes,
+                };
             }),
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!,
-            privacyWarning
-        }
-    }
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN'] ?? '',
+            privacyWarning,
+        },
+    };
 }
 
 export default function Poll(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
-
     const [userVote, setUserVote] = useState<number>(0);
 
     let total = 0;
-    props.options.forEach((option: { option: string, votes: number }) => {
+    props.options.forEach((option: { option: string; votes: number }) => {
         total += option.votes;
     });
     if (userVote) {
@@ -111,7 +110,7 @@ export default function Poll(props: InferGetServerSidePropsType<typeof getServer
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
 
-    const cfTurnstileToken = useRef<string>("");
+    const cfTurnstileToken = useRef<string>('');
 
     const vote = (e: React.FormEvent) => {
         e.preventDefault();
@@ -130,74 +129,80 @@ export default function Poll(props: InferGetServerSidePropsType<typeof getServer
         fetch('/api/poll/vote', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify({
                 handle: props.handle,
                 optionId: checkedOption,
-                cfToken: cfTurnstileToken.current
-            })
-        }).then(res => res.json()).then(data => {
-            if (data.status === "ok") {
-                setSuccess(true);
-                setUserVote(Number(option));
-            } else {
-                setError(`Error: ${data.error}`);
-            }
-        }).catch(err => {
-            setError(`Error: ${err}`);
+                cfToken: cfTurnstileToken.current,
+            }),
         })
-    }
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.status === 'ok') {
+                    setSuccess(true);
+                    setUserVote(Number(option));
+                } else {
+                    setError(`Error: ${data.error}`);
+                }
+            })
+            .catch((err) => {
+                setError(`Error: ${err}`);
+            });
+    };
 
     return (
         <Main>
-            <Metadata title={`Poll: ${props.title}`} description={`Vote on Lunya's poll "${props.title}".`}/>
-            <Header/>
+            <Metadata title={`Poll: ${props.title}`} description={`Vote on Lunya's poll "${props.title}".`} />
+            <Header />
 
             <Content>
                 <Heading level={1}>{`Poll: ${props.title}`}</Heading>
 
-                {props.privacyWarning && <div className="bg-yellow-800 p-2 m-1 rounded-lg drop-shadow-lg">
-                    <h2><strong>Warning: </strong> The website has detected that you don&apos;t want to be tracked. Please note the voting on polls will store the IP address on the server in order for you to be only able to vote once and to avoid spam. Note that no one, not even Lunya, can see your IP.</h2>
-                </div>}
+                {props.privacyWarning && (
+                    <div className="bg-yellow-800 p-2 m-1 rounded-lg drop-shadow-lg">
+                        <h2>
+                            <strong>Warning: </strong> The website has detected that you don&apos;t want to be tracked. Please note the voting on polls will store the IP address on the server in order for you to be only
+                            able to vote once and to avoid spam. Note that no one, not even Lunya, can see your IP.
+                        </h2>
+                    </div>
+                )}
 
                 <p>Here&apos;s what existing people voted:</p>
                 <ul className={'text-left'}>
-                    {props.options.map((option: { id: number, option: string, votes: number }, index: number) => {
-                        const percentage = (
-                            (
-                                option.votes +
-                                (userVote === option.id ? 1 : 0)
-                            ) / total
-                        ) * 100;
+                    {props.options.map((option: { id: number; option: string; votes: number }, index: number) => {
+                        const percentage = ((option.votes + (userVote === option.id ? 1 : 0)) / total) * 100;
 
-                        return <li key={index}>
-                            <strong>{option.option}</strong>{` - ${option.votes + (userVote === option.id ? 1 : 0)} votes${!isNaN(percentage) ? ` - ${percentage.toFixed(2)}%` : ''}`}
-                        </li>
+                        return (
+                            <li key={index}>
+                                <strong>{option.option}</strong>
+                                {` - ${option.votes + (userVote === option.id ? 1 : 0)} votes${!isNaN(percentage) ? ` - ${percentage.toFixed(2)}%` : ''}`}
+                            </li>
+                        );
                     })}
                 </ul>
 
                 <form onSubmit={vote}>
                     <Heading level={2}>Vote on this poll</Heading>
 
-                    <input type={'radio'} name={'option'} value={0} defaultChecked onClick={() => setCheckedOption(0)}
-                           className={'accent-pink-400 hover:accent-pink-200'}/>
+                    <input type={'radio'} name={'option'} value={0} defaultChecked onClick={() => setCheckedOption(0)} className={'accent-pink-400 hover:accent-pink-200'} />
                     <label className={'ml-2'}>Please select an option</label>
-                    {props.options.map((option: { id: number, option: string }, index: number) => {
+                    {props.options.map((option: { id: number; option: string }, index: number) => {
                         const setOption = () => {
                             setCheckedOption(option.id);
-                        }
+                        };
 
-                        return <div key={index}>
-                            <input type={'radio'} name={'option'} value={option.id} onClick={setOption}
-                                   className={'accent-pink-400 hover:accent-pink-200'}/>
-                            <label className={'ml-2'}>{option.option}</label>
-                        </div>
+                        return (
+                            <div key={index}>
+                                <input type={'radio'} name={'option'} value={option.id} onClick={setOption} className={'accent-pink-400 hover:accent-pink-200'} />
+                                <label className={'ml-2'}>{option.option}</label>
+                            </div>
+                        );
                     })}
 
-                    <br/>
+                    <br />
 
-                    <Turnstile sitekey={props.cloudflareSiteToken} onVerify={x => cfTurnstileToken.current = x}/>
+                    <Turnstile sitekey={props.cloudflareSiteToken} onVerify={(x) => (cfTurnstileToken.current = x)} />
 
                     <Button type={'submit'}>Submit</Button>
                 </form>
@@ -206,5 +211,5 @@ export default function Poll(props: InferGetServerSidePropsType<typeof getServer
                 {success && <p className={'text-green-600'}>Successfully voted!</p>}
             </Content>
         </Main>
-    )
+    );
 }

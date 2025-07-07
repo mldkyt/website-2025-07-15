@@ -16,19 +16,19 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 
-export async function listBlockedKeywords(): Promise<{ keyword: string, reason: string }[]> {
+export async function listBlockedKeywords(): Promise<{ keyword: string; reason: string }[]> {
     const prisma = new PrismaClient();
     await prisma.$connect();
     const keywords = await prisma.keywordBlocklist.findMany();
     await prisma.$disconnect();
 
-    return keywords.map(x => {
+    return keywords.map((x) => {
         return {
             keyword: x.Keyword,
-            reason: x.Reason
-        }
+            reason: x.Reason,
+        };
     });
 }
 
@@ -39,8 +39,8 @@ export async function addBan(keyword: string, reason: string) {
     await prisma.keywordBlocklist.create({
         data: {
             Keyword: keyword,
-            Reason: reason
-        }
+            Reason: reason,
+        },
     });
 
     await prisma.$disconnect();
@@ -52,8 +52,8 @@ export async function removeKeywordBan(keyword: string) {
 
     await prisma.keywordBlocklist.delete({
         where: {
-            Keyword: keyword
-        }
+            Keyword: keyword,
+        },
     });
 
     await prisma.$disconnect();
@@ -62,12 +62,12 @@ export async function removeKeywordBan(keyword: string) {
 export async function checkKeywordBan(text: string) {
     const keywords = await listBlockedKeywords();
 
-    for (const word of text.split(" ")) {
+    for (const word of text.split(' ')) {
         for (const keyword of keywords) {
             if (word.includes(keyword.keyword)) {
                 return {
                     violation: true,
-                    keyword
+                    keyword,
                 };
             }
         }

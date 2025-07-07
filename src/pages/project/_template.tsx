@@ -15,35 +15,35 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React from "react";
+import React from 'react';
+import Link from 'next/link';
+import { InferGetServerSidePropsType } from 'next';
 
-import Main from "@/components/Generic/Main";
-import {Header} from "@/components/Generic/Header";
-import Content from "@/components/Generic/Content";
-import Offset from "@/components/Generic/Offset";
-import Heading from "@/components/Generic/Heading";
-import Link from "next/link";
-import Footer from "@/components/Generic/Footer";
-import { InferGetServerSidePropsType} from "next";
-import {getVisits} from "@/backend/visitsCounter";
-import Button from "@/components/Generic/Button";
+import Main from '@/components/Generic/main';
+import { Header } from '@/components/Generic/header';
+import Content from '@/components/Generic/content';
+import Offset from '@/components/Generic/offset';
+import Heading from '@/components/Generic/heading';
+import Footer from '@/components/Generic/footer';
+import { getVisits } from '@/backend/visits-counter';
+import Button from '@/components/Generic/button';
 
 export async function getServerSideProps() {
-    const visits = await getVisits({route: '_TEMPLATE'});
+    const visits = await getVisits({ route: '_TEMPLATE' });
 
     return {
         props: {
-            visits
-        }
-    }
+            visits,
+        },
+    };
 }
 
 export default function Template(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
-            <Header highlight={'projects'}/>
+            <Header highlight={'projects'} />
             <Content>
-                <Offset amt={4}/>
+                <Offset amt={4} />
                 <Heading level={1}>PROJECT</Heading>
 
                 <div className="flex flex-col gap-2">
@@ -55,9 +55,9 @@ export default function Template(props: InferGetServerSidePropsType<typeof getSe
                     </Link>
                 </div>
 
-                <Offset amt={3}/>
+                <Offset amt={3} />
                 <Footer visits={props.visits} route={'_TEMPLATE'} />
             </Content>
         </Main>
-    )
+    );
 }

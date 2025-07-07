@@ -16,78 +16,84 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from "react";
+import React from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-import {useEffect, useRef, useState} from "react";
-import Main from "@/components/Generic/Main";
-import Content from "@/components/Generic/Content";
-import Heading from "@/components/Generic/Heading";
-import Button from "@/components/Generic/Button";
+import Main from '@/components/Generic/main';
+import Content from '@/components/Generic/content';
+import Heading from '@/components/Generic/heading';
+import Button from '@/components/Generic/button';
 
 export default function CountryBlocklist() {
-    const [blocked, setBlocked] = useState<{code: string, reason: string}[]>([]);
+    const [blocked, setBlocked] = useState<{ code: string; reason: string }[]>([]);
 
     const hasLoaded = useRef(false);
 
     useEffect(() => {
-        if (hasLoaded.current) return;
+        if (hasLoaded.current) {
+            return;
+        }
         hasLoaded.current = true;
 
         fetch('/api/admin/countryblocklist/get', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('adminToken') ?? ''
-            }
-        }).then(x => {
+                Authorization: localStorage.getItem('adminToken') ?? '',
+            },
+        }).then((x) => {
             if (x.ok) {
-                x.json().then(x => {
+                x.json().then((x) => {
                     setBlocked(x);
                 });
             }
-        })
-    })
+        });
+    });
 
     const add = () => {
-        const countryCode = prompt("Enter CountryCode");
-        if (!countryCode) return;
+        const countryCode = prompt('Enter CountryCode');
+        if (!countryCode) {
+            return;
+        }
 
-        const reason = prompt("Enter Reason");
-        if (!reason) return;
+        const reason = prompt('Enter Reason');
+        if (!reason) {
+            return;
+        }
 
         fetch('/api/admin/countryblocklist/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('adminToken') ?? ''
+                Authorization: localStorage.getItem('adminToken') ?? '',
             },
             body: JSON.stringify({
                 code: countryCode,
-                reason
-            })
-        }).then(x => {
+                reason,
+            }),
+        }).then((x) => {
             if (x.ok) {
-                setBlocked([...blocked, {code: countryCode, reason }]);
+                setBlocked([...blocked, { code: countryCode, reason }]);
             }
-        })
-    }
+        });
+    };
 
     const remove = (x: string) => {
         fetch('/api/admin/countryblocklist/delete', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('adminToken') ?? ''
+                Authorization: localStorage.getItem('adminToken') ?? '',
             },
             body: JSON.stringify({
-                code: x
-            })
-        }).then(z => {
+                code: x,
+            }),
+        }).then((z) => {
             if (z.ok) {
-                setBlocked(blocked.filter(y => y.code !== x));
+                setBlocked(blocked.filter((y) => y.code !== x));
             }
-        })
-    }
+        });
+    };
 
     return (
         <Main>
@@ -97,13 +103,12 @@ export default function CountryBlocklist() {
                 <Heading level={2}>Blocked countries</Heading>
                 <ul className={'list-disc ml-4'}>
                     {blocked.map((x, i) => {
-                        return <li key={i} onDoubleClick={() => remove(x.code)}>{`${x.code}: ${x.reason}`}</li>
+                        return <li key={i} onDoubleClick={() => remove(x.code)}>{`${x.code}: ${x.reason}`}</li>;
                     })}
                 </ul>
                 <Heading level={2}>Controls</Heading>
                 <Button onClick={add}>Add</Button>
             </Content>
         </Main>
-    )
-
+    );
 }

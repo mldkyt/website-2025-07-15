@@ -16,32 +16,29 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { PrismaClient } from "@prisma/client";
-import {NextApiRequest, NextApiResponse} from "next";
-
-
+import { PrismaClient } from '@prisma/client';
+import { NextApiRequest, NextApiResponse } from 'next';
 import { z } from 'zod';
 
 const schema = z.object({
-    handle: z.string()
+    handle: z.string(),
 });
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-
     const parsed = schema.safeParse(req.body);
     if (!parsed.success) {
         return res.status(400).json({
-            error: parsed.error.message
+            error: parsed.error.message,
         });
     }
-    const {handle} = parsed.data;
+    const { handle } = parsed.data;
 
-    const {authorization} = req.headers;
+    const { authorization } = req.headers;
     if (!authorization) {
-        return res.status(401).json({error: "Unauthorized"});
+        return res.status(401).json({ error: 'Unauthorized' });
     }
     if (authorization !== process.env.ADMIN_PASSWORD) {
-        return res.status(403).json({error: "Forbidden"});
+        return res.status(403).json({ error: 'Forbidden' });
     }
 
     const prisma = new PrismaClient();
@@ -49,17 +46,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const result = await prisma.polls.delete({
         where: {
-            Handle: handle
+            Handle: handle,
         },
         include: {
             PollOptions: true,
-            PollVotes: true
-        }
-    })
+            PollVotes: true,
+        },
+    });
 
     await prisma.$disconnect();
 
-    if (result) res.status(200).json({status: "ok"});
-    else res.status(404).json({error: "No record found."});
-
+    if (result) {
+        res.status(200).json({ status: 'ok' });
+    } else {
+        res.status(404).json({ error: 'No record found.' });
+    }
 }

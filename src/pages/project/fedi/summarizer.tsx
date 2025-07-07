@@ -15,60 +15,60 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { InferGetServerSidePropsType } from 'next';
 
-import Main from "@/components/Generic/Main";
-import {Header} from "@/components/Generic/Header";
-import Content from "@/components/Generic/Content";
-import Heading from "@/components/Generic/Heading";
-import Link from "next/link";
-import Offset from "@/components/Generic/Offset";
-
+import Main from '@/components/Generic/main';
+import { Header } from '@/components/Generic/header';
+import Content from '@/components/Generic/content';
+import Heading from '@/components/Generic/heading';
+import Offset from '@/components/Generic/offset';
 import message from '@/images/fedi/summarizer/message.png';
-import Image from "next/image";
-import Metadata from "@/components/Generic/Metadata";
-import Footer from "@/components/Generic/Footer";
-import {InferGetServerSidePropsType} from "next";
-import {getVisits} from "@/backend/visitsCounter";
-import Button from "@/components/Generic/Button";
+import Metadata from '@/components/Generic/metadata';
+import Footer from '@/components/Generic/footer';
+import { getVisits } from '@/backend/visits-counter';
+import Button from '@/components/Generic/button';
 
 export async function getServerSideProps() {
-    const visits = await getVisits({route: '/project/fedi/summarizer'});
+    const visits = await getVisits({ route: '/project/fedi/summarizer' });
 
     return {
         props: {
-            visits
-        }
-    }
+            visits,
+        },
+    };
 }
 
 export default function FediSummarizer(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
-    const [tab, setTab] = useState("description");
+    const [tab, setTab] = useState('description');
 
     return (
         <Main>
-            <Metadata title={'Fedi Summarizer'}
-                      description={'A fedi bot that summarizes the amount of notes you post every midnight.'}/>
-            <Header highlight={'projects'}/>
+            <Metadata title={'Fedi Summarizer'} description={'A fedi bot that summarizes the amount of notes you post every midnight.'} />
+            <Header highlight={'projects'} />
             <Content>
                 <Heading level={1}>fedi summarizer</Heading>
                 <div className="w-full flex flex-row text-center">
-                    <div onClick={() => setTab('description')} className={`${tab === 'description' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>description</div>
-                    <div onClick={() => setTab('images')} className={`${tab === 'images' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>images</div>
+                    <div onClick={() => setTab('description')} className={`${tab === 'description' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>
+                        description
+                    </div>
+                    <div onClick={() => setTab('images')} className={`${tab === 'images' ? 'border-b-2 border-b-[#ff77ff]' : ''} py-2 w-full cursor-pointer`}>
+                        images
+                    </div>
                 </div>
 
-                {tab === 'description' && <>
-                    <p>
-                        this is a fedi bot that gives you a summary of your activity on the fediverse for the day :3
-                    </p>
-                    <p>
-                        it includes everything, from notes, renotes, quote notes to what reactions have reached your posts :3
-                    </p>
-                </>}
+                {tab === 'description' && (
+                    <>
+                        <p>this is a fedi bot that gives you a summary of your activity on the fediverse for the day :3</p>
+                        <p>it includes everything, from notes, renotes, quote notes to what reactions have reached your posts :3</p>
+                    </>
+                )}
 
-                {tab === 'images' && <Image src={message} className={'p-1 rounded-lg py-2'} alt={'Example message sent by the bot'}/>}
+                {tab === 'images' && <Image src={message} className={'p-1 rounded-lg py-2'} alt={'Example message sent by the bot'} />}
 
-                <Offset amt={2} /> 
+                <Offset amt={2} />
 
                 <div className="flex flex-col gap-2">
                     <Link href="https://social.mldchan.dev/@FediSummarizer">
@@ -79,10 +79,9 @@ export default function FediSummarizer(props: InferGetServerSidePropsType<typeof
                     </Link>
                 </div>
 
-                <Offset amt={3}/>
-                <Footer visits={props.visits} route={'/project/fedi/summarizer'}
-                        />
+                <Offset amt={3} />
+                <Footer visits={props.visits} route={'/project/fedi/summarizer'} />
             </Content>
         </Main>
-    )
+    );
 }

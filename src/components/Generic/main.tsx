@@ -16,14 +16,12 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from 'react';
+import { ReactNode } from 'react';
+import { Inter } from 'next/font/google';
 
-import React from "react";
-import {ReactNode} from "react";
+const inter = Inter({ subsets: ['latin', 'latin-ext'] });
 
-export default function Content(props: { children: ReactNode | ReactNode[] }) {
-    return (
-        <main className={'w-3/4 m-auto'}>
-            {props.children}
-        </main>
-    )
+export default function Main(params: { children: ReactNode | ReactNode[] }) {
+    return <main className={`${inter.className} w-full bg-[#111] min-h-screen`}>{params.children}</main>;
 }

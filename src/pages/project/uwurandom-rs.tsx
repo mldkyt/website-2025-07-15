@@ -16,65 +16,65 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from "react";
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { InferGetServerSidePropsType } from 'next';
 
-import Main from "@/components/Generic/Main";
-import {Header} from "@/components/Generic/Header";
-import Content from "@/components/Generic/Content";
-import Offset from "@/components/Generic/Offset";
-import Heading from "@/components/Generic/Heading";
-import Link from "next/link";
-
+import Main from '@/components/Generic/main';
+import { Header } from '@/components/Generic/header';
+import Content from '@/components/Generic/content';
+import Offset from '@/components/Generic/offset';
+import Heading from '@/components/Generic/heading';
 import image from '@/images/uwurandomrs.png';
-import Image from "next/image";
-import Metadata from "@/components/Generic/Metadata";
-import Footer from "@/components/Generic/Footer";
-import {InferGetServerSidePropsType} from "next";
-import {getVisits} from "@/backend/visitsCounter";
-import Button from "@/components/Generic/Button";
+import Metadata from '@/components/Generic/metadata';
+import Footer from '@/components/Generic/footer';
+import { getVisits } from '@/backend/visits-counter';
+import Button from '@/components/Generic/button';
 
 export async function getServerSideProps() {
-    const visits = await getVisits({route: '/project/uwurandom-rs'});
+    const visits = await getVisits({ route: '/project/uwurandom-rs' });
 
     return {
         props: {
-            visits
-        }
-    }
+            visits,
+        },
+    };
 }
 
 export default function UwurandomRs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
-    return <Main>
-        <Metadata title={'uwurandom-rs'}
-                  description={'an uwuifier written in the fastest language in the world, Rust.'}/>
-        <Header highlight={'projects'}/>
-        <Content>
-            <Heading level={1}>uwurandom-rs</Heading>
-            <p className="py-2">an uwuifier written in the fastest language in the world, Rust. <i>wait why do I have thigh highs?</i></p>
-            <p className="py-2">
-                this project, or library to say it right, does the same thing as <a href="/project/catgirlnonsense">catgirl
-                nonsense</a> does, but it does it as a library in the Rust programming language.
-            </p>
-            <p className="py-2">the library is very easy to use, for the maximum femefficiency :3</p>
-            <Image src={image} alt={'UwUrandom-rs example source code'} className={'p-1 rounded-lg py-2'}/>
-            
-            <Offset amt={2} />
+    return (
+        <Main>
+            <Metadata title={'uwurandom-rs'} description={'an uwuifier written in the fastest language in the world, Rust.'} />
+            <Header highlight={'projects'} />
+            <Content>
+                <Heading level={1}>uwurandom-rs</Heading>
+                <p className="py-2">
+                    an uwuifier written in the fastest language in the world, Rust. <i>wait why do I have thigh highs?</i>
+                </p>
+                <p className="py-2">
+                    this project, or library to say it right, does the same thing as <a href="/project/catgirlnonsense">catgirl nonsense</a> does, but it does it as a library in the Rust programming language.
+                </p>
+                <p className="py-2">the library is very easy to use, for the maximum femefficiency :3</p>
+                <Image src={image} alt={'UwUrandom-rs example source code'} className={'p-1 rounded-lg py-2'} />
 
-            <div className="flex flex-col gap-2">
-                <Link href={'https://crates.io/crates/mldkyt-uwurandom-rs'}>
-                    <Button fullWidth>crates.io</Button>
-                </Link>
-                <Link href={'https://github.com/LunyaPet/uwurandom-rs'}>
-                    <Button fullWidth>download from github</Button>
-                </Link>
-                <Link href={'/discord'}>
-                    <Button fullWidth>join my Discord server for support :3</Button>
-                </Link>
-            </div>
+                <Offset amt={2} />
 
-            <Offset amt={6}/>
-            <Footer visits={props.visits} route={'/project/uwurandom-rs'}
-                    />
-        </Content>
-    </Main>
+                <div className="flex flex-col gap-2">
+                    <Link href={'https://crates.io/crates/mldkyt-uwurandom-rs'}>
+                        <Button fullWidth>crates.io</Button>
+                    </Link>
+                    <Link href={'https://github.com/LunyaPet/uwurandom-rs'}>
+                        <Button fullWidth>download from github</Button>
+                    </Link>
+                    <Link href={'/discord'}>
+                        <Button fullWidth>join my Discord server for support :3</Button>
+                    </Link>
+                </div>
+
+                <Offset amt={6} />
+                <Footer visits={props.visits} route={'/project/uwurandom-rs'} />
+            </Content>
+        </Main>
+    );
 }

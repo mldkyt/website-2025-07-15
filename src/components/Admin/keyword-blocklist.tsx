@@ -16,78 +16,84 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from "react";
+import React from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-import {useEffect, useRef, useState} from "react";
-import Main from "@/components/Generic/Main";
-import Content from "@/components/Generic/Content";
-import Heading from "@/components/Generic/Heading";
-import Button from "@/components/Generic/Button";
+import Main from '@/components/Generic/main';
+import Content from '@/components/Generic/content';
+import Heading from '@/components/Generic/heading';
+import Button from '@/components/Generic/button';
 
 export default function KeywordBlocklist() {
-    const [blocked, setBlocked] = useState<{keyword: string, reason: string}[]>([]);
+    const [blocked, setBlocked] = useState<{ keyword: string; reason: string }[]>([]);
 
     const hasLoaded = useRef(false);
 
     useEffect(() => {
-        if (hasLoaded.current) return;
+        if (hasLoaded.current) {
+            return;
+        }
         hasLoaded.current = true;
 
         fetch('/api/admin/keywordblocklist/get', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('adminToken') ?? ''
-            }
-        }).then(x => {
+                Authorization: localStorage.getItem('adminToken') ?? '',
+            },
+        }).then((x) => {
             if (x.ok) {
-                x.json().then(x => {
+                x.json().then((x) => {
                     setBlocked(x);
                 });
             }
-        })
-    })
+        });
+    });
 
     const add = () => {
-        const keyword = prompt("Enter Keyword");
-        if (!keyword) return;
+        const keyword = prompt('Enter Keyword');
+        if (!keyword) {
+            return;
+        }
 
-        const reason = prompt("Enter Reason");
-        if (!reason) return;
+        const reason = prompt('Enter Reason');
+        if (!reason) {
+            return;
+        }
 
         fetch('/api/admin/keywordblocklist/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('adminToken') ?? ''
+                Authorization: localStorage.getItem('adminToken') ?? '',
             },
             body: JSON.stringify({
                 keyword: keyword,
-                reason
-            })
-        }).then(x => {
+                reason,
+            }),
+        }).then((x) => {
             if (x.ok) {
-                setBlocked([...blocked, {keyword: keyword, reason }]);
+                setBlocked([...blocked, { keyword: keyword, reason }]);
             }
-        })
-    }
+        });
+    };
 
     const remove = (x: string) => {
         fetch('/api/admin/keywordblocklist/delete', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('adminToken') ?? ''
+                Authorization: localStorage.getItem('adminToken') ?? '',
             },
             body: JSON.stringify({
-                keyword: x
-            })
-        }).then(z => {
+                keyword: x,
+            }),
+        }).then((z) => {
             if (z.ok) {
-                setBlocked(blocked.filter(y => y.keyword !== x));
+                setBlocked(blocked.filter((y) => y.keyword !== x));
             }
-        })
-    }
+        });
+    };
 
     return (
         <Main>
@@ -97,13 +103,12 @@ export default function KeywordBlocklist() {
                 <Heading level={2}>Blocked keywords</Heading>
                 <ul className={'list-disc ml-4'}>
                     {blocked.map((x, i) => {
-                        return <li key={i} onDoubleClick={() => remove(x.keyword)}>{`${x.keyword}: ${x.reason}`}</li>
+                        return <li key={i} onDoubleClick={() => remove(x.keyword)}>{`${x.keyword}: ${x.reason}`}</li>;
                     })}
                 </ul>
                 <Heading level={2}>Controls</Heading>
                 <Button onClick={add}>Add</Button>
             </Content>
         </Main>
-    )
-
+    );
 }

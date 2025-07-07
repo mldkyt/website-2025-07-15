@@ -16,16 +16,16 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { PrismaClient } from "@prisma/client";
-import {NextApiRequest, NextApiResponse} from "next";
+import { PrismaClient } from '@prisma/client';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const {authorization} = req.headers;
+    const { authorization } = req.headers;
     if (!authorization) {
-        return res.status(401).json({error: "Unauthorized"});
+        return res.status(401).json({ error: 'Unauthorized' });
     }
     if (authorization !== process.env.ADMIN_PASSWORD) {
-        return res.status(403).json({error: "Forbidden"});
+        return res.status(403).json({ error: 'Forbidden' });
     }
 
     const prisma = new PrismaClient();
@@ -33,20 +33,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const videos = await prisma.youTubeVideos.findMany({
         orderBy: {
-            PublishedAt: 'desc'
-        }
+            PublishedAt: 'desc',
+        },
     });
 
     await prisma.$disconnect();
 
     res.status(200).send({
-        videos: videos.map(x => {
+        videos: videos.map((x) => {
             return {
                 url: `https://www.youtube.com/watch?v=${x.VideoID}`,
                 title: x.Title,
                 description: x.Description,
-                thumbnail: x.ThumbURL
-            }
-        })
-    })
+                thumbnail: x.ThumbURL,
+            };
+        }),
+    });
 }

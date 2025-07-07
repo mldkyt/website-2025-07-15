@@ -16,33 +16,33 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from "react";
+import React from 'react';
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 
-import { Header } from "@/components/Generic/Header";
-import Metadata from "@/components/Generic/Metadata";
-import Offset from "@/components/Generic/Offset";
-import Heading from "@/components/Generic/Heading";
-import Content from "@/components/Generic/Content";
-import Main from "@/components/Generic/Main";
-import Footer from "@/components/Generic/Footer";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { getVisits } from "@/backend/visitsCounter";
-import Button from "@/components/Generic/Button";
+import { Header } from '@/components/Generic/header';
+import Metadata from '@/components/Generic/metadata';
+import Offset from '@/components/Generic/offset';
+import Heading from '@/components/Generic/heading';
+import Content from '@/components/Generic/content';
+import Main from '@/components/Generic/main';
+import Footer from '@/components/Generic/footer';
+import { getVisits } from '@/backend/visits-counter';
+import Button from '@/components/Generic/button';
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    const visits = await getVisits({ route: "/contact" });
+    const visits = await getVisits({ route: '/contact' });
 
     let privacyWarning = false;
 
-    const gpcHeader = ctx.req.headers["sec-gpc"];
+    const gpcHeader = ctx.req.headers['sec-gpc'];
 
-    if (gpcHeader === "1") {
+    if (gpcHeader === '1') {
         privacyWarning = true;
     }
 
-    const dntHeader = ctx.req.headers["dnt"];
+    const dntHeader = ctx.req.headers['dnt'];
 
-    if (dntHeader === "1") {
+    if (dntHeader === '1') {
         privacyWarning = true;
     }
 
@@ -55,30 +55,33 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 }
 
 export default function AnonymousMessages(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
-    const [cw, setCw] = React.useState("");
-    const [message, setMessage] = React.useState("");
+    const [cw, setCw] = React.useState('');
+    const [message, setMessage] = React.useState('');
 
     const [success, setSuccess] = React.useState(false);
-    const [error, setError] = React.useState("");
+    const [error, setError] = React.useState('');
 
     const send = () => {
-        fetch("/api/anonmessages", {
-            method: "POST",
+        fetch('/api/anonmessages', {
+            method: 'POST',
             headers: {
-                "Content-Type": "application/json",
+                'Content-Type': 'application/json',
             },
-            body: cw.length > 0 ? JSON.stringify({
-                message: message,
-                cw: cw,
-            }) : JSON.stringify({
-                message: message
-            }),
+            body:
+                cw.length > 0
+                    ? JSON.stringify({
+                          message: message,
+                          cw: cw,
+                      })
+                    : JSON.stringify({
+                          message: message,
+                      }),
         })
             .then((x) => {
                 if (x.ok) {
                     setSuccess(true);
-                    setCw("");
-                    setMessage("");
+                    setCw('');
+                    setMessage('');
                 } else {
                     x.json()
                         .then((y) => {
@@ -96,8 +99,8 @@ export default function AnonymousMessages(props: InferGetServerSidePropsType<typ
 
     return (
         <Main>
-            <Header highlight={"contact"} />
-            <Metadata title={"Sent an Anonymous Message to Lunya"} description={"This page allows you to send a silly message anonymously to lunya :3"} />
+            <Header highlight={'contact'} />
+            <Metadata title={'Sent an Anonymous Message to Lunya'} description={'This page allows you to send a silly message anonymously to lunya :3'} />
             <Content>
                 <Heading level={1}>send an anonymous message to Lunya</Heading>
 
@@ -113,12 +116,16 @@ export default function AnonymousMessages(props: InferGetServerSidePropsType<typ
 
                 <label htmlFor="cw">content warning</label>
                 <br />
-                <input value={cw} onChange={(e) => setCw(e.target.value)} className={"bg-[#333] rounded-lg p-1 px-2 w-full"} type="text" name="cw" id="cw"></input>
+                <input value={cw} onChange={(e) => setCw(e.target.value)} className={'bg-[#333] rounded-lg p-1 px-2 w-full'} type="text" name="cw" id="cw"></input>
                 <br />
                 <label htmlFor="message">message</label>
                 <br />
-                <textarea value={message} onChange={(e) => setMessage(e.target.value)} className={"bg-[#333] rounded-lg p-1 px-2 w-full"} name="message"></textarea>
-                <div className="mt-2"><Button fullWidth onClick={send}>send it to me 🥺</Button></div>
+                <textarea value={message} onChange={(e) => setMessage(e.target.value)} className={'bg-[#333] rounded-lg p-1 px-2 w-full'} name="message"></textarea>
+                <div className="mt-2">
+                    <Button fullWidth onClick={send}>
+                        send it to me 🥺
+                    </Button>
+                </div>
 
                 {success && <p className="text-green-500">sent! thank you sis~</p>}
                 {error && <p className="text-red-500">ewwow: {error}</p>}
@@ -130,7 +137,7 @@ export default function AnonymousMessages(props: InferGetServerSidePropsType<typ
                 <p className="pt-2">i am also going to consider allowing filling out an optional notification form, so i can notify only you when your post gets answered :3</p>
 
                 <Offset amt={3} />
-                <Footer visits={props.visits} route={"/contact"} />
+                <Footer visits={props.visits} route={'/contact'} />
             </Content>
         </Main>
     );

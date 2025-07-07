@@ -16,8 +16,7 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-@import "tailwindcss";
-
+@import 'tailwindcss';
 
 :root {
     --background: #0a0a0a;
@@ -29,6 +28,7 @@ body {
     background: var(--background);
 }
 
-p, li {
+p,
+li {
     @apply my-1;
 }

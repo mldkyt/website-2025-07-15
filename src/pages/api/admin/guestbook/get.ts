@@ -16,17 +16,16 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-
-import { PrismaClient } from "@prisma/client";
-import {NextApiRequest, NextApiResponse} from "next";
+import { PrismaClient } from '@prisma/client';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const {authorization} = req.headers;
+    const { authorization } = req.headers;
     if (!authorization) {
-        return res.status(401).json({error: "Unauthorized"});
+        return res.status(401).json({ error: 'Unauthorized' });
     }
     if (authorization !== process.env.ADMIN_PASSWORD) {
-        return res.status(403).json({error: "Forbidden"});
+        return res.status(403).json({ error: 'Forbidden' });
     }
 
     const prisma = new PrismaClient();
@@ -34,39 +33,40 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const guestbookEntries = await prisma.guestbook.findMany({
         where: {
-            ReplyTo: null
+            ReplyTo: null,
         },
         orderBy: {
-            Created: "desc"
-        }
+            Created: 'desc',
+        },
     });
 
     res.status(200).json({
         success: true,
-        guestbook: await Promise.all(guestbookEntries.map(async (x) => {
-            const reply = await prisma.guestbook.findMany({
-                where: {
-                    ReplyTo: x.ID
-                }
-            });
+        guestbook: await Promise.all(
+            guestbookEntries.map(async (x) => {
+                const reply = await prisma.guestbook.findMany({
+                    where: {
+                        ReplyTo: x.ID,
+                    },
+                });
 
-            return {
-                id: x.ID,
-                username: x.Username,
-                body: x.Body,
-                ip: x.IP,
-                approved: x.Approved === 1,
-                replies: reply.map((x) => {
-                    return {
-                        id: x.ID,
-                        username: x.Username,
-                        body: x.Body
-                    }
-                })
-            }
-        }))
+                return {
+                    id: x.ID,
+                    username: x.Username,
+                    body: x.Body,
+                    ip: x.IP,
+                    approved: x.Approved === 1,
+                    replies: reply.map((x) => {
+                        return {
+                            id: x.ID,
+                            username: x.Username,
+                            body: x.Body,
+                        };
+                    }),
+                };
+            }),
+        ),
     });
-    
-    await prisma.$disconnect();
 
+    await prisma.$disconnect();
 }

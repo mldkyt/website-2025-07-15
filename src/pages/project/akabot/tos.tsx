@@ -16,68 +16,69 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from "react";
+import React from 'react';
+import { InferGetServerSidePropsType } from 'next';
+import Link from 'next/link';
 
-import Main from "@/components/Generic/Main";
-import {Header} from "@/components/Generic/Header";
-import Content from "@/components/Generic/Content";
-import Heading from "@/components/Generic/Heading";
-import Offset from "@/components/Generic/Offset";
-import Metadata from "@/components/Generic/Metadata";
-import Footer from "@/components/Generic/Footer";
-import {InferGetServerSidePropsType} from "next";
-import {getVisits} from "@/backend/visitsCounter";
-import Link from "next/link";
+import Main from '@/components/Generic/main';
+import { Header } from '@/components/Generic/header';
+import Content from '@/components/Generic/content';
+import Heading from '@/components/Generic/heading';
+import Offset from '@/components/Generic/offset';
+import Metadata from '@/components/Generic/metadata';
+import Footer from '@/components/Generic/footer';
+import { getVisits } from '@/backend/visits-counter';
 
 const ToSHeading = (props: { children: string }) => {
-    return (
-        <h2 className={'text-xl font-bold my-4'}>{props.children}</h2>
-    )
-}
+    return <h2 className={'text-xl font-bold my-4'}>{props.children}</h2>;
+};
 
 export async function getServerSideProps() {
-    const visits = await getVisits({route: '/project/akabot/tos'});
+    const visits = await getVisits({ route: '/project/akabot/tos' });
 
     return {
         props: {
-            visits
-        }
-    }
+            visits,
+        },
+    };
 }
 
 export default function TermsOfService(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
-
     return (
         <Main>
-            <Metadata title={'Akabot Terms of Service'} description={'Akabot Discord bot terms of service'}/>
-            <Header highlight={'projects'}/>
+            <Metadata title={'Akabot Terms of Service'} description={'Akabot Discord bot terms of service'} />
+            <Header highlight={'projects'} />
             <Content>
                 <Heading level={1}>akabot terms of service uwu</Heading>
                 <p className="py-2">last update: 2025/05/26</p>
 
                 <p className="py-2">by using the bot you agree to my work uwu 🥺:</p>
                 <ToSHeading>usage restrictions</ToSHeading>
-                <p className="py-2">
-                    akabot may only be used in places where it is appropriate to, no extremist organizations, no hate speech organizations and nothing violation discord&apos;s terms of service.
-                </p>
+                <p className="py-2">akabot may only be used in places where it is appropriate to, no extremist organizations, no hate speech organizations and nothing violation discord&apos;s terms of service.</p>
                 <ToSHeading>no data collection</ToSHeading>
                 <p className="py-2">akabot doesn&apos;t store data. as a single developer i do not need the data for anything anyway.</p>
                 <ToSHeading>modifications to this document</ToSHeading>
                 <p className="py-2">
-                    the modifications of this document will be announced on the <Link href="https://discord.gg/YFksXpXnn6" className={'text-pink-400 hover:text-pink-200 transition-all'}>support discord server</Link>.
+                    the modifications of this document will be announced on the{' '}
+                    <Link href="https://discord.gg/YFksXpXnn6" className={'text-pink-400 hover:text-pink-200 transition-all'}>
+                        support discord server
+                    </Link>
+                    .
                 </p>
                 <ToSHeading>access restrictions</ToSHeading>
                 <p className="py-2">if you&apos;re found in violation of these terms, we may restrict access to the bot to you, or your server.</p>
                 <ToSHeading>limitation of liability</ToSHeading>
-                <p className="py-2">the bot is not responsible for any damages done to your server. this is further reinforced by <Link href="https://git.lunya.pet/Lunya/Akabot/src/branch/1.0/LICENSE.md">the license</Link>.</p>
+                <p className="py-2">
+                    the bot is not responsible for any damages done to your server. this is further reinforced by <Link href="https://git.lunya.pet/Lunya/Akabot/src/branch/1.0/LICENSE.md">the license</Link>.
+                </p>
                 <ToSHeading>contact</ToSHeading>
-                <p className="py-2">you can contact me at <a
-                    href="mailto:lunya.pet@proton.me">lunya.pet@proton.me</a>.</p>
+                <p className="py-2">
+                    you can contact me at <a href="mailto:lunya.pet@proton.me">lunya.pet@proton.me</a>.
+                </p>
                 <p className="py-2">please agree to my fancy work 🥺 or pwease don&pos;t use the official instance of the bot.</p>
-                <Offset amt={3}/>
-                <Footer visits={props.visits} route={'/project/akabot/tos'}
-                        />
+                <Offset amt={3} />
+                <Footer visits={props.visits} route={'/project/akabot/tos'} />
             </Content>
         </Main>
-    )
+    );
 }

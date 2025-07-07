@@ -16,81 +16,88 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from "react";
+import React from 'react';
+import { useEffect, useState } from 'react';
 
-import {useEffect, useState} from "react";
-import LoginPage from "@/components/Admin/LoginPage";
-import MainPage from "@/components/Admin/MainPage";
-import BlogManager from "@/components/Admin/BlogManager";
-import {PollManager} from "@/components/Admin/PollManager";
-import GuestbookManager from "@/components/Admin/GuestbookManager";
-import CountryBlocklist from "@/components/Admin/CountryBlocklist";
-import Button from "@/components/Generic/Button";
-import KeywordBlocklist from "@/components/Admin/KeywordBlocklist";
-import AnonMessageManager from "@/components/Admin/AnonPostManager";
+import LoginPage from '@/components/Admin/login-page';
+import MainPage from '@/components/Admin/main-page';
+import BlogManager from '@/components/Admin/blog-manager';
+import { PollManager } from '@/components/Admin/poll-manager';
+import GuestbookManager from '@/components/Admin/guestbook-manager';
+import CountryBlocklist from '@/components/Admin/country-blocklist';
+import Button from '@/components/Generic/button';
+import KeywordBlocklist from '@/components/Admin/keyword-blocklist';
+import AnonMessageManager from '@/components/Admin/anon-post-manager';
 
-export type Pages = 'login' | 'main' | 'blogManager' | 'pollManager' | 'guestbookManager' | 'countryBlocks' | 'keywordBlocks' |
-'anonPostManager';
+export type Pages = 'login' | 'main' | 'blogManager' | 'pollManager' | 'guestbookManager' | 'countryBlocks' | 'keywordBlocks' | 'anonPostManager';
 
 async function verifyToken(key: string): Promise<boolean> {
-    return await new Promise(resolve => {
+    return await new Promise((resolve) => {
         fetch('/api/admin/auth/verify', {
             method: 'POST',
             headers: {
-                'Authorization': key
-            }
-        }).then(res => {
-            if (res.ok) {
-                localStorage.setItem('adminToken', key);
-                resolve(true);
-            } else {
+                Authorization: key,
+            },
+        })
+            .then((res) => {
+                if (res.ok) {
+                    localStorage.setItem('adminToken', key);
+                    resolve(true);
+                } else {
+                    resolve(false);
+                }
+            })
+            .catch(() => {
                 resolve(false);
-            }
-        }).catch(() => {
-            resolve(false);
-        });
-    })
+            });
+    });
 }
 
 export default function Admin() {
-
     const [page, setPage] = useState<Pages>('login');
     const [loginError, setLoginError] = useState<string>('');
 
     const verifyAuth = (pass: string) => {
         // TODO: Implement authentication
-        verifyToken(pass).then(res => {
-            if (res) setPage('main');
-            else setLoginError('Invalid password');
-        })
-    }
+        verifyToken(pass).then((res) => {
+            if (res) {
+                setPage('main');
+            } else {
+                setLoginError('Invalid password');
+            }
+        });
+    };
 
     useEffect(() => {
         if (localStorage.getItem('adminToken')) {
-            verifyToken(localStorage.getItem('adminToken') as string).then(res => {
-                if (res) setPage('main');
-                else localStorage.removeItem('adminToken');
+            verifyToken(localStorage.getItem('adminToken') as string).then((res) => {
+                if (res) {
+                    setPage('main');
+                } else {
+                    localStorage.removeItem('adminToken');
+                }
             });
         }
     }, [setPage]);
 
-    if (page == 'login') {
-        return <LoginPage error={loginError} passwordEntered={verifyAuth}/>;
+    if (page === 'login') {
+        return <LoginPage error={loginError} passwordEntered={verifyAuth} />;
     }
 
-    if (page == "main") {
-        return <MainPage goToPage={(x) => setPage(x as Pages)}/>;
+    if (page === 'main') {
+        return <MainPage goToPage={(x) => setPage(x as Pages)} />;
     }
 
-    return <>
-        <Button onClick={() => setPage('main')}>&lt; Back</Button>
+    return (
+        <>
+            <Button onClick={() => setPage('main')}>&lt; Back</Button>
 
-        {page == 'blogManager' && <BlogManager/>}
-        {page == 'pollManager' && <PollManager/>}
-        {page == 'guestbookManager' && <GuestbookManager/>}
-        {page == 'countryBlocks' && <CountryBlocklist/>}
-        {page == 'keywordBlocks' && <KeywordBlocklist/>}
-        {page == 'anonPostManager' && <AnonMessageManager />}
-    </>
-
+            {page === 'blogManager' && <BlogManager />}
+            {page === 'pollManager' && <PollManager />}
+            {page === 'guestbookManager' && <GuestbookManager />}
+            {page === 'countryBlocks' && <CountryBlocklist />}
+            {page === 'keywordBlocks' && <KeywordBlocklist />}
+            {page === 'anonPostManager' && <AnonMessageManager />}
+        </>
+    );
 }

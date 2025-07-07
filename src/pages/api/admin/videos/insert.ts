@@ -16,8 +16,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { PrismaClient } from "@prisma/client";
-import {NextApiRequest, NextApiResponse} from "next";
+import { PrismaClient } from '@prisma/client';
+import { NextApiRequest, NextApiResponse } from 'next';
 import { z } from 'zod';
 
 const schema = z.object({
@@ -26,39 +26,39 @@ const schema = z.object({
     description: z.string().max(2000),
     views: z.number(),
     publishedAt: z.string().date(),
-    thumbnailURL: z.string().url()
+    thumbnailURL: z.string().url(),
 });
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const {authorization} = req.headers;
+    const { authorization } = req.headers;
     if (!authorization) {
-        return res.status(401).json({error: "Unauthorized"});
+        return res.status(401).json({ error: 'Unauthorized' });
     }
     if (authorization !== process.env.ADMIN_PASSWORD) {
-        return res.status(403).json({error: "Forbidden"});
+        return res.status(403).json({ error: 'Forbidden' });
     }
 
     const parsed = schema.safeParse(req.body);
     if (!parsed.success) {
         return res.status(400).json({
-            error: parsed.error.message
+            error: parsed.error.message,
         });
     }
-    const {id, title, description, views, publishedAt, thumbnailURL} = parsed.data;
+    const { id, title, description, views, publishedAt, thumbnailURL } = parsed.data;
 
     const prisma = new PrismaClient();
     await prisma.$connect();
 
     await prisma.youTubeVideos.upsert({
         where: {
-            VideoID: id
+            VideoID: id,
         },
         update: {
             Title: title,
             Description: description,
             Views: views,
             PublishedAt: publishedAt,
-            ThumbURL: thumbnailURL
+            ThumbURL: thumbnailURL,
         },
         create: {
             VideoID: id,
@@ -66,11 +66,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             Description: description,
             Views: views,
             PublishedAt: publishedAt,
-            ThumbURL: thumbnailURL
-        }
+            ThumbURL: thumbnailURL,
+        },
     });
-    
+
     await prisma.$disconnect();
 
-    res.status(200).json({status: "OK"});
+    res.status(200).json({ status: 'OK' });
 }

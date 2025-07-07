@@ -1,0 +1,45 @@
+/*
+ *     Lunya's Personal Website
+ *     Copyright (C) 2024-2025  Lunya UwU :3
+ *
+ *     This program is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU General Public License as published by
+ *     the Free Software Foundation, either version 3 of the License, or
+ *     (at your option) any later version.
+ *
+ *     This program is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU General Public License for more details.
+ *
+ *     You should have received a copy of the GNU General Public License
+ *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+import React from 'react';
+
+import Main from '@/components/Generic/main';
+import Metadata from '@/components/Generic/metadata';
+import Content from '@/components/Generic/content';
+import Button from '@/components/Generic/button';
+import { Pages } from '@/pages/admin';
+
+export default function MainPage(props: { goToPage: (page: Pages) => void }) {
+    return (
+        <Main>
+            <Metadata title={'Main Page'} description={'This is the main page of the admin panel'} />
+
+            <Content>
+                <br />
+                <h1 className={'mt-8 mb-4 font-bold text-2xl'}>Welcome to the admin panel, Lunya!</h1>
+                <p>Here you can manage blog posts.</p>
+                <Button onClick={() => props.goToPage('blogManager')}>Manage blog posts</Button>
+                <Button onClick={() => props.goToPage('pollManager')}>Manage polls</Button>
+                <Button onClick={() => props.goToPage('guestbookManager')}>Manage guestbook</Button>
+                <Button onClick={() => props.goToPage('countryBlocks')}>Manage Country Blocks</Button>
+                <Button onClick={() => props.goToPage('keywordBlocks')}>Manage Keyword Blocks</Button>
+                <Button onClick={() => props.goToPage('anonPostManager')}>Manage Anonymous Posts</Button>
+            </Content>
+        </Main>
+    );
+}

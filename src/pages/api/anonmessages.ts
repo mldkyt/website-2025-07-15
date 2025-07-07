@@ -1,6 +1,6 @@
-import { PrismaClient } from "@prisma/client";
-import { NextApiRequest, NextApiResponse } from "next";
-import { z } from "zod";
+import { PrismaClient } from '@prisma/client';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { z } from 'zod';
 
 const schema = z.object({
     message: z.string().min(1).max(1000),
@@ -8,22 +8,22 @@ const schema = z.object({
 });
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    if (req.method !== "POST") {
-        return res.status(405).json({ error: "Method not allowed" });
+    if (req.method !== 'POST') {
+        return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    let ip = req.headers["x-real-ip"] || req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+    let ip = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || req.socket.remoteAddress;
 
     if (Array.isArray(ip)) {
         ip = ip[0];
     }
 
     if (!ip) {
-        return res.status(500).json({ error: "IP is unknown" });
+        return res.status(500).json({ error: 'IP is unknown' });
     }
 
-    if (ip.includes(",")) {
-        ip = ip.split(",")[0];
+    if (ip.includes(',')) {
+        ip = ip.split(',')[0];
     }
 
     const parsed = schema.safeParse(req.body);

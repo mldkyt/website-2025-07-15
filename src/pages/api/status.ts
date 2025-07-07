@@ -16,13 +16,13 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { PrismaClient } from "@prisma/client";
-import {NextApiRequest, NextApiResponse} from "next";
+import { PrismaClient } from '@prisma/client';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const prisma = new PrismaClient();
     await prisma.$connect();
     await prisma.$disconnect();
 
-    res.status(200).json({status: "ok"});
+    res.status(200).json({ status: 'ok' });
 }

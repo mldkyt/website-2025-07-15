@@ -16,21 +16,25 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
-import React from "react";
-
-export default function Button(props: {
-    children: string,
-    onClick?: () => void,
-    type?: 'button' | 'submit' | 'reset',
-    disabled?: boolean,
-    fullWidth?: boolean
+export default function Project(props: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    image?: any;
+    imageAlt?: string;
+    title: string;
+    description: string;
+    link?: string;
 }) {
     return (
-        <button
-            type={props.type}
-            onClick={props.onClick}
-            disabled={props.disabled === true}
-            className={`p-1 px-2 bg-pink-400 hover:bg-pink-300 text-black transition-all rounded-lg drop-shadow-md cursor-pointer ${props.fullWidth ? 'w-full' : ''}`}>{props.children}</button>
-    )
+        <div className="bg-[#222] rounded-xl m-4">
+            <Link href={props.link ?? ''}>
+                {props.image && props.imageAlt && <Image className="h-[256px] object-cover rounded-t-xl" src={props.image} alt={props.imageAlt} width={1024} height={1024} />}
+                <h1 className="font-bold text-xl m-2">{props.title}</h1>
+                <p className="m-2">{props.description}</p>
+            </Link>
+        </div>
+    );
 }

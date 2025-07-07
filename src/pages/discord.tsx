@@ -16,20 +16,20 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from "react";
+import React from 'react';
+import { InferGetServerSidePropsType } from 'next';
+import Link from 'next/link';
+import { PrismaClient } from '@prisma/client';
 
-import Main from "@/components/Generic/Main";
-import {Header} from "@/components/Generic/Header";
-import Metadata from "@/components/Generic/Metadata";
-import Footer from "@/components/Generic/Footer";
-import {InferGetServerSidePropsType} from "next";
-import {getVisits} from "@/backend/visitsCounter";
-import Heading from "@/components/Generic/Heading";
-import Offset from "@/components/Generic/Offset";
-import Content from "@/components/Generic/Content";
-import Link from "next/link";
-import Button from "@/components/Generic/Button";
-import {PrismaClient} from "@prisma/client";
+import Main from '@/components/Generic/main';
+import { Header } from '@/components/Generic/header';
+import Metadata from '@/components/Generic/metadata';
+import Footer from '@/components/Generic/footer';
+import { getVisits } from '@/backend/visits-counter';
+import Heading from '@/components/Generic/heading';
+import Offset from '@/components/Generic/offset';
+import Content from '@/components/Generic/content';
+import Button from '@/components/Generic/button';
 
 const prisma = new PrismaClient();
 
@@ -37,14 +37,14 @@ async function getKV(key: string): Promise<number> {
     let value = -1;
     const totalMessagesData = await prisma.discordKV.findFirst({
         where: {
-            key
-        }
+            key,
+        },
     });
 
     if (totalMessagesData) {
         value = Number(totalMessagesData.value);
         if (isNaN(value)) {
-            throw new Error("value is a NaN in database!");
+            throw new Error('value is a NaN in database!');
         }
     }
 
@@ -58,95 +58,92 @@ async function getData(): Promise<{
     activity: {
         date: string;
         count: number;
-    }[]
+    }[];
 }> {
-    const totalMessages = await getKV("totalMessages");
-    const meows = await getKV("meows");
-    const catfaces = await getKV("catfaces");
+    const totalMessages = await getKV('totalMessages');
+    const meows = await getKV('meows');
+    const catfaces = await getKV('catfaces');
 
-    const activity = (await prisma.discordHistory.findMany()).map(x => {
+    const activity = (await prisma.discordHistory.findMany()).map((x) => {
         return {
             date: x.date,
-            count: x.messageCount
-        }
+            count: x.messageCount,
+        };
     });
 
     return {
         totalMessages,
         meows,
         catfaces,
-        activity
-    }
+        activity,
+    };
 }
 
 export async function getServerSideProps() {
-    const visits = await getVisits({route: '/'});
+    const visits = await getVisits({ route: '/' });
 
     const discordData = await getData();
 
     return {
         props: {
             visits,
-            discordData
-        }
-    }
+            discordData,
+        },
+    };
 }
 
-function DiscordFeature(props: {
-    title: string,
-    body: string
-}) {
-
-    return <div className={'m-3 bg-[#181818] drop-shadow-lg rounded-lg p-3 transition-all hover:bg-[#222]'}>
-        <h3 className="text-2xl font-bold">{props.title}</h3>
-        <p className={'text-lg'}>{props.body}</p>
-    </div>
+function DiscordFeature(props: { title: string; body: string }) {
+    return (
+        <div className={'m-3 bg-[#181818] drop-shadow-lg rounded-lg p-3 transition-all hover:bg-[#222]'}>
+            <h3 className="text-2xl font-bold">{props.title}</h3>
+            <p className={'text-lg'}>{props.body}</p>
+        </div>
+    );
 }
 
 const highlights = [
     {
-        title: 'Lunya\'s love',
-        description: 'enjoy a custom discord bot with a bunch of silly features :33333333'
+        title: "Lunya's love",
+        description: 'enjoy a custom discord bot with a bunch of silly features :33333333',
     },
     {
         title: 'channels',
-        description: 'we got them. for everything :3'
+        description: 'we got them. for everything :3',
     },
     {
         title: 'gaming',
-        description: 'gaming related channels related to what Lunya plays on her yt! :3'
+        description: 'gaming related channels related to what Lunya plays on her yt! :3',
     },
     {
         title: 'creative spaces',
-        description: 'art, music, media, we got them all.'
+        description: 'art, music, media, we got them all.',
     },
     {
         title: 'dev hub',
-        description: 'discuss any of my projects within dedicated channels in the discord server! :3'
+        description: 'discuss any of my projects within dedicated channels in the discord server! :3',
     },
     {
         title: 'bots',
-        description: 'we got akabot :3 and that\'s about it :3'
+        description: "we got akabot :3 and that's about it :3",
     },
     {
         title: 'lgbtq+ friendly',
-        description: 'we are cutie friendly. we also got dedicated anime girls kissing and anime boys kissing channels :3333'
+        description: 'we are cutie friendly. we also got dedicated anime girls kissing and anime boys kissing channels :3333',
     },
-    {title: 'fun', description: 'dedicated channel for meowing, :3 because why not! it\'s needed if i am in the server :3'}
+    { title: 'fun', description: "dedicated channel for meowing, :3 because why not! it's needed if i am in the server :3" },
 ];
 
 export default function Discord(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <>
-            <Header highlight={'home'}/>
-            <Metadata title={'Lunya\'s Discord server'}
-                      description={'Join the official Lunya Discord server today!'}/>
+            <Header highlight={'home'} />
+            <Metadata title={"Lunya's Discord server"} description={'Join the official Lunya Discord server today!'} />
             <Main>
                 <Content>
                     <h1 className={'text-center text-3xl font-bold'}>join my discord server!</h1>
                     <p className="text-center text-lg">a discord server for everything about Lunya :3</p>
 
-                    <br/>
+                    <br />
 
                     <div className={'flex justify-center'}>
                         <Link href={'https://discord.gg/uTWjgy2E4v'}>
@@ -154,60 +151,71 @@ export default function Discord(props: InferGetServerSidePropsType<typeof getSer
                         </Link>
                     </div>
 
-                    <p className={'text-gray-500 text-sm text-center'}>akabot support? please join <Link
-                            href={'/project/akabot'} className="text-pink-400 hover:text-pink-300">the Akabot&apos;s
-                            akabot support</Link> here uwu</p>
+                    <p className={'text-gray-500 text-sm text-center'}>
+                        akabot support? please join{' '}
+                        <Link href={'/project/akabot'} className="text-pink-400 hover:text-pink-300">
+                            the Akabot&apos;s akabot support
+                        </Link>{' '}
+                        here uwu
+                    </p>
 
-                    <br/>
+                    <br />
 
-                    <h1 className={"text-4xl text-center"}>the best community one can join!!! :333 </h1>
+                    <h1 className={'text-4xl text-center'}>the best community one can join!!! :333 </h1>
 
-                    <br/>
+                    <br />
 
                     <div className={'flex flex-row justify-center text-2xl'}>
                         <div className={'flex flex-col w-48 text-center'}>
                             <span className={'font-bold'}>messages :3</span>
-                            <span>{props.discordData.totalMessages === -1 ? "Failed to load" : props.discordData.totalMessages.toString()}</span>
+                            <span>{props.discordData.totalMessages === -1 ? 'Failed to load' : props.discordData.totalMessages.toString()}</span>
                         </div>
                         <div className={'flex flex-col w-48 text-center'}>
                             <span className={'font-bold'}>meows :3</span>
-                            <span>{props.discordData.meows === -1 ? "Failed to load" : props.discordData.meows.toString()}</span>
+                            <span>{props.discordData.meows === -1 ? 'Failed to load' : props.discordData.meows.toString()}</span>
                         </div>
                         <div className={'flex flex-col w-48 text-center'}>
                             <span className={'font-bold'}>:3&apos;s :3</span>
-                            <span>{props.discordData.catfaces === -1 ? "Failed to load" : props.discordData.catfaces.toString()}</span>
+                            <span>{props.discordData.catfaces === -1 ? 'Failed to load' : props.discordData.catfaces.toString()}</span>
                         </div>
                     </div>
 
-                    <br/>
+                    <br />
 
                     <h2 className={'text-center font-bold'}>we got lots of activity! :3</h2>
                     <p className="text-gray-400 text-sm text-center">3 most active days within the last week</p>
 
-                    <br/>
+                    <br />
 
                     <div className={'flex flex-row justify-center text-center'}>
                         <table>
                             <tbody>
-                            {(props.discordData.activity.length === 0 ? [{
-                                date: 'Failed to load',
-                                count: 0
-                            }] : props.discordData.activity).map(activity => (
-                                <tr key={activity.date}>
-                                    <td className={'font-bold w-48'}>{activity.date}</td>
-                                    <td className={'w-48'}>{activity.count}</td>
-                                </tr>
-                            ))}
+                                {(props.discordData.activity.length === 0
+                                    ? [
+                                          {
+                                              date: 'Failed to load',
+                                              count: 0,
+                                          },
+                                      ]
+                                    : props.discordData.activity
+                                ).map((activity) => (
+                                    <tr key={activity.date}>
+                                        <td className={'font-bold w-48'}>{activity.date}</td>
+                                        <td className={'w-48'}>{activity.count}</td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>
 
-                    <br/>
+                    <br />
 
                     <Heading level={2}>highlights</Heading>
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3">
-                        {highlights.map((x, i) => (<DiscordFeature key={i} title={x.title} body={x.description}/>))}
+                        {highlights.map((x, i) => (
+                            <DiscordFeature key={i} title={x.title} body={x.description} />
+                        ))}
                     </div>
 
                     <Heading level={2}>so pwease join? 🥺</Heading>
@@ -218,8 +226,8 @@ export default function Discord(props: InferGetServerSidePropsType<typeof getSer
                         </Link>
                     </div>
 
-                    <Offset amt={4}/>
-                    <Footer visits={props.visits} route={'/discord'}/>
+                    <Offset amt={4} />
+                    <Footer visits={props.visits} route={'/discord'} />
                 </Content>
             </Main>
         </>

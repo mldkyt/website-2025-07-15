@@ -16,7 +16,7 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { withSentryConfig } from "@sentry/nextjs";
+import { withSentryConfig } from '@sentry/nextjs';
 /*
  *     Lunya :3's Personal Website
  *     Copyright (C) 2024  エムエルディー
@@ -34,7 +34,7 @@ import { withSentryConfig } from "@sentry/nextjs";
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
     /* config options here */
@@ -42,8 +42,8 @@ const nextConfig: NextConfig = {
     poweredByHeader: false,
     images: {
         deviceSizes: [320, 420, 768, 1024, 1200],
-        formats: ["image/avif", "image/webp"],
-        remotePatterns: [new URL("https://fedi.lunya.pet/files/*")],
+        formats: ['image/avif', 'image/webp'],
+        remotePatterns: [new URL('https://fedi.lunya.pet/files/*')],
     },
 };
 
@@ -51,9 +51,9 @@ export default withSentryConfig(nextConfig, {
     // For all available options, see:
     // https://github.com/getsentry/sentry-webpack-plugin#options
 
-    org: "lunya-pet",
-    project: "Website",
-    sentryUrl: "https://e.lunya.pet/",
+    org: 'lunya-pet',
+    project: 'Website',
+    sentryUrl: 'https://e.lunya.pet/',
 
     // Only print logs for uploading source maps in CI
     silent: !process.env.CI,

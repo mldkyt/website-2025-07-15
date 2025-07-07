@@ -15,61 +15,56 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { PrismaClient } from "@prisma/client";
 
-       
+import { PrismaClient } from '@prisma/client';
 
-export async function listBlocks(): Promise<{ code: string, reason: string }[]> {
-    const prisma = new PrismaClient();
-    await prisma.$connect();
-    const res = await prisma.countryBlocklist.findMany();
-    await prisma.$disconnect();
-
-    return res.map(x => {
-        return {
-            code: x.CountryCode,
-            reason: x.Reason
-        }
-    });
-}
-
-export async function addBan(country_code: string, reason: string) {
+export async function countVisit(opts: { route: string }) {
     const prisma = new PrismaClient();
     await prisma.$connect();
 
-    await prisma.countryBlocklist.create({
-        data: {
-            CountryCode: country_code,
-            Reason: reason
-        }
-    });
-
-    await prisma.$disconnect();
-}
-
-export async function removeBan(country_code: string) {
-    const prisma = new PrismaClient();
-    await prisma.$connect();
-
-    await prisma.countryBlocklist.delete({
+    await prisma.visits.upsert({
+        create: {
+            Route: opts.route,
+            Count: 1,
+        },
+        update: {
+            Count: {
+                increment: 1,
+            },
+        },
         where: {
-            CountryCode: country_code
-        }
+            Route: opts.route,
+        },
     });
 
     await prisma.$disconnect();
 }
 
-export async function isCountryBlocked(country_code: string): Promise<false | string> {
+export async function getVisits(opts: { route: string }) {
     const prisma = new PrismaClient();
     await prisma.$connect();
-    const res = await prisma.countryBlocklist.findFirst({
+
+    const result = await prisma.visits.findFirst({
         where: {
-            CountryCode: country_code
-        }
+            Route: opts.route,
+        },
     });
+
+    await prisma.$disconnect();
+    return result?.Count || 0;
+}
+
+export async function getTotalVisits() {
+    const prisma = new PrismaClient();
+    await prisma.$connect();
+
+    const data = await prisma.visits.aggregate({
+        _sum: {
+            Count: true,
+        },
+    });
+
     await prisma.$disconnect();
 
-    if (!res) return false;
-    return res.Reason;
+    return data._sum.Count as number | undefined;
 }

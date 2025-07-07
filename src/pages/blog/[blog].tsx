@@ -16,36 +16,36 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from "react";
+import React from 'react';
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
+import Turnstile from 'react-turnstile';
+import { useState } from 'react';
+import { captureException } from '@sentry/nextjs';
+import { PrismaClient } from '@prisma/client';
 
-import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import Main from "@/components/Generic/Main";
-import Metadata from "@/components/Generic/Metadata";
-import Content from "@/components/Generic/Content";
-import {Header} from "@/components/Generic/Header";
-import Heading from "@/components/Generic/Heading";
-import Turnstile from "react-turnstile";
-import {useState} from "react";
-import {captureException} from "@sentry/nextjs";
-import { PrismaClient } from "@prisma/client";
+import Main from '@/components/Generic/main';
+import Metadata from '@/components/Generic/metadata';
+import Content from '@/components/Generic/content';
+import { Header } from '@/components/Generic/header';
+import Heading from '@/components/Generic/heading';
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    const {blog} = ctx.params as { blog: string };
+    const { blog } = ctx.params as { blog: string };
 
     const prisma = new PrismaClient();
     await prisma.$connect();
 
     const blogPost = await prisma.blogposts.findFirst({
         where: {
-            handle: blog
-        }
+            handle: blog,
+        },
     });
 
     if (!blogPost) {
         await prisma.$disconnect();
         return {
-            notFound: true
-        }
+            notFound: true,
+        };
     }
 
     await prisma.$disconnect();
@@ -54,13 +54,13 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 
     const gpcHeader = ctx.req.headers['sec-gpc'];
 
-    if (gpcHeader === "1") {
+    if (gpcHeader === '1') {
         privacyWarning = true;
     }
 
     const dntHeader = ctx.req.headers['dnt'];
 
-    if (dntHeader === "1") {
+    if (dntHeader === '1') {
         privacyWarning = true;
     }
 
@@ -70,70 +70,77 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
             title: blogPost.title,
             description: blogPost.description,
             views: blogPost.views,
-            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN']!,
-            privacyWarning
-        }
-    }
-
+            cloudflareSiteToken: process.env['CLOUDFLARE_SITE_TOKEN'] ?? '',
+            privacyWarning,
+        },
+    };
 }
 
-
 export default function Blog(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
-
-    const [error, setError] = useState("");
+    const [error, setError] = useState('');
 
     function proveInnocence(token: string) {
         fetch('/api/blog/count', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                'blogPost': props.handle,
-                'cfToken': token
+                blogPost: props.handle,
+                cfToken: token,
+            }),
+        })
+            .then((x) => {
+                if (x.ok) {
+                    x.json()
+                        .then((y) => {
+                            location.href = y.url;
+                        })
+                        .catch((y) => {
+                            setError(`Error parsing JSON: ${y}`);
+                            captureException(y);
+                        });
+                } else {
+                    x.json()
+                        .then((y) => {
+                            setError(`Error: ${x.statusText}: ${y.error}`);
+                        })
+                        .catch((y) => {
+                            setError(`Error parsing JSON: ${y}`);
+                            captureException(y);
+                        });
+                }
             })
-        }).then(x => {
-            if (x.ok) {
-                x.json().then(y => {
-                    location.href = y.url
-                }).catch(y => {
-                    setError(`Error parsing JSON: ${y}`)
-                    captureException(y);
-                })
-            } else {
-                x.json().then(y => {
-                    setError(`Error: ${x.statusText}: ${y.error}`)
-                }).catch(y => {
-                    setError(`Error parsing JSON: ${y}`)
-                    captureException(y);
-                })
-            }
-        }).catch(y => {
-            setError(`Error making request: ${y}`);
-            captureException(y);
-        });
+            .catch((y) => {
+                setError(`Error making request: ${y}`);
+                captureException(y);
+            });
     }
 
-    return <Main>
-        <Metadata title={props.title} description={`${props.description} | ${props.views} views`}/>
-        <Header/>
-        <Content>
-            <Heading level={1}>pwease verify 🥺</Heading>
-            <p>due to bot attacks and too much scraping, this website requires bot checks :3</p>
+    return (
+        <Main>
+            <Metadata title={props.title} description={`${props.description} | ${props.views} views`} />
+            <Header />
+            <Content>
+                <Heading level={1}>pwease verify 🥺</Heading>
+                <p>due to bot attacks and too much scraping, this website requires bot checks :3</p>
 
-            <p>once the bot check finished, you&apos;ll automatically go to the blog :33</p>
+                <p>once the bot check finished, you&apos;ll automatically go to the blog :33</p>
 
-            
-            {props.privacyWarning && <div className="bg-yellow-800 p-2 m-1 rounded-lg drop-shadow-lg">
-                <h2><strong>warning: </strong> i noticed you got one of DNT or SEC set up :3 i&pos;ll not count your visit :3</h2>
-            </div>}
+                {props.privacyWarning && (
+                    <div className="bg-yellow-800 p-2 m-1 rounded-lg drop-shadow-lg">
+                        <h2>
+                            <strong>warning: </strong> i noticed you got one of DNT or SEC set up :3 i&pos;ll not count your visit :3
+                        </h2>
+                    </div>
+                )}
 
-            <Turnstile sitekey={props.cloudflareSiteToken} onVerify={x => proveInnocence(x)}/>
+                <Turnstile sitekey={props.cloudflareSiteToken} onVerify={(x) => proveInnocence(x)} />
 
-            {error && <p className={'text-red-600'}>{error}</p>}
+                {error && <p className={'text-red-600'}>{error}</p>}
 
-            <p className={'text-sm text-gray-500'}>this page was displayed for the 
-                lunya.pet/blog/&lt;url&gt; links for my blogs and for analytical purposes uwu</p>
-        </Content>
-    </Main>
+                <p className={'text-sm text-gray-500'}>this page was displayed for the lunya.pet/blog/&lt;url&gt; links for my blogs and for analytical purposes uwu</p>
+            </Content>
+        </Main>
+    );
 }

@@ -16,43 +16,43 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { ReactElement } from "react";
+import React, { ReactElement } from 'react';
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
+import Link from 'next/link';
 
-import { Header } from "@/components/Generic/Header";
-import Metadata from "@/components/Generic/Metadata";
-import Offset from "@/components/Generic/Offset";
-import Heading from "@/components/Generic/Heading";
-import Content from "@/components/Generic/Content";
-import Main from "@/components/Generic/Main";
-import Footer from "@/components/Generic/Footer";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { getVisits } from "@/backend/visitsCounter";
-import Button from "@/components/Generic/Button";
-import Link from "next/link";
+import { Header } from '@/components/Generic/header';
+import Metadata from '@/components/Generic/metadata';
+import Offset from '@/components/Generic/offset';
+import Heading from '@/components/Generic/heading';
+import Content from '@/components/Generic/content';
+import Main from '@/components/Generic/main';
+import Footer from '@/components/Generic/footer';
+import { getVisits } from '@/backend/visits-counter';
+import Button from '@/components/Generic/button';
 
 function ContactWrapper(props: { name: string; children: ReactElement | ReactElement[] }) {
     return (
-        <div className={"rounded-lg px-2 p-1 bg-[#222] mt-4"}>
-            <h2 className={"text-xl font-bold"}>{props.name}</h2>
+        <div className={'rounded-lg px-2 p-1 bg-[#222] mt-4'}>
+            <h2 className={'text-xl font-bold'}>{props.name}</h2>
             {props.children}
         </div>
     );
 }
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-    const visits = await getVisits({ route: "/contact" });
+    const visits = await getVisits({ route: '/contact' });
 
     let privacyWarning = false;
 
-    const gpcHeader = ctx.req.headers["sec-gpc"];
+    const gpcHeader = ctx.req.headers['sec-gpc'];
 
-    if (gpcHeader === "1") {
+    if (gpcHeader === '1') {
         privacyWarning = true;
     }
 
-    const dntHeader = ctx.req.headers["dnt"];
+    const dntHeader = ctx.req.headers['dnt'];
 
-    if (dntHeader === "1") {
+    if (dntHeader === '1') {
         privacyWarning = true;
     }
 
@@ -65,30 +65,33 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 }
 
 export default function Contact(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
-    const [cw, setCw] = React.useState("");
-    const [message, setMessage] = React.useState("");
+    const [cw, setCw] = React.useState('');
+    const [message, setMessage] = React.useState('');
 
     const [success, setSuccess] = React.useState(false);
-    const [error, setError] = React.useState("");
+    const [error, setError] = React.useState('');
 
     const send = () => {
-        fetch("/api/anonmessages", {
-            method: "POST",
+        fetch('/api/anonmessages', {
+            method: 'POST',
             headers: {
-                "Content-Type": "application/json",
+                'Content-Type': 'application/json',
             },
-            body: cw.length > 0 ? JSON.stringify({
-                message: message,
-                cw: cw,
-            }) : JSON.stringify({
-                message: message
-            }),
+            body:
+                cw.length > 0
+                    ? JSON.stringify({
+                          message: message,
+                          cw: cw,
+                      })
+                    : JSON.stringify({
+                          message: message,
+                      }),
         })
             .then((x) => {
                 if (x.ok) {
                     setSuccess(true);
-                    setCw("");
-                    setMessage("");
+                    setCw('');
+                    setMessage('');
                 } else {
                     x.json()
                         .then((y) => {
@@ -106,8 +109,8 @@ export default function Contact(props: InferGetServerSidePropsType<typeof getSer
 
     return (
         <Main>
-            <Header highlight={"contact"} />
-            <Metadata title={"Contact Lunya"} description={"This page contains information on how to contact Lunya."} />
+            <Header highlight={'contact'} />
+            <Metadata title={'Contact Lunya'} description={'This page contains information on how to contact Lunya.'} />
             <Content>
                 <Heading level={1}>Contact Lunya</Heading>
 
@@ -123,11 +126,11 @@ export default function Contact(props: InferGetServerSidePropsType<typeof getSer
 
                 <label htmlFor="cw">content warning</label>
                 <br />
-                <input value={cw} onChange={(e) => setCw(e.target.value)} className={"bg-[#333] rounded-lg p-1 px-2 w-full"} type="text" name="cw" id="cw"></input>
+                <input value={cw} onChange={(e) => setCw(e.target.value)} className={'bg-[#333] rounded-lg p-1 px-2 w-full'} type="text" name="cw" id="cw"></input>
                 <br />
                 <label htmlFor="message">message</label>
                 <br />
-                <textarea value={message} onChange={(e) => setMessage(e.target.value)} className={"bg-[#333] rounded-lg p-1 px-2 w-full"} name="message"></textarea>
+                <textarea value={message} onChange={(e) => setMessage(e.target.value)} className={'bg-[#333] rounded-lg p-1 px-2 w-full'} name="message"></textarea>
                 <Button onClick={send}>send it to me 🥺</Button>
 
                 {success && <p className="text-green-500">sent! thank you sis~</p>}
@@ -135,24 +138,24 @@ export default function Contact(props: InferGetServerSidePropsType<typeof getSer
 
                 <p>welcome to my contact page! you can contact me using these methods:</p>
 
-                <ContactWrapper name={"Discord"}>
+                <ContactWrapper name={'Discord'}>
                     <p>join my Discord community uwu :3</p>
-                    <Link href={"/discord"}>
+                    <Link href={'/discord'}>
                         <Button>join</Button>
                     </Link>
                 </ContactWrapper>
 
-                <ContactWrapper name={"Matrix"}>
+                <ContactWrapper name={'Matrix'}>
                     <p>
                         <code className="text-pink-400">@mld:mldchan.dev</code>
                     </p>
                     <p>you can dm me here and I&apos;ll respond to your dm&apos;s.</p>
                 </ContactWrapper>
 
-                <ContactWrapper name={"E-mail"}>
+                <ContactWrapper name={'E-mail'}>
                     <p>e-mail me here for any questions or support! :3</p>
                     <p>also make sure to use my PGP key if you can :3</p>
-                    <details className={"flex flex-col"}>
+                    <details className={'flex flex-col'}>
                         <summary className="text-pink-400">PGP key</summary>
                         <span>-----BEGIN PGP PUBLIC KEY BLOCK-----</span>
                         <span>xjMEYlkSUxYJKwYBBAHaRw8BAQdAu4mI1rh++Hs5sje8tAMphgKlI2kKV970</span>
@@ -171,7 +174,7 @@ export default function Contact(props: InferGetServerSidePropsType<typeof getSer
                 </ContactWrapper>
 
                 <Offset amt={3} />
-                <Footer visits={props.visits} route={"/contact"} />
+                <Footer visits={props.visits} route={'/contact'} />
             </Content>
         </Main>
     );

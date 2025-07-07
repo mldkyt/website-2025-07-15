@@ -16,47 +16,50 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { NextApiRequest, NextApiResponse } from "next";
-import { countVisit } from "@/backend/visitsCounter";
-import { isCountryBlocked } from "@/backend/countryBlocklist";
-import { PrismaClient } from "@prisma/client";
-import { DateTime } from "luxon";
-import { z } from "zod";
+import { NextApiRequest, NextApiResponse } from 'next';
+import { PrismaClient } from '@prisma/client';
+import { DateTime } from 'luxon';
+import { z } from 'zod';
+
+import { isCountryBlocked } from '@/backend/country-blocklist';
+import { countVisit } from '@/backend/visits-counter';
 
 const prisma = new PrismaClient();
 
 const schema = z.object({
-    route: z.string().startsWith("/").min(1),
+    route: z.string().startsWith('/').min(1),
 });
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    if (req.method !== "POST") return res.status(400).json({ error: "Invalid method" });
+    if (req.method !== 'POST') {
+        return res.status(400).json({ error: 'Invalid method' });
+    }
 
     let privacyWarning = false;
 
-    const gpcHeader = req.headers["sec-gpc"];
+    const gpcHeader = req.headers['sec-gpc'];
 
-    if (gpcHeader === "1") {
+    if (gpcHeader === '1') {
         privacyWarning = true;
     }
 
-    const dntHeader = req.headers["dnt"];
+    const dntHeader = req.headers['dnt'];
 
-    if (dntHeader === "1") {
+    if (dntHeader === '1') {
         privacyWarning = true;
     }
 
     if (privacyWarning) {
-        return res.status(200).send({ success: true, message: "Privacy mode active, not counting page view." });
+        return res.status(200).send({ success: true, message: 'Privacy mode active, not counting page view.' });
     }
 
-    let ip = req.headers["x-real-ip"] || req.headers["x-forwarded-for"] || (req.socket.remoteAddress as string);
+    let ip = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || (req.socket.remoteAddress as string);
     if (Array.isArray(ip)) {
         ip = ip[0];
     }
 
-    if (ip.includes(",")) {
-        ip = ip.split(",")[0];
+    if (ip.includes(',')) {
+        ip = ip.split(',')[0];
     }
 
     const parsed = schema.safeParse(req.body);
@@ -83,7 +86,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             },
         })
     ) {
-        return res.status(429).send({ error: "Too many requests, try again later." });
+        return res.status(429).send({ error: 'Too many requests, try again later.' });
     }
 
     await prisma.pageVisitCooldown.create({

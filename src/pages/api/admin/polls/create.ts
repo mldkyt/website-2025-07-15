@@ -16,36 +16,33 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { PrismaClient } from "@prisma/client";
-import {NextApiRequest, NextApiResponse} from "next";
-
+import { PrismaClient } from '@prisma/client';
+import { NextApiRequest, NextApiResponse } from 'next';
 import { z } from 'zod';
 
 const schema = z.object({
     title: z.string().min(1).max(32),
     handle: z.string().min(1).max(32),
-    options: z.array(
-        z.string().min(1).max(20)
-    ).min(2)
+    options: z.array(z.string().min(1).max(20)).min(2),
 });
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const parsed = schema.safeParse(req.body);
     if (!parsed.success) {
         return res.status(400).json({
-            error: parsed.error.message
+            error: parsed.error.message,
         });
     }
-    const {title, handle, options} = parsed.data;
+    const { title, handle, options } = parsed.data;
 
-    const {authorization} = req.headers;
+    const { authorization } = req.headers;
 
     if (!authorization) {
-        return res.status(401).json({error: "Unauthorized"});
+        return res.status(401).json({ error: 'Unauthorized' });
     }
 
     if (authorization !== process.env.ADMIN_PASSWORD) {
-        return res.status(403).json({error: "Forbidden"});
+        return res.status(403).json({ error: 'Forbidden' });
     }
 
     const prisma = new PrismaClient();
@@ -58,15 +55,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             PollOptions: {
                 createMany: {
                     data: options.map((x) => ({
-                        Option: x
-                    }))
-                }
-            }
-        }
-    })
+                        Option: x,
+                    })),
+                },
+            },
+        },
+    });
 
     await prisma.$disconnect();
 
-    res.status(200).json({status: "ok", pollID: poll.ID});
-
+    res.status(200).json({ status: 'ok', pollID: poll.ID });
 }

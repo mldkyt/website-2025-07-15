@@ -16,11 +16,12 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { PrismaClient } from "@prisma/client";
-import { NextApiRequest, NextApiResponse } from "next";
-import { isCountryBlocked } from "@/backend/countryBlocklist";
-import { checkKeywordBan } from "@/backend/keywordBlocklist";
-import { z } from "zod";
+import { PrismaClient } from '@prisma/client';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { z } from 'zod';
+
+import { isCountryBlocked } from '@/backend/country-blocklist';
+import { checkKeywordBan } from '@/backend/keyword-blocklist';
 
 const schema = z.object({
     username: z.string().min(2).max(32),
@@ -28,13 +29,13 @@ const schema = z.object({
 });
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    let ip = req.headers["x-real-ip"] || req.headers["x-forwarded-for"] || (req.socket.remoteAddress as string);
+    let ip = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || (req.socket.remoteAddress as string);
     if (Array.isArray(ip)) {
         ip = ip[0];
     }
 
-    if (ip.includes(",")) {
-        ip = ip.split(",")[0];
+    if (ip.includes(',')) {
+        ip = ip.split(',')[0];
     }
 
     const parsed = schema.safeParse(req.body);
@@ -67,12 +68,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if ((await prisma.guestbook.count({ where: { IP: ip, Approved: 0 } })) > 0) {
         await prisma.$disconnect();
-        return res.status(400).json({ error: "A post from this network is already awaiting approval." });
+        return res.status(400).json({ error: 'A post from this network is already awaiting approval.' });
     }
 
     if ((await prisma.guestbookBans.count({ where: { IP: ip } })) > 0) {
         await prisma.$disconnect();
-        return res.status(403).json({ error: "Banned" });
+        return res.status(403).json({ error: 'Banned' });
     }
 
     await prisma.guestbook.create({
@@ -85,5 +86,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     await prisma.$disconnect();
 
-    res.status(200).json({ status: "OK" });
+    res.status(200).json({ status: 'OK' });
 }

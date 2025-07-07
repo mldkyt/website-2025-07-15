@@ -16,18 +16,19 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { NextApiRequest, NextApiResponse } from "next";
-import { listBlocks } from "@/backend/countryBlocklist";
+import { NextApiRequest, NextApiResponse } from 'next';
+
+import { listBlocks } from '@/backend/country-blocklist';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const authorization = req.headers.authorization;
 
     if (!authorization) {
-        return res.status(401).json({ error: "Unauthorized" });
+        return res.status(401).json({ error: 'Unauthorized' });
     }
 
     if (authorization !== process.env.ADMIN_PASSWORD) {
-        return res.status(403).json({ error: "Forbidden" });
+        return res.status(403).json({ error: 'Forbidden' });
     }
 
     const blocked = await listBlocks();

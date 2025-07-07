@@ -1,43 +1,42 @@
-import { PrismaClient } from "@prisma/client";
-import { NextApiRequest, NextApiResponse } from "next";
-
+import { PrismaClient } from '@prisma/client';
+import { NextApiRequest, NextApiResponse } from 'next';
 import { z } from 'zod';
 
 const schema = z.object({
     id: z.number().positive(),
-    reply: z.string().min(1)
+    reply: z.string().min(1),
 });
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const authorization = req.headers.authorization;
 
     if (!authorization) {
-        return res.status(401).json({ error: "Unauthorized" });
+        return res.status(401).json({ error: 'Unauthorized' });
     }
 
     if (authorization !== process.env.ADMIN_PASSWORD) {
-        return res.status(403).json({ error: "Forbidden" });
+        return res.status(403).json({ error: 'Forbidden' });
     }
 
     const parsed = schema.safeParse(req.body);
     if (!parsed.success) {
         return res.status(400).json({
-            error: parsed.error.message
+            error: parsed.error.message,
         });
     }
 
     const { id, reply } = parsed.data;
 
     if (id === undefined) {
-        return res.status(400).json({ error: "ID is required" });
+        return res.status(400).json({ error: 'ID is required' });
     }
 
     if (isNaN(Number(id))) {
-        return res.status(400).json({ error: "ID is not a number" });
+        return res.status(400).json({ error: 'ID is not a number' });
     }
 
     if (!reply) {
-        return res.status(400).json({ error: "Reply is required" });
+        return res.status(400).json({ error: 'Reply is required' });
     }
 
     const prisma = new PrismaClient();
@@ -45,30 +44,30 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if ((await prisma.anonymousMessages.count({ where: { ID: Number(id) } })) === 0) {
         await prisma.$disconnect();
-        return res.status(400).json({ error: "Message not found" });
+        return res.status(400).json({ error: 'Message not found' });
     }
 
     const message = await prisma.anonymousMessages.findUnique({ where: { ID: Number(id) } });
 
     if (!message) {
         await prisma.$disconnect();
-        return res.status(400).json({ error: "Message not found" });
+        return res.status(400).json({ error: 'Message not found' });
     }
 
-    let devPrefix = "";
-    if (process.env.NODE_ENV === "development") {
-        devPrefix = "DEV/TEST: ";
+    let devPrefix = '';
+    if (process.env.NODE_ENV === 'development') {
+        devPrefix = 'DEV/TEST: ';
     }
 
-    await fetch(`https://${process.env.MISSKEY_INSTANCE!}/api/notes/create`, {
-        method: "POST",
+    await fetch(`https://${process.env.MISSKEY_INSTANCE ?? 'misskey.io'}/api/notes/create`, {
+        method: 'POST',
         headers: {
-            Authorization: `Bearer ${process.env.MISSKEY_TOKEN!}`,
-            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.MISSKEY_TOKEN ?? ''}`,
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify({
             text: `> ${message.Message}\n\n${reply}`,
-            cw: `${devPrefix}Anon message reply${message.CW ? `, ${message.CW}` : ""}`,
+            cw: `${devPrefix}Anon message reply${message.CW ? `, ${message.CW}` : ''}`,
         }),
     });
 
@@ -76,5 +75,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     await prisma.$disconnect();
 
-    res.status(200).json({ status: "ok" });
+    res.status(200).json({ status: 'ok' });
 }

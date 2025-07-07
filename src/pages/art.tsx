@@ -16,71 +16,72 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from "react";
+import React from 'react';
+import Image from 'next/image';
+import { InferGetServerSidePropsType } from 'next';
 
-import Main from "@/components/Generic/Main";
-import Content from "@/components/Generic/Content";
-import {Header} from "@/components/Generic/Header";
-import Heading from "@/components/Generic/Heading";
-import Offset from "@/components/Generic/Offset";
-
+import Main from '@/components/Generic/main';
+import Content from '@/components/Generic/content';
+import { Header } from '@/components/Generic/header';
+import Heading from '@/components/Generic/heading';
+import Offset from '@/components/Generic/offset';
 import busline from '@/images/art/busline.png';
 import iine from '@/images/art/iine.png';
 import mldchanSocial from '@/images/art/mldchansocial.png';
 import ohayoo from '@/images/art/ohayoo.png';
 import oyasumi from '@/images/art/oyasumi.png';
 import website from '@/images/art/website.png';
-import Image from "next/image";
-import Metadata from "@/components/Generic/Metadata";
-import Footer from "@/components/Generic/Footer";
-import {InferGetServerSidePropsType} from "next";
-import {getVisits} from "@/backend/visitsCounter";
+import Metadata from '@/components/Generic/metadata';
+import Footer from '@/components/Generic/footer';
+import { getVisits } from '@/backend/visits-counter';
 
 export async function getServerSideProps() {
-    const visits = await getVisits({route: '/art'});
+    const visits = await getVisits({ route: '/art' });
 
     return {
         props: {
-            visits
-        }
-    }
+            visits,
+        },
+    };
 }
 
 export default function Art(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
-    return <Main>
-        <Metadata title={'Art'} description={'Lunya\'s art'}/>
-        <Header/>
-        <Content>
-            <Offset amt={4}/>
-            <Heading level={1}>art</Heading>
-            <p>lunya sometimes draws, here you can see her beautiful artwork! :3</p>
-            <p className="text-sm text-gray-400">sometimes as cute as her &gt;//////&lt;</p>
+    return (
+        <Main>
+            <Metadata title={'Art'} description={"Lunya's art"} />
+            <Header />
+            <Content>
+                <Offset amt={4} />
+                <Heading level={1}>art</Heading>
+                <p>lunya sometimes draws, here you can see her beautiful artwork! :3</p>
+                <p className="text-sm text-gray-400">sometimes as cute as her &gt;//////&lt;</p>
 
-            <Heading level={2}>BusLine</Heading>
-            <p>A kawaii logo of the local bus transport company.</p>
-            <Image src={busline} alt={'BusLine kawaii logo'}/>
+                <Heading level={2}>BusLine</Heading>
+                <p>A kawaii logo of the local bus transport company.</p>
+                <Image src={busline} alt={'BusLine kawaii logo'} />
 
-            <Heading level={2}>IINE</Heading>
-            <p>A Japanese way to react to a post with a &quot;Like&quot; or &quot;Thumbs Up&quot;</p> 
-            <Image src={iine} alt={'IINE'}/>
+                <Heading level={2}>IINE</Heading>
+                <p>A Japanese way to react to a post with a &quot;Like&quot; or &quot;Thumbs Up&quot;</p>
+                <Image src={iine} alt={'IINE'} />
 
-            <Heading level={2}>Lunya social</Heading>
-            <p>Kawaii logo for my Sharkey instance</p>
-            <Image src={mldchanSocial} alt={'Lunya social logo'}/>
+                <Heading level={2}>Lunya social</Heading>
+                <p>Kawaii logo for my Sharkey instance</p>
+                <Image src={mldchanSocial} alt={'Lunya social logo'} />
 
-            <Heading level={2}>Ohayoo</Heading>
-            <p>Japanese for &quot;Good Morning&quot;</p>
-            <Image src={ohayoo} alt={'Ohayoo'}/>
+                <Heading level={2}>Ohayoo</Heading>
+                <p>Japanese for &quot;Good Morning&quot;</p>
+                <Image src={ohayoo} alt={'Ohayoo'} />
 
-            <Heading level={2}>Oyasumi</Heading>
-            <p>Japanese for &quot;Good Night&quot;</p>
-            <Image src={oyasumi} alt={'Oyasumi'}/>
+                <Heading level={2}>Oyasumi</Heading>
+                <p>Japanese for &quot;Good Night&quot;</p>
+                <Image src={oyasumi} alt={'Oyasumi'} />
 
-            <Heading level={2}>Website</Heading>
-            <p>The logo of this website</p>
-            <Image src={website} alt={'Website logo'}/>
-            <Offset amt={6}/>
-            <Footer visits={props.visits} route={'/art'} />
-        </Content>
-    </Main>
+                <Heading level={2}>Website</Heading>
+                <p>The logo of this website</p>
+                <Image src={website} alt={'Website logo'} />
+                <Offset amt={6} />
+                <Footer visits={props.visits} route={'/art'} />
+            </Content>
+        </Main>
+    );
 }

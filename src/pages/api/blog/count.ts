@@ -16,10 +16,11 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { PrismaClient } from "@prisma/client";
-import { NextApiRequest, NextApiResponse } from "next";
-import { isCountryBlocked } from "@/backend/countryBlocklist";
-import { z } from "zod";
+import { PrismaClient } from '@prisma/client';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { z } from 'zod';
+
+import { isCountryBlocked } from '@/backend/country-blocklist';
 
 const schema = z.object({
     cfToken: z.string(),
@@ -27,29 +28,31 @@ const schema = z.object({
 });
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    if (req.method !== "POST") return res.status(400).json({ error: "Invalid method" });
+    if (req.method !== 'POST') {
+        return res.status(400).json({ error: 'Invalid method' });
+    }
 
     let privacyWarning = false;
 
-    const gpcHeader = req.headers["sec-gpc"];
+    const gpcHeader = req.headers['sec-gpc'];
 
-    if (gpcHeader === "1") {
+    if (gpcHeader === '1') {
         privacyWarning = true;
     }
 
-    const dntHeader = req.headers["dnt"];
+    const dntHeader = req.headers['dnt'];
 
-    if (dntHeader === "1") {
+    if (dntHeader === '1') {
         privacyWarning = true;
     }
 
-    let ip = req.headers["x-real-ip"] || req.headers["x-forwarded-for"] || (req.socket.remoteAddress as string);
+    let ip = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || (req.socket.remoteAddress as string);
     if (Array.isArray(ip)) {
         ip = ip[0];
     }
 
-    if (ip.includes(",")) {
-        ip = ip.split(",")[0];
+    if (ip.includes(',')) {
+        ip = ip.split(',')[0];
     }
 
     const parsed = schema.safeParse(req.body);
@@ -60,19 +63,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
     const { cfToken, blogPost } = parsed.data;
 
-    const formData = new FormData();
-    formData.append("secret", process.env["CLOUDFLARE_SECRET_TOKEN"]!);
-    formData.append("response", cfToken);
-    formData.append("remoteip", ip);
+    if (process.env['CLOUDFLARE_SECRET_TOKEN']) {
+        const formData = new FormData();
+        formData.append('secret', process.env['CLOUDFLARE_SECRET_TOKEN']);
+        formData.append('response', cfToken);
+        formData.append('remoteip', ip);
 
-    const url = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
-    const result = await fetch(url, {
-        body: formData,
-        method: "POST",
-    });
+        const url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+        const result = await fetch(url, {
+            body: formData,
+            method: 'POST',
+        });
 
-    const outcome = await result.json();
-    if (!outcome.success) res.status(403).json({ error: "Bot detected, exit" });
+        const outcome = await result.json();
+        if (!outcome.success) {
+            res.status(403).json({ error: 'Bot detected, exit' });
+        }
+    }
 
     const prisma = new PrismaClient();
     await prisma.$connect();
@@ -88,7 +95,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         });
 
         if (!result3) {
-            res.status(404).json({ error: "No such blog post" });
+            res.status(404).json({ error: 'No such blog post' });
             return;
         }
 
@@ -103,7 +110,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
 
     if (!blogPost2) {
-        res.status(404).json({ error: "No such blog post" });
+        res.status(404).json({ error: 'No such blog post' });
         return;
     }
 

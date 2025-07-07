@@ -16,16 +16,16 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { PrismaClient } from "@prisma/client";
-import {NextApiRequest, NextApiResponse} from "next";
+import { PrismaClient } from '@prisma/client';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const {authorization} = req.headers;
+    const { authorization } = req.headers;
     if (!authorization) {
-        return res.status(401).json({error: "Unauthorized"});
+        return res.status(401).json({ error: 'Unauthorized' });
     }
     if (authorization !== process.env.ADMIN_PASSWORD) {
-        return res.status(403).json({error: "Forbidden"});
+        return res.status(403).json({ error: 'Forbidden' });
     }
 
     const prisma = new PrismaClient();
@@ -33,31 +33,33 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const pollsRows = await prisma.polls.findMany({
         orderBy: {
-            ID: "desc"
+            ID: 'desc',
         },
         include: {
             PollOptions: true,
-            PollVotes: true
-        }
-    })
+            PollVotes: true,
+        },
+    });
 
-    res.status(200).json({polls: pollsRows.map(x => ({
-        id: x.ID,
-        title: x.Title,
-        handle: x.Handle,
-        options: x.PollOptions.map(y => {
-            let votes = 0;
-            for (const z of x.PollVotes) {
-                if (z.OptionID === y.ID) {
-                    votes += 1;
+    res.status(200).json({
+        polls: pollsRows.map((x) => ({
+            id: x.ID,
+            title: x.Title,
+            handle: x.Handle,
+            options: x.PollOptions.map((y) => {
+                let votes = 0;
+                for (const z of x.PollVotes) {
+                    if (z.OptionID === y.ID) {
+                        votes += 1;
+                    }
                 }
-            }
 
-            return {
-                id: y.ID,
-                option: y.Option,
-                votes
-            }
-        })
-    }))});
+                return {
+                    id: y.ID,
+                    option: y.Option,
+                    votes,
+                };
+            }),
+        })),
+    });
 }

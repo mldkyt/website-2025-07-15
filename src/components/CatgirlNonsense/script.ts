@@ -17,9 +17,9 @@
  */
 
 function uwu_nonsense(length: number) {
-    const nonsense = ["aa", "am", "an", "ao", "eo", "ew", "me", "mr", "ny", "ow", "pp", "pu", "ra", "re", "rm", "rn", "ro", "rp", "rw", "ur", "wm", "wn", "wp", "wr", "ww", "ya"];
+    const nonsense = ['aa', 'am', 'an', 'ao', 'eo', 'ew', 'me', 'mr', 'ny', 'ow', 'pp', 'pu', 'ra', 're', 'rm', 'rn', 'ro', 'rp', 'rw', 'ur', 'wm', 'wn', 'wp', 'wr', 'ww', 'ya'];
 
-    let out = "";
+    let out = '';
     for (let x = 0; x <= length / 2; x++) {
         const rand = Math.floor(Math.random() * nonsense.length);
         out += nonsense[rand];
@@ -28,27 +28,27 @@ function uwu_nonsense(length: number) {
 }
 
 function uwu_nya(length: number) {
-    return "ny" + "a".repeat(length);
+    return 'ny' + 'a'.repeat(length);
 }
 
 function uwu_blush(length: number) {
-    return ">" + "/".repeat(length) + "<";
+    return '>' + '/'.repeat(length) + '<';
 }
 
 function uwu_action(rand: number) {
     const actions = [
-        "*tilts head*",
-        "*twitches ears slightly*",
-        "*purrs*",
-        "*falls asleep*",
-        "*sits on ur keyboard*",
-        "*nuzzles*",
-        "*stares at u*",
-        "*points towards case of monster zero ultra*",
-        "*sneezes*",
-        "*plays with yarn*",
-        "*eats all ur doritos*",
-        "*lies down on a random surface*",
+        '*tilts head*',
+        '*twitches ears slightly*',
+        '*purrs*',
+        '*falls asleep*',
+        '*sits on ur keyboard*',
+        '*nuzzles*',
+        '*stares at u*',
+        '*points towards case of monster zero ultra*',
+        '*sneezes*',
+        '*plays with yarn*',
+        '*eats all ur doritos*',
+        '*lies down on a random surface*',
     ];
 
     if (rand === 12) {
@@ -58,7 +58,7 @@ function uwu_action(rand: number) {
 }
 
 function uwu_keysmash(length: number) {
-    let out = "";
+    let out = '';
     for (let x = 0; x <= length; x++) {
         const randomAsciiValue = Math.floor(Math.random() * 26) + 65; // ASCII values for uppercase letters A-Z
         const randomLetter = String.fromCharCode(randomAsciiValue);
@@ -68,50 +68,53 @@ function uwu_keysmash(length: number) {
 }
 
 function uwu_scrunkly(length: number) {
-    return "aw " + uwu_keysmash(length - 3);
+    return 'aw ' + uwu_keysmash(length - 3);
 }
 
-export function generateCatgirl(amount: number, options: {
-    uwu: boolean,
-    nonsense: boolean,
-    nya: boolean,
-    blush: boolean,
-    three: boolean,
-    actions: boolean,
-    keysmashing: boolean,
-    screaming: boolean,
-    scrunkly: boolean,
-    owo: boolean,
-    ara: boolean
-} = {
-    uwu: true,
-    nonsense: true,
-    nya: true,
-    blush: true,
-    three: true,
-    actions: true,
-    keysmashing: true,
-    screaming: true,
-    scrunkly: true,
-    owo: true,
-    ara: true
-}) {
+export function generateCatgirl(
+    amount: number,
+    options: {
+        uwu: boolean;
+        nonsense: boolean;
+        nya: boolean;
+        blush: boolean;
+        three: boolean;
+        actions: boolean;
+        keysmashing: boolean;
+        screaming: boolean;
+        scrunkly: boolean;
+        owo: boolean;
+        ara: boolean;
+    } = {
+        uwu: true,
+        nonsense: true,
+        nya: true,
+        blush: true,
+        three: true,
+        actions: true,
+        keysmashing: true,
+        screaming: true,
+        scrunkly: true,
+        owo: true,
+        ara: true,
+    },
+) {
     const actions = [
-        "*tilts head*",
-        "*twitches ears slightly*",
-        "*purrs*",
-        "*falls asleep*",
-        "*sits on ur keyboard*",
-        "*nuzzles*",
-        "*stares at u*",
-        "*points towards case of monster zero ultra*",
-        "*sneezes*",
-        "*plays with yarn*",
-        "*eats all ur doritos*",
-        "*lies down on a random surface*",
+        '*tilts head*',
+        '*twitches ears slightly*',
+        '*purrs*',
+        '*falls asleep*',
+        '*sits on ur keyboard*',
+        '*nuzzles*',
+        '*stares at u*',
+        '*points towards case of monster zero ultra*',
+        '*sneezes*',
+        '*plays with yarn*',
+        '*eats all ur doritos*',
+        '*lies down on a random surface*',
     ];
 
-    let output = "";
+    let output = '';
     let looplimit = 0;
     let last = -1;
     const blockLength = 50; // Adjust this value as needed
@@ -125,7 +128,7 @@ export function generateCatgirl(amount: number, options: {
         }
 
         if (random === 0 && options.uwu) {
-            const str = "uwu";
+            const str = 'uwu';
             output += str;
         } else if (random === 1 && options.nonsense) {
             // nonsense
@@ -141,7 +144,7 @@ export function generateCatgirl(amount: number, options: {
             output += str;
         } else if (random === 4 && options.three) {
             // :3
-            const str = ":3";
+            const str = ':3';
             output += str;
         } else if (random === 5 && options.actions) {
             // Actions
@@ -153,7 +156,7 @@ export function generateCatgirl(amount: number, options: {
             output += str;
         } else if (random === 7 && options.screaming) {
             // Screaming
-            const str = "A".repeat(Math.floor(Math.random() * (5 - 3 + 1)) + 3);
+            const str = 'A'.repeat(Math.floor(Math.random() * (5 - 3 + 1)) + 3);
             output += str;
         } else if (random === 8 && options.scrunkly) {
             // Aww the scrunkly
@@ -161,18 +164,18 @@ export function generateCatgirl(amount: number, options: {
             output += str;
         } else if (random === 9 && options.owo) {
             // owo
-            output += "owo";
+            output += 'owo';
         } else if (random === 10 && options.ara) {
             // ara ara
-            output += "ara ara~";
+            output += 'ara ara~';
         }
 
         if (output.length > amount) {
             break;
         }
 
-        output += " ";
-        output = output.replace(/\s{2,}/g, " ");
+        output += ' ';
+        output = output.replace(/\s{2,}/g, ' ');
         last = random;
 
         looplimit += 1;
@@ -187,5 +190,5 @@ export function generateCatgirl(amount: number, options: {
         blocks.push(output.substr(i, blockLength));
     }
 
-    return blocks.join(""); // Join blocks with spaces
+    return blocks.join(''); // Join blocks with spaces
 }

@@ -15,47 +15,47 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React from "react";
+import React from 'react';
+import Link from 'next/link';
+import { InferGetServerSidePropsType } from 'next';
 
-import Main from "@/components/Generic/Main";
-import {Header} from "@/components/Generic/Header";
-import Content from "@/components/Generic/Content";
-import Heading from "@/components/Generic/Heading";
-import Link from "next/link";
-import Offset from "@/components/Generic/Offset";
-import Metadata from "@/components/Generic/Metadata";
-import Footer from "@/components/Generic/Footer";
-import {InferGetServerSidePropsType} from "next";
-import {getVisits} from "@/backend/visitsCounter";
-import Button from "@/components/Generic/Button";
+import Main from '@/components/Generic/main';
+import { Header } from '@/components/Generic/header';
+import Content from '@/components/Generic/content';
+import Heading from '@/components/Generic/heading';
+import Offset from '@/components/Generic/offset';
+import Metadata from '@/components/Generic/metadata';
+import Footer from '@/components/Generic/footer';
+import { getVisits } from '@/backend/visits-counter';
+import Button from '@/components/Generic/button';
 
 export async function getServerSideProps() {
-    const visits = await getVisits({route: '/project/fedi/streaks'});
+    const visits = await getVisits({ route: '/project/fedi/streaks' });
 
     return {
         props: {
-            visits
-        }
-    }
+            visits,
+        },
+    };
 }
 
 export default function FediStreaks(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <Main>
-            <Metadata title={'Fedi Streaks'}
-                      description={'Fedi Streaks is a bot that checks your profile every day for new notes. If it doesn\'t find you posting for one day, you lose the streak. Every day you post, you get +1 streaks of sending notes.'}/>
-            <Header highlight={'projects'}/>
+            <Metadata
+                title={'Fedi Streaks'}
+                description={
+                    "Fedi Streaks is a bot that checks your profile every day for new notes. If it doesn't find you posting for one day, you lose the streak. Every day you post, you get +1 streaks of sending notes."
+                }
+            />
+            <Header highlight={'projects'} />
             <Content>
                 <Heading level={1}>fedi streaks</Heading>
-                <p>
-                    fedi streaks is a simple silly fedi bot which counts your activity on fedi :333
-                </p>
-                <p className="pt-2">
-                    basically, if you&apos;re active in consencutive days on fedi, the bot will count those days. if you miss one day, the count of days gets reset to 1.
-                </p>
+                <p>fedi streaks is a simple silly fedi bot which counts your activity on fedi :333</p>
+                <p className="pt-2">basically, if you&apos;re active in consencutive days on fedi, the bot will count those days. if you miss one day, the count of days gets reset to 1.</p>
 
-                <Offset amt={2}/>
-                
+                <Offset amt={2} />
+
                 <div className="flex flex-col gap-2">
                     <Link href="https://social.mldchan.dev/@FediStreaks">
                         <Button fullWidth>official account</Button>
@@ -67,9 +67,8 @@ export default function FediStreaks(props: InferGetServerSidePropsType<typeof ge
 
                 <br />
 
-                <Footer visits={props.visits} route={'/project/fedi/streaks'}
-                        />
+                <Footer visits={props.visits} route={'/project/fedi/streaks'} />
             </Content>
         </Main>
-    )
+    );
 }

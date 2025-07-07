@@ -15,45 +15,46 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React from "react";
+import React from 'react';
+import { InferGetServerSidePropsType } from 'next';
+import Link from 'next/link';
 
-import Main from "@/components/Generic/Main";
-import {Header} from "@/components/Generic/Header";
-import Content from "@/components/Generic/Content";
-import Heading from "@/components/Generic/Heading";
-import Generator from "@/components/CatgirlNonsense/Generator";
-import Offset from "@/components/Generic/Offset";
-import Metadata from "@/components/Generic/Metadata";
-import Footer from "@/components/Generic/Footer";
-import {InferGetServerSidePropsType} from "next";
-import {getVisits} from "@/backend/visitsCounter";
-import Link from "next/link";
-import Button from "@/components/Generic/Button";
+import Main from '@/components/Generic/main';
+import { Header } from '@/components/Generic/header';
+import Content from '@/components/Generic/content';
+import Heading from '@/components/Generic/heading';
+import Generator from '@/components/CatgirlNonsense/generator';
+import Offset from '@/components/Generic/offset';
+import Metadata from '@/components/Generic/metadata';
+import Footer from '@/components/Generic/footer';
+import { getVisits } from '@/backend/visits-counter';
+import Button from '@/components/Generic/button';
 
 export async function getServerSideProps() {
-    const visits = await getVisits({route: '/project/catgirlnonsense'});
+    const visits = await getVisits({ route: '/project/catgirlnonsense' });
 
     return {
         props: {
-            visits
-        }
-    }
+            visits,
+        },
+    };
 }
 
 export default function CatgirlNonsense(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
-    return <Main>
-        <Metadata title={'Catgirl Nonsense'} description={'Catgirl Nonsense generator'}/>
-        <Header highlight={'projects'}/>
-        <Content>
-            <Heading level={1}>Catgirl nonsense generator uwu :3</Heading>
-            <Generator/>
-            <br />
-            <Link href={'/discord'}>
-                <Button fullWidth>join my Discord server for support :3</Button>
-            </Link>
-            <Offset amt={2}/>
-            <Footer visits={props.visits} route={'/project/catgirlnonsense'}
-                    />
-        </Content>
-    </Main>
+    return (
+        <Main>
+            <Metadata title={'Catgirl Nonsense'} description={'Catgirl Nonsense generator'} />
+            <Header highlight={'projects'} />
+            <Content>
+                <Heading level={1}>Catgirl nonsense generator uwu :3</Heading>
+                <Generator />
+                <br />
+                <Link href={'/discord'}>
+                    <Button fullWidth>join my Discord server for support :3</Button>
+                </Link>
+                <Offset amt={2} />
+                <Footer visits={props.visits} route={'/project/catgirlnonsense'} />
+            </Content>
+        </Main>
+    );
 }

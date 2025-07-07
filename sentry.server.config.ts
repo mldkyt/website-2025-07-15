@@ -2,10 +2,10 @@
 // The config you add here will be used whenever the server handles a request.
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
-import * as Sentry from "@sentry/nextjs";
+import * as Sentry from '@sentry/nextjs';
 
 Sentry.init({
-    dsn: "https://5c09c5b189b74d24b94e328fc85ba049@e.lunya.pet/5",
+    dsn: 'https://5c09c5b189b74d24b94e328fc85ba049@e.lunya.pet/5',
 
     integrations: [Sentry.zodErrorsIntegration(), Sentry.prismaIntegration(), Sentry.postgresIntegration(), Sentry.consoleIntegration()],
 

@@ -16,14 +16,17 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from 'react';
 
-import React from "react";
-
-export default function Disclaimer(props: { title: string, message: string }) {
+export default function Button(props: { children: string; onClick?: () => void; type?: 'button' | 'submit' | 'reset'; disabled?: boolean; fullWidth?: boolean }) {
     return (
-        <div className={'bg-red-600 rounded-xl p-2'}>
-            <h1 className={'text-2xl font-bold'}>{props.title}</h1>
-            <p>{props.message}</p>
-        </div>
+        <button
+            type={props.type}
+            onClick={props.onClick}
+            disabled={props.disabled === true}
+            className={`p-1 px-2 bg-pink-400 hover:bg-pink-300 text-black transition-all rounded-lg drop-shadow-md cursor-pointer ${props.fullWidth ? 'w-full' : ''}`}
+        >
+            {props.children}
+        </button>
     );
 }

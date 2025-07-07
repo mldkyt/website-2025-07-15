@@ -16,55 +16,51 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from "react";
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { InferGetServerSidePropsType } from 'next';
 
-import Main from "@/components/Generic/Main";
-import Heading from "@/components/Generic/Heading";
-import Content from "@/components/Generic/Content";
-import {Header} from "@/components/Generic/Header";
-import Offset from "@/components/Generic/Offset";
-
+import Main from '@/components/Generic/main';
+import Heading from '@/components/Generic/heading';
+import Content from '@/components/Generic/content';
+import { Header } from '@/components/Generic/header';
+import Offset from '@/components/Generic/offset';
 import nmfirefox from '@/images/nexusmodsfirefox.png';
-import Image from "next/image";
-import Link from "next/link";
-import Metadata from "@/components/Generic/Metadata";
-import Footer from "@/components/Generic/Footer";
-import {InferGetServerSidePropsType} from "next";
-import {getVisits} from "@/backend/visitsCounter";
-import Button from "@/components/Generic/Button";
+import Metadata from '@/components/Generic/metadata';
+import Footer from '@/components/Generic/footer';
+import { getVisits } from '@/backend/visits-counter';
+import Button from '@/components/Generic/button';
 
 export async function getServerSideProps() {
-    const visits = await getVisits({route: '/project/nmfirefox'});
+    const visits = await getVisits({ route: '/project/nmfirefox' });
 
     return {
         props: {
-            visits
-        }
-    }
+            visits,
+        },
+    };
 }
 
 export default function NMFirefox(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
-    return <Main>
-        <Metadata title={'NexusMods Enhancements for Firefox'}
-                  description={'NexusMods Enhancements for Firefox is an extension that adds a few features to Nexus Mods, namely blocking people.'}/>
-        <Header highlight={'projects'}/>
-        <Content>
-            <Heading level={1}>Nexus enhancements for Firefox</Heading>
+    return (
+        <Main>
+            <Metadata title={'NexusMods Enhancements for Firefox'} description={'NexusMods Enhancements for Firefox is an extension that adds a few features to Nexus Mods, namely blocking people.'} />
+            <Header highlight={'projects'} />
+            <Content>
+                <Heading level={1}>Nexus enhancements for Firefox</Heading>
 
-            <p>a small extension for Firefox originally made for personal use :3</p>
-            <Image src={nmfirefox} alt="User Interface" className={'rounded-lg'}/>
-            <p className="py-2">
-                this simple exception really simply allows you to hide comments from specific users on nexusmods mods and images.
-            </p>
-            <p className="py-2">
-                this extension was last tested in like August 2024, so the extensions may not work :3c
-            </p>
-            <br/>
-            <Link href={'https://github.com/LunyaPet/NexusEnhancementsForFirefox/releases'}>
-                <Button fullWidth>download the extension :3</Button>
-            </Link>
-            <Offset amt={3}/>
-            <Footer visits={props.visits} route={'/project/nmfirefox'} />
-        </Content>
-    </Main>
+                <p>a small extension for Firefox originally made for personal use :3</p>
+                <Image src={nmfirefox} alt="User Interface" className={'rounded-lg'} />
+                <p className="py-2">this simple exception really simply allows you to hide comments from specific users on nexusmods mods and images.</p>
+                <p className="py-2">this extension was last tested in like August 2024, so the extensions may not work :3c</p>
+                <br />
+                <Link href={'https://github.com/LunyaPet/NexusEnhancementsForFirefox/releases'}>
+                    <Button fullWidth>download the extension :3</Button>
+                </Link>
+                <Offset amt={3} />
+                <Footer visits={props.visits} route={'/project/nmfirefox'} />
+            </Content>
+        </Main>
+    );
 }

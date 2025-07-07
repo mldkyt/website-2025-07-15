@@ -16,25 +16,9 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from "react";
+import React from 'react';
+import { ReactNode } from 'react';
 
-import Image from "next/image";
-import Link from "next/link";
-
-export default function Project(props: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    image?: any,
-    imageAlt?: string,
-    title: string,
-    description: string,
-    link?: string
-}) {
-
-    return <div className="bg-[#222] rounded-xl m-4">
-        <Link href={props.link ?? ''}>
-            {props.image && props.imageAlt && <Image className="h-[256px] object-cover rounded-t-xl" src={props.image} alt={props.imageAlt} width={1024} height={1024} /> }
-            <h1 className="font-bold text-xl m-2">{props.title}</h1>
-            <p className="m-2">{props.description}</p>
-        </Link>
-    </div>;
+export default function Content(props: { children: ReactNode | ReactNode[] }) {
+    return <main className={'w-3/4 m-auto'}>{props.children}</main>;
 }

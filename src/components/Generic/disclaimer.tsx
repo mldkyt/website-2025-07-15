@@ -16,18 +16,13 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from 'react';
 
-import React from "react";
-
-export default function Heading(props: {
-    level: 1 | 2,
-    children: string
-}) {
-    if (props.level === 1) {
-        return <h1 className={'text-center text-2xl font-bold py-4'}>{props.children}</h1>
-    } else if (props.level === 2) {
-        return <h2 className={'text-center text-xl font-bold py-2'}>{props.children}</h2>
-    }
-
-    return null;
+export default function Disclaimer(props: { title: string; message: string }) {
+    return (
+        <div className={'bg-red-600 rounded-xl p-2'}>
+            <h1 className={'text-2xl font-bold'}>{props.title}</h1>
+            <p>{props.message}</p>
+        </div>
+    );
 }
