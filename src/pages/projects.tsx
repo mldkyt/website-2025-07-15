@@ -38,6 +38,10 @@ import fediMeow from '@/images/fedimeow.png';
 import fediSummarizer from '@/images/fedi/summarizer/main.png';
 import fediStreaks from '@/images/fedistreaks.png';
 import monbazoumodlist from '@/images/monbazoumodlist.png';
+import asphaltroads from '@/images/msc/asphaltroads.png';
+import msclegacy from '@/images/msc/legacymsc.png';
+import msctweaks from '@/images/msc/msctweaks.png';
+import pridemod from '@/images/msc/pridemod.png';
 import cutieQuiz from '@/images/cutiequiz/1.png';
 import Metadata from '@/components/Generic/metadata';
 import Footer from '@/components/Generic/footer';
@@ -88,6 +92,33 @@ export default function Projects(props: InferGetServerSidePropsType<typeof getSe
                         link={'/project/fedi/summarizer'}
                     />
                     <Project image={fediStreaks} imageAlt={'Fedi Streaks bot on a Sharkey instance'} title={'Fedi Streaks'} description={'counts consencutive days of activity :3'} link={'/project/fedi/streaks'} />
+                </div>
+
+                <h1 className="text-center text-2xl font-bold py-4">Lunya&apos;s My Summer Car mods</h1>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+                    <Project
+                        image={msctweaks}
+                        imageAlt="An image of the MSC Logo with Tweaks written next to it, the background is blurred."
+                        description="This mod adds a few tweaks to My Summer Car."
+                        title="MSC Tweaks"
+                        link="/project/msctweaks"
+                    ></Project>
+                    <Project
+                        image={pridemod}
+                        imageAlt="Picture of 2 pride flags placed in a MSC world, with a lesbian and a transgender one."
+                        description="A mod that adds pride into My Summer Car"
+                        title="Pride Mod"
+                        link="/project/pridemod"
+                    />
+                    <Project
+                        image={msclegacy}
+                        imageAlt="Screenshot of the game menu with the mod settings open, showing a lot of options"
+                        description="Reverts the game into old versions."
+                        title="Legacy MSC"
+                        link="/project/msclegacy"
+                    />
+                    <Project image={asphaltroads} imageAlt="Image of an asphalt road in place of a dirt one in MSC" description="Asphalt Roads mod for My Summer Car" title="Asphalt Roads" link="/project/asphaltroads" />
                 </div>
 
                 <h1 className={'text-center text-2xl font-bold py-4'}>Lunya&apos;s stale projects</h1>
